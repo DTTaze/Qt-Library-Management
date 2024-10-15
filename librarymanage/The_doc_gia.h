@@ -7,22 +7,29 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QTableWidget>
-#include <QString>
+#include <string>
 #include <QDir>
-
 #include "Dau_sach.h"
-// #include "Muon_tra.h"
-#define MAXRANDOM 10000 // Random tối đa 10000 số
-struct DanhSachMUONTRA;
+#include "Muon_tra.h"
+#define MAXRANDOM 10000
 using namespace std;
 
-enum Phai{Nam = 1, Nu = 0};
-enum TrangThaiCuaThe{Dang_Hoat_Dong = 1, Khoa = 0};
+int MangMaThe[MAXRANDOM];
+
+enum Phai{
+    Nam = 1,
+    Nu = 0
+};
+
+enum TrangThaiCuaThe{
+    Dang_Hoat_Dong = 1,
+    Khoa = 0
+};
 
 struct The_Doc_Gia {
     unsigned int MATHE;
-    QString Ho;
-    QString Ten;
+    string Ho;
+    string Ten;
     TrangThaiCuaThe TrangThai;
     Phai phai;
     DanhSachMUONTRA* head_lsms = nullptr;
@@ -47,7 +54,7 @@ extern Danh_Sach_The_Doc_Gia* root;
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia ) ;
 void Them_Doc_Gia_Theo_Ten(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia );
 extern Danh_Sach_The_Doc_Gia* rp;
-void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia* r );
+void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r );
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) ;
 void Inorder(Danh_Sach_The_Doc_Gia* root );
@@ -59,4 +66,6 @@ int LayMaTheNgauNhien() ;
 void TraVeSoNgauNhien(int So_Tra_Ve);
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget);
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia);
+void Danh_Sach_Theo_Ten(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root_ma_so);
+void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root );
 #endif

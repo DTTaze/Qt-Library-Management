@@ -117,8 +117,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normalon>../../book-solid.svg</normalon>
-              </iconset>
+               <normaloff>../../../../../../Downloads/book-solid.svg</normaloff>../../../../../../Downloads/book-solid.svg</iconset>
              </property>
             </widget>
            </item>
@@ -163,8 +162,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normalon>../../user-regular.svg</normalon>
-              </iconset>
+               <normaloff>../../../../../../Downloads/user-regular.svg</normaloff>../../../../../../Downloads/user-regular.svg</iconset>
              </property>
             </widget>
            </item>
@@ -209,8 +207,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normalon>../../rotate-solid.svg</normalon>
-              </iconset>
+               <normaloff>../../../../../../Downloads/rotate-solid.svg</normaloff>../../../../../../Downloads/rotate-solid.svg</iconset>
              </property>
             </widget>
            </item>
@@ -259,7 +256,7 @@ color: black;</string>
              <rect>
               <x>40</x>
               <y>590</y>
-              <width>83</width>
+              <width>111</width>
               <height>51</height>
              </rect>
             </property>
@@ -302,6 +299,10 @@ QPushButton:focus {
             </property>
             <property name="text">
              <string>Thêm</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../Downloads/plus-solid.svg</normaloff>../../../../../../Downloads/plus-solid.svg</iconset>
             </property>
            </widget>
            <widget class="QPushButton" name="luuSach_pushButton">
@@ -352,6 +353,10 @@ QPushButton:focus {
             </property>
             <property name="text">
              <string>Lưu</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../Downloads/download-solid.svg</normaloff>../../../../../../Downloads/download-solid.svg</iconset>
             </property>
            </widget>
            <widget class="QLabel" name="timKiemDuSach_Label">
@@ -487,12 +492,12 @@ color: black;
             </property>
             <item>
              <property name="text">
-              <string>Tên</string>
+              <string>Mã số</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Mã số</string>
+              <string>Tên</string>
              </property>
             </item>
            </widget>
@@ -542,6 +547,10 @@ QPushButton:focus {
             <property name="text">
              <string>Thêm</string>
             </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../Downloads/plus-solid.svg</normaloff>../../../../../../Downloads/plus-solid.svg</iconset>
+            </property>
            </widget>
            <widget class="QPushButton" name="xoaDocGia_pushButton">
             <property name="geometry">
@@ -588,6 +597,10 @@ QPushButton:focus {
             </property>
             <property name="text">
              <string>Xóa</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../../Downloads/trash-solid.svg</normaloff>../../../../../../Downloads/trash-solid.svg</iconset>
             </property>
            </widget>
           </widget>

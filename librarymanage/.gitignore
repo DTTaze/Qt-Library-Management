@@ -11,3 +11,5 @@ cmake_install.cmake
 librarymanage.exe
 librarymanage_autogen/
 qtcsettings.cmake
+CMakeCache.txt.prev
+

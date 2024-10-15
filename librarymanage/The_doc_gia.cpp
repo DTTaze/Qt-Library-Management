@@ -1,8 +1,8 @@
 #include "The_doc_gia.h"
-#include "Muon_tra.h"
 
 Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
+
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
         Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
@@ -25,10 +25,6 @@ void Them_Doc_Gia_Theo_Ten(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thon
         Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
         root = con_tro_the_doc_gia;
     } else {
-        if ( root->thong_tin.Ten == thong_tin_the_doc_gia.Ten ) {
-            cout << "Ten doc gia da ton tai." << endl;
-            return;
-        }
         if ( root->thong_tin.Ten < thong_tin_the_doc_gia.Ten ) {
             Them_Doc_Gia(root->ptr_right, thong_tin_the_doc_gia);
         } else {
@@ -37,7 +33,7 @@ void Them_Doc_Gia_Theo_Ten(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thon
     }
 }
 
-void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia* r ) {
+void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
     if ( r->ptr_left != nullptr ) {
         Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_left);
     } else {
@@ -104,14 +100,14 @@ void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten) {
 
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget) {
     QFile file("docgia_100.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) { // Mở file với chế độ đọc
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file"); // Thay đổi nullptr thành `this` nếu trong lớp
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file");
         return;
     }
 
-    while (!file.atEnd()) { // Kiểm tra đến cuối file
-        QByteArray line = file.readLine(); // Đọc từng dòng
-        QString strLine = QString(line).trimmed(); // Xử lý dòng đọc được
+    while (!file.atEnd()) {
+        QByteArray line = file.readLine();
+        QString strLine = QString(line).trimmed(); // Đọc và xử lý dòng
         QStringList fields = strLine.split(" "); // Tách theo khoảng trắng
 
         if (fields.size() <= 4) {
@@ -119,13 +115,13 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
         }
 
         bool ok;
-        unsigned int mathe = fields[0].toUInt(&ok); // Chuyển đổi mã thẻ sang số nguyên
+        unsigned int mathe = fields[0].toUInt(&ok);
         if (!ok) {
             continue; // Bỏ qua nếu không thể chuyển đổi
         }
 
-        QString Ho = fields[1] + " " + fields[2];
-        QString Ten = fields[3];
+        string Ho = fields[1].toStdString() + " " + fields[2].toStdString(); // Chuyển đổi từ QString sang string
+        string Ten = fields[3].toStdString(); // Chuyển đổi từ QString sang string
         Phai phai = (fields[4] == "Nam") ? Nam : Nu;
 
         The_Doc_Gia docGia;
@@ -133,7 +129,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
         docGia.Ho = Ho;
         docGia.Ten = Ten;
         docGia.phai = phai;
-        docGia.TrangThai = Dang_Hoat_Dong; // Trạng thái mặc định
+        docGia.TrangThai = Dang_Hoat_Dong;
 
         Them_Doc_Gia(root_ma_so, docGia); // Thêm độc giả vào cây
         Them_Vao_QTableWidget(tableWidget, docGia); // Thêm vào QTableWidget
@@ -143,12 +139,31 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
 }
 
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) {
-    int row = tableWidget->rowCount(); // Lấy số hàng hiện tại
-    tableWidget->insertRow(row); // Thêm hàng mới
+    int row = tableWidget->rowCount();
+    tableWidget->insertRow(row);
 
     // Thêm dữ liệu vào từng ô
-    tableWidget->setItem(row, 0, new QTableWidgetItem(docGia.Ho)); // Họ
-    tableWidget->setItem(row, 1, new QTableWidgetItem(docGia.Ten)); // Tên
+    tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(docGia.Ho))); // Họ
+    tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia.Ten))); // Tên
     tableWidget->setItem(row, 2, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
 }
+
+void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) { // Hàm thêm thông tin từ cây vào table
+    if ( root == nullptr ) return;
+    The_Doc_Gia tam_thoi = root->thong_tin;
+    Them_Vao_QTableWidget(tableWidget, tam_thoi);
+    Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_left);
+    Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_right);
+}
+
+void Danh_Sach_Theo_Ten(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root_ma_so) { // Hàm để tạo và thêm danh sách tên vào table
+    if (root_ma_so == nullptr) return; // Kiểm tra null trước
+    Danh_Sach_The_Doc_Gia* root_ten = nullptr ;
+    Tao_Danh_Sach_Theo_Ten(root_ma_so, root_ten);
+    tableWidget->clear();
+    Them_Cay_Vao_QTableWidget(tableWidget, root_ten);
+    // Xoa_Danh_Sach_Theo_Ten(root_ten);
+}
+
+

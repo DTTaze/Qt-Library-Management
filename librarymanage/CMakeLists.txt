@@ -39,6 +39,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ngay.h
         ngay.cpp
         docgia_100.txt
+        themdocgia_dialog.h themdocgia_dialog.cpp themdocgia_dialog.ui
 
 
 

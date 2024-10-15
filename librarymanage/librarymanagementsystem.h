@@ -40,6 +40,11 @@ private slots:
 
     void on_pushButton_intheloai_clicked();
 
+    void on_themDocGia_pushButton_clicked();
+
+
+    void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
+
 public slots:
 
 

@@ -5,6 +5,7 @@
 #include "timkiemmasach.h"
 #include "intheotheloai.h"
 #include "The_doc_gia.h"
+#include "themdocgia_dialog.h"
 #include <QDebug>
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
@@ -14,18 +15,16 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     ,danh_muc_sach(nullptr)
 {
     ui->setupUi(this);
-    QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget);
-    QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget);
-    QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget);
+    QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
+    QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
+    QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
 
-    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2);
-    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this);
+    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào Bảng tableWidget_2
+    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
 
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
 }
-
-
 
 LibraryManagementSystem::~LibraryManagementSystem()
 {
@@ -37,7 +36,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     TimKiemTenSach(danh_sach_dau_sach,ui->tableView_dausach,key);
 }
 
-void LibraryManagementSystem::page1Widget()
+void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
 }
@@ -83,4 +82,24 @@ void LibraryManagementSystem::on_pushButton_intheloai_clicked()
     intheloai.setModal(true);
     intheloai.exec();
 }
+
+
+void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
+{
+    themDocGia_Dialog themDocGia;
+    themDocGia.setModal(true);
+    themDocGia.exec();
+}
+
+void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index)
+{
+    ui->tableWidget_2->setRowCount(0); // Làm sạch bảng trước khi thêm dữ liệu mới
+
+    if (index == 0) { // 0 là chỉ số cho mã số
+        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
+    } else if (index == 1) { // 1 là chỉ số cho tên
+        Danh_Sach_Theo_Ten(ui->tableWidget_2, root); // Thêm theo tên
+    }
+}
+
 
