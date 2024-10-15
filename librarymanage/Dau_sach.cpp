@@ -354,6 +354,7 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
 
         // Tách thông tin
         size_t pos = 0;
+
         pos = line.find('|');
         ISBN = line.substr(0, pos); line.erase(0, pos + 1);
 
@@ -361,13 +362,13 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         tensach = line.substr(0, pos); line.erase(0, pos + 1);
 
         pos = line.find('|');
-        sotrang = std::stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        sotrang = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         pos = line.find('|');
         tacgia = line.substr(0, pos); line.erase(0, pos + 1);
 
         pos = line.find('|');
-        namsx = std::stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         pos = line.find('|');
         theloai = line.substr(0, pos); line.erase(0, pos + 1);
@@ -375,16 +376,19 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         pos = line.find('|');
         vitri = line.substr(0, pos); line.erase(0, pos + 1);
 
+        // Kiểm tra các trường hợp rỗng
         if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
             continue;
         }
-        // Chuyển đổi sang std::string nếu cần
+
+        // Thêm đầu sách vào danh sách
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, 0, vitri);
     }
     file.close();
     const int row_count = danh_sach_dau_sach.demsach;
+
     // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count,7);
+    QStandardItemModel* model = new QStandardItemModel(row_count, 7);
 
     QString headers[7] = {
         "ISBN",
@@ -400,8 +404,8 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         model->setHeaderData(i, Qt::Horizontal, headers[i]);
     }
 
-    for (int i = 0; i < row_count; i++){
-        model->setItem(i,0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
+    for (int i = 0; i < row_count; i++) {
+        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
         model->setItem(i, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
         model->setItem(i, 2, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->sotrang)));
         model->setItem(i, 3, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));

@@ -14,9 +14,6 @@
 #include <QStandardItemModel>
 #include <QLineEdit>
 #include <QDebug>
-#include <QDir>
-#include <QCoreApplication>
-#include <QStandardPaths>
 
 using namespace std;
 
