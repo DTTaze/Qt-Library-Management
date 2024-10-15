@@ -341,48 +341,61 @@ void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTableView* tableView_dausach, QWidget* parent) {
     QFile file("Danh_sach_dau_sach.txt");
-    if (!file.is_open()) {
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(parent, "Lỗi", "Không thể đọc file Danh_sach_dau_sach.txt");
         return;
     }
 
-    string line;
-    while (getline(file, line)) {
-        string ISBN, tensach, tacgia, theloai, vitri;
+    QTextStream in(&file);
+    QString line;  // Use QString for reading lines
+
+    while (!in.atEnd()) {
+        line = in.readLine();  // Read a line from the file
+
+        // Convert QString to std::string
+        std::string strLine = line.toStdString();
+
+        std::string ISBN, tensach, tacgia, theloai, vitri;
         int sotrang, namsx;
 
-        // tach thong tin
+        // Tách thông tin từ dòng đọc được
         size_t pos = 0;
-        pos = line.find('|');
-        ISBN = line.substr(0, pos); line.erase(0, pos + 1);
 
-        pos = line.find('|');
-        tensach = line.substr(0, pos); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        ISBN = strLine.substr(0, pos); strLine.erase(0, pos + 1);
 
-        pos = line.find('|');
-        sotrang = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        tensach = strLine.substr(0, pos); strLine.erase(0, pos + 1);
 
-        pos = line.find('|');
-        tacgia = line.substr(0, pos); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        sotrang = stoi(strLine.substr(0, pos)); strLine.erase(0, pos + 1);
 
-        pos = line.find('|');
-        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        tacgia = strLine.substr(0, pos); strLine.erase(0, pos + 1);
 
-        pos = line.find('|');
-        theloai = line.substr(0, pos); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        namsx = stoi(strLine.substr(0, pos)); strLine.erase(0, pos + 1);
 
-        pos = line.find('|');
-        vitri = line.substr(0, pos); line.erase(0, pos + 1);
+        pos = strLine.find('|');
+        theloai = strLine.substr(0, pos); strLine.erase(0, pos + 1);
 
+        pos = strLine.find('|');
+        vitri = strLine.substr(0, pos); strLine.erase(0, pos + 1);
+
+        // Kiểm tra các trường hợp rỗng
         if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
             continue;
         }
+
+        // Thêm đầu sách vào danh sách
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, 0, vitri);
     }
 
     const int row_count = danh_sach_dau_sach.demsach;
+
     // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count,7);
+    QStandardItemModel* model = new QStandardItemModel(row_count, 7);
 
     QString headers[7] = {
         "ISBN",
@@ -398,8 +411,8 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         model->setHeaderData(i, Qt::Horizontal, headers[i]);
     }
 
-    for (int i = 0; i < row_count; i++){
-        model->setItem(i,0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
+    for (int i = 0; i < row_count; i++) {
+        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
         model->setItem(i, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
         model->setItem(i, 2, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->sotrang)));
         model->setItem(i, 3, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
@@ -410,13 +423,14 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
 
     // Gán model vào QTableView
     tableView_dausach->setModel(model);
-    tableView_dausach->setColumnWidth(0,120);
-    tableView_dausach->setColumnWidth(1,200);
-    tableView_dausach->setColumnWidth(2,50);
-    tableView_dausach->setColumnWidth(3,100);
-    tableView_dausach->setColumnWidth(4,50);
-    tableView_dausach->setColumnWidth(5,100);
-    tableView_dausach->setColumnWidth(6,30);
-    file.close();
+    tableView_dausach->setColumnWidth(0, 120);
+    tableView_dausach->setColumnWidth(1, 200);
+    tableView_dausach->setColumnWidth(2, 50);
+    tableView_dausach->setColumnWidth(3, 100);
+    tableView_dausach->setColumnWidth(4, 50);
+    tableView_dausach->setColumnWidth(5, 100);
+    tableView_dausach->setColumnWidth(6, 30);
+
+    file.close();  // Đảm bảo đóng file
 }
 

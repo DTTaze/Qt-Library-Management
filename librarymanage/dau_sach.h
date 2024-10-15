@@ -14,6 +14,8 @@
 #include <QStandardItemModel>
 #include <QLineEdit>
 #include <QDebug>
+#include <QTextStream>
+#include <QFile>
 
 
 using namespace std;

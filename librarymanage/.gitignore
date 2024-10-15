@@ -1,0 +1,13 @@
+.cmake/
+.ninja_deps
+.ninja_log
+.qt/
+.qtc/
+CMakeCache.txt
+CMakeFiles/
+Testing/
+build.ninja
+cmake_install.cmake
+librarymanage.exe
+librarymanage_autogen/
+qtcsettings.cmake
