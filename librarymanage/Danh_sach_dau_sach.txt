@@ -1,0 +1,70 @@
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J
+978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E
+978-0-321-65536-1|The Art of Computer Programming|3168|Donald Knuth|2023|Computer Science|F
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B
+978-1-59327-950-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J
