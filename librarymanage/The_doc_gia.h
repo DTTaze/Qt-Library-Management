@@ -8,7 +8,8 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QString>
-#include <QRegularExpression>
+#include <QDir>
+
 #include "Dau_sach.h"
 // #include "Muon_tra.h"
 #define MAXRANDOM 10000 // Random tối đa 10000 số

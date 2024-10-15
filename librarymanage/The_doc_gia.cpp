@@ -103,7 +103,7 @@ void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten) {
 }
 
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget) {
-    QFile file("C:/Users/This PC/Downloads/librarymanage/librarymanage/docgia_100.txt"); // Sử dụng dấu nháy kép cho đường dẫn
+    QFile file("docgia_100.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) { // Mở file với chế độ đọc
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file"); // Thay đổi nullptr thành `this` nếu trong lớp
         return;

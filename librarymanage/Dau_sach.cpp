@@ -340,7 +340,7 @@ void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
 }
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTableView* tableView_dausach, QWidget* parent) {
-    ifstream file("C:/Users/This PC/Downloads/librarymanage/librarymanage/Danh_sach_dau_sach.txt");
+    QFile file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
         QMessageBox::warning(parent, "Lỗi", "Không thể đọc file Danh_sach_dau_sach.txt");
         return;
