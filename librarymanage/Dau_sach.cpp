@@ -340,18 +340,19 @@ void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
 }
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTableView* tableView_dausach, QWidget* parent) {
-    QFile file("Danh_sach_dau_sach.txt");
+
+    ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
         QMessageBox::warning(parent, "Lỗi", "Không thể đọc file Danh_sach_dau_sach.txt");
         return;
     }
 
-    string line;
-    while (getline(file, line)) {
-        string ISBN, tensach, tacgia, theloai, vitri;
-        int sotrang, namsx;
+    std::string line;
+    while (std::getline(file, line)) {
+        std::string ISBN, tensach, tacgia, theloai, vitri;
+        int sotrang = 0, namsx = 0;
 
-        // tach thong tin
+        // Tách thông tin
         size_t pos = 0;
         pos = line.find('|');
         ISBN = line.substr(0, pos); line.erase(0, pos + 1);
@@ -360,13 +361,13 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         tensach = line.substr(0, pos); line.erase(0, pos + 1);
 
         pos = line.find('|');
-        sotrang = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        sotrang = std::stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         pos = line.find('|');
         tacgia = line.substr(0, pos); line.erase(0, pos + 1);
 
         pos = line.find('|');
-        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        namsx = std::stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         pos = line.find('|');
         theloai = line.substr(0, pos); line.erase(0, pos + 1);
@@ -377,9 +378,10 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
             continue;
         }
+        // Chuyển đổi sang std::string nếu cần
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, 0, vitri);
     }
-
+    file.close();
     const int row_count = danh_sach_dau_sach.demsach;
     // Tạo model cho table
     QStandardItemModel* model = new QStandardItemModel(row_count,7);
@@ -417,6 +419,6 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
     tableView_dausach->setColumnWidth(4,50);
     tableView_dausach->setColumnWidth(5,100);
     tableView_dausach->setColumnWidth(6,30);
-    file.close();
+
 }
 
