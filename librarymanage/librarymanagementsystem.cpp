@@ -19,7 +19,8 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
 
-    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào Bảng tableWidget_2
+    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
 
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
@@ -84,11 +85,9 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     if (index == 0) { // 0 là chỉ số cho mã số
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
     } else if (index == 1) { // 1 là chỉ số cho tên
-        Danh_Sach_Theo_Ten(ui->tableWidget_2, root); // Thêm theo tên
+        // Danh_Sach_Theo_Ten(ui->tableWidget_2, root); // Thêm theo tên
     }
 }
-
-
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
