@@ -14,7 +14,7 @@
 #define MAXRANDOM 10000
 using namespace std;
 
-int MangMaThe[MAXRANDOM];
+extern int MangMaThe[MAXRANDOM];
 
 enum Phai{
     Nam = 1,
@@ -50,20 +50,15 @@ struct Danh_Sach_The_Doc_Gia {
 };
 
 extern Danh_Sach_The_Doc_Gia* root;
-
-void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia ) ;
-void Them_Doc_Gia_Theo_Ten(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia );
 extern Danh_Sach_The_Doc_Gia* rp;
-void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r );
+
+void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
+void Them_Doc_Gia_Theo_Ten(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
+void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) ;
-void Inorder(Danh_Sach_The_Doc_Gia* root );
-void Tao_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* root_maso, Danh_Sach_The_Doc_Gia* &root_ten) ;
-void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten) ;
-void swap( int& a, int& b );
-void LayDayNgauNhien ();
-int LayMaTheNgauNhien() ;
-void TraVeSoNgauNhien(int So_Tra_Ve);
+void Tao_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* root_maso, Danh_Sach_The_Doc_Gia* &root_ten);
+void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten);
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget);
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia);
 void Danh_Sach_Theo_Ten(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root_ma_so);

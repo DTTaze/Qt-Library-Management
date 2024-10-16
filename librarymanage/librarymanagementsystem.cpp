@@ -49,14 +49,12 @@ void LibraryManagementSystem::page3Widget()
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 }
 
-
 void LibraryManagementSystem::on_muonsach_buttom_clicked()
 {
     muonsach muon_sach;
     muon_sach.setModal(true);
     muon_sach.exec();
 }
-
 
 void LibraryManagementSystem::on_trasach_buttom_clicked()
 {
@@ -65,24 +63,12 @@ void LibraryManagementSystem::on_trasach_buttom_clicked()
     tra_sach.exec();
 }
 
-
-
-
 void LibraryManagementSystem::on_timsach_buttom_clicked()
 {
     timkiemmasach timkiem;
     timkiem.setModal(true);
     timkiem.exec();
 }
-
-
-void LibraryManagementSystem::on_pushButton_intheloai_clicked()
-{
-    InTheoTheLoai intheloai(danh_sach_dau_sach,this);
-    intheloai.setModal(true);
-    intheloai.exec();
-}
-
 
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
 {
@@ -100,6 +86,15 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     } else if (index == 1) { // 1 là chỉ số cho tên
         Danh_Sach_Theo_Ten(ui->tableWidget_2, root); // Thêm theo tên
     }
+}
+
+
+
+void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
+{
+    InTheoTheLoai intheloai(danh_sach_dau_sach,this);
+    intheloai.setModal(true);
+    intheloai.exec();
 }
 
 

@@ -161,9 +161,8 @@ void Danh_Sach_Theo_Ten(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root_m
     if (root_ma_so == nullptr) return; // Kiểm tra null trước
     Danh_Sach_The_Doc_Gia* root_ten = nullptr ;
     Tao_Danh_Sach_Theo_Ten(root_ma_so, root_ten);
-    tableWidget->clear();
+    tableWidget->clearContents();
     Them_Cay_Vao_QTableWidget(tableWidget, root_ten);
-    // Xoa_Danh_Sach_Theo_Ten(root_ten);
 }
 
 
