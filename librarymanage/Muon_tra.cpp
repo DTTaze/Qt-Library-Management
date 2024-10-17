@@ -268,7 +268,6 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
         QMessageBox::warning(parent, "Lỗi", "Không thể đọc file docgia_100.txt");
         return;
     }
-
     std::string line;
 
     while (std::getline(file, line)) {
@@ -278,6 +277,9 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
         int songayquahan;
         // Tach thong tin tung dong
         size_t pos = 0;
+
+        pos = line.find('|');
+        line.erase(0, pos + 1);
 
         // Chỉnh sửa để phù hợp với định dạng file
         pos = line.find('|');
@@ -303,10 +305,12 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
         std::string dayStr = line.substr(0, pos);
         line.erase(0, pos + 1);
 
+
         if (!dayStr.empty() && std::all_of(dayStr.begin(), dayStr.end(), ::isdigit)) {
             ngaymuon.day = stoi(dayStr);  // Chuyển đổi chuỗi thành số nguyên
         } else {
             // Xử lý lỗi, ví dụ bỏ qua dòng này hoặc báo lỗi
+
             continue;
         }
 
@@ -332,6 +336,7 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
             continue;
         }
 
+        qDebug()<<"ngay muon :" <<ngaymuon.day<< "|" <<ngaymuon.month<<"|"<<ngaymuon.year;
 
         if (line[0] == '|') {
             // Nếu ký tự đầu tiên là '|', thì không có ngày trả
@@ -363,7 +368,7 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
                 // Xử lý lỗi
                 continue;
             }
-
+            pos = line.find('/');
             if (!line.empty()) {
                 ngaytra.year = stoi(line.substr(0, pos));  // Tách và lưu năm của ngày trả
             } else {
@@ -371,14 +376,17 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
             }
 
         }
+        qDebug()<<"ngay tra : "<<ngaytra.day<< "|" <<ngaytra.month<<"|"<<ngaytra.year<<"\n\n";
 
         // pos = line.find(' ');
         // songayquahan = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         if (ten.empty() || ho.empty() || masach.empty()) {
+            qDebug()<<"bo qua";
             continue;
         }
         songayquahan = SoNgayQuaHan(ngaymuon, ngaytra);
+
         if (songayquahan != 0) {
             The_Doc_Gia *newDocGiaquahan = new The_Doc_Gia(); // Khởi tạo con trỏ
             newDocGiaquahan->Ho = ho;
@@ -391,6 +399,7 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
             KiemTraVaChenDocGiaQuaHan(danhsachquahan, docgia);
         }
     }
+
     file.close();
 
     const int row_count = DemDocGiaQuaHan(danhsachquahan);
@@ -431,6 +440,7 @@ void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_dan
         model->setItem(i, 6, new QStandardItem(QString::number(danhsachquahan->soNgayQuaHan)));
         danhsachquahan = danhsachquahan->next;
     }
+
     // Gán model vào QTableView
     tableView_danhsachquahan->setModel(model);
     tableView_danhsachquahan->setColumnWidth(0,120);
