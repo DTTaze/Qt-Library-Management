@@ -85,7 +85,9 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     if (index == 0) { // 0 là chỉ số cho mã số
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
     } else if (index == 1) { // 1 là chỉ số cho tên
-        // Danh_Sach_Theo_Ten(ui->tableWidget_2, root); // Thêm theo tên
+        root_ten = Tao_Cay_Theo_Ten(0, Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The - 1);
+        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root_ten);
+        Xoa_Danh_Sach_Theo_Ten(root_ten);
     }
 }
 
