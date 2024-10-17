@@ -457,6 +457,11 @@ color: black;</string>
             </property>
             <column>
              <property name="text">
+              <string>Mã thẻ</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Họ</string>
              </property>
             </column>

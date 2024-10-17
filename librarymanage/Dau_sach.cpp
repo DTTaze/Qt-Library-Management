@@ -138,29 +138,92 @@ int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key){
     }
     return ket_qua;
 }
+
+string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,string ma_sach){
+    int ket_qua;
+    for (int i =0; i < danh_sach_dau_sach.demsach;i++){
+        if (danh_sach_dau_sach.node[i]->dms->masach == ma_sach){
+            ket_qua = i;
+            break;
+        }
+    }
+    return danh_sach_dau_sach.node[ket_qua]->tensach;
+}
+
+void Merge(DauSach** arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+
+    DauSach** L = new DauSach*[n1];
+    DauSach** R = new DauSach*[n2];
+
+
+    for (int i = 0; i < n1; i++) {
+        L[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        R[j] = arr[mid + 1 + j];
+    }
+
+    // Tr?n hai m?ng l?i theo th? t?
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        // So sánh theloai tru?c
+        if (L[i]->theloai < R[j]->theloai) {
+            arr[k] = L[i];
+            i++;
+        }
+        // N?u theloai gi?ng nhau, so sánh tensach
+        else if (L[i]->theloai == R[j]->theloai && L[i]->tensach <= R[j]->tensach) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Sao chép các ph?n t? còn l?i c?a L[], n?u có
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Sao chép các ph?n t? còn l?i c?a R[], n?u có
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+
+    // Gi?i phóng b? nh? t?m th?i
+    delete[] L;
+    delete[] R;
+}
+
+void MergeSort(DauSach** arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+
+        MergeSort(arr, left, mid);
+        MergeSort(arr, mid + 1, right);
+
+
+        Merge(arr, left, mid, right);
+    }
+}
+
 //Su dung tham chieu nen phai tao ban sao roi xoa ban sao
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai){
     qDebug()<<"test1";
     DanhSachDauSach copy = SaoChepDanhSach(danh_sach_dau_sach);
 
-    //Su dung thuat toan bubble sort de sap xep va in, khong dung tham chieu
-
     int so_luong_sach = copy.demsach;
-    //sap xep theo the loai
-    for (int i = 0; i < so_luong_sach - 1; i++) {
-        for (int j = 0; j < so_luong_sach -  i - 1; j++) {
-            if (copy.node[j]->theloai > copy.node[j + 1]->theloai) {
-                DauSach* temp = copy.node[j];
-                copy.node[j] = copy.node[j+1];
-                copy.node[j+1] = temp;
-            }	//sap xep theo ten sach trong the loai
-            else if (copy.node[j]->theloai ==copy.node[j + 1]->theloai && copy.node[j]->tensach > copy.node[j + 1]->tensach) {
-                DauSach* temp = copy.node[j];
-                copy.node[j] = copy.node[j+1];
-                copy.node[j+1] = temp;
-            }
-        }
-    }
+    MergeSort(copy.node, 0, so_luong_sach - 1);
 
     const int row_count = copy.demsach;
     // Tạo model cho table
@@ -189,7 +252,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
         model->setItem(i, 5, new QStandardItem(QString::fromStdString(copy.node[i]->theloai)));
         model->setItem(i, 6, new QStandardItem(QString::fromStdString(copy.node[i]->dms->vitri)));
     }
-    // Gán model vào QTableView
+
     tableView_intheloai->setModel(model);
 
     qDebug()<<"test2";
