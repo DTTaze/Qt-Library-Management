@@ -24,7 +24,7 @@ public:
     ~LibraryManagementSystem();
     DanhSachDauSach danh_sach_dau_sach;
     DanhMucSach* danh_muc_sach;
-    DocGiaQuaHan* doc_gia_qua_han;
+    DanhSachMUONTRA danh_sach_muon_tra;
 
 
 private slots:

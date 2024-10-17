@@ -14,17 +14,16 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
     , danh_sach_dau_sach()
     ,danh_muc_sach(nullptr)
-    ,doc_gia_qua_han()
+    ,danh_sach_muon_tra()
 {
     ui->setupUi(this);
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
     QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
 
-    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
-    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    DocFileDocGiaQuaHan(doc_gia_qua_han, ui->tableView_danhsachquahan, this);
+    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
 }

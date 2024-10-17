@@ -202,56 +202,56 @@ void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia *doc_gia) {
 
 
 
-void ChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
-    int soNgayQuaHan = SoNgayQuaHan(docGia->thong_tin.head_lsms->data.NgayMuon, docGia->thong_tin.head_lsms->data.NgayTra);
-    DocGiaQuaHan* newNode = new DocGiaQuaHan(docGia, soNgayQuaHan);
+// void ChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
+//     int soNgayQuaHan = SoNgayQuaHan(docGia->thong_tin.head_lsms->data.NgayMuon, docGia->thong_tin.head_lsms->data.NgayTra);
+//     DocGiaQuaHan* newNode = new DocGiaQuaHan(docGia, soNgayQuaHan);
 
-    if (head == nullptr || head->soNgayQuaHan < soNgayQuaHan) {
-        newNode->next = head;
-        head = newNode;
-        return;
-    }
-    DocGiaQuaHan* current = head;
-    while (current->next != nullptr && current->next->soNgayQuaHan > soNgayQuaHan) {
-        current = current->next;
-    }
+//     if (head == nullptr || head->soNgayQuaHan < soNgayQuaHan) {
+//         newNode->next = head;
+//         head = newNode;
+//         return;
+//     }
+//     DocGiaQuaHan* current = head;
+//     while (current->next != nullptr && current->next->soNgayQuaHan > soNgayQuaHan) {
+//         current = current->next;
+//     }
 
-    newNode->next = current->next;
-    current->next = newNode;
-}
+//     newNode->next = current->next;
+//     current->next = newNode;
+// }
 
-void KiemTraVaChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
-    DanhSachMUONTRA* currentMuonTra = docGia->thong_tin.head_lsms;
+// void KiemTraVaChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
+//     DanhSachMUONTRA* currentMuonTra = docGia->thong_tin.head_lsms;
 
-    // Duyệt qua danh sách mượn trả của độc giả
-    while (currentMuonTra != nullptr) {
-        int soNgayQuaHan = 0;
+//     // Duyệt qua danh sách mượn trả của độc giả
+//     while (currentMuonTra != nullptr) {
+//         int soNgayQuaHan = 0;
 
-        if (currentMuonTra->data.trangthai == 0) {
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
-        }
-        else if (currentMuonTra->data.trangthai == 1) {
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
-        }
+//         if (currentMuonTra->data.trangthai == 0) {
+//             soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
+//         }
+//         else if (currentMuonTra->data.trangthai == 1) {
+//             soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
+//         }
 
 
-        if (soNgayQuaHan > 0) {
-            ChenDocGiaQuaHan(head, docGia);
-        }
+//         if (soNgayQuaHan > 0) {
+//             ChenDocGiaQuaHan(head, docGia);
+//         }
 
-        currentMuonTra = currentMuonTra->next;
-    }
-}
+//         currentMuonTra = currentMuonTra->next;
+//     }
+// }
 
-int DemDocGiaQuaHan(DocGiaQuaHan *head) {
-    DocGiaQuaHan *temp = head;
-    int count = 0;
-    while(temp != nullptr) {
-        temp = temp->next;
-        count ++;
-    }
-    return count;
-}
+// int DemDocGiaQuaHan(DocGiaQuaHan *head) {
+//     DocGiaQuaHan *temp = head;
+//     int count = 0;
+//     while(temp != nullptr) {
+//         temp = temp->next;
+//         count ++;
+//     }
+//     return count;
+// }
 // void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) { // Hàm thêm nút thông tin vào table
 //     int row = tableWidget->rowCount();
 //     tableWidget->insertRow(row);
@@ -262,194 +262,191 @@ int DemDocGiaQuaHan(DocGiaQuaHan *head) {
 //     tableWidget->setItem(row, 2, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
 //     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
 // }
-void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_danhsachquahan, QWidget* parent) {
-    ifstream file("docgia_100.txt");
-    if (!file.is_open()) {
-        QMessageBox::warning(parent, "Lỗi", "Không thể đọc file docgia_100.txt");
-        return;
-    }
-    std::string line;
 
-    while (std::getline(file, line)) {
-        std::string ten, ho, masach;
-        Phai phai;
-        Date ngaymuon, ngaytra;
-        int songayquahan;
-        // Tach thong tin tung dong
-        size_t pos = 0;
+void Them_lich_su_sach(The_Doc_Gia &the_doc_gia, DanhSachMUONTRA danh_sach_muon_tra,string ma_sach, string ngay_muon,string ngay_tra){
 
-        pos = line.find('|');
-        line.erase(0, pos + 1);
-
-        // Chỉnh sửa để phù hợp với định dạng file
-        pos = line.find('|');
-        ho = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        ten = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        std::string strPhai = line.substr(0, pos);
-        if (strPhai == "Nam") {
-            phai = Nam;
-        } else if (strPhai == "Nữ") {
-            phai = Nu;
-        }
-        line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        masach = line.substr(0, pos); line.erase(0, pos + 1);
-
-        // Tách ngày mượn (dd/mm/yyyy)
-        pos = line.find('/');
-        std::string dayStr = line.substr(0, pos);
-        line.erase(0, pos + 1);
-
-
-        if (!dayStr.empty() && std::all_of(dayStr.begin(), dayStr.end(), ::isdigit)) {
-            ngaymuon.day = stoi(dayStr);  // Chuyển đổi chuỗi thành số nguyên
-        } else {
-            // Xử lý lỗi, ví dụ bỏ qua dòng này hoặc báo lỗi
-
-            continue;
-        }
-
-        pos = line.find('/');
-        std::string monthStr = line.substr(0, pos);
-        line.erase(0, pos + 1);
-
-        if (!monthStr.empty() && std::all_of(monthStr.begin(), monthStr.end(), ::isdigit)) {
-            ngaymuon.month = stoi(monthStr);  // Chuyển đổi chuỗi thành số nguyên
-        } else {
-            // Xử lý lỗi
-            continue;
-        }
-
-        pos = line.find('|');
-        std::string yearStr = line.substr(0, pos);
-        line.erase(0, pos + 1);
-
-        if (!yearStr.empty() && std::all_of(yearStr.begin(), yearStr.end(), ::isdigit)) {
-            ngaymuon.year = stoi(yearStr);  // Chuyển đổi chuỗi thành số nguyên
-        } else {
-            // Xử lý lỗi
-            continue;
-        }
-
-        qDebug()<<"ngay muon :" <<ngaymuon.day<< "|" <<ngaymuon.month<<"|"<<ngaymuon.year;
-
-        if (line[0] == '|') {
-            // Nếu ký tự đầu tiên là '|', thì không có ngày trả
-            line.erase(0, 1); // Bỏ ký tự '|'
-            ngaytra.day = 0; // Khởi tạo ngày trả
-            ngaytra.month = 0;
-            ngaytra.year = 0;
-        } else {
-            // Ngày trả (dd/mm/yyyy)
-
-            pos = line.find('/');
-            std::string dayStr = line.substr(0, pos);
-            line.erase(0, pos + 1);
-
-            if (!dayStr.empty() && std::all_of(dayStr.begin(), dayStr.end(), ::isdigit)) {
-                ngaytra.day = stoi(dayStr);  // Chuyển đổi chuỗi thành số nguyên
-            } else {
-                // Xử lý lỗi, ví dụ bỏ qua dòng này hoặc báo lỗi
-                continue;
-            }
-
-            pos = line.find('/');
-            std::string monthStr = line.substr(0, pos);
-            line.erase(0, pos + 1);
-
-            if (!monthStr.empty() && std::all_of(monthStr.begin(), monthStr.end(), ::isdigit)) {
-                ngaytra.month = stoi(monthStr);  // Chuyển đổi chuỗi thành số nguyên
-            } else {
-                // Xử lý lỗi
-                continue;
-            }
-            pos = line.find('/');
-            if (!line.empty()) {
-                ngaytra.year = stoi(line.substr(0, pos));  // Tách và lưu năm của ngày trả
-            } else {
-                ngaytra.year = 0;  // Nếu không có năm trả, gán mặc định là 0 hoặc xử lý khác
-            }
-
-        }
-        qDebug()<<"ngay tra : "<<ngaytra.day<< "|" <<ngaytra.month<<"|"<<ngaytra.year<<"\n\n";
-
-        // pos = line.find(' ');
-        // songayquahan = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
-
-        if (ten.empty() || ho.empty() || masach.empty()) {
-            qDebug()<<"bo qua";
-            continue;
-        }
-        songayquahan = SoNgayQuaHan(ngaymuon, ngaytra);
-
-        if (songayquahan != 0) {
-            The_Doc_Gia *newDocGiaquahan = new The_Doc_Gia(); // Khởi tạo con trỏ
-            newDocGiaquahan->Ho = ho;
-            newDocGiaquahan->Ten = ten;
-            newDocGiaquahan->phai = phai;
-            newDocGiaquahan->head_lsms->data.masach = masach;
-            newDocGiaquahan->head_lsms->data.NgayMuon = ngaymuon;
-            newDocGiaquahan->head_lsms->data.NgayTra = ngaytra;
-            Danh_Sach_The_Doc_Gia *docgia = new Danh_Sach_The_Doc_Gia(*newDocGiaquahan);
-            KiemTraVaChenDocGiaQuaHan(danhsachquahan, docgia);
-        }
-    }
-
-    file.close();
-
-    const int row_count = DemDocGiaQuaHan(danhsachquahan);
-
-    // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count, 7);
-
-    QString headers[7] = {
-        "Họ",
-        "Tên",
-        "Phái",
-        "Mã Sách",
-        "Ngày Mượn",
-        "Ngày Trả",
-        "Số Ngày Quá Hạn"
-    };
-
-    for (int i = 0; i < 7; i++) {
-        model->setHeaderData(i, Qt::Horizontal, headers[i]);
-    }
-
-    for (int i = 0; i < row_count; i++) {
-        DanhSachMUONTRA *danhsachmuontra = danhsachquahan->docGia->thong_tin.head_lsms;
-        danhsachquahan->soNgayQuaHan = SoNgayQuaHan(danhsachmuontra->data.NgayMuon, danhsachmuontra->data.NgayTra);
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danhsachquahan->docGia->thong_tin.Ho)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(danhsachquahan->docGia->thong_tin.Ten)));
-
-        QString phaiString = (danhsachquahan->docGia->thong_tin.phai == Nam) ? "Nam" : "Nữ";
-        model->setItem(i, 2, new QStandardItem(phaiString));
-
-        model->setItem(i, 3, new QStandardItem(QString::fromStdString(danhsachmuontra->data.masach)));
-        QString ngayMuonString = QString::asprintf("%02d/%02d/%04d", danhsachmuontra->data.NgayMuon.day, danhsachmuontra->data.NgayMuon.month, danhsachmuontra->data.NgayMuon.year);
-        model->setItem(i, 4, new QStandardItem(ngayMuonString));
-
-        QString ngayTraString = (danhsachmuontra->data.NgayTra.day == 0) ? "Chưa trả" : QString::asprintf("%02d/%02d/%04d", danhsachmuontra->data.NgayTra.day, danhsachmuontra->data.NgayTra.month, danhsachmuontra->data.NgayTra.year);
-        model->setItem(i, 5, new QStandardItem(ngayTraString));
-
-        model->setItem(i, 6, new QStandardItem(QString::number(danhsachquahan->soNgayQuaHan)));
-        danhsachquahan = danhsachquahan->next;
-    }
-
-    // Gán model vào QTableView
-    tableView_danhsachquahan->setModel(model);
-    tableView_danhsachquahan->setColumnWidth(0,120);
-    tableView_danhsachquahan->setColumnWidth(1,120);
-    tableView_danhsachquahan->setColumnWidth(2,50);
-    tableView_danhsachquahan->setColumnWidth(3,200);
-    tableView_danhsachquahan->setColumnWidth(4,100);
-    tableView_danhsachquahan->setColumnWidth(5,100);
-    tableView_danhsachquahan->setColumnWidth(6,30);
 }
+
+
+
+
+
+// void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_danhsachquahan, QWidget* parent) {
+//     ifstream file("docgia_100.txt");
+//     if (!file.is_open()) {
+//         QMessageBox::warning(parent, "Lỗi", "Không thể đọc file docgia_100.txt");
+//         return;
+//     }
+//     std::string line;
+
+//     while (std::getline(file, line)) {
+//         std::string ten, ho, masach;
+//         Phai phai;
+//         Date ngaymuon, ngaytra;
+//         int songayquahan;
+//         // Tach thong tin tung dong
+//         size_t pos = 0;
+
+//         pos = line.find('|');
+//         line.erase(0, pos + 1);
+
+//         // Chỉnh sửa để phù hợp với định dạng file
+//         pos = line.find('|');
+//         ho = line.substr(0, pos); line.erase(0, pos + 1);
+
+//         pos = line.find('|');
+//         ten = line.substr(0, pos); line.erase(0, pos + 1);
+
+//         pos = line.find('|');
+//         std::string strPhai = line.substr(0, pos);
+//         if (strPhai == "Nam") {
+//             phai = Nam;
+//         } else if (strPhai == "Nữ") {
+//             phai = Nu;
+//         }
+//         line.erase(0, pos + 1);
+
+//         pos = line.find('|');
+//         masach = line.substr(0, pos); line.erase(0, pos + 1);
+
+//         // Tách ngày mượn (dd/mm/yyyy)
+//         pos = line.find('/');
+//         std::string dayStr = line.substr(0, pos);
+//         line.erase(0, pos + 1);
+
+
+//         if (!dayStr.empty() && std::all_of(dayStr.begin(), dayStr.end(), ::isdigit)) {
+//             ngaymuon.day = stoi(dayStr);  // Chuyển đổi chuỗi thành số nguyên
+//         } else {
+//             // Xử lý lỗi, ví dụ bỏ qua dòng này hoặc báo lỗi
+
+//             continue;
+//         }
+
+//         pos = line.find('/');
+//         std::string monthStr = line.substr(0, pos);
+//         line.erase(0, pos + 1);
+
+//         if (!monthStr.empty() && std::all_of(monthStr.begin(), monthStr.end(), ::isdigit)) {
+//             ngaymuon.month = stoi(monthStr);  // Chuyển đổi chuỗi thành số nguyên
+//         } else {
+//             // Xử lý lỗi
+//             continue;
+//         }
+
+//         pos = line.find('|');
+//         std::string yearStr = line.substr(0, pos);
+//         line.erase(0, pos + 1);
+
+//         if (!yearStr.empty() && std::all_of(yearStr.begin(), yearStr.end(), ::isdigit)) {
+//             ngaymuon.year = stoi(yearStr);  // Chuyển đổi chuỗi thành số nguyên
+//         } else {
+//             // Xử lý lỗi
+//             continue;
+//         }
+
+//         qDebug()<<"ngay muon :" <<ngaymuon.day<< "|" <<ngaymuon.month<<"|"<<ngaymuon.year;
+
+//         if (line[0] == '|') {
+//             // Nếu ký tự đầu tiên là '|', thì không có ngày trả
+//             line.erase(0, 1); // Bỏ ký tự '|'
+//             ngaytra.day = 0; // Khởi tạo ngày trả
+//             ngaytra.month = 0;
+//             ngaytra.year = 0;
+//         } else {
+//             // Ngày trả (dd/mm/yyyy)
+
+//             pos = line.find('/');
+//             std::string dayStr = line.substr(0, pos);
+//             line.erase(0, pos + 1);
+
+//             if (!dayStr.empty() && std::all_of(dayStr.begin(), dayStr.end(), ::isdigit)) {
+//                 ngaytra.day = stoi(dayStr);  // Chuyển đổi chuỗi thành số nguyên
+//             } else {
+//                 // Xử lý lỗi, ví dụ bỏ qua dòng này hoặc báo lỗi
+//                 continue;
+//             }
+
+//             pos = line.find('/');
+//             std::string monthStr = line.substr(0, pos);
+//             line.erase(0, pos + 1);
+
+//             if (!monthStr.empty() && std::all_of(monthStr.begin(), monthStr.end(), ::isdigit)) {
+//                 ngaytra.month = stoi(monthStr);  // Chuyển đổi chuỗi thành số nguyên
+//             } else {
+//                 // Xử lý lỗi
+//                 continue;
+//             }
+//             pos = line.find('/');
+//             if (!line.empty()) {
+//                 ngaytra.year = stoi(line.substr(0, pos));  // Tách và lưu năm của ngày trả
+//             } else {
+//                 ngaytra.year = 0;  // Nếu không có năm trả, gán mặc định là 0 hoặc xử lý khác
+//             }
+
+//         }
+//         qDebug()<<"ngay tra : "<<ngaytra.day<< "|" <<ngaytra.month<<"|"<<ngaytra.year<<"\n\n";
+
+//         // pos = line.find(' ');
+//         // songayquahan = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+
+//         if (ten.empty() || ho.empty() || masach.empty()) {
+//             qDebug()<<"bo qua";
+//             continue;
+//         }
+//         ThemSach();
+//     }
+
+//     file.close();
+
+//     const int row_count = DemDocGiaQuaHan(danhsachquahan);
+//     qDebug()<<row_count ;
+//     // Tạo model cho table
+//     QStandardItemModel* model = new QStandardItemModel(row_count, 7);
+
+//     QString headers[7] = {
+//         "Họ",
+//         "Tên",
+//         "Phái",
+//         "Mã Sách",
+//         "Ngày Mượn",
+//         "Ngày Trả",
+//         "Số Ngày Quá Hạn"
+//     };
+
+//     for (int i = 0; i < 7; i++) {
+//         model->setHeaderData(i, Qt::Horizontal, headers[i]);
+//     }
+
+//     for (int i = 0; i < row_count; i++) {
+//         DanhSachMUONTRA *danhsachmuontra = danhsachquahan->docGia->thong_tin.head_lsms;
+//         danhsachquahan->soNgayQuaHan = SoNgayQuaHan(danhsachmuontra->data.NgayMuon, danhsachmuontra->data.NgayTra);
+//         model->setItem(i, 0, new QStandardItem(QString::fromStdString(danhsachquahan->docGia->thong_tin.Ho)));
+//         model->setItem(i, 1, new QStandardItem(QString::fromStdString(danhsachquahan->docGia->thong_tin.Ten)));
+
+//         QString phaiString = (danhsachquahan->docGia->thong_tin.phai == Nam) ? "Nam" : "Nữ";
+//         model->setItem(i, 2, new QStandardItem(phaiString));
+
+//         model->setItem(i, 3, new QStandardItem(QString::fromStdString(danhsachmuontra->data.masach)));
+//         QString ngayMuonString = QString::asprintf("%02d/%02d/%04d", danhsachmuontra->data.NgayMuon.day, danhsachmuontra->data.NgayMuon.month, danhsachmuontra->data.NgayMuon.year);
+//         model->setItem(i, 4, new QStandardItem(ngayMuonString));
+
+//         QString ngayTraString = (danhsachmuontra->data.NgayTra.day == 0) ? "Chưa trả" : QString::asprintf("%02d/%02d/%04d", danhsachmuontra->data.NgayTra.day, danhsachmuontra->data.NgayTra.month, danhsachmuontra->data.NgayTra.year);
+//         model->setItem(i, 5, new QStandardItem(ngayTraString));
+
+//         model->setItem(i, 6, new QStandardItem(QString::number(danhsachquahan->soNgayQuaHan)));
+//         danhsachquahan = danhsachquahan->next;
+//     }
+
+//     // Gán model vào QTableView
+//     tableView_danhsachquahan->setModel(model);
+//     tableView_danhsachquahan->setColumnWidth(0,120);
+//     tableView_danhsachquahan->setColumnWidth(1,120);
+//     tableView_danhsachquahan->setColumnWidth(2,50);
+//     tableView_danhsachquahan->setColumnWidth(3,200);
+//     tableView_danhsachquahan->setColumnWidth(4,100);
+//     tableView_danhsachquahan->setColumnWidth(5,100);
+//     tableView_danhsachquahan->setColumnWidth(6,30);
+// }
 
 
