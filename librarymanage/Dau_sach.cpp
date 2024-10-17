@@ -139,6 +139,17 @@ int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key){
     return ket_qua;
 }
 
+string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,string ma_sach){
+    int ket_qua;
+    for (int i =0; i < danh_sach_dau_sach.demsach;i++){
+        if (danh_sach_dau_sach.node[i]->dms->masach == ma_sach){
+            ket_qua = i;
+            break;
+        }
+    }
+    return danh_sach_dau_sach.node[ket_qua]->tensach;
+}
+
 void Merge(DauSach** arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;

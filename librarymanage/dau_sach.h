@@ -52,6 +52,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 DanhSachDauSach SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc);
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key);
 int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key);
+string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,string ma_sach);
 void Merge(DauSach** arr, int left, int mid, int right);
 void MergeSort(DauSach** arr, int left, int right);
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai);
