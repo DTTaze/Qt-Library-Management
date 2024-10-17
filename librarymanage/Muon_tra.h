@@ -5,6 +5,10 @@
 #include <fstream>
 #include "ngay.h"
 #include "dau_sach.h"
+#include <QStandardItemModel>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
 struct Danh_Sach_The_Doc_Gia;
 using namespace std;
 
@@ -37,6 +41,13 @@ struct DanhSachMUONTRA { // danh sach cac quyen sach da hoac dang muon
     DanhSachMUONTRA(const MUONTRA &muontra) : data(muontra), next(nullptr) {}
 };
 
+struct DocGiaQuaHan {
+    Danh_Sach_The_Doc_Gia* docGia;
+    int soNgayQuaHan;
+    DocGiaQuaHan* next = nullptr;
+    DocGiaQuaHan(Danh_Sach_The_Doc_Gia* docGia, int soNgay)
+        : docGia(docGia), soNgayQuaHan(soNgay), next(nullptr) {}
+};
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) ;
 
@@ -59,8 +70,13 @@ void ThemSachVaoLSMS(DanhSachMUONTRA * &sach, string ma, const Date &ngayMuon, c
 
 void MuonSach (Danh_Sach_The_Doc_Gia *doc_gia) ;
 
-
 void TraSach (Danh_Sach_The_Doc_Gia doc_gia, string ma_sach) ;
 
 void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia doc_gia) ;
+
+void ChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia);
+
+void KiemTraVaChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) ;
+
+void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_danhsachquahan, QWidget* parent) ;
 #endif

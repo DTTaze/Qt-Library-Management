@@ -7,6 +7,8 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include "Dau_sach.h"
+#include "The_doc_gia.h"
+#include "Muon_tra.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class LibraryManagementSystem;
@@ -22,6 +24,7 @@ public:
     ~LibraryManagementSystem();
     DanhSachDauSach danh_sach_dau_sach;
     DanhMucSach* danh_muc_sach;
+    DocGiaQuaHan* doc_gia_qua_han;
 
 
 private slots:
@@ -43,6 +46,8 @@ private slots:
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
 
     void on_inTheLoai_pushButton_clicked();
+
+    void on_tableView_dausach_activated(const QModelIndex &index);
 
 public slots:
 
