@@ -1,10 +1,10 @@
-5000    | Hoang Thi      | Nam       | Nam       | "Đường về"            | 2024-01-19 | 2024-02-19
-7500    | Hoang Thi      | Minh      | Nam       | "Bầu trời rộng mở"    | 2024-02-19 | 2024-03-19
-2500    | Ngo   Thi      | Lan       | Nữ        | "Vượt lên chính mình" | 2024-02-03 | 2024-03-03
-6250    | Nguyen Thi     | Dung      | Nam       | "Hạt giống tâm hồn"   | 2024-01-03 | 2024-02-03
-1250    | Nguyen Thi     | Mai       | Nữ        | "Người phụ nữ bên cửa sổ"| 2024-02-15 | 2024-03-15
-5625    | Nguyen Van     | Quang     | Nam       | "Giấc mơ kỳ lạ"      | 2024-02-04 | 2024-03-04
-625     | Vu   Thi       | Hanh      | Nữ        | "Giã từ vũ khí"       | 2024-01-16 | 2024-02-16
-5312    | Vu   Van       | Dat       | Nữ        | "Mê hoặc"             | 2024-01-10 | 2024-02-10
-312     | Nguyen Thi     | Ngoc      | Nam       | "Bình minh đỏ"        | 2024-01-29 | 2024-02-29
-5156     | Vu   Van       | Hoa       | Nữ        | "Đắc Nhân Tâm"        | 2024-01-04 | 2024-02-04
+5000    | Hoang Thi      | Nam       | Nam       | J1-5            | 2024-01-19 | 2024-02-19
+7500    | Hoang Thi      | Minh      | Nam       | C1-3            | 2024-02-19 | 2024-03-19
+2500    | Ngo   Thi      | Lan       | Nữ        | H1-6            | 2024-02-03 | 2024-03-03
+6250    | Nguyen Thi     | Dung      | Nam       | I1-3            | 2024-01-03 | 2024-02-03
+1250    | Nguyen Thi     | Mai       | Nữ        | G1-2            | 2024-02-15 | 2024-03-15
+5625    | Nguyen Van     | Quang     | Nam       | J1-1            | 2024-02-04 | 2024-03-04
+625     | Vu   Thi       | Hanh      | Nữ        | H1-2            | 2024-01-16 | 2024-02-16
+5312    | Vu   Van       | Dat       | Nữ        | A1-2            | 2024-01-10 | 2024-02-10
+312     | Nguyen Thi     | Ngoc      | Nam       | I1-4            | 2024-01-29 | 2024-02-29
+5156    | Vu   Van       | Hoa       | Nữ        | F1-6            | 2024-01-04 | 2024-02-04
