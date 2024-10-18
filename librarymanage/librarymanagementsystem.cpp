@@ -4,6 +4,7 @@
 #include "trasach.h"
 #include "timkiemmasach.h"
 #include "intheotheloai.h"
+#include "themdausach.h"
 #include "The_doc_gia.h"
 #include "themdocgia_dialog.h"
 #include "Muon_tra.h"
@@ -181,5 +182,13 @@ void LibraryManagementSystem::on_timsach_buttom_clicked()
 void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &index)
 {
 
+}
+
+
+void LibraryManagementSystem::on_themSach_pushButton_clicked()
+{
+    themdausach themds(danh_sach_dau_sach,danh_muc_sach,this);
+    themds.setModal(true);
+    themds.exec();
 }
 

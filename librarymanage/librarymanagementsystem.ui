@@ -305,60 +305,6 @@ QPushButton:focus {
               <normaloff>../../../../../../Downloads/plus-solid.svg</normaloff>../../../../../../Downloads/plus-solid.svg</iconset>
             </property>
            </widget>
-           <widget class="QPushButton" name="luuSach_pushButton">
-            <property name="geometry">
-             <rect>
-              <x>190</x>
-              <y>590</y>
-              <width>91</width>
-              <height>51</height>
-             </rect>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton {
-    background-color: #1899D6;
-    border: none;
-    border-radius: 16px;
-    padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 0.8px;
-    color: #FFFFFF;
-    text-align: center;
-    text-transform: uppercase;
-    width: 100%;
-}
-
-QPushButton:hover {
-    background-color: #1CB0F6;
-}
-
-QPushButton:pressed {
-    background-color: #1899D6;
-    border-width: 4px 0 0;
-}
-
-QPushButton:disabled {
-    background-color: #D6D6D6;
-    color: #7F7F7F;
-}
-
-QPushButton:focus {
-    outline: none;
-}</string>
-            </property>
-            <property name="text">
-             <string>Lưu</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>../../../../../../Downloads/download-solid.svg</normaloff>../../../../../../Downloads/download-solid.svg</iconset>
-            </property>
-           </widget>
            <widget class="QLabel" name="timKiemDuSach_Label">
             <property name="geometry">
              <rect>
@@ -391,7 +337,7 @@ font-weight:600;</string>
             <property name="geometry">
              <rect>
               <x>440</x>
-              <y>50</y>
+              <y>60</y>
               <width>171</width>
               <height>41</height>
              </rect>
@@ -434,12 +380,6 @@ QPushButton:focus {
              <string>In Thể Loại</string>
             </property>
            </widget>
-           <zorder>tableView_dausach</zorder>
-           <zorder>luuSach_pushButton</zorder>
-           <zorder>themSach_pushButton</zorder>
-           <zorder>timKiemDuSach_Label</zorder>
-           <zorder>timKiemDs_lineEdit</zorder>
-           <zorder>inTheLoai_pushButton</zorder>
           </widget>
           <widget class="QWidget" name="page_docgia">
            <widget class="QTableWidget" name="tableWidget_2">
@@ -838,7 +778,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

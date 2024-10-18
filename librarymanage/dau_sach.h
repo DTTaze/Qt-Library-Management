@@ -89,8 +89,7 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
 
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string vi_tri);
 
-void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
-                    DanhMucSach* &head_dms);//can sua doi de phu hop voi qt
+void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string ISBN, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai);
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTableView *tableView_dausach,QWidget* parent);
 
