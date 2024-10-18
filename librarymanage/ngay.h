@@ -23,6 +23,7 @@ bool isNumber(const string &str);
 
 void NhapNgayThangNam(Date &nhap_ngay_thang_nam);
 
+Date NhapChuoiNgayThangNam(string &nhap_ngaythangnam);
 
 void NgayTraDuKien(Date Ngay_muon);
 
@@ -37,5 +38,7 @@ int DemSoNgay(Date ngay_muon, Date ngay_tra) ;
 int SoNgayQuaHan(Date ngay_muon, Date ngay_tra);
 
 void InManHinhNgayThangNam(Date ngay_thang_nam);
+
+string ChuyenDateSangString(Date Ngay);
 
 #endif
