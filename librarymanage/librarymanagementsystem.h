@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QTableWidgetItem>
 #include "Dau_sach.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -43,6 +44,10 @@ private slots:
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
 
     void on_inTheLoai_pushButton_clicked();
+
+    void on_xoaDocGia_pushButton_clicked();
+
+    void on_tableWidget_2_itemChanged(QTableWidgetItem *item);
 
 public slots:
 

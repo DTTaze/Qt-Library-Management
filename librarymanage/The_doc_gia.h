@@ -54,10 +54,10 @@ struct Mang_The_Doc_Gia {
 
 extern int Mang_Ma_The[MAXRANDOM];
 extern Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
-
 extern Danh_Sach_The_Doc_Gia* root;
 extern Danh_Sach_The_Doc_Gia* root_ten;
 extern Danh_Sach_The_Doc_Gia* rp;
+extern Danh_Sach_The_Doc_Gia* r;
 
 // Hàm liên quan đến mảng
 void Tao_Mang_The();
@@ -69,6 +69,7 @@ void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the
 void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
+void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue);
 
 // Hàm tạo ra cây theo tên
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia);

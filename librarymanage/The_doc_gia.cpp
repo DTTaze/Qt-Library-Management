@@ -1,14 +1,14 @@
 #include "The_doc_gia.h"
 
 Danh_Sach_The_Doc_Gia* root;
-Danh_Sach_The_Doc_Gia* rp;
 Danh_Sach_The_Doc_Gia* root_ten;
+Danh_Sach_The_Doc_Gia* rp;
 Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
 int Mang_Ma_The[MAXRANDOM];
-int index_left = 4;
-int index_right = 5004;
+int index_left = 5;
+int index_right = 5005;
 bool layTuTrai = true;
-
+//--------------------------------------------------------------------------------------------------------------------------------------
 void Tao_Mang_The() {
     int index = 0;
     taoMangTrungVi(index, 1, 10000);
@@ -49,11 +49,11 @@ int LayMaTheNgauNhien() {
 
     return 5000;  // Giá trị mặc định nếu không thỏa mãn điều kiện nào
 }
-
+//---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
     if ( Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The < MAXRANDOM ) {
         int index = 0;
-        while (index < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The && docgia.Ten > Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ten) {
+        while (index < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The && (docgia.Ten > Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ten || (docgia.Ten == Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ten && docgia.Ho > Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ho))) {
             index++;
         }
         for ( int i = Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The; i > index; i-- ) {
@@ -84,8 +84,8 @@ void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten) {
     Xoa_Danh_Sach_Theo_Ten(root_ten->ptr_right);
     delete root_ten;
 }
-
-void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
+//---------------------------------------------------------------------------------------------------------------------------------------
+void Them_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
         Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
         root = con_tro_the_doc_gia;
@@ -115,7 +115,8 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
 
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia) {
     if ( r == nullptr ) {
-        cout << "Khong Tim Thay " << ma_the_doc_gia << endl;
+        QMessageBox::information(nullptr, "Thông báo", "Không tìm thấy độc giả");
+        return;
     }
     else {
         if ( r->thong_tin.MATHE < ma_the_doc_gia ) {
@@ -123,32 +124,53 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia) {
         } else if ( r->thong_tin.MATHE > ma_the_doc_gia ) {
             Xoa_Doc_Gia(r->ptr_left, ma_the_doc_gia );
         } else {
-            rp = r;
             if ( rp->ptr_right == nullptr ) {
-                r = rp->ptr_left;
+                Danh_Sach_The_Doc_Gia* temp = r;
+                r = r->ptr_left;
+                delete temp;
             } else if ( rp->ptr_left == nullptr ) {
+                Danh_Sach_The_Doc_Gia* temp = r;
                 r = rp->ptr_right;
+                delete temp;
             } else {
-                Xoa_Truong_Hop_Co_Hai_Cay_Con(rp->ptr_right);
+                Danh_Sach_The_Doc_Gia* minNode = r->ptr_right;
+                while (minNode->ptr_left != nullptr) {
+                    minNode = minNode->ptr_left;
+                }
+                r->thong_tin = minNode->thong_tin; // Sao chép thông tin
+                Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_right);
             }
-            delete rp;
         }
     }
 }
 
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) {
-    Danh_Sach_The_Doc_Gia* curr = root;
-    while ( curr != nullptr && curr->thong_tin.MATHE != mathe ) {
-        if ( curr->thong_tin.MATHE < mathe ) {
-            curr = curr->ptr_right;
+    Danh_Sach_The_Doc_Gia* current = root;
+    while ( current != nullptr && current->thong_tin.MATHE != mathe ) {
+        if ( current->thong_tin.MATHE < mathe ) {
+            current = current->ptr_right;
         } else {
-            curr = curr->ptr_left;
+            current = current->ptr_left;
         }
     }
-    return curr;
+    return current;
 }
 
-
+void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue) {
+    Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(root, maThe);
+    if (docGia) {
+        if (field == "Ho") {
+            docGia->thong_tin.Ho = newValue; // Cập nhật họ
+        } else if (field == "Ten") {
+            docGia->thong_tin.Ten = newValue; // Cập nhật tên
+        } else if (field == "Phai") {
+            docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu; // Cập nhật phái
+        } else if (field == "TrangThai") {
+            docGia->thong_tin.TrangThai = (newValue == "Đang Hoạt Động") ? Dang_Hoat_Dong : Khoa; // Cập nhật trạng thái
+        }
+    }
+}
+//---------------------------------------------------------------------------------------------------------------------------------------
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
     QFile file("docgia_100.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -185,7 +207,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
     }
     file.close(); // Đóng file
 }
-
+//---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) { // Hàm thêm nút thông tin vào table
     int row = tableWidget->rowCount();
     tableWidget->insertRow(row);
@@ -205,6 +227,6 @@ void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia*
     Them_Vao_QTableWidget(tableWidget, tam_thoi);
     Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_right);
 }
-
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 
