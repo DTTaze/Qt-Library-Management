@@ -22,18 +22,12 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
     connect(ui->tableWidget_2, &QTableWidget::itemChanged, this, &LibraryManagementSystem::on_tableWidget_2_itemChanged);
 
-<<<<<<< HEAD
     Tao_Mang_The();
 
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(root, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
-    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
-
-=======
-    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
     Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
->>>>>>> d75733cb95f4630f83f086424b980c272f16b74c
+
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
 }
@@ -186,10 +180,6 @@ void LibraryManagementSystem::on_timsach_buttom_clicked()
     timkiem.setModal(true);
     timkiem.exec();
 }
-
-
-
-
 
 void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &index)
 {
