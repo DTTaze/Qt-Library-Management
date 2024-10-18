@@ -126,34 +126,22 @@ int DemSoNgay(Date ngay_muon, Date ngay_tra) {
     ngaytra.tm_mon = ngay_tra.month - 1;
     ngaytra.tm_year = ngay_tra.year - 1900;
 
-    if (ngay_muon.day < 1 || ngay_muon.day > 31 ||
-        ngay_muon.month < 1 || ngay_muon.month > 12 ||
-        ngay_muon.year < 1900) {
-        std::cout << "Ngay muon khong hop le!" << std::endl;
+    time_t ngaymuon1 = mktime(&ngaymuon);
+    time_t ngaytra1 = mktime(&ngaytra);
+
+    // Đảm bảo ngày trả phải sau ngày mượn
+    if (ngaymuon1 == -1 || ngaytra1 == -1) {
+        cout << "Loi: ngay muon hoac ngay tra khong hop le" << endl;
+        return -1;
+    }
+    if (ngaytra1 < ngaymuon1) {
+        cout << "Ngay tra phai sau ngay muon!" << endl;
+        return -1;
     }
 
-    if (ngay_tra.day < 1 || ngay_tra.day > 31 ||
-        ngay_tra.month < 1 || ngay_tra.month > 12 ||
-        ngay_tra.year < 1900) {
-        std::cout << "Ngay tra khong hop le!" << std::endl;
-    }
-
-    // time_t ngaymuon1 = mktime(&ngaymuon);
-    // time_t ngaytra1 = mktime(&ngaytra);
-
-    // // Đảm bảo ngày trả phải sau ngày mượn
-    // if (ngaymuon1 == -1 || ngaytra1 == -1) {
-    //     cout << "Loi: ngay muon hoac ngay tra khong hop le" << endl;
-    //     return -1;
-    // }
-    // if (ngaytra1 < ngaymuon1) {
-    //     cout << "Ngay tra phai sau ngay muon!" << endl;
-    //     return -1;
-    // }
-
-    // double sogiay = difftime(ngaytra1, ngaymuon1);
-    // int songay = sogiay / (60 * 60 * 24);
-    // return songay;
+    double sogiay = difftime(ngaytra1, ngaymuon1);
+    int songay = sogiay / (60 * 60 * 24);
+    return songay;
     return 0;
 }
 
