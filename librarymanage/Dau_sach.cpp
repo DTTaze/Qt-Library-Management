@@ -19,6 +19,42 @@ void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach, string& vi_
     danh_sach_dau_sach.demsachvitri[Khu_vuc]++;
 }
 
+int Hash(const string& ma_sach){
+    int hash = 0;
+    for (char ch : ma_sach) {
+        hash = (hash * 31 + ch) % HASHSIZE;
+    }
+    return hash;
+}
+
+void ThemVaoBangBam(DauSach* &dau_sach, string& ma_sach, DanhSachDauSach &danh_sach_dau_sach) {
+    int index = Hash(ma_sach);
+    HashNode* newNode = new HashNode(ma_sach, dau_sach);
+
+    if (danh_sach_dau_sach.table[index] == nullptr) {
+        danh_sach_dau_sach.table[index] = newNode; // Neu chua co phan tu
+    } else {
+        // Xu ly xung dot, them vao dau danh sach
+        HashNode* current = danh_sach_dau_sach.table[index];
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
+
+DauSach* search(HashNode* table[HASHSIZE],const string& ma_sach) {
+    int index = Hash(ma_sach);
+    HashNode* current = table[index];
+    while (current) {
+        if (current->ma_sach == ma_sach) {
+            return current->dau_sach; // tr? v? cu?n sách n?u tìm th?y
+        }
+        current = current->next;
+    }
+    return nullptr; // n?u không tìm th?y
+}
+
 DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri) {
 
     //them vao dau danh sach sap xep theo ma sach
@@ -139,15 +175,9 @@ int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key){
     return ket_qua;
 }
 
-string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,string ma_sach){
-    int ket_qua;
-    for (int i =0; i < danh_sach_dau_sach.demsach;i++){
-        if (danh_sach_dau_sach.node[i]->dms->masach == ma_sach){
-            ket_qua = i;
-            break;
-        }
-    }
-    return danh_sach_dau_sach.node[ket_qua]->tensach;
+string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
+    DauSach* dau_sach = search(danh_sach_dau_sach.table,ma_sach);
+    return dau_sach->tensach;
 }
 
 void Merge(DauSach** arr, int left, int mid, int right) {

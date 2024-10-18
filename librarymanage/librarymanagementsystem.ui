@@ -838,7 +838,15 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
+<<<<<<< HEAD
      <height>25</height>
+=======
+<<<<<<< HEAD
+     <height>25</height>
+=======
+     <height>21</height>
+>>>>>>> d75733cb95f4630f83f086424b980c272f16b74c
+>>>>>>> e94a4b97c213cd7ba99bdd1128bd9e12e6739372
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">
