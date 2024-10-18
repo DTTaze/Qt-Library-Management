@@ -25,7 +25,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     Tao_Mang_The();
 
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra, ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
 
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
@@ -86,9 +86,6 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
         docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Mang(docGia);
-        for ( int i = 0; i < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The; i++ ) {
-            cout << Mang_The_Doc_Gia_Tam_Thoi.DS[i].Ten << endl;
-        }
         ui->sapXepDocGia_ComboBox->setCurrentIndex(0);
         ui->tableWidget_2->setRowCount(0);
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);

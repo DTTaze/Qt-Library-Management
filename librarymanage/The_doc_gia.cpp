@@ -171,7 +171,7 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
     }
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
+void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA danh_sach_muon_tra, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
     QFile file("docgia_100.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file");
@@ -204,6 +204,14 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
         docGia.TrangThai = Dang_Hoat_Dong;
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Mang(docGia);
+        if(fields[4].isEmpty()){
+            continue;
+        }else{
+            string ma_sach = fields[4].toStdString();
+            string ngay_muon = fields[5].toStdString();
+            string ngay_tra = fields[6].toStdString();
+            Them_lich_su_sach(docGia,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+        }
     }
     file.close(); // Đóng file
 }
