@@ -54,7 +54,6 @@ struct Mang_The_Doc_Gia {
 
 extern int Mang_Ma_The[MAXRANDOM];
 extern Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
-
 extern Danh_Sach_The_Doc_Gia* root;
 extern Danh_Sach_The_Doc_Gia* root_ten;
 extern Danh_Sach_The_Doc_Gia* rp;
@@ -76,7 +75,7 @@ Danh_Sach_The_Doc_Gia* Tao_Cay_Theo_Ten(int start, int end);
 void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten);
 
 // Hàm đọc thông tin
-void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, DanhSachMUONTRA danh_sach_muon_tra ,QTableWidget* tableWidget);
+void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, DanhSachMUONTRA *&danh_sach_muon_tra,QTableWidget* tableWidget);
 
 // Hàm chèn thông tin vào table
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia);

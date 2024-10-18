@@ -200,48 +200,72 @@ void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia *doc_gia) {
     InManHinhDSSachDangMuon(doc_gia);
 }
 
+DanhSachMUONTRA* CopyDanhSachMUONTRA(DanhSachMUONTRA *danh_sach_goc) {
+    if(danh_sach_goc == nullptr) return nullptr;
+
+    DanhSachMUONTRA *copy = new DanhSachMUONTRA(danh_sach_goc->data);
+    DanhSachMUONTRA *temp = danh_sach_goc->next;
+    DanhSachMUONTRA *head_copy = copy;
+
+    while(temp != nullptr) {
+        head_copy->next = new DanhSachMUONTRA(temp->data);
+        head_copy = head_copy->next;
+        temp = temp->next;
+    }
+    return copy;
+}
 
 
-// void ChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
-//     int soNgayQuaHan = SoNgayQuaHan(docGia->thong_tin.head_lsms->data.NgayMuon, docGia->thong_tin.head_lsms->data.NgayTra);
-//     DocGiaQuaHan* newNode = new DocGiaQuaHan(docGia, soNgayQuaHan);
 
-//     if (head == nullptr || head->soNgayQuaHan < soNgayQuaHan) {
-//         newNode->next = head;
-//         head = newNode;
-//         return;
-//     }
-//     DocGiaQuaHan* current = head;
-//     while (current->next != nullptr && current->next->soNgayQuaHan > soNgayQuaHan) {
-//         current = current->next;
-//     }
+void ChenDocGiaQuaHan(DanhSachMUONTRA*& danh_sach_lich_su_muon_tra, The_Doc_Gia* docGia, DanhSachMUONTRA* currentMuonTra) {
+    // Tính toán số ngày quá hạn từ currentMuonTra thay vì chỉ dùng head_lsms
+    int soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
 
-//     newNode->next = current->next;
-//     current->next = newNode;
-// }
+    // Tạo node mới với thông tin từ currentMuonTra
+    DanhSachMUONTRA* newNode = new DanhSachMUONTRA(*currentMuonTra);
 
-// void KiemTraVaChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) {
-//     DanhSachMUONTRA* currentMuonTra = docGia->thong_tin.head_lsms;
+    // Nếu danh sách quá hạn rỗng hoặc so sánh thấy số ngày quá hạn của bản ghi mới lớn hơn, chèn vào đầu danh sách
+    if (danh_sach_lich_su_muon_tra == nullptr || SoNgayQuaHan(danh_sach_lich_su_muon_tra->data.NgayMuon, danh_sach_lich_su_muon_tra->data.NgayTra) < soNgayQuaHan) {
+        newNode->next = danh_sach_lich_su_muon_tra;
+        danh_sach_lich_su_muon_tra = newNode;
+        return;
+    }
 
-//     // Duyệt qua danh sách mượn trả của độc giả
-//     while (currentMuonTra != nullptr) {
-//         int soNgayQuaHan = 0;
+    // Duyệt danh sách quá hạn để tìm vị trí chèn
+    DanhSachMUONTRA* current = danh_sach_lich_su_muon_tra;
+    while (current->next != nullptr && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > soNgayQuaHan) {
+        current = current->next;
+    }
 
-//         if (currentMuonTra->data.trangthai == 0) {
-//             soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
-//         }
-//         else if (currentMuonTra->data.trangthai == 1) {
-//             soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
-//         }
+    newNode->next = current->next;
+    current->next = newNode;
+}
 
 
-//         if (soNgayQuaHan > 0) {
-//             ChenDocGiaQuaHan(head, docGia);
-//         }
 
-//         currentMuonTra = currentMuonTra->next;
-//     }
-// }
+void KiemTraVaChenDocGiaQuaHan(DanhSachMUONTRA*& danh_sach_lich_su_muon_tra, The_Doc_Gia* docGia) {
+    DanhSachMUONTRA* currentMuonTra = docGia->head_lsms;
+
+    // Duyệt qua danh sách mượn trả của độc giả
+    while (currentMuonTra != nullptr) {
+        int soNgayQuaHan = 0;
+
+        if (currentMuonTra->data.trangthai == 0) {
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
+        }
+        else if (currentMuonTra->data.trangthai == 1) {
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
+        }
+
+        // Nếu số ngày quá hạn > 0, gọi hàm ChenDocGiaQuaHan với currentMuonTra hiện tại
+        if (soNgayQuaHan > 0) {
+            ChenDocGiaQuaHan(danh_sach_lich_su_muon_tra, docGia, currentMuonTra);
+        }
+
+        currentMuonTra = currentMuonTra->next;
+    }
+}
+
 
 // int DemDocGiaQuaHan(DocGiaQuaHan *head) {
 //     DocGiaQuaHan *temp = head;
@@ -263,10 +287,114 @@ void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia *doc_gia) {
 //     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
 // }
 
-void Them_lich_su_sach(The_Doc_Gia &the_doc_gia, DanhSachMUONTRA danh_sach_muon_tra,string ma_sach, string ngay_muon,string ngay_tra){
+void Them_lich_su_sach(The_Doc_Gia *the_doc_gia, DanhSachMUONTRA *&danh_sach_lich_su_muon_tra, string ma_sach, string ngay_muon, string ngay_tra) {
+    // Chuyển chuỗi sang Date
+    Date ngaymuon = NhapChuoiNgayThangNam(ngay_muon);
+    Date ngaytra = NhapChuoiNgayThangNam(ngay_tra);
 
+    // Tính số ngày quá hạn
+    int songayquahan = SoNgayQuaHan(ngaymuon, ngaytra);
+
+    // Tạo một node MUONTRA mới
+    MUONTRA muontra(ma_sach, ngaymuon, ngaytra);
+
+    // Nếu danh sách mượn trả của độc giả rỗng, khởi tạo danh sách mới
+    if (the_doc_gia->head_lsms == nullptr) {
+        the_doc_gia->head_lsms = new DanhSachMUONTRA(muontra);
+    } else {
+        // Duyệt đến cuối danh sách và thêm phần tử mới
+        DanhSachMUONTRA *current = the_doc_gia->head_lsms;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = new DanhSachMUONTRA(muontra);
+    }
+
+    // Nếu sách đã quá hạn, sao chép danh sách mượn trả
+    if (songayquahan > 0) {
+        danh_sach_lich_su_muon_tra = CopyDanhSachMUONTRA(the_doc_gia->head_lsms);
+        KiemTraVaChenDocGiaQuaHan(danh_sach_lich_su_muon_tra, the_doc_gia);
+    }
 }
 
+void Them_Vao_QTableWidget_danhsachmuontra(QTableWidget* tableWidget, const The_Doc_Gia& docGia, DanhSachMUONTRA *&danh_sach_lich_su_muon_tra) {
+    DanhSachMUONTRA* currentMuonTra = danh_sach_lich_su_muon_tra;
+
+    // Duyệt qua từng bản ghi trong danh sách mượn trả của độc giả
+    while (currentMuonTra != nullptr) {
+        int row = tableWidget->rowCount(); // Lấy số dòng hiện có trong bảng
+        tableWidget->insertRow(row); // Thêm một dòng mới
+        string ngaymuon = ChuyenDateSangString(currentMuonTra->data.NgayMuon);
+        string ngaytra = (currentMuonTra->data.trangthai == 1) ? ChuyenDateSangString(currentMuonTra->data.NgayTra) : "Chưa trả";
+
+        // Thêm thông tin mã thẻ, họ, tên và phái của độc giả vào các ô tương ứng
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia.MATHE))); // Mã thẻ
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia.Ho))); // Họ
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia.Ten))); // Tên
+        tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
+
+        // Thêm thông tin mượn trả vào các ô tương ứng
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentMuonTra->data.masach))); // Mã sách
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ngaymuon))); // Ngày mượn
+        tableWidget->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(ngaytra))); // Ngày trả
+
+        // Tính số ngày quá hạn
+        int soNgayQuaHan = 0;
+        if (currentMuonTra->data.trangthai == 0) {
+            // Nếu sách chưa được trả, tính số ngày quá hạn so với ngày hiện tại
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
+        } else if (currentMuonTra->data.trangthai == 1) {
+            // Nếu sách đã trả, tính số ngày quá hạn so với ngày trả
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
+        }
+        tableWidget->setItem(row, 7, new QTableWidgetItem(QString::number(soNgayQuaHan))); // Số ngày quá hạn
+
+        // Chuyển sang bản ghi mượn trả tiếp theo
+        currentMuonTra = currentMuonTra->next;
+    }
+}
+
+void Them_Cay_Vao_QTableWidget_danhsachquahan(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root, DanhSachMUONTRA *danh_sach_lich_su_muon_tra) {
+    if (root == nullptr) return; // Nếu cây rỗng, thoát hàm
+
+    // Đệ quy duyệt cây con trái trước
+    Them_Cay_Vao_QTableWidget_danhsachquahan(tableWidget, root->ptr_left, danh_sach_lich_su_muon_tra);
+
+    // Lấy thông tin của độc giả hiện tại
+    The_Doc_Gia docGiaHienTai = root->thong_tin;
+
+    // Kiểm tra danh sách mượn trả của độc giả hiện tại xem có quá hạn không
+    DanhSachMUONTRA* currentMuonTra = docGiaHienTai.head_lsms;
+    bool co_qua_han = false;
+
+    while (currentMuonTra != nullptr) {
+        int soNgayQuaHan = 0;
+
+        // Nếu sách chưa trả, kiểm tra số ngày quá hạn so với ngày hiện tại
+        if (currentMuonTra->data.trangthai == 0) {
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
+        } else if (currentMuonTra->data.trangthai == 1) {
+            // Nếu sách đã trả, kiểm tra số ngày quá hạn so với ngày trả
+            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
+        }
+
+        // Nếu có ngày quá hạn (số ngày quá hạn lớn hơn 0), gán cờ `co_qua_han` thành true
+        if (soNgayQuaHan > 0) {
+            co_qua_han = true;
+            break; // Không cần kiểm tra thêm, chỉ cần biết có quá hạn
+        }
+
+        currentMuonTra = currentMuonTra->next; // Duyệt sang bản ghi mượn trả tiếp theo
+    }
+
+    // Nếu có sách quá hạn, thêm thông tin độc giả vào bảng
+    if (co_qua_han) {
+        Them_Vao_QTableWidget_danhsachmuontra(tableWidget, docGiaHienTai, docGiaHienTai.head_lsms);
+    }
+
+    // Đệ quy duyệt cây con phải
+    Them_Cay_Vao_QTableWidget_danhsachquahan(tableWidget, root->ptr_right, danh_sach_lich_su_muon_tra);
+}
 
 
 
