@@ -813,6 +813,16 @@ color: black;</string>
              <string>10 cuốn sách được mượn nhiều nhất </string>
             </property>
            </widget>
+           <widget class="QTableView" name="tableView_danhsachquahan">
+            <property name="geometry">
+             <rect>
+              <x>5</x>
+              <y>61</y>
+              <width>381</width>
+              <height>461</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </widget>
         </widget>
@@ -828,7 +838,11 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
+<<<<<<< HEAD
      <height>25</height>
+=======
+     <height>21</height>
+>>>>>>> d75733cb95f4630f83f086424b980c272f16b74c
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

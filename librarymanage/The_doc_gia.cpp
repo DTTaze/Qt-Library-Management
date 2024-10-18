@@ -181,7 +181,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, QTableWidget* tab
     while (!file.atEnd()) {
         QByteArray line = file.readLine();
         QString strLine = QString(line).trimmed(); // Đọc và xử lý dòng
-        QStringList fields = strLine.split("|"); // Tách theo khoảng trắng
+        QStringList fields = strLine.split("|"); // Tách theo |
 
         if (fields.size() < 7) {
             continue; // Bỏ qua nếu không đủ trường

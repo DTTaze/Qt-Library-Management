@@ -76,6 +76,16 @@ Date NgayMuon() {
     return ngay_muon;
 }
 
+Date NgayHomNay() {
+    Date ngayhomnay;
+    time_t now = time(0);
+    tm *Ngay_thuc_te = localtime(&now);
+    ngayhomnay.day = Ngay_thuc_te->tm_mday;
+    ngayhomnay.month = Ngay_thuc_te->tm_mon + 1;
+    ngayhomnay.year = Ngay_thuc_te->tm_year + 1900;
+    return ngayhomnay;
+}
+
 Date NgayTraThucTe(){
     int luachon = 1;
     Date ngay_tra_thuc_te;
@@ -121,7 +131,7 @@ int DemSoNgay(Date ngay_muon, Date ngay_tra) {
 
     // Đảm bảo ngày trả phải sau ngày mượn
     if (ngaymuon1 == -1 || ngaytra1 == -1) {
-        cout << "Lỗi: Ngày mượn hoặc ngày trả không hợp lệ!" << endl;
+        cout << "Loi: ngay muon hoac ngay tra khong hop le" << endl;
         return -1;
     }
     if (ngaytra1 < ngaymuon1) {
@@ -132,6 +142,12 @@ int DemSoNgay(Date ngay_muon, Date ngay_tra) {
     double sogiay = difftime(ngaytra1, ngaymuon1);
     int songay = sogiay / (60 * 60 * 24);
     return songay;
+    return 0;
+}
+
+int SoNgayQuaHan(Date ngay_muon, Date ngay_tra) {
+    if(DemSoNgay(ngay_muon, ngay_tra) >7) return DemSoNgay(ngay_muon, ngay_tra) - 7;
+    return 0;
 }
 
 void InManHinhNgayThangNam(Date ngay_thang_nam) {

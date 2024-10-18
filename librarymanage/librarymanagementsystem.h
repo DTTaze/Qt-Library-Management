@@ -8,6 +8,8 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include "Dau_sach.h"
+#include "The_doc_gia.h"
+#include "Muon_tra.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class LibraryManagementSystem;
@@ -23,6 +25,7 @@ public:
     ~LibraryManagementSystem();
     DanhSachDauSach danh_sach_dau_sach;
     DanhMucSach* danh_muc_sach;
+    DanhSachMUONTRA danh_sach_muon_tra;
 
 
 private slots:
@@ -45,9 +48,13 @@ private slots:
 
     void on_inTheLoai_pushButton_clicked();
 
+<<<<<<< HEAD
     void on_xoaDocGia_pushButton_clicked();
 
     void on_tableWidget_2_itemChanged(QTableWidgetItem *item);
+=======
+    void on_tableView_dausach_activated(const QModelIndex &index);
+>>>>>>> d75733cb95f4630f83f086424b980c272f16b74c
 
 public slots:
 

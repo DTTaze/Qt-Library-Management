@@ -28,9 +28,13 @@ void NgayTraDuKien(Date Ngay_muon);
 
 Date NgayMuon() ;
 
+Date NgayHomNay() ;
+
 Date NgayTraThucTe();
 
 int DemSoNgay(Date ngay_muon, Date ngay_tra) ;
+
+int SoNgayQuaHan(Date ngay_muon, Date ngay_tra);
 
 void InManHinhNgayThangNam(Date ngay_thang_nam);
 

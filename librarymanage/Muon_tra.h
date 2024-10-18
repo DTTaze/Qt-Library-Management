@@ -5,6 +5,11 @@
 #include <fstream>
 #include "ngay.h"
 #include "dau_sach.h"
+#include <QStandardItemModel>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
+struct The_Doc_Gia;
 struct Danh_Sach_The_Doc_Gia;
 using namespace std;
 
@@ -21,6 +26,9 @@ struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
     Date NgayMuon;
     Date NgayTra;
     int trangthai;
+
+    MUONTRA() : masach(""), NgayMuon(), NgayTra(), trangthai(0) {}
+
     MUONTRA(string ma, const Date &ngayMuon, const Date &ngayTra) : masach(ma), NgayMuon(ngayMuon), NgayTra(ngayTra)
     { trangthai = TrangThai(NgayMuon, NgayTra);}
 
@@ -35,8 +43,8 @@ struct DanhSachMUONTRA { // danh sach cac quyen sach da hoac dang muon
     MUONTRA data;
     DanhSachMUONTRA *next = nullptr;
     DanhSachMUONTRA(const MUONTRA &muontra) : data(muontra), next(nullptr) {}
+    DanhSachMUONTRA(){}
 };
-
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) ;
 
@@ -51,7 +59,7 @@ int XoaSachSauSachP(DanhSachMUONTRA * p);
 
 int XoaSachTheoThongTin(DanhSachMUONTRA * &head, string ma, const Date &ngayMuon, const Date &ngayTra) ;
 
-void InManHinhDSSach(Danh_Sach_The_Doc_Gia * head) ;
+// void InManHinhDSSach(Danh_Sach_The_Doc_Gia * head) ;
 
 void InManHinhDSSachDangMuon(Danh_Sach_The_Doc_Gia *head);
 
@@ -59,8 +67,13 @@ void ThemSachVaoLSMS(DanhSachMUONTRA * &sach, string ma, const Date &ngayMuon, c
 
 void MuonSach (Danh_Sach_The_Doc_Gia *doc_gia) ;
 
-
 void TraSach (Danh_Sach_The_Doc_Gia doc_gia, string ma_sach) ;
 
 void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia doc_gia) ;
+
+// void ChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia);
+
+// void KiemTraVaChenDocGiaQuaHan(DocGiaQuaHan*& head, Danh_Sach_The_Doc_Gia* docGia) ;
+
+void Them_lich_su_sach(The_Doc_Gia &the_doc_gia, DanhSachMUONTRA danh_sach_muon_tra,string ma_sach, string ngay_muon,string ngay_tra);
 #endif
