@@ -54,6 +54,8 @@ private slots:
 
     void on_tableView_dausach_activated(const QModelIndex &index);
 
+    void on_themSach_pushButton_clicked();
+
 public slots:
 
 

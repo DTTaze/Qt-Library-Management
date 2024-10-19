@@ -375,44 +375,7 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach,string vi_tri){
     }else{return false;};
 };
 
-void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
-                    DanhMucSach* &head_dms){
-    string I_S_B_N;string ten_sach;int so_trang;string tac_gia;int nam_sx;string the_loai;
-    int trang_thai; string vi_tri;
-
-    cout << "Nhap ISBN cua sach: \n";
-    getline(cin, I_S_B_N);
-
-    cout << "Nhap ten sach: \n";
-    getline(cin, ten_sach);
-
-    cout << "Nhap so trang: \n";
-    cin >> so_trang;
-    cin.ignore();
-
-    cout << "Nhap tac gia: \n";
-    getline(cin, tac_gia);
-
-    cout << "Nhap nam san xuat: \n";
-    cin >> nam_sx;
-    cin.ignore();
-
-    cout << "Nhap the loai: \n";
-    getline(cin, the_loai);
-
-    do{
-        bool k_hop_le = true;
-        do{
-            cout << "Nhap vi tri (A - J): \n";
-            getline(cin, vi_tri);
-
-            if (vi_tri < "A" || vi_tri > "J" ) {
-                cout << "vi tri khong hop le. Vui long nhap tu A den J." << endl;
-                k_hop_le = false;
-            }
-        }while(!k_hop_le);
-
-    }while(KiemTraDaySachKV(danh_sach_dau_sach,vi_tri));
+void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string I_S_B_N, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai,string vi_tri){
 
     ThemDauSach(danh_sach_dau_sach,I_S_B_N,ten_sach,so_trang, tac_gia,nam_sx, the_loai,
                 head_dms, 0,vi_tri);
@@ -425,7 +388,7 @@ void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,
              << tac_gia << '|'
              << nam_sx << '|'
              << the_loai << '|'
-             << vi_tri << endl;
+             << I_S_B_N << endl;
         file.close();
     } else {
         cout << "Khong the mo file de ghi!" << endl;
