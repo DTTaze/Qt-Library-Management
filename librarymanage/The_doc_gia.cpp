@@ -145,8 +145,10 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
     if (docGia) {
         if (field == "Ho") {
             docGia->thong_tin.Ho = newValue; // Cập nhật họ
+            qDebug() << "Thong tin thay doi" << docGia->thong_tin.Ho;
         } else if (field == "Ten") {
             docGia->thong_tin.Ten = newValue; // Cập nhật tên
+            qDebug() << "Thong tin thay doi" << docGia->thong_tin.Ten;
         } else if (field == "Phai") {
             docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu; // Cập nhật phái
         } else if (field == "TrangThai") {
@@ -187,10 +189,9 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         docGia.phai = phai;
         docGia.TrangThai = Dang_Hoat_Dong;
         Them_Doc_Gia(root, docGia);
-        // Them_Doc_Gia_Mang(docGia);
         if(fields[4].isEmpty()){
             continue;
-        }else{
+        } else {
             string ma_sach = fields[4].toStdString();
             string ngay_muon = fields[5].toStdString();
             string ngay_tra = fields[6].toStdString();
@@ -198,7 +199,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         }
     }
     Copy_Cay_Sang_Mang(root);
-    file.close(); // Đóng file
+    file.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) { // Hàm thêm nút thông tin vào table

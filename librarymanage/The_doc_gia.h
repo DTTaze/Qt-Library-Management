@@ -11,7 +11,7 @@
 #include <fstream>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
-#include "queue.h"
+#include "Mang_The_Ngau_Nhien.h"
 #define MAXRANDOM 10000
 using namespace std;
 
@@ -80,7 +80,6 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia);
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
-void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten);
 
 // Hàm đọc thông tin
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, DanhSachMUONTRA *&danh_sach_muon_tra,QTableWidget* tableWidget);

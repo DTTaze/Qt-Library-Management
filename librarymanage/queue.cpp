@@ -1,4 +1,4 @@
-#include "queue.h"
+#include "Mang_The_Ngau_Nhien.h"
 
 void Queue::push(pair<int,int> x) {
     node* p = new node;

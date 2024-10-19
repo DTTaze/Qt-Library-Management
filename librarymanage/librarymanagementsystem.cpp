@@ -21,16 +21,14 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
     QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
-    connect(ui->tableWidget_2, &QTableWidget::itemChanged, this, &LibraryManagementSystem::on_tableWidget_2_itemChanged);
-
-    Doc_File_Ma_The();
-
-    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
-    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
-    Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
     QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
+    Doc_File_Ma_The();
+    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
+    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+
+    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
+    Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
 }
 
 LibraryManagementSystem::~LibraryManagementSystem()
@@ -47,17 +45,20 @@ void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab �
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
 }
+
 void LibraryManagementSystem::page2Widget()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_docgia);
 }
+
 void LibraryManagementSystem::page3Widget()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 
 }
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
-void LibraryManagementSystem::CapNhatBang() {
+void LibraryManagementSystem::CapNhatBang()
+{
     ui->tableWidget_2->setRowCount(0);
     if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
@@ -72,6 +73,8 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     if (index == 0) { // 0 là chỉ số cho mã số
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
     } else if (index == 1) { // 1 là chỉ số cho tên
+        Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The = 0;
+        Copy_Cay_Sang_Mang(root);
         Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
     }
 }
@@ -97,7 +100,8 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
     }
 }
 
-void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() {
+void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
+{
     int currentRow = ui->tableWidget_2->currentRow();
 
     if (currentRow == -1) {
@@ -125,21 +129,12 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() {
         QMessageBox::warning(this, "Cảnh báo", "Không thể lấy thông tin độc giả.");
     }
 }
-//-------------------------------------------------------------------------------------------------------------------------------------
-void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
-{
-    InTheoTheLoai intheloai(danh_sach_dau_sach,this);
-    intheloai.setModal(true);
-    intheloai.exec();
-}
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item)
 {
-    // Lấy chỉ số hàng và cột của ô đã thay đổi
     int row = item->row();
     int column = item->column();
 
-    // Lấy mã thẻ ở cột 0
     QTableWidgetItem* maTheItem = ui->tableWidget_2->item(row, 0);
     bool ok;
     int maThe = maTheItem->text().toInt(&ok);
@@ -149,31 +144,40 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
         return;
     }
 
-    // Lấy giá trị mới từ ô đã thay đổi
     QString newValue = item->text();
 
-    // Cập nhật thông tin vào cây hoặc danh sách tương ứng
-    // Giả sử bạn có hàm cập nhật thông tin trong cây nhị phân hoặc danh sách
     switch (column) {
-    case 1: // Cột Họ
-        // Cập nhật họ của độc giả
+    case 1:
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ho", newValue.toStdString());
         break;
-    case 2: // Cột Tên
-        // Cập nhật tên của độc giả
+    case 2:
+
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ten", newValue.toStdString());
         break;
-    case 3: // Cột Phái
-        // Cập nhật phái
+    case 3:
+        if (newValue != "Nam" && newValue != "Nữ") {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị phái không hợp lệ. Vui lòng nhập 'Nam' hoặc 'Nữ'.");
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Phai", newValue.toStdString());
         break;
-    case 4: // Cột Trạng thái
-        // Cập nhật trạng thái
+    case 4:
+        if (newValue != "Đang Hoạt Động" && newValue != "Bị Khóa") {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị trạng thái không hợp lệ. Vui lòng nhập 'Đang Hoạt Động' hoặc 'Bị Khóa'.");
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "TrangThai", newValue.toStdString());
         break;
     default:
         break;
     }
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
+{
+    InTheoTheLoai intheloai(danh_sach_dau_sach,this);
+    intheloai.setModal(true);
+    intheloai.exec();
 }
 
 void LibraryManagementSystem::on_muonsach_buttom_clicked()
@@ -201,7 +205,6 @@ void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &
 {
 
 }
-
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {

@@ -1,5 +1,5 @@
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef MANG_THE_NGAU_NHIEN_H
+#define MANG_THE_NGAU_NHIEN_H
 #include "utility"
 #include "The_doc_gia.h"
 using namespace std;
@@ -27,4 +27,4 @@ void Tao_Mang_The();
 void taoMangTrungVi(int& index, int start, int end);
 
 
-#endif // QUEUE_H
+#endif // MANG_THE_NGAU_NHIEN_H
