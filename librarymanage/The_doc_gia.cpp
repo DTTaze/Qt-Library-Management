@@ -36,6 +36,12 @@ void Ghi_Ma_The_Vao_File(int index) {
     outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
+void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
+    if ( root == nullptr ) return;
+    Them_Doc_Gia_Mang(root->thong_tin);
+    Copy_Cay_Sang_Mang(root->ptr_left);
+    Copy_Cay_Sang_Mang(root->ptr_right);
+}
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
     if ( Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The < MAXRANDOM ) {
         int index = 0;
@@ -53,7 +59,7 @@ void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
 }
 
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
-    for( int i = 0; i < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The - 1; i++) {
+    for( int i = 0; i < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The; i++) {
         Them_Vao_QTableWidget(tableWidget, Mang_The_Doc_Gia_Tam_Thoi.DS[i]);
     }
 }
@@ -87,33 +93,37 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
     }
 }
 
-void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia) {
-    if ( r == nullptr ) {
+void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
+    if (root == nullptr) {
         QMessageBox::information(nullptr, "Thông báo", "Không tìm thấy độc giả");
         return;
     }
-    else {
-        if ( r->thong_tin.MATHE < ma_the_doc_gia ) {
-            Xoa_Doc_Gia(r->ptr_right, ma_the_doc_gia );
-        } else if ( r->thong_tin.MATHE > ma_the_doc_gia ) {
-            Xoa_Doc_Gia(r->ptr_left, ma_the_doc_gia );
-        } else {
-            if ( rp->ptr_right == nullptr ) {
-                Danh_Sach_The_Doc_Gia* temp = r;
-                r = r->ptr_left;
-                delete temp;
-            } else if ( rp->ptr_left == nullptr ) {
-                Danh_Sach_The_Doc_Gia* temp = r;
-                r = rp->ptr_right;
-                delete temp;
-            } else {
-                Danh_Sach_The_Doc_Gia* minNode = r->ptr_right;
-                while (minNode->ptr_left != nullptr) {
-                    minNode = minNode->ptr_left;
-                }
-                r->thong_tin = minNode->thong_tin; // Sao chép thông tin
-                Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_right);
+
+    if (root->thong_tin.MATHE < ma_the_doc_gia) {
+        Xoa_Doc_Gia(root->ptr_right, ma_the_doc_gia);
+    } else if (root->thong_tin.MATHE > ma_the_doc_gia) {
+        Xoa_Doc_Gia(root->ptr_left, ma_the_doc_gia);
+    } else { // root->MATHE == ma_the_doc_gia
+        // Trường hợp 1: Nút chỉ có bên phải
+        if (root->ptr_left == nullptr) {
+            Danh_Sach_The_Doc_Gia* temp = root;
+            root = root->ptr_right; // Di chuyển con trỏ sang nút bên phải
+            delete temp; // Xóa nút hiện tại
+        }
+        // Trường hợp 2: Nút chỉ có bên trái
+        else if (root->ptr_right == nullptr) {
+            Danh_Sach_The_Doc_Gia* temp = root;
+            root = root->ptr_left; // Di chuyển con trỏ sang nút bên trái
+            delete temp; // Xóa nút hiện tại
+        }
+        // Trường hợp 3: Nút có cả hai con
+        else {
+            Danh_Sach_The_Doc_Gia* minNode = root->ptr_right;
+            while (minNode->ptr_left != nullptr) {
+                minNode = minNode->ptr_left; // Tìm nút nhỏ nhất trong cây con bên phải
             }
+            root->thong_tin = minNode->thong_tin; // Sao chép thông tin
+            Xoa_Truong_Hop_Co_Hai_Cay_Con(root->ptr_right); // Xóa nút nhỏ nhất
         }
     }
 }
@@ -177,7 +187,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         docGia.phai = phai;
         docGia.TrangThai = Dang_Hoat_Dong;
         Them_Doc_Gia(root, docGia);
-        Them_Doc_Gia_Mang(docGia);
+        // Them_Doc_Gia_Mang(docGia);
         if(fields[4].isEmpty()){
             continue;
         }else{
@@ -187,6 +197,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
             Them_lich_su_sach(&docGia,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
         }
     }
+    Copy_Cay_Sang_Mang(root);
     file.close(); // Đóng file
 }
 //---------------------------------------------------------------------------------------------------------------------------------------

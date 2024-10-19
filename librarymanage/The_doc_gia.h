@@ -53,6 +53,11 @@ struct Mang_The_Doc_Gia {
     The_Doc_Gia DS[MAXRANDOM];
 };
 
+struct Danh_Sach_Theo_Ten {
+    string ten;
+    The_Doc_Gia* PTR = nullptr;
+};
+
 extern int Mang_Ma_The[MAXRANDOM];
 extern Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
 extern Danh_Sach_The_Doc_Gia* root;
@@ -72,9 +77,9 @@ Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue);
 
 // Hàm tạo ra cây theo tên
+void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia);
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
-Danh_Sach_The_Doc_Gia* Tao_Cay_Theo_Ten(int start, int end);
 void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten);
 
 // Hàm đọc thông tin

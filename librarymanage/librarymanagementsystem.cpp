@@ -57,6 +57,14 @@ void LibraryManagementSystem::page3Widget()
 
 }
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
+void LibraryManagementSystem::CapNhatBang() {
+    ui->tableWidget_2->setRowCount(0);
+    if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
+        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
+    } else {
+        Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
+    }
+}
 void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index)
 {
     ui->tableWidget_2->setRowCount(0); // Làm sạch bảng trước khi thêm dữ liệu mới
@@ -85,9 +93,36 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
         docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Mang(docGia);
-        ui->sapXepDocGia_ComboBox->setCurrentIndex(0);
-        ui->tableWidget_2->setRowCount(0);
-        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
+        CapNhatBang();
+    }
+}
+
+void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() {
+    int currentRow = ui->tableWidget_2->currentRow();
+
+    if (currentRow == -1) {
+        QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để xóa.");
+        return; // Ngừng thực thi nếu không có hàng nào được chọn
+    }
+
+    QTableWidgetItem* item = ui->tableWidget_2->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
+    if (item) { // Kiểm tra xem item có hợp lệ không
+        int MATHE = item->text().toInt();
+
+        // Xóa độc giả từ cây
+        Xoa_Doc_Gia(root, MATHE);
+        Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The = 0;
+        Copy_Cay_Sang_Mang(root);
+
+        // Cập nhật bảng
+        ui->tableWidget_2->removeRow(currentRow); // Xóa hàng từ bảng
+
+        // Cập nhật lại bảng
+        CapNhatBang();
+
+        QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
+    } else {
+        QMessageBox::warning(this, "Cảnh báo", "Không thể lấy thông tin độc giả.");
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
@@ -97,21 +132,6 @@ void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
     intheloai.setModal(true);
     intheloai.exec();
 }
-
-void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
-{
-    int currentRow = ui->tableWidget_2->currentRow();
-    QTableWidgetItem* item = ui->tableWidget_2->item(currentRow, 0);
-    int MATHE = item->text().toInt();
-    if ( currentRow != -1 ) {
-        Xoa_Doc_Gia(root, MATHE);
-        ui->tableWidget_2->setRowCount(0);
-        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
-    } else {
-        QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để xóa.");
-    }
-}
-
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item)
 {

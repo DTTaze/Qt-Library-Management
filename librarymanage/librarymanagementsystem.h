@@ -56,6 +56,8 @@ private slots:
 
     void on_themSach_pushButton_clicked();
 
+    void CapNhatBang();
+
 public slots:
 
 
