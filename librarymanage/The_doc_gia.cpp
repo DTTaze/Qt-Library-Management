@@ -2,7 +2,8 @@
 
 Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
-Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
+Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
+int DS_PTR = 0;
 int Mang_Ma_The[MAXRANDOM];
 int index_MangRandom = 10;
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -17,18 +18,17 @@ int LayMaTheNgauNhien() {
 void Doc_File_Ma_The() {
     ifstream inFile("Ma_The.txt");
     if (!inFile) {
-        cerr << "Error opening file for reading!" << endl;
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
     }
     for (int i = 0; i < MAXRANDOM; ++i) {
-        inFile >> Mang_Ma_The[i]; // Đọc từng số vào mảng
+        inFile >> Mang_Ma_The[i];
     }
-    cout << "Array read from file: ";
 }
 
 void Ghi_Ma_The_Vao_File(int index) {
-    ofstream outFile("So_The.txt");
+    ofstream outFile("Ma_The.txt");
     if (!outFile) {
-        cerr << "Error opening file for writing!" << endl;
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
     }
     for (int i = index; i < MAXRANDOM; ++i) {
         outFile << Mang_Ma_The[i] << " "; // Ghi từng số, cách nhau bằng khoảng trắng
@@ -38,29 +38,33 @@ void Ghi_Ma_The_Vao_File(int index) {
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
     if ( root == nullptr ) return;
-    Them_Doc_Gia_Mang(root->thong_tin);
+    // Them_Doc_Gia_Mang(root->thong_tin);
+    Them_Doc_Gia_Vao_Mang(root);
     Copy_Cay_Sang_Mang(root->ptr_left);
     Copy_Cay_Sang_Mang(root->ptr_right);
 }
-void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
-    if ( Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The < MAXRANDOM ) {
+
+void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia) {
+    if ( DS_PTR < MAXRANDOM ) {
         int index = 0;
-        while (index < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The && (docgia.Ten > Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ten || (docgia.Ten == Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ten && docgia.Ho > Mang_The_Doc_Gia_Tam_Thoi.DS[index].Ho))) {
+        while (index < DS_PTR && (docgia->thong_tin.Ten > DS_Tam_Thoi[index].ten || (docgia->thong_tin.Ten == DS_Tam_Thoi[index].ten && docgia->thong_tin.Ten > DS_Tam_Thoi[index].PTR->thong_tin.Ho))) {
             index++;
         }
-        for ( int i = Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The; i > index; i-- ) {
-            Mang_The_Doc_Gia_Tam_Thoi.DS[i] = Mang_The_Doc_Gia_Tam_Thoi.DS[i - 1];
+        for ( int i = DS_PTR; i > index; i-- ) {
+            DS_Tam_Thoi[i] = DS_Tam_Thoi[i - 1];
         }
-        Mang_The_Doc_Gia_Tam_Thoi.DS[index] = docgia;
-        Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The++;
+        DS_Tam_Thoi[index].ten = docgia->thong_tin.Ten;
+        DS_Tam_Thoi[index].PTR = docgia;
+        DS_PTR++;
     } else {
-        cout << "Mang the da day";
+        QMessageBox::warning(nullptr, "Lỗi", "Mảng thẻ tạm thời đã đầu");
     }
 }
 
+
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
-    for( int i = 0; i < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The; i++) {
-        Them_Vao_QTableWidget(tableWidget, Mang_The_Doc_Gia_Tam_Thoi.DS[i]);
+    for( int i = 0; i < DS_PTR; i++) {
+        Them_Vao_QTableWidget(tableWidget, DS_Tam_Thoi[i].PTR);
     }
 }
 
@@ -145,10 +149,8 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
     if (docGia) {
         if (field == "Ho") {
             docGia->thong_tin.Ho = newValue; // Cập nhật họ
-            qDebug() << "Thong tin thay doi" << docGia->thong_tin.Ho;
         } else if (field == "Ten") {
             docGia->thong_tin.Ten = newValue; // Cập nhật tên
-            qDebug() << "Thong tin thay doi" << docGia->thong_tin.Ten;
         } else if (field == "Phai") {
             docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu; // Cập nhật phái
         } else if (field == "TrangThai") {
@@ -202,23 +204,22 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
     file.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) { // Hàm thêm nút thông tin vào table
+void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) { // Hàm thêm nút thông tin vào table
     int row = tableWidget->rowCount();
     tableWidget->insertRow(row);
 
     // Thêm dữ liệu vào từng ô
-    tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia.MATHE))); // Mã thẻ
-    tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia.Ho))); // Họ
-    tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia.Ten))); // Tên
-    tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
-    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
+    tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia->thong_tin.MATHE))); // Mã thẻ
+    tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ho))); // Họ
+    tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ten))); // Tên
+    tableWidget->setItem(row, 3, new QTableWidgetItem(docGia->thong_tin.phai == Nam ? "Nam" : "Nữ")); // Phái
+    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
 }
 
 void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) { // Hàm thêm thông tin từ cây vào table
     if ( root == nullptr ) return;
     Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_left);
-    The_Doc_Gia tam_thoi = root->thong_tin;
-    Them_Vao_QTableWidget(tableWidget, tam_thoi);
+    Them_Vao_QTableWidget(tableWidget, root);
     Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_right);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------

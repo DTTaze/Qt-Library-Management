@@ -48,18 +48,14 @@ struct Danh_Sach_The_Doc_Gia {
     }
 };
 
-struct Mang_The_Doc_Gia {
-    int So_Luong_Ma_The = 0;
-    The_Doc_Gia DS[MAXRANDOM];
-};
-
 struct Danh_Sach_Theo_Ten {
     string ten;
-    The_Doc_Gia* PTR = nullptr;
+    Danh_Sach_The_Doc_Gia* PTR = nullptr;
 };
 
 extern int Mang_Ma_The[MAXRANDOM];
-extern Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
+extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
+extern int DS_PTR;
 extern Danh_Sach_The_Doc_Gia* root;
 extern Danh_Sach_The_Doc_Gia* rp;
 extern int index_MangRandom;
@@ -78,13 +74,13 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
 
 // Hàm tạo ra cây theo tên
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
-void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia);
+void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia);
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
 
 // Hàm đọc thông tin
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, DanhSachMUONTRA *&danh_sach_muon_tra,QTableWidget* tableWidget);
 
 // Hàm chèn thông tin vào table
-void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia);
+void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia);
 void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root );
 #endif

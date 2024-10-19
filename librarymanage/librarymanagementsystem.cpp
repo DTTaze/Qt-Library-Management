@@ -60,30 +60,25 @@ void LibraryManagementSystem::page3Widget()
 void LibraryManagementSystem::CapNhatBang()
 {
     ui->tableWidget_2->setRowCount(0);
+
     if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
     } else {
+        DS_PTR = 0;
+        Copy_Cay_Sang_Mang(root);
         Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
     }
 }
 void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index)
 {
-    ui->tableWidget_2->setRowCount(0); // Làm sạch bảng trước khi thêm dữ liệu mới
-
-    if (index == 0) { // 0 là chỉ số cho mã số
-        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
-    } else if (index == 1) { // 1 là chỉ số cho tên
-        Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The = 0;
-        Copy_Cay_Sang_Mang(root);
-        Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
-    }
+    CapNhatBang();
 }
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
 {
     themDocGia_Dialog themDocGia;
     themDocGia.setModal(true);
     if (themDocGia.exec() == QDialog::Accepted) {
-        // Lấy thông tin từ dialog và thêm vào cây
+
         The_Doc_Gia docGia;
         docGia.MATHE = LayMaTheNgauNhien();
         docGia.Ho = themDocGia.getHo().toStdString();
@@ -94,8 +89,9 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
             docGia.phai = Phai::Nu;
         }
         docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+
         Them_Doc_Gia(root, docGia);
-        Them_Doc_Gia_Mang(docGia);
+        Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
         CapNhatBang();
     }
 }
@@ -106,22 +102,19 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
 
     if (currentRow == -1) {
         QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để xóa.");
-        return; // Ngừng thực thi nếu không có hàng nào được chọn
+        return;
     }
 
     QTableWidgetItem* item = ui->tableWidget_2->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
-    if (item) { // Kiểm tra xem item có hợp lệ không
+    if (item) {
         int MATHE = item->text().toInt();
 
-        // Xóa độc giả từ cây
         Xoa_Doc_Gia(root, MATHE);
-        Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The = 0;
+        DS_PTR = 0;
         Copy_Cay_Sang_Mang(root);
 
-        // Cập nhật bảng
         ui->tableWidget_2->removeRow(currentRow); // Xóa hàng từ bảng
 
-        // Cập nhật lại bảng
         CapNhatBang();
 
         QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
