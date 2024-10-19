@@ -23,7 +23,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
     connect(ui->tableWidget_2, &QTableWidget::itemChanged, this, &LibraryManagementSystem::on_tableWidget_2_itemChanged);
 
-    Tao_Mang_The();
+    Doc_File_Ma_The();
 
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
     Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
@@ -64,9 +64,7 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     if (index == 0) { // 0 là chỉ số cho mã số
         Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
     } else if (index == 1) { // 1 là chỉ số cho tên
-        root_ten = Tao_Cay_Theo_Ten(0, Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The - 1);
-        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root_ten);
-        Xoa_Danh_Sach_Theo_Ten(root_ten);
+        Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
     }
 }
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm

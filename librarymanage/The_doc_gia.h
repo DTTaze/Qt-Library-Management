@@ -3,14 +3,15 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <fstream>
 #include <QFile>
 #include <QMessageBox>
 #include <QTableWidget>
 #include <string>
 #include <QDir>
+#include <fstream>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
+#include "queue.h"
 #define MAXRANDOM 10000
 using namespace std;
 
@@ -55,14 +56,13 @@ struct Mang_The_Doc_Gia {
 extern int Mang_Ma_The[MAXRANDOM];
 extern Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
 extern Danh_Sach_The_Doc_Gia* root;
-extern Danh_Sach_The_Doc_Gia* root_ten;
 extern Danh_Sach_The_Doc_Gia* rp;
-extern Danh_Sach_The_Doc_Gia* r;
+extern int index_MangRandom;
 
 // Hàm liên quan đến mảng
-void Tao_Mang_The();
-void taoMangTrungVi(int& index, int start, int end);
 int LayMaTheNgauNhien();
+void Ghi_Ma_The_Vao_File(int i);
+void Doc_File_Ma_The();
 
 // Hàm liên quan đến thao tác trên cây
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
@@ -73,6 +73,7 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
 
 // Hàm tạo ra cây theo tên
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia);
+void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
 Danh_Sach_The_Doc_Gia* Tao_Cay_Theo_Ten(int start, int end);
 void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten);
 

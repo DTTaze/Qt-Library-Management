@@ -1,53 +1,39 @@
 #include "The_doc_gia.h"
 
 Danh_Sach_The_Doc_Gia* root;
-Danh_Sach_The_Doc_Gia* root_ten;
 Danh_Sach_The_Doc_Gia* rp;
 Mang_The_Doc_Gia Mang_The_Doc_Gia_Tam_Thoi;
 int Mang_Ma_The[MAXRANDOM];
-int index_left = 5;
-int index_right = 5005;
-bool layTuTrai = true;
+int index_MangRandom = 10;
 //--------------------------------------------------------------------------------------------------------------------------------------
-void Tao_Mang_The() {
-    int index = 0;
-    taoMangTrungVi(index, 1, 10000);
-}
-
-void taoMangTrungVi(int& index, int start, int end) {
-    if (start > end) return;
-    int mid = start + (end - start) / 2;
-    Mang_Ma_The[index++] = mid;  // Gán giá trị vào mảng và tăng index
-    taoMangTrungVi(index, start, mid - 1);  // Nửa trái
-    taoMangTrungVi(index, mid + 1, end);    // Nửa phải
-}
-
 int LayMaTheNgauNhien() {
-    if (index_left >= 5000 && index_right >= 10000) {
-        std::cout << "Da het ma the" << std::endl;
-        return -1;  // Trả về -1 khi hết mã thẻ
+    if ( index_MangRandom > MAXRANDOM ) {
+        cout << "Het ma the";
+        return -1;
     }
+    return Mang_Ma_The[index_MangRandom++];
+}
 
-    if (layTuTrai && index_left < 5000) {
-        layTuTrai = false;
-        return Mang_Ma_The[index_left++];
-    } else if (!layTuTrai && index_right < 10000) {
-        layTuTrai = true;
-        return Mang_Ma_The[index_right++];
+void Doc_File_Ma_The() {
+    ifstream inFile("Ma_The.txt");
+    if (!inFile) {
+        cerr << "Error opening file for reading!" << endl;
     }
-
-    // Nếu nửa trái hoặc nửa phảiN đã hết, chuyển sang nửa còn lại
-    if (index_left >= 5000) {  // Nếu nửa trái đã hết
-        layTuTrai = false;
-        return Mang_Ma_The[index_right++];
+    for (int i = 0; i < MAXRANDOM; ++i) {
+        inFile >> Mang_Ma_The[i]; // Đọc từng số vào mảng
     }
+    cout << "Array read from file: ";
+}
 
-    if (index_right >= 10000) {  // Nếu nửa phải đã hết
-        layTuTrai = true;
-        return Mang_Ma_The[index_left++];
+void Ghi_Ma_The_Vao_File(int index) {
+    ofstream outFile("So_The.txt");
+    if (!outFile) {
+        cerr << "Error opening file for writing!" << endl;
     }
-
-    return 5000;  // Giá trị mặc định nếu không thỏa mãn điều kiện nào
+    for (int i = index; i < MAXRANDOM; ++i) {
+        outFile << Mang_Ma_The[i] << " "; // Ghi từng số, cách nhau bằng khoảng trắng
+    }
+    outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
@@ -66,24 +52,12 @@ void Them_Doc_Gia_Mang(const The_Doc_Gia& docgia) {
     }
 }
 
-Danh_Sach_The_Doc_Gia* Tao_Cay_Theo_Ten(int start, int end) {
-    if ( start > end ) return nullptr;
-    int mid = ( start + end ) / 2;
-    Danh_Sach_The_Doc_Gia* newNode = new Danh_Sach_The_Doc_Gia;
-    newNode->thong_tin = Mang_The_Doc_Gia_Tam_Thoi.DS[mid];
-    newNode->ptr_left = Tao_Cay_Theo_Ten(start, mid - 1);
-    newNode->ptr_right = Tao_Cay_Theo_Ten(mid + 1, end);
-    return newNode;
+void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
+    for( int i = 0; i < Mang_The_Doc_Gia_Tam_Thoi.So_Luong_Ma_The - 1; i++) {
+        Them_Vao_QTableWidget(tableWidget, Mang_The_Doc_Gia_Tam_Thoi.DS[i]);
+    }
 }
 
-void Xoa_Danh_Sach_Theo_Ten(Danh_Sach_The_Doc_Gia* &root_ten) {
-    if ( root_ten == nullptr ) {
-        return;
-    }
-    Xoa_Danh_Sach_Theo_Ten(root_ten->ptr_left);
-    Xoa_Danh_Sach_Theo_Ten(root_ten->ptr_right);
-    delete root_ten;
-}
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
