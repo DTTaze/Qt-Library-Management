@@ -27,7 +27,6 @@ public:
     DanhMucSach* danh_muc_sach;
     DanhSachMUONTRA* danh_sach_muon_tra;
 
-
 private slots:
 
     void on_muonsach_buttom_clicked();
@@ -46,17 +45,19 @@ private slots:
 
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
 
-    void on_inTheLoai_pushButton_clicked();
-
     void on_xoaDocGia_pushButton_clicked();
 
     void on_tableWidget_2_itemChanged(QTableWidgetItem *item);
+
+    void CapNhatBang();
+
+    void on_inTheLoai_pushButton_clicked();
 
     void on_tableView_dausach_activated(const QModelIndex &index);
 
     void on_themSach_pushButton_clicked();
 
-    void CapNhatBang();
+    void on_luuFile_pushButton_clicked();
 
 public slots:
 

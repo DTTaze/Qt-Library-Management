@@ -11,7 +11,7 @@
 #include <fstream>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
-#include "Mang_The_Ngau_Nhien.h"
+#include "queue.h"
 #define MAXRANDOM 10000
 using namespace std;
 
@@ -61,6 +61,8 @@ extern Danh_Sach_The_Doc_Gia* rp;
 extern int index_MangRandom;
 
 // Hàm liên quan đến mảng
+void Tao_Mang_The();
+void taoMangTrungVi(int& index, int start, int end);
 int LayMaTheNgauNhien();
 void Ghi_Ma_The_Vao_File(int i);
 void Doc_File_Ma_The();
@@ -71,6 +73,7 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue);
+void Ghi_The_Vao_File();
 
 // Hàm tạo ra cây theo tên
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);

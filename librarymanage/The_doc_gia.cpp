@@ -7,6 +7,30 @@ int DS_PTR = 0;
 int Mang_Ma_The[MAXRANDOM];
 int index_MangRandom = 10;
 //--------------------------------------------------------------------------------------------------------------------------------------
+void Tao_Mang_The() {
+    int index = 0;
+    taoMangTrungVi(index, 1, 10000);
+}
+
+void taoMangTrungVi(int& index, int start, int end) {
+    Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
+    ranges.push({start, end}); // [a,b]
+
+    while (!ranges.empty()) { // Lặp lại cho tới khi không còn khoảng nào
+        auto range = ranges.front();
+        ranges.pop();
+
+        int s = range.first; // a
+        int e = range.second; // b
+
+        if (s > e) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
+
+        int median = (s + e) / 2; // Tìm vị trí chính giữa
+        Mang_Ma_The[index++] = median; // Thêm giá trị vào mảng
+        ranges.push({s, median - 1}); // [a - 1, median]
+        ranges.push({median + 1, e}); // [median + 1, b]
+    }
+}
 int LayMaTheNgauNhien() {
     if ( index_MangRandom > MAXRANDOM ) {
         cout << "Het ma the";
@@ -90,7 +114,6 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
     if ( r->ptr_left != nullptr ) {
         Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_left);
     } else {
-        rp->thong_tin = r->thong_tin;
         Danh_Sach_The_Doc_Gia* temp = r;
         r = r->ptr_right;
         delete temp;
@@ -108,26 +131,23 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
     } else if (root->thong_tin.MATHE > ma_the_doc_gia) {
         Xoa_Doc_Gia(root->ptr_left, ma_the_doc_gia);
     } else { // root->MATHE == ma_the_doc_gia
-        // Trường hợp 1: Nút chỉ có bên phải
         if (root->ptr_left == nullptr) {
             Danh_Sach_The_Doc_Gia* temp = root;
-            root = root->ptr_right; // Di chuyển con trỏ sang nút bên phải
-            delete temp; // Xóa nút hiện tại
+            root = root->ptr_right;
+            delete temp;
         }
-        // Trường hợp 2: Nút chỉ có bên trái
         else if (root->ptr_right == nullptr) {
             Danh_Sach_The_Doc_Gia* temp = root;
-            root = root->ptr_left; // Di chuyển con trỏ sang nút bên trái
-            delete temp; // Xóa nút hiện tại
+            root = root->ptr_left;
+            delete temp;
         }
-        // Trường hợp 3: Nút có cả hai con
         else {
             Danh_Sach_The_Doc_Gia* minNode = root->ptr_right;
             while (minNode->ptr_left != nullptr) {
-                minNode = minNode->ptr_left; // Tìm nút nhỏ nhất trong cây con bên phải
+                minNode = minNode->ptr_left;
             }
-            root->thong_tin = minNode->thong_tin; // Sao chép thông tin
-            Xoa_Truong_Hop_Co_Hai_Cay_Con(root->ptr_right); // Xóa nút nhỏ nhất
+            root->thong_tin = minNode->thong_tin;
+            Xoa_Truong_Hop_Co_Hai_Cay_Con(root->ptr_right);
         }
     }
 }
@@ -158,28 +178,55 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::
         }
     }
 }
+void Ghi_The_Vao_File() {
+    ofstream outFile("docgia_100.txt");
+    if ( !outFile ) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file docgia_100.txt");
+    }
+    if ( root == nullptr ) return;
+
+    Queue<Danh_Sach_The_Doc_Gia*> q;
+    q.push(root);
+
+    while ( !q.empty() ) {
+        Danh_Sach_The_Doc_Gia* current = q.front();
+        q.pop();
+
+        outFile << current->thong_tin.MATHE << "|"
+                << current->thong_tin.Ho << "|"
+                << current->thong_tin.Ten << "|"
+                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|"
+                // << current->thong_tin.head_lsms->data.masach << "|"
+                // << current->thong_tin.head_lsms->data.NgayMuon << "|"
+                // << current->thong_tin.head_lsms->data.NgayTra << "|"
+                << std::endl;
+
+        if ( current->ptr_left != nullptr ) {
+            q.push(current->ptr_left);
+        }
+        if ( current->ptr_right != nullptr ) {
+            q.push(current->ptr_right);
+        }
+    }
+    outFile.close();
+}
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
-    QFile file("docgia_100.txt");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    ifstream inFile("docgia_100.txt");
+    if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file");
         return;
     }
-
-    while (!file.atEnd()) {
-        QByteArray line = file.readLine();
-        QString strLine = QString(line).trimmed(); // Đọc và xử lý dòng
+    string line;
+    while (getline(inFile, line)) {
+        QString strLine = QString::fromStdString(line).trimmed(); // Đọc và xử lý dòng
         QStringList fields = strLine.split("|"); // Tách theo |
 
-        if (fields.size() < 7) {
+        if (fields.size() < 4) {
             continue; // Bỏ qua nếu không đủ trường
         }
 
-        bool ok;
-        unsigned int mathe = fields[0].toUInt(&ok);
-        if (!ok) {
-            continue; // Bỏ qua nếu không thể chuyển đổi
-        }
+        unsigned int mathe = fields[0].toUInt();
         string Ho = fields[1].toStdString();
         string Ten = fields[2].toStdString();
         Phai phai = (fields[3].trimmed() == "Nam") ? Nam : Nu;
@@ -190,7 +237,9 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         docGia.Ten = Ten;
         docGia.phai = phai;
         docGia.TrangThai = Dang_Hoat_Dong;
+
         Them_Doc_Gia(root, docGia);
+
         if(fields[4].isEmpty()){
             continue;
         } else {
@@ -201,7 +250,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         }
     }
     Copy_Cay_Sang_Mang(root);
-    file.close();
+    inFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) { // Hàm thêm nút thông tin vào table

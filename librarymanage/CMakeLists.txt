@@ -41,8 +41,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         docgia_100.txt
         themdocgia_dialog.h themdocgia_dialog.cpp themdocgia_dialog.ui
         themdausach.h themdausach.cpp themdausach.ui
-        Mang_The_Ngau_Nhien.h
-        queue.cpp
+        queue.h
+
         Ma_The.txt
 
     )

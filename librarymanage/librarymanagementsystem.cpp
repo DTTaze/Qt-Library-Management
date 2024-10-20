@@ -206,3 +206,9 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
     themds.exec();
 }
 
+
+void LibraryManagementSystem::on_luuFile_pushButton_clicked()
+{
+    Ghi_The_Vao_File();
+}
+
