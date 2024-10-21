@@ -1,65 +1,22 @@
 #include "Dau_sach.h"
 
-void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri){
-    int Khu_vuc = vi_tri[0] - 'A'; // khu A : 0 , B : 1 , ...
+void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach,const string &I_S_B_N,const string& vi_tri){
+    int so_sach = danh_sach_dau_sach.demsach;
 
-    if(danh_sach_dau_sach.demsachvitri[Khu_vuc] > 999) { // bat dau tu index 0 den 999 la 1000 cuon
-        cout<<"Vi tri : "<<vi_tri<<" da day \n";
-        Khu_vuc++;//neu da co 1000 cuon sach thi tang len khu tiep theo
-    };
 
-    int so_sach_trong_phan_khu = danh_sach_dau_sach.demsachvitri[Khu_vuc];
+    char buffer[5];
+    sprintf(buffer, "%04d", so_sach + 1);// dinh dang 0001,...
 
-    int phan_khu = (so_sach_trong_phan_khu / 100) + 1;
-    int index_sach = (so_sach_trong_phan_khu % 100) + 1;
 
-    vi_tri += to_string(phan_khu);
-    ma_sach = vi_tri + "-" + to_string(index_sach);
-
-    danh_sach_dau_sach.demsachvitri[Khu_vuc]++;
+    ma_sach = I_S_B_N + "-" + vi_tri + "-" + string(buffer);
 }
 
-int Hash(const string& ma_sach){
-    int hash = 0;
-    for (char ch : ma_sach) {
-        hash = (hash * 31 + ch) % HASHSIZE;
-    }
-    return hash;
-}
 
-void ThemVaoBangBam(DauSach* &dau_sach, string& ma_sach, DanhSachDauSach &danh_sach_dau_sach) {
-    int index = Hash(ma_sach);
-    HashNode* newNode = new HashNode(ma_sach, dau_sach);
-
-    if (danh_sach_dau_sach.table[index] == nullptr) {
-        danh_sach_dau_sach.table[index] = newNode; // Neu chua co phan tu
-    } else {
-        // Xu ly xung dot, them vao dau danh sach
-        HashNode* current = danh_sach_dau_sach.table[index];
-        while (current->next != nullptr) {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-}
-
-DauSach* search(HashNode* table[HASHSIZE],const string& ma_sach) {
-    int index = Hash(ma_sach);
-    HashNode* current = table[index];
-    while (current) {
-        if (current->ma_sach == ma_sach) {
-            return current->dau_sach; // tr? v? cu?n sách n?u tìm th?y
-        }
-        current = current->next;
-    }
-    return nullptr; // n?u không tìm th?y
-}
-
-DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri) {
+DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach,const string& vi_tri,const string &I_S_B_N) {
 
     //them vao dau danh sach sap xep theo ma sach
-    string ma_sach;
-    TaoMaSach(ma_sach,danh_sach_dau_sach,vi_tri);
+    string ma_sach = "";
+    TaoMaSach(ma_sach,danh_sach_dau_sach,I_S_B_N,vi_tri);
     DanhMucSach* new_dms = new DanhMucSach(ma_sach,trang_thai,vi_tri);
     DanhMucSach* t = nullptr;
     DanhMucSach* s = head_dms;
@@ -71,24 +28,17 @@ DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauS
         new_dms->next = s;
         t->next = new_dms;
     }
-
     return new_dms;
-};
+}
 
 //danh sach dau sach tham chieu mang, danh muc sach tham chieu con tro vi lien ket don
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                  DanhMucSach* &head_dms, int trang_thai,string &vi_tri){
 
-    if(danh_sach_dau_sach.demsach >= MAXSACH){
-        cout<<"Day sach";
-        return;
-    };
-
-    DanhMucSach* danh_muc_sach = ThemDanhMucSach(head_dms,trang_thai,danh_sach_dau_sach,vi_tri);
-
+    DanhMucSach* danh_muc_sach = ThemDanhMucSach(head_dms,trang_thai,danh_sach_dau_sach,vi_tri,I_S_B_N);
 
     int n = danh_sach_dau_sach.demsach;
-    // cap phat bo nho cho sach moi voi con trỏ dms chi vao danh_muc_sach vua tao
+    // cap phat bo nho cho sach moi voi con trá» dms chi vao danh_muc_sach vua tao
     DauSach* new_sach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai,danh_muc_sach);
 
     //mac dinh chen vao cuoi
@@ -110,29 +60,6 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     //tang dem sach len 1
     danh_sach_dau_sach.demsach++;
 }
-
-DanhSachDauSach SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc) {
-    DanhSachDauSach copy;
-    copy.demsach = Dau_sach_goc.demsach;
-
-    for (int i = 0; i < Dau_sach_goc.demsach; i++) {
-        DauSach* original_dau_sach = Dau_sach_goc.node[i];
-        // Tạo một bản sao của DauSach goc voi pointer chỏ vao cung bo nho voi Dau sach goc
-        DauSach* new_dau_sach = new DauSach(
-            original_dau_sach->ISBN,
-            original_dau_sach->tensach,
-            original_dau_sach->sotrang,
-            original_dau_sach->tacgia,
-            original_dau_sach->namsx,
-            original_dau_sach->theloai,
-            original_dau_sach->dms
-            );
-        copy.node[i] = new_dau_sach;
-    }
-
-    return copy;
-}
-
 
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key){
     int left = 0;
@@ -176,17 +103,24 @@ int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key){
 }
 
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
-    DauSach* dau_sach = search(danh_sach_dau_sach.table,ma_sach);
-    return dau_sach->tensach;
+    string ma_ISBN = ma_sach.substr(0,17);
+    int i = 0;
+    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+
+    if (i < danh_sach_dau_sach.demsach){
+        return danh_sach_dau_sach.node[i]->tensach;
+    }else{
+        return "";
+    }
 }
 
-void Merge(DauSach** arr, int left, int mid, int right) {
+void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
 
-    DauSach** L = new DauSach*[n1];
-    DauSach** R = new DauSach*[n2];
+    int* L = new int[n1];
+    int* R = new int[n2];
 
 
     for (int i = 0; i < n1; i++) {
@@ -196,76 +130,96 @@ void Merge(DauSach** arr, int left, int mid, int right) {
         R[j] = arr[mid + 1 + j];
     }
 
-    // Tr?n hai m?ng l?i theo th? t?
+    // tron 2 mang lai theo thu tu
     int i = 0, j = 0, k = left;
     while (i < n1 && j < n2) {
-        // So sánh theloai tru?c
-        if (L[i]->theloai < R[j]->theloai) {
+        // So sanh the loai truoc
+        string Left_theloai = Dau_sach_goc.node[L[i]]->theloai;
+        string Right_theloai = Dau_sach_goc.node[R[j]]->theloai;
+        string Left_tensach = Dau_sach_goc.node[L[i]]->tensach;
+        string Right_tensach = Dau_sach_goc.node[R[j]]->tensach;
+
+        if (Left_theloai < Right_theloai) {
+            //node nao co the loai nho hon thi them vi tri index vao mang
             arr[k] = L[i];
             i++;
         }
-        // N?u theloai gi?ng nhau, so sánh tensach
-        else if (L[i]->theloai == R[j]->theloai && L[i]->tensach <= R[j]->tensach) {
+        // Neu the loai giong nhau thi so sanh ten
+        else if (Left_theloai == Right_theloai && Left_tensach <= Right_tensach) {
+            //node nao co ten sach nho hon thi them vi tri index vao mang
             arr[k] = L[i];
             i++;
         } else {
+            // neu the loai hoac cung the loai nhung ten sach cua Right nho hon thi them vi tri index cua right vao mang
             arr[k] = R[j];
             j++;
         }
         k++;
     }
 
-    // Sao chép các ph?n t? còn l?i c?a L[], n?u có
+    // Sao chep cac phan tu con lai cua L[]
     while (i < n1) {
         arr[k] = L[i];
         i++;
         k++;
     }
 
-    // Sao chép các ph?n t? còn l?i c?a R[], n?u có
+    // Sao chep cac phan tu con lai cua R[]
     while (j < n2) {
         arr[k] = R[j];
         j++;
         k++;
     }
 
-    // Gi?i phóng b? nh? t?m th?i
+    // Giai phong bo nho
     delete[] L;
     delete[] R;
 }
 
-void MergeSort(DauSach** arr, int left, int right) {
+void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
 
-        MergeSort(arr, left, mid);
-        MergeSort(arr, mid + 1, right);
+        MergeSort(arr, left, mid, Dau_sach_goc);
+        MergeSort(arr, mid + 1, right, Dau_sach_goc);
 
 
-        Merge(arr, left, mid, right);
+        Merge(arr, left, mid, right,Dau_sach_goc);
     }
+}
+
+void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
+    cout<<"bat dau sao chep\n";
+    int n = Dau_sach_goc.demsach;
+    for (int i = 0; i < n;i++){
+        copy[i]=i;
+    }
+    cout<<"ket thuc\n\n";
 }
 
 //Su dung tham chieu nen phai tao ban sao roi xoa ban sao
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai){
-    qDebug()<<"test1";
-    DanhSachDauSach copy = SaoChepDanhSach(danh_sach_dau_sach);
+    cout<<"bat dau in theo the loai \n\n";
+    int so_luong_sach = danh_sach_dau_sach.demsach;
+    int* copy = new int[so_luong_sach]();// cap phat dong mang, mac dinh phan tu = 0
 
-    int so_luong_sach = copy.demsach;
-    MergeSort(copy.node, 0, so_luong_sach - 1);
+    SaoChepDanhSach(danh_sach_dau_sach,copy);
+    cout<<"bat dau sap xep \n";
+    MergeSort(copy,0,so_luong_sach-1,danh_sach_dau_sach);
+    cout<<"da sap xep xong";
 
-    const int row_count = copy.demsach;
+    const int row_count = so_luong_sach;
     // Tạo model cho table
     QStandardItemModel* model = new QStandardItemModel(row_count,7);
 
     QString headers[7] = {
-        "ISBN",
+        "Thể loại",
         "Tên sách",
+        "ISBN",
         "Số trang",
         "Tác giả",
         "Năm xuất bản",
-        "Thể loại",
         "Vị trí"
     };
 
@@ -274,22 +228,19 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
     }
 
     for (int i = 0; i < row_count; i++){
-        model->setItem(i,0, new QStandardItem(QString::fromStdString(copy.node[i]->ISBN)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(copy.node[i]->tensach)));
-        model->setItem(i, 2, new QStandardItem(QString::number(copy.node[i]->sotrang)));
-        model->setItem(i, 3, new QStandardItem(QString::fromStdString(copy.node[i]->tacgia)));
-        model->setItem(i, 4, new QStandardItem(QString::number(copy.node[i]->namsx)));
-        model->setItem(i, 5, new QStandardItem(QString::fromStdString(copy.node[i]->theloai)));
-        model->setItem(i, 6, new QStandardItem(QString::fromStdString(copy.node[i]->dms->vitri)));
+        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->theloai)));
+        model->setItem(i, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tensach)));
+        model->setItem(i, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->ISBN)));
+        model->setItem(i, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->sotrang)));
+        model->setItem(i, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tacgia)));
+        model->setItem(i, 5, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx)));
+        model->setItem(i, 6, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->dms->vitri)));
     }
 
     tableView_intheloai->setModel(model);
 
-    qDebug()<<"test2";
-    for (int i = 0; i < copy.demsach; i++) {
-        delete copy.node[i];
-    }
-    qDebug()<<"test3";
+    delete[] copy;
+
 }
 
 
@@ -326,8 +277,15 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
             model->setItem(i,5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i+vi_tri_dau_tien]->dms->masach)));
             model->setItem(i,6, new QStandardItem(QString::number(danh_sach_dau_sach.node[i+vi_tri_dau_tien]->dms->trangthai)));
         }
-
         tableView_dausach->setModel(model);
+
+        tableView_dausach->setColumnWidth(0,120);
+        tableView_dausach->setColumnWidth(1,200);
+        tableView_dausach->setColumnWidth(2,100);
+        tableView_dausach->setColumnWidth(3,100);
+        tableView_dausach->setColumnWidth(4,100);
+        tableView_dausach->setColumnWidth(5,100);
+        tableView_dausach->setColumnWidth(6,100);
 
         for (int i = vi_tri_dau_tien; i <danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->tensach.substr(0,key.size()) == key;i++ ){
             cout << "- " << danh_sach_dau_sach.node[i]->tensach <<endl;
@@ -363,18 +321,25 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
         }
 
         tableView_dausach->setModel(model);
+
+        tableView_dausach->setColumnWidth(0,120);
+        tableView_dausach->setColumnWidth(1,200);
+        tableView_dausach->setColumnWidth(2,100);
+        tableView_dausach->setColumnWidth(3,100);
+        tableView_dausach->setColumnWidth(4,100);
+        tableView_dausach->setColumnWidth(5,100);
+        tableView_dausach->setColumnWidth(6,100);
     }
 
 }
 
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach,string vi_tri){
-    int Khu_vuc = vi_tri[0] - 'A'; // khu A : 0 , B : 1 , ...,J : 9
-    int so_sach_trong_phan_khu = danh_sach_dau_sach.demsachvitri[Khu_vuc];
-    if (so_sach_trong_phan_khu > 999){
-        cout<<"So sach trong vi tri : "<<vi_tri<< " da day, vui long nhap lai.\n";
+
+bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
+    if (danh_sach_dau_sach.demsach > 9999){
+        cout<<"So sach da day\n";
         return true;
     }else{return false;};
-};
+}
 
 void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string I_S_B_N, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai,string vi_tri){
 
@@ -477,7 +442,7 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
     tableView_dausach->setColumnWidth(1,200);
     tableView_dausach->setColumnWidth(2,50);
     tableView_dausach->setColumnWidth(3,100);
-    tableView_dausach->setColumnWidth(4,50);
+    tableView_dausach->setColumnWidth(4,100);
     tableView_dausach->setColumnWidth(5,100);
     tableView_dausach->setColumnWidth(6,30);
 
