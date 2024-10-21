@@ -12,7 +12,7 @@ class themdausach : public QDialog
     Q_OBJECT
 
 public:
-    explicit themdausach(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &danh_muc_sach,QWidget *parent = nullptr);
+    explicit themdausach(QWidget *parent = nullptr);
     ~themdausach();
 
 private slots:
@@ -22,8 +22,6 @@ private slots:
 
 private:
     Ui::themdausach *ui;
-    DanhSachDauSach& danh_sach_dau_sach;
-    DanhMucSach* &danh_muc_sach;
 };
 
 #endif // THEMDAUSACH_H
