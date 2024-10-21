@@ -250,6 +250,9 @@ QPushButton:focus {
              <string notr="true">border: 1px solid gray;
 color: black;</string>
             </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
            </widget>
            <widget class="QPushButton" name="themSach_pushButton">
             <property name="geometry">

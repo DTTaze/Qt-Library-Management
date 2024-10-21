@@ -62,6 +62,8 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
 
+void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_intheloai);
+
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key);
 
 int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key);
