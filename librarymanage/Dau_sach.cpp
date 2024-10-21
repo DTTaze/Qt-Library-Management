@@ -444,7 +444,7 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
     tableView_dausach->setColumnWidth(3,100);
     tableView_dausach->setColumnWidth(4,100);
     tableView_dausach->setColumnWidth(5,100);
-    tableView_dausach->setColumnWidth(6,30);
+    tableView_dausach->setColumnWidth(6,40);
 
 }
 

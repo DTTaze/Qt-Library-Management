@@ -43,7 +43,7 @@ struct DauSach {
 
 struct DanhSachDauSach{
     int demsach= 0;
-    DauSach* node[MAXSACH];
+    DauSach* node[MAXSACH] ;
 };
 
 
