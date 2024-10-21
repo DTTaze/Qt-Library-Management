@@ -233,9 +233,13 @@ void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
+    if (KiemTraDaySachKV(danh_sach_dau_sach)){
+        QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
+    }else{
     themdausach themds;
     themds.setModal(true);
     themds.exec();
+    }
 }
 
 
