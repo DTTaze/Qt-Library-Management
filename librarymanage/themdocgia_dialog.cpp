@@ -14,10 +14,10 @@ themDocGia_Dialog::~themDocGia_Dialog()
 }
 
 QString themDocGia_Dialog::getHo() {
-    return ui->hoEdit->text();
+    return ui->hoEdit->text().trimmed();
 }
 QString themDocGia_Dialog::getTen() {
-    return ui->ten_lineEdit->text();
+    return ui->ten_lineEdit->text().trimmed();
 }
 QString themDocGia_Dialog::getPhai()
 {
@@ -84,7 +84,7 @@ void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
         newText.replace("  ", " ");
     }
     if (newText != arg1) {
-        ui->hoEdit->setText(newText);
+        ui->ten_lineEdit->setText(newText);
     }
     if ( kiemTraChuoi(arg1) == false ) {
         ui->baoLoiTen_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
