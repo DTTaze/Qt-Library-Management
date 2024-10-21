@@ -45,6 +45,33 @@ void themDocGia_Dialog::on_ok_pushButton_clicked()
     }
 }
 
+void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
+    QString newText = arg1;
+    if ( newText == " ") {
+        while ( newText == " ") {
+            newText.replace(" ", "");
+        }
+    }
+    if (newText.contains("  ")) {
+        while (newText.contains("  ")) {
+            newText.replace("  ", " ");
+        }
+    }
+    if ( !newText[ newText.length() - 1].isLetter() && !newText[ newText.length() - 1].isSpace() ) {
+        lineEdit->setText(newText.mid(0, newText.length() - 1));
+    }
+    for ( int i = 0; i < newText.length(); i++ ) {
+        if ( i == 0 ) {
+            newText[0] = newText[0].toUpper();
+        }
+        if ( newText[i-1] == ' ') {
+            newText[i] = newText[i].toUpper();
+        }
+    }
+    if (newText != arg1) {
+        lineEdit->setText(newText);
+    }
+}
 
 void themDocGia_Dialog::on_cancel_pushButton_clicked()
 {
@@ -53,18 +80,7 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
 
 void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
 {
-    QString newText = arg1;
-    while (newText.contains("  ")) {
-        newText.replace("  ", " ");
-    }
-    if (newText != arg1) {
-        ui->hoEdit->setText(newText);
-    }
-    if ( kiemTraChuoi(arg1) == false ) {
-        ui->baoloiHo_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
-    } else {
-        ui->baoloiHo_label->setText("");
-    }
+    xuLyChuoi(arg1, ui->hoEdit);
 }
 
 bool themDocGia_Dialog::kiemTraChuoi(QString s) {
@@ -79,18 +95,7 @@ bool themDocGia_Dialog::kiemTraChuoi(QString s) {
 
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
-    QString newText = arg1;
-    while (newText.contains("  ")) {
-        newText.replace("  ", " ");
-    }
-    if (newText != arg1) {
-        ui->ten_lineEdit->setText(newText);
-    }
-    if ( kiemTraChuoi(arg1) == false ) {
-        ui->baoLoiTen_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
-    } else {
-        ui->baoLoiTen_label->setText("");
-    }
+    xuLyChuoi(arg1, ui->ten_lineEdit);
 }
 
 
