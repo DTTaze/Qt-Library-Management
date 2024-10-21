@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <string>
 
 namespace Ui {
 class themDocGia_Dialog;
@@ -18,12 +19,18 @@ public:
     QString getHo();
     QString getTen();
     QString getPhai();
-
+    bool kiemTraChuoi(QString s);
 private slots:
 
     void on_ok_pushButton_clicked();
 
     void on_cancel_pushButton_clicked();
+
+    void on_hoEdit_textChanged(const QString &arg1);
+
+    void on_ten_lineEdit_textChanged(const QString &arg1);
+
+    void on_nam_radioButton_clicked();
 
 private:
     Ui::themDocGia_Dialog *ui;

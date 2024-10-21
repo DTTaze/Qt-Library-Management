@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>462</width>
-    <height>347</height>
+    <width>454</width>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="ok_pushButton">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>300</y>
+     <x>210</x>
+     <y>250</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="cancel_pushButton">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>300</y>
+     <x>340</x>
+     <y>250</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -43,9 +43,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>210</y>
+     <y>160</y>
      <width>351</width>
-     <height>71</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -68,7 +68,11 @@
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="baoLoiPhai_label">
+      <property name="styleSheet">
+       <string notr="true">color: red;
+</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -80,9 +84,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>110</y>
+     <y>90</y>
      <width>351</width>
-     <height>80</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -101,7 +105,11 @@
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="baoLoiTen_label">
+      <property name="styleSheet">
+       <string notr="true">color: red;
+</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -115,7 +123,7 @@
      <x>50</x>
      <y>20</y>
      <width>351</width>
-     <height>80</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -134,7 +142,10 @@
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="baoloiHo_label">
+      <property name="styleSheet">
+       <string notr="true">color: red;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
