@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -39,7 +39,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>33</x>
@@ -62,7 +62,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_namsb"/>
+       <widget class="QSpinBox" name="spinBox_namsb">
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -147,24 +151,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_sotrang"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QLabel" name="label_8">
-        <property name="styleSheet">
-         <string notr="true">font-size: 15px;color:black;font-weight:700;</string>
-        </property>
-        <property name="text">
-         <string>Trạng Thái :</string>
+       <widget class="QSpinBox" name="spinBox_sotrang">
+        <property name="maximum">
+         <number>100000</number>
         </property>
        </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit"/>
       </item>
      </layout>
     </item>
@@ -189,16 +180,15 @@
   </widget>
  </widget>
  <tabstops>
+  <tabstop>spinBox_namsb</tabstop>
+  <tabstop>lineEdit_ISBN</tabstop>
+  <tabstop>lineEdit_tensach</tabstop>
+  <tabstop>lineEdit_theloai</tabstop>
+  <tabstop>lineEdit_vitri</tabstop>
+  <tabstop>spinBox_sotrang</tabstop>
+  <tabstop>lineEdit_tacgia</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>pushButton_2</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_ISBN</tabstop>
-  <tabstop>spinBox_namsb</tabstop>
-  <tabstop>lineEdit_tensach</tabstop>
-  <tabstop>spinBox_sotrang</tabstop>
-  <tabstop>lineEdit_theloai</tabstop>
-  <tabstop>lineEdit_tacgia</tabstop>
-  <tabstop>lineEdit_vitri</tabstop>
  </tabstops>
  <resources/>
  <connections/>

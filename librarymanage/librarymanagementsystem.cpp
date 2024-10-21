@@ -36,42 +36,6 @@ LibraryManagementSystem::~LibraryManagementSystem()
     delete ui;
 }
 
-void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
-
-    string key = text.toStdString();
-
-
-    string valid_key;
-    bool lastWasSpace = false;
-
-
-    for (char c : key) {
-
-        if (isalnum(c)) {
-            valid_key += c;
-            lastWasSpace = false;
-        } else if (isspace(c)) {
-
-            if (!lastWasSpace) {
-                valid_key += ' ';
-                lastWasSpace = true;
-            }
-        }
-    }
-
-    // Cập nhật lại giá trị cho key
-    key = valid_key;
-
-    ui->lineEdit_timkiemds->setText(QString::fromStdString(key));
-    // Cập nhật lại key nếu nó chỉ chứa khoảng trắng
-    if (key.empty()) {
-        key = ""; // Nếu key rỗng, không cần tìm kiếm
-    }
-
-    // Gọi hàm tìm kiếm với key đã được lọc
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, key);
-}
-
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
@@ -203,7 +167,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
 //-------------------------------------------------------------------------------------------------------------------------------------
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
-    InTheoTheLoai intheloai(danh_sach_dau_sach,this);
+    InTheoTheLoai intheloai;
     intheloai.setModal(true);
     intheloai.exec();
 }
@@ -234,14 +198,54 @@ void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &
 
 }
 
+
+void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
+
+    string key = text.toStdString();
+
+
+    string valid_key;
+    bool lastWasSpace = false;
+
+
+    for (char c : key) {
+
+        if (isalnum(c)) {
+            valid_key += c;
+            lastWasSpace = false;
+        } else if (isspace(c)) {
+
+            if (!lastWasSpace) {
+                valid_key += ' ';
+                lastWasSpace = true;
+            }
+        }
+    }
+
+    // Cập nhật lại giá trị cho key
+    key = valid_key;
+    key.erase(0, key.find_first_not_of(" \t\n\r"));
+    ui->lineEdit_timkiemds->setText(QString::fromStdString(key));
+    // Cập nhật lại key nếu nó chỉ chứa khoảng trắng
+    if (key.empty()) {
+        key = ""; // Nếu key rỗng, không cần tìm kiếm
+    }
+
+    // Gọi hàm tìm kiếm với key đã được lọc
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, key);
+}
+
+
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
     if (KiemTraDaySachKV(danh_sach_dau_sach)){
         QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
     }else{
-    themdausach themds;
-    themds.setModal(true);
-    themds.exec();
+        themdausach themds;
+        themds.setModal(true);
+        if (themds.exec() == QDialog::Accepted){
+            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+        }
     }
 }
 

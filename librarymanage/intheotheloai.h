@@ -14,7 +14,7 @@ class InTheoTheLoai : public QDialog
     Q_OBJECT
 
 public:
-    explicit InTheoTheLoai(DanhSachDauSach danh_sach_dau_sach,QWidget *parent = nullptr);
+    explicit InTheoTheLoai(QWidget *parent = nullptr);
     ~InTheoTheLoai();
 
 private:
