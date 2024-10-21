@@ -12,4 +12,4 @@ librarymanage.exe
 librarymanage_autogen/
 qtcsettings.cmake
 CMakeCache.txt.prev
-
+CMakeLists.txt.user
