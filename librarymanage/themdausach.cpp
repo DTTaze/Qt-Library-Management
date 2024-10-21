@@ -1,11 +1,9 @@
 #include "themdausach.h"
 #include "ui_themdausach.h"
 
-themdausach::themdausach(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &danh_muc_sach, QWidget *parent)
+themdausach::themdausach( QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::themdausach)
-    ,danh_sach_dau_sach(danh_sach_dau_sach)
-    ,danh_muc_sach(danh_muc_sach)
 {
     ui->setupUi(this);
 }
