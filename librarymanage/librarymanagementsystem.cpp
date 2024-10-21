@@ -8,13 +8,13 @@
 #include "The_doc_gia.h"
 #include "themdocgia_dialog.h"
 #include "Muon_tra.h"
+#include "dau_sach.h"
 #include <QDebug>
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LibraryManagementSystem)
-    , danh_sach_dau_sach()
-    ,danh_muc_sach(nullptr)
+
     ,danh_sach_muon_tra(nullptr)
 {
     ui->setupUi(this);
@@ -201,7 +201,7 @@ void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
-    themdausach themds(danh_sach_dau_sach,danh_muc_sach,this);
+    themdausach themds;
     themds.setModal(true);
     themds.exec();
 }

@@ -17,6 +17,7 @@
 #include <QDebug>
 using namespace std;
 
+
 struct DanhMucSach{
     string masach;
     int trangthai;
@@ -44,8 +45,12 @@ struct DauSach {
 struct DanhSachDauSach{
     int demsach= 0;
     DauSach* node[MAXSACH] ;
+    DanhSachDauSach(){}
 };
 
+
+extern DanhSachDauSach danh_sach_dau_sach;
+extern DanhMucSach* danh_muc_sach;
 
 void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri);
 
@@ -75,8 +80,5 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms
 void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string ISBN, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai);
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTableView *tableView_dausach,QWidget* parent);
-
-
-
 
 #endif

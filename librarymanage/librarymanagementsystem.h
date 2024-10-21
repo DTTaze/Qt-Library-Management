@@ -23,8 +23,7 @@ class LibraryManagementSystem : public QMainWindow
 public:
     LibraryManagementSystem(QWidget *parent = nullptr);
     ~LibraryManagementSystem();
-    DanhSachDauSach danh_sach_dau_sach;
-    DanhMucSach* danh_muc_sach;
+
     DanhSachMUONTRA* danh_sach_muon_tra;
 
 private slots:

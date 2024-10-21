@@ -1,5 +1,9 @@
 #include "Dau_sach.h"
 
+DanhSachDauSach danh_sach_dau_sach;
+DanhMucSach* danh_muc_sach;
+
+
 void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach,const string &I_S_B_N,const string& vi_tri){
     int so_sach = danh_sach_dau_sach.demsach;
 
