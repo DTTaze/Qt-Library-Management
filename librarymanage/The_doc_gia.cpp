@@ -223,7 +223,7 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         QStringList fields = strLine.split("|"); // Tách theo |
 
         if (fields.size() < 4) {
-            continue; // Bỏ qua nếu không đủ trường
+            continue;
         }
 
         unsigned int mathe = fields[0].toUInt();
@@ -251,7 +251,9 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
             }else{
                 ngay_tra= "";
             }
-            Them_lich_su_sach(&docGia,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+            Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
+            Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+            qDebug() << p->thong_tin.head_lsms->data.masach;
         }
     }
     Copy_Cay_Sang_Mang(root);
