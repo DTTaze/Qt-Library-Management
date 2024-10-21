@@ -333,6 +333,7 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
             cout << "- " << danh_sach_dau_sach.node[i]->tensach <<endl;
         }
     }else{
+        qDebug()<<"test";
         int row_count = danh_sach_dau_sach.demsach;
 
         QStandardItemModel* model = new QStandardItemModel(row_count,7);
@@ -351,7 +352,7 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
             model->setHeaderData(i, Qt::Horizontal, headers[i]);
         }
 
-        for (int i = vi_tri_dau_tien; i <danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->tensach.substr(0,key.size()) == key;i++ ){
+        for (int i = 0; i <danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->tensach.substr(0,key.size()) == key;i++ ){
             model->setItem(i,0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
             model->setItem(i,1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
             model->setItem(i,2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));

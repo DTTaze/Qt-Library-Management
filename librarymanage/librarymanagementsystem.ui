@@ -332,6 +332,9 @@ font-weight:600;</string>
               <height>24</height>
              </rect>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color:black;</string>
+            </property>
            </widget>
            <widget class="QPushButton" name="inTheLoai_pushButton">
             <property name="geometry">
@@ -829,7 +832,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">
