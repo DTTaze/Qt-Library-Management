@@ -53,6 +53,13 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
 
 void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
 {
+    QString newText = arg1;
+    while (newText.contains("  ")) {
+        newText.replace("  ", " ");
+    }
+    if (newText != arg1) {
+        ui->hoEdit->setText(newText);
+    }
     if ( kiemTraChuoi(arg1) == false ) {
         ui->baoloiHo_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
     } else {
@@ -72,6 +79,13 @@ bool themDocGia_Dialog::kiemTraChuoi(QString s) {
 
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
+    QString newText = arg1;
+    while (newText.contains("  ")) {
+        newText.replace("  ", " ");
+    }
+    if (newText != arg1) {
+        ui->hoEdit->setText(newText);
+    }
     if ( kiemTraChuoi(arg1) == false ) {
         ui->baoLoiTen_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
     } else {
