@@ -323,7 +323,7 @@ font-weight:600;</string>
              <string>Tìm Kiếm :</string>
             </property>
            </widget>
-           <widget class="QLineEdit" name="timKiemDs_lineEdit">
+           <widget class="QLineEdit" name="lineEdit_timkiemds">
             <property name="geometry">
              <rect>
               <x>120</x>
@@ -832,7 +832,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

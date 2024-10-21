@@ -21,7 +21,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
     QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
-    QObject::connect(ui->timKiemDs_lineEdit, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
+    QObject::connect(ui->lineEdit_timkiemds, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
     Doc_File_Ma_The();
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
@@ -36,10 +36,42 @@ LibraryManagementSystem::~LibraryManagementSystem()
     delete ui;
 }
 
-void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text){
+void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
+
     string key = text.toStdString();
-    TimKiemTenSach(danh_sach_dau_sach,ui->tableView_dausach,key);
+
+
+    string valid_key;
+    bool lastWasSpace = false;
+
+
+    for (char c : key) {
+
+        if (isalnum(c)) {
+            valid_key += c;
+            lastWasSpace = false;
+        } else if (isspace(c)) {
+
+            if (!lastWasSpace) {
+                valid_key += ' ';
+                lastWasSpace = true;
+            }
+        }
+    }
+
+    // Cập nhật lại giá trị cho key
+    key = valid_key;
+
+    ui->lineEdit_timkiemds->setText(QString::fromStdString(key));
+    // Cập nhật lại key nếu nó chỉ chứa khoảng trắng
+    if (key.empty()) {
+        key = ""; // Nếu key rỗng, không cần tìm kiếm
+    }
+
+    // Gọi hàm tìm kiếm với key đã được lọc
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, key);
 }
+
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {

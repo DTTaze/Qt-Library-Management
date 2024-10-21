@@ -8,6 +8,7 @@
 #include <QTextEdit>
 #include <iostream>
 #include <cstring>
+#include <cctype>
 #include <string>
 #include <fstream>
 #include <QMessageBox>

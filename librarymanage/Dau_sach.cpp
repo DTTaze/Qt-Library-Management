@@ -247,6 +247,12 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 }
 
+void ChuyenVeChuThuong(std::string& str) {
+    for (size_t i = 0; i < str.size(); ++i) {
+        str[i] = tolower(static_cast<unsigned char>(str[i]));
+    }
+}//static_cast<unsigned char> de cac ki tu am khong gay loi
+
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach, string key) {
     QStandardItemModel* model;
 
@@ -262,10 +268,15 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
             model->setHeaderData(i, Qt::Horizontal, headers[i]);
         }
 
-        // Duyệt qua danh sách đầu sách
+        ChuyenVeChuThuong(key);
+
         for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
-            // Kiểm tra nếu key là chuỗi con của tên sách
-            if (danh_sach_dau_sach.node[i]->tensach.find(key) != string::npos) {
+
+            string ten_sach = danh_sach_dau_sach.node[i]->tensach;
+
+            ChuyenVeChuThuong(ten_sach);
+
+            if (ten_sach.find(key) != std::string::npos) {
                 // Tạo dòng mới với thông tin sách
                 model->insertRow(row_count);
                 model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
@@ -280,6 +291,7 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
         }
 
         tableView_dausach->setModel(model);
+
     } else {
         // Trường hợp không nhập key tìm kiếm, in ra toàn bộ danh sách
         int row_count = danh_sach_dau_sach.demsach;
