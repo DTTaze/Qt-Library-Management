@@ -245,7 +245,12 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         } else {
             string ma_sach = fields[4].toStdString();
             string ngay_muon = fields[5].toStdString();
-            string ngay_tra = fields[6].toStdString();
+            string ngay_tra;
+            if (!fields[6].isEmpty()){
+                ngay_tra = fields[6].toStdString();
+            }else{
+                ngay_tra= "";
+            }
             Them_lich_su_sach(&docGia,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
         }
     }
