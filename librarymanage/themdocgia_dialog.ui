@@ -67,17 +67,6 @@
       </item>
      </layout>
     </item>
-    <item>
-     <widget class="QLabel" name="baoLoiPhai_label">
-      <property name="styleSheet">
-       <string notr="true">color: red;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -104,17 +93,6 @@
       </item>
      </layout>
     </item>
-    <item>
-     <widget class="QLabel" name="baoLoiTen_label">
-      <property name="styleSheet">
-       <string notr="true">color: red;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -140,16 +118,6 @@
        <widget class="QLineEdit" name="hoEdit"/>
       </item>
      </layout>
-    </item>
-    <item>
-     <widget class="QLabel" name="baoloiHo_label">
-      <property name="styleSheet">
-       <string notr="true">color: red;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>

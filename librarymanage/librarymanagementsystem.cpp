@@ -105,7 +105,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
     if (item) {
         int MATHE = item->text().toInt();
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, MATHE);
-        if ( p->thong_tin.head_lsms == nullptr ) {
+        if ( p->thong_tin.head_lsms != nullptr ) {
             QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này");
         } else {
             Xoa_Doc_Gia(root, MATHE);

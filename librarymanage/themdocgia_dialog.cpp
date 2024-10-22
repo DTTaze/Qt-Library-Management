@@ -28,13 +28,13 @@ QString themDocGia_Dialog::getPhai()
 void themDocGia_Dialog::on_ok_pushButton_clicked()
 {
     if (getHo().isEmpty()) {
-        ui->baoloiHo_label->setText("Vui lòng điền họ");
+        ui->hoEdit->setStyleSheet("QLineEdit{background-color:#ff8e8e;}");
     }
     if (getTen().isEmpty()) {
-        ui->baoLoiTen_label->setText("Vui lòng điền tên");
+        ui->ten_lineEdit->setStyleSheet("QLineEdit{background-color:#ff8e8e;}");
     }
     if ( ui->nam_radioButton->isChecked() == false && ui->nu_radioButton->isChecked() == false ) {
-        ui->baoLoiPhai_label->setText("Vui lòng chọn phái");
+
     }
     if (!getHo().isEmpty() && !getTen().isEmpty() && (ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked()) ) {
         if ( kiemTraChuoi(getHo()) && kiemTraChuoi(getTen())) {
@@ -80,6 +80,7 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
 
 void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
 {
+    ui->hoEdit->setStyleSheet("QLineEdit {background-color: white;");
     xuLyChuoi(arg1, ui->hoEdit);
 }
 
@@ -95,6 +96,7 @@ bool themDocGia_Dialog::kiemTraChuoi(QString s) {
 
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
+    ui->ten_lineEdit->setStyleSheet("QLineEdit {background-color: white;");
     xuLyChuoi(arg1, ui->ten_lineEdit);
 }
 
@@ -102,7 +104,7 @@ void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 void themDocGia_Dialog::on_nam_radioButton_clicked()
 {
     if ( ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked()) {
-        ui->baoLoiPhai_label->setText("");
+
     }
 }
 
