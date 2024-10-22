@@ -153,16 +153,16 @@ void MuonSach (const int& ma_the) {
     }
 }
 
-DanhSachDauSach *dsds;
+
 void TraSach (const unsigned int& ma_the, string ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    string ten_sach = ChuyenMaSachThanhTenSach(*dsds, current->data.masach );
+    string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
         if(doc_gia == nullptr || ten_sach == "") {return;}
-    for (int i =0; dsds->node[i] != nullptr; i++ ) {
+    for (int i =0; danh_sach_dau_sach.node[i] != nullptr; i++ ) {
         if(current->data.masach == ma_sach) {
             current->data.NgayTra = NgayTraThucTe();
-            dsds->node[i] = 0;
+            danh_sach_dau_sach.node[i] = 0;
             current->data.trangthai = 1;
             return;
         }
@@ -174,7 +174,7 @@ void DanhSachSachDocGiaMuon(const unsigned int & ma_the, QTableWidget* tableWidg
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
     while(current != nullptr) {
-        ChuyenMaSachThanhTenSach(*dsds, current->data.masach );
+        ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
         current = current->next;
         // tableWidget-
     }
