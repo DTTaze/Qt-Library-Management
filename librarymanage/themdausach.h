@@ -28,6 +28,14 @@ private slots:
 
     void on_lineEdit_tensach_textChanged(const QString &arg1);
 
+    void on_lineEdit_theloai_textChanged(const QString &arg1);
+
+    void on_comboBox_vitri_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_sotrang_valueChanged(int arg1);
+
+    void on_lineEdit_tacgia_textChanged(const QString &arg1);
+
 private:
     Ui::themdausach *ui;
 };
