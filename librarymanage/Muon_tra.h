@@ -22,6 +22,7 @@ i. In danh sách độc giả mượn sách quá hạn theo thứ tự thời gi
 j. In 10 sách có số lượt mượn nhiều nhất.*/
 
 int TrangThai(Date ngay_muon, Date ngay_tra) ;
+
 struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
     string masach;
     Date NgayMuon;
@@ -46,6 +47,21 @@ struct DanhSachMUONTRA { // danh sach cac quyen sach da hoac dang muon
     DanhSachMUONTRA(const MUONTRA &muontra) : data(muontra), next(nullptr) {}
     DanhSachMUONTRA(){}
 };
+
+struct SachMuon {
+    string masach;
+    int demsoluotmuon = 0;
+};
+
+extern SachMuon DanhSachSachMuon[MAXSACH];
+
+extern int SoLuongSach;
+
+extern DanhSachMUONTRA* danh_sach_muon_tra;
+
+int TimViTriMaSach(string maSach);
+
+void CapNhatSoLuotMuon (string ma_sach) ;
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) ;
 
@@ -80,4 +96,5 @@ void Them_lich_su_sach(Danh_Sach_The_Doc_Gia* the_doc_gia, DanhSachMUONTRA *&dan
 
 void Them_Vao_QTableWidget_danhsachmuontra(QTableWidget* tableWidget, const The_Doc_Gia& docGia, DanhSachMUONTRA *&danh_sach_lich_su_muon_tra);
 void Them_Cay_Vao_QTableWidget_danhsachquahan(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root, DanhSachMUONTRA *danh_sach_lich_su_muon_tra);
+void Top10QuyenSachNhieuLuotMuonNhat() ;
 #endif
