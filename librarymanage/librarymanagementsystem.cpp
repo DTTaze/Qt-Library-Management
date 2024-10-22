@@ -30,7 +30,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
     Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
 }
-
+//------------------------------------Hàm sử dụng ở Thẻ Đầu Sách-----------------------------------------------------------------------
 LibraryManagementSystem::~LibraryManagementSystem()
 {
     delete ui;
@@ -65,10 +65,12 @@ void LibraryManagementSystem::CapNhatBang()
         Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
     }
 }
-void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index)
+
+void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index) // Hàm sắp xếp theo mã hoặc tên
 {
     CapNhatBang();
 }
+
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
 {
     themDocGia_Dialog themDocGia;
@@ -92,7 +94,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
     }
 }
 
-void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
+void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc giả
 {
     int currentRow = ui->tableWidget_2->currentRow();
 
@@ -122,7 +124,12 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
     }
 }
 
-void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item)
+void LibraryManagementSystem::on_luuFile_pushButton_clicked()
+{
+    Ghi_The_Vao_File();
+}
+
+void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
 {
     int row = item->row();
     int column = item->column();
@@ -164,7 +171,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
         break;
     }
 }
-//-------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
     InTheoTheLoai intheloai;
@@ -249,9 +256,4 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
     }
 }
 
-
-void LibraryManagementSystem::on_luuFile_pushButton_clicked()
-{
-    Ghi_The_Vao_File();
-}
 

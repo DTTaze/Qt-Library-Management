@@ -195,12 +195,13 @@ void Ghi_The_Vao_File() {
         outFile << current->thong_tin.MATHE << "|"
                 << current->thong_tin.Ho << "|"
                 << current->thong_tin.Ten << "|"
-                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|"
-                // << current->thong_tin.head_lsms->data.masach << "|"
-                // << current->thong_tin.head_lsms->data.NgayMuon << "|"
-                // << current->thong_tin.head_lsms->data.NgayTra << "|"
-                << std::endl;
-
+                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
+        if ( current->thong_tin.head_lsms != nullptr ) {
+        outFile << current->thong_tin.head_lsms->data.masach << "|"
+                << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
+                << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
+        }
+        outFile << endl;
         if ( current->ptr_left != nullptr ) {
             q.push(current->ptr_left);
         }
