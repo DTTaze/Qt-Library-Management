@@ -62,6 +62,8 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
 
+void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_intheloai);
+
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key);
 
 int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key);
@@ -76,9 +78,9 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
 
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string vi_tri);
+bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach);
 
-void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string ISBN, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai);
+void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string I_S_B_N, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai,string vi_tri);
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTableView *tableView_dausach,QWidget* parent);
 

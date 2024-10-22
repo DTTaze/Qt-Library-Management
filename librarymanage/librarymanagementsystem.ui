@@ -117,7 +117,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>../../../../../../Downloads/book-solid.svg</normaloff>../../../../../../Downloads/book-solid.svg</iconset>
+               <normaloff>book-solid.svg</normaloff>book-solid.svg</iconset>
              </property>
             </widget>
            </item>
@@ -162,7 +162,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>../../../../../../Downloads/user-regular.svg</normaloff>../../../../../../Downloads/user-regular.svg</iconset>
+               <normaloff>user-regular.svg</normaloff>user-regular.svg</iconset>
              </property>
             </widget>
            </item>
@@ -207,7 +207,7 @@ QPushButton:focus {
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>../../../../../../Downloads/rotate-solid.svg</normaloff>../../../../../../Downloads/rotate-solid.svg</iconset>
+               <normaloff>rotate-solid.svg</normaloff>rotate-solid.svg</iconset>
              </property>
             </widget>
            </item>
@@ -249,6 +249,9 @@ QPushButton:focus {
             <property name="styleSheet">
              <string notr="true">border: 1px solid gray;
 color: black;</string>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
             </property>
            </widget>
            <widget class="QPushButton" name="themSach_pushButton">
@@ -302,7 +305,7 @@ QPushButton:focus {
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../Downloads/plus-solid.svg</normaloff>../../../../../../Downloads/plus-solid.svg</iconset>
+              <normaloff>plus-solid.svg</normaloff>plus-solid.svg</iconset>
             </property>
            </widget>
            <widget class="QLabel" name="timKiemDuSach_Label">
@@ -497,7 +500,7 @@ QPushButton:focus {
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../Downloads/plus-solid.svg</normaloff>../../../../../../Downloads/plus-solid.svg</iconset>
+              <normaloff>plus-solid.svg</normaloff>plus-solid.svg</iconset>
             </property>
            </widget>
            <widget class="QPushButton" name="xoaDocGia_pushButton">
@@ -548,7 +551,7 @@ QPushButton:focus {
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../Downloads/trash-solid.svg</normaloff>../../../../../../Downloads/trash-solid.svg</iconset>
+              <normaloff>trash-solid.svg</normaloff>trash-solid.svg</iconset>
             </property>
            </widget>
            <widget class="QPushButton" name="luuFile_pushButton">
@@ -599,7 +602,7 @@ QPushButton:focus {
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../../../../../../Downloads/download-solid.svg</normaloff>../../../../../../Downloads/download-solid.svg</iconset>
+              <normaloff>download-solid.svg</normaloff>download-solid.svg</iconset>
             </property>
            </widget>
           </widget>
@@ -832,7 +835,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

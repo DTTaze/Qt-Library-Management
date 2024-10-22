@@ -16,9 +16,17 @@ public:
     ~themdausach();
 
 private slots:
-    void on_buttonBox_accepted();
 
-    void on_buttonBox_rejected();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_spinBox_namsb_valueChanged(int arg1);
+
+    void on_lineEdit_ISBN_textChanged(const QString &arg1);
+
+    void on_lineEdit_tensach_textChanged(const QString &arg1);
 
 private:
     Ui::themdausach *ui;

@@ -66,14 +66,14 @@ void taoMangTrungVi(int& index, int start, int end);
 int LayMaTheNgauNhien();
 void Ghi_Ma_The_Vao_File(int i);
 void Doc_File_Ma_The();
+void Ghi_The_Vao_File();
 
 // Hàm liên quan đến thao tác trên cây
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
 void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
-void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue);
-void Ghi_The_Vao_File();
+void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
 
 // Hàm tạo ra cây theo tên
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);

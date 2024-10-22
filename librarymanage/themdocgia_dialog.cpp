@@ -28,13 +28,13 @@ QString themDocGia_Dialog::getPhai()
 void themDocGia_Dialog::on_ok_pushButton_clicked()
 {
     if (getHo().isEmpty()) {
-        ui->baoloiHo_label->setText("Vui lòng điền họ");
+        ui->hoEdit->setStyleSheet("QLineEdit{background-color:#ff8e8e;}");
     }
     if (getTen().isEmpty()) {
-        ui->baoLoiTen_label->setText("Vui lòng điền tên");
+        ui->ten_lineEdit->setStyleSheet("QLineEdit{background-color:#ff8e8e;}");
     }
     if ( ui->nam_radioButton->isChecked() == false && ui->nu_radioButton->isChecked() == false ) {
-        ui->baoLoiPhai_label->setText("Vui lòng chọn phái");
+
     }
     if (!getHo().isEmpty() && !getTen().isEmpty() && (ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked()) ) {
         if ( kiemTraChuoi(getHo()) && kiemTraChuoi(getTen())) {
@@ -45,6 +45,33 @@ void themDocGia_Dialog::on_ok_pushButton_clicked()
     }
 }
 
+void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
+    QString newText = arg1;
+    if ( newText == " ") {
+        while ( newText == " ") {
+            newText.replace(" ", "");
+        }
+    }
+    if (newText.contains("  ")) {
+        while (newText.contains("  ")) {
+            newText.replace("  ", " ");
+        }
+    }
+    if ( !newText[ newText.length() - 1].isLetter() && !newText[ newText.length() - 1].isSpace() ) {
+        lineEdit->setText(newText.mid(0, newText.length() - 1));
+    }
+    for ( int i = 0; i < newText.length(); i++ ) {
+        if ( i == 0 ) {
+            newText[0] = newText[0].toUpper();
+        }
+        if ( newText[i-1] == ' ') {
+            newText[i] = newText[i].toUpper();
+        }
+    }
+    if (newText != arg1) {
+        lineEdit->setText(newText);
+    }
+}
 
 void themDocGia_Dialog::on_cancel_pushButton_clicked()
 {
@@ -53,18 +80,8 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
 
 void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
 {
-    QString newText = arg1;
-    while (newText.contains("  ")) {
-        newText.replace("  ", " ");
-    }
-    if (newText != arg1) {
-        ui->hoEdit->setText(newText);
-    }
-    if ( kiemTraChuoi(arg1) == false ) {
-        ui->baoloiHo_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
-    } else {
-        ui->baoloiHo_label->setText("");
-    }
+    ui->hoEdit->setStyleSheet("QLineEdit {background-color: white;");
+    xuLyChuoi(arg1, ui->hoEdit);
 }
 
 bool themDocGia_Dialog::kiemTraChuoi(QString s) {
@@ -79,25 +96,15 @@ bool themDocGia_Dialog::kiemTraChuoi(QString s) {
 
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
-    QString newText = arg1;
-    while (newText.contains("  ")) {
-        newText.replace("  ", " ");
-    }
-    if (newText != arg1) {
-        ui->ten_lineEdit->setText(newText);
-    }
-    if ( kiemTraChuoi(arg1) == false ) {
-        ui->baoLoiTen_label->setText("Họ chỉ bao gồm chữ hoa hoặc thường");
-    } else {
-        ui->baoLoiTen_label->setText("");
-    }
+    ui->ten_lineEdit->setStyleSheet("QLineEdit {background-color: white;");
+    xuLyChuoi(arg1, ui->ten_lineEdit);
 }
 
 
 void themDocGia_Dialog::on_nam_radioButton_clicked()
 {
     if ( ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked()) {
-        ui->baoLoiPhai_label->setText("");
+
     }
 }
 

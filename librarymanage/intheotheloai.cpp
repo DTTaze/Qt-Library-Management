@@ -1,7 +1,7 @@
 #include "intheotheloai.h"
 #include "ui_intheotheloai.h"
 
-InTheoTheLoai::InTheoTheLoai(DanhSachDauSach danh_sach_dau_sach,QWidget *parent)
+InTheoTheLoai::InTheoTheLoai(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::InTheoTheLoai)
 {

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <string>
+#include <QLineEdit>
 
 namespace Ui {
 class themDocGia_Dialog;
@@ -20,6 +21,7 @@ public:
     QString getTen();
     QString getPhai();
     bool kiemTraChuoi(QString s);
+    void xuLyChuoi(const QString &s, QLineEdit* lineEdit);
 private slots:
 
     void on_ok_pushButton_clicked();
