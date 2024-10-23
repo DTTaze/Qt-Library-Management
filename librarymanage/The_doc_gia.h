@@ -13,6 +13,7 @@
 #include "Muon_tra.h"
 #include "queue.h"
 #define MAXRANDOM 10000
+
 using namespace std;
 
 enum Phai{
@@ -53,6 +54,12 @@ struct Danh_Sach_Theo_Ten {
     Danh_Sach_The_Doc_Gia* PTR = nullptr;
 };
 
+struct danhSachMaThe {
+    int soLuongMaThe = 0;
+    int maThe[MAXRANDOM];
+};
+
+extern danhSachMaThe mangMaThe;
 extern int Mang_Ma_The[MAXRANDOM];
 extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 extern int DS_PTR;

@@ -1,11 +1,12 @@
 #include "The_doc_gia.h"
 
+danhSachMaThe mangMaThe;
 Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
 Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 int DS_PTR = 0;
 int Mang_Ma_The[MAXRANDOM];
-int index_MangRandom = 10;
+int index_MangRandom = 0;
 //--------------------------------------------------------------------------------------------------------------------------------------
 void Tao_Mang_The() {
     int index = 0;
@@ -31,12 +32,13 @@ void taoMangTrungVi(int& index, int start, int end) {
         ranges.push({median + 1, e}); // [median + 1, b]
     }
 }
+
 int LayMaTheNgauNhien() {
     if ( index_MangRandom > MAXRANDOM ) {
         cout << "Het ma the";
         return -1;
     }
-    return Mang_Ma_The[index_MangRandom++];
+    return mangMaThe.maThe[index_MangRandom++];
 }
 
 void Doc_File_Ma_The() {
@@ -45,7 +47,8 @@ void Doc_File_Ma_The() {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
     }
     for (int i = 0; i < MAXRANDOM; ++i) {
-        inFile >> Mang_Ma_The[i];
+        inFile >> mangMaThe.maThe[i];
+        mangMaThe.soLuongMaThe++;
     }
 }
 
@@ -54,8 +57,8 @@ void Ghi_Ma_The_Vao_File(int index) {
     if (!outFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
     }
-    for (int i = index; i < MAXRANDOM; ++i) {
-        outFile << Mang_Ma_The[i] << " "; // Ghi từng số, cách nhau bằng khoảng trắng
+    for (int i = index; i < mangMaThe.soLuongMaThe; i++) {
+        outFile << mangMaThe.maThe[i] << " "; // Ghi từng số, cách nhau bằng khoảng trắng
     }
     outFile.close();
 }

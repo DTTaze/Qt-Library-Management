@@ -126,6 +126,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 {
     Ghi_The_Vao_File();
+    Ghi_Ma_The_Vao_File(index_MangRandom);
 }
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
