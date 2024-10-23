@@ -24,7 +24,7 @@ public:
     LibraryManagementSystem(QWidget *parent = nullptr);
     ~LibraryManagementSystem();
 
-    DanhSachMUONTRA* danh_sach_muon_tra;
+
 
 private slots:
 

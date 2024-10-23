@@ -243,12 +243,21 @@ QPushButton:focus {
               <x>0</x>
               <y>130</y>
               <width>631</width>
-              <height>441</height>
+              <height>438</height>
              </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="styleSheet">
              <string notr="true">border: 1px solid gray;
 color: black;</string>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="sortingEnabled">
              <bool>false</bool>
@@ -835,7 +844,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

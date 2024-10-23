@@ -1,7 +1,9 @@
 #include "Muon_tra.h"
 #include "The_doc_gia.h"
 using namespace std;
-
+DanhSachMUONTRA* danh_sach_muon_tra;
+SachMuon DanhSachSachMuon[MAXSACH];
+int SoLuongSach = 0;
 /*f. Mượn sách : nhập vào mã thẻ độc giả, chương trình sẽ liệt kê các sách mà độc giả đang mượn. Mỗi độc giả chỉ được mượn tối đa 3 cuốn,
 không cho mượn khi giữ 1 sách quá hạn (7 ngày)
 g. Trả sách
@@ -15,6 +17,26 @@ int TrangThai(Date ngay_muon, Date ngay_tra) { // trạng thái sách của đ
         return 1; // đã trả
     }
 
+}
+
+int TimViTriMaSach(string maSach) {
+    for (int i = 0; i < SoLuongSach; i++) {
+        if (DanhSachSachMuon[i].masach == maSach) {
+            return i;
+        }
+    }
+    return -1; // Không tìm thấy
+}
+
+void CapNhatSoLuotMuon (string ma_sach) {
+    int vitri = TimViTriMaSach(ma_sach) ;
+    if(vitri != -1) {
+        DanhSachSachMuon[vitri].demsoluotmuon++;
+    } else {
+        DanhSachSachMuon[SoLuongSach].masach = ma_sach;
+        DanhSachSachMuon[SoLuongSach].demsoluotmuon = 1;
+        SoLuongSach++;
+    }
 }
 
 
@@ -33,16 +55,17 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
 
 void ThemSach (DanhSachMUONTRA * &head, string ma, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra);
-    DanhSachMUONTRA * newMUONTRA = new DanhSachMUONTRA(data);
-    if (head == nullptr)
-    {
+    DanhSachMUONTRA *newMUONTRA = new DanhSachMUONTRA(data);
+
+    if (head == nullptr || ma < head->data.masach) {
+        newMUONTRA->next = head;
         head = newMUONTRA;
-    }
-    else {
-        DanhSachMUONTRA * temp = head;
-        while(temp->next != nullptr) {
+    } else {
+        DanhSachMUONTRA *temp = head;
+        while (temp->next != nullptr && temp->next->data.masach < ma) {
             temp = temp->next;
         }
+        newMUONTRA->next = temp->next;
         temp->next = newMUONTRA;
     }
 }
@@ -147,22 +170,24 @@ void MuonSach (const int& ma_the) {
             Date ngaymuon = NgayMuon();
             Date ngaytra ;
             ThemSach(lichsu, ma, ngaymuon, ngaytra);
+            ThemSach(danh_sach_muon_tra, ma, ngaymuon, ngaytra);
             sosach++;
+            CapNhatSoLuotMuon(ma);
             // ThemSachVaoLSMS(lichsu, ma, ngaymuon, ngaytra);
         }
     }
 }
 
-DanhSachDauSach *dsds;
+
 void TraSach (const unsigned int& ma_the, string ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    string ten_sach = ChuyenMaSachThanhTenSach(*dsds, current->data.masach );
+    string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
         if(doc_gia == nullptr || ten_sach == "") {return;}
-    for (int i =0; dsds->node[i] != nullptr; i++ ) {
+    for (int i =0; danh_sach_dau_sach.node[i] != nullptr; i++ ) {
         if(current->data.masach == ma_sach) {
             current->data.NgayTra = NgayTraThucTe();
-            dsds->node[i] = 0;
+            danh_sach_dau_sach.node[i] = 0;
             current->data.trangthai = 1;
             return;
         }
@@ -174,7 +199,7 @@ void DanhSachSachDocGiaMuon(const unsigned int & ma_the, QTableWidget* tableWidg
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
     while(current != nullptr) {
-        ChuyenMaSachThanhTenSach(*dsds, current->data.masach );
+        ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
         current = current->next;
         // tableWidget-
     }
@@ -377,7 +402,21 @@ void Them_Cay_Vao_QTableWidget_danhsachquahan(QTableWidget* tableWidget, Danh_Sa
 }
 
 
+void Top10QuyenSachNhieuLuotMuonNhat() {
+    for(int i =1; i<SoLuongSach; i++) {
+        for(int j = i+1; j<=SoLuongSach; j++) {
+            if(DanhSachSachMuon[i].demsoluotmuon > DanhSachSachMuon[j].demsoluotmuon) {
+                swap(DanhSachSachMuon[i], DanhSachSachMuon[j]);
+            }
+        }
+    }
 
+    for(int i = 1; i<=10; i++) {
+        string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach );
+        cout << ten_sach << endl;
+    }
+
+}
 
 // void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_danhsachquahan, QWidget* parent) {
 //     ifstream file("docgia_100.txt");

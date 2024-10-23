@@ -15,7 +15,6 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LibraryManagementSystem)
 
-    ,danh_sach_muon_tra(nullptr)
 {
     ui->setupUi(this);
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
@@ -207,40 +206,37 @@ void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &
 
 
 void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
+    QString key ;
+    bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
 
-    string key = text.toStdString();
-
-
-    string valid_key;
-    bool lastWasSpace = false;
-
-
-    for (char c : key) {
-
-        if (isalnum(c)) {
-            valid_key += c;
-            lastWasSpace = false;
-        } else if (isspace(c)) {
-
+    for (QChar c : text) {
+        if (c.isLetter() || c.isDigit()) {
+            key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
             if (!lastWasSpace) {
-                valid_key += ' ';
-                lastWasSpace = true;
+                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
             }
         }
     }
 
-    // Cập nhật lại giá trị cho key
-    key = valid_key;
-    key.erase(0, key.find_first_not_of(" \t\n\r"));
-    ui->lineEdit_timkiemds->setText(QString::fromStdString(key));
-    // Cập nhật lại key nếu nó chỉ chứa khoảng trắng
-    if (key.empty()) {
-        key = ""; // Nếu key rỗng, không cần tìm kiếm
+    string valid_key = key.toStdString();
+    // Xóa khoảng trắng ở đầu
+    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+
+    ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
+
+    // Kiểm tra nếu key rỗng, không cần tìm kiếm
+    if (valid_key.empty()) {
+        valid_key=""; // Không gọi hàm tìm kiếm
     }
 
     // Gọi hàm tìm kiếm với key đã được lọc
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, key);
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, valid_key);
 }
+
+
 
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
