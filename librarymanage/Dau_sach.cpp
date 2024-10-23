@@ -334,18 +334,20 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
 
         tableView_dausach->setModel(model);
 
+        tableView_dausach->setColumnWidth(0, 120);
+        tableView_dausach->setColumnWidth(1, 200);
+        tableView_dausach->setColumnWidth(2, 100);
+        tableView_dausach->setColumnWidth(3, 100);
+        tableView_dausach->setColumnWidth(4, 100);
+        tableView_dausach->setColumnWidth(5, 100);
+        tableView_dausach->setColumnWidth(6, 100);
+
     } else {
         InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
     }
 
 
-    tableView_dausach->setColumnWidth(0, 120);
-    tableView_dausach->setColumnWidth(1, 200);
-    tableView_dausach->setColumnWidth(2, 100);
-    tableView_dausach->setColumnWidth(3, 100);
-    tableView_dausach->setColumnWidth(4, 100);
-    tableView_dausach->setColumnWidth(5, 100);
-    tableView_dausach->setColumnWidth(6, 100);
+
 }
 
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
