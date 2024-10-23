@@ -47,18 +47,16 @@ void themDocGia_Dialog::on_ok_pushButton_clicked()
 
 void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     QString newText = arg1;
-    if ( newText == " ") {
-        while ( newText == " ") {
-            newText.replace(" ", "");
-        }
+    if (newText == " ") {
+        newText.replace(" ", "");
     }
-    if (newText.contains("  ")) {
-        while (newText.contains("  ")) {
-            newText.replace("  ", " ");
-        }
+
+    while (newText.contains("  ")) {
+        newText.replace("  ", " ");
     }
-    if ( !newText[ newText.length() - 1].isLetter() && !newText[ newText.length() - 1].isSpace() ) {
-        lineEdit->setText(newText.mid(0, newText.length() - 1));
+
+    if (!newText.isEmpty() && !newText[newText.length() - 1].isLetter() && !newText[newText.length() - 1].isSpace()) {
+        newText = newText.mid(0, newText.length() - 1);
     }
     for ( int i = 0; i < newText.length(); i++ ) {
         if ( i == 0 ) {
@@ -68,6 +66,7 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
             newText[i] = newText[i].toUpper();
         }
     }
+
     if (newText != arg1) {
         lineEdit->setText(newText);
     }
@@ -80,7 +79,6 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
 
 void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
 {
-    ui->hoEdit->setStyleSheet("QLineEdit {background-color: white;");
     xuLyChuoi(arg1, ui->hoEdit);
 }
 
@@ -96,15 +94,11 @@ bool themDocGia_Dialog::kiemTraChuoi(QString s) {
 
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
-    ui->ten_lineEdit->setStyleSheet("QLineEdit {background-color: white;");
     xuLyChuoi(arg1, ui->ten_lineEdit);
 }
 
 
 void themDocGia_Dialog::on_nam_radioButton_clicked()
 {
-    if ( ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked()) {
-
-    }
 }
 

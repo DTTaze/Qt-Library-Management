@@ -197,9 +197,13 @@ void Ghi_The_Vao_File() {
                 << current->thong_tin.Ten << "|"
                 << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
         if ( current->thong_tin.head_lsms != nullptr ) {
-        outFile << current->thong_tin.head_lsms->data.masach << "|"
-                << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
-                << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
+            DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
+            while ( temp != nullptr ) {
+                outFile << current->thong_tin.head_lsms->data.masach << "|"
+                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
+                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
+                temp = temp->next;
+            }
         }
         outFile << endl;
         if ( current->ptr_left != nullptr ) {
@@ -241,20 +245,34 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
 
         Them_Doc_Gia(root, docGia);
 
-        if(fields[4].isEmpty()){
-            continue;
-        } else {
-            string ma_sach = fields[4].toStdString();
-            string ngay_muon = fields[5].toStdString();
+        int index = 4;
+        Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
+        while ( !fields[index].isEmpty()) {
+            string ma_sach = fields[index].toStdString();
+            string ngay_muon = fields[index + 1].toStdString();
             string ngay_tra;
-            if (!fields[6].isEmpty()){
-                ngay_tra = fields[6].toStdString();
+            if (!fields[index + 2].isEmpty()){
+                ngay_tra = fields[index + 2].toStdString();
             }else{
                 ngay_tra= "";
             }
-            Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
             Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+            index += 3;
         }
+        // if(fields[4].isEmpty()){
+        //     continue;
+        // } else {
+        //     string ma_sach = fields[4].toStdString();
+        //     string ngay_muon = fields[5].toStdString();
+        //     string ngay_tra;
+        //     if (!fields[6].isEmpty()){
+        //         ngay_tra = fields[6].toStdString();
+        //     }else{
+        //         ngay_tra= "";
+        //     }
+        //     Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
+        //     Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+        // }
     }
     Copy_Cay_Sang_Mang(root);
     inFile.close();
