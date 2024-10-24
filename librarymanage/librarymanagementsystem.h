@@ -56,6 +56,8 @@ private slots:
     void on_traSach_pushButton_clicked();
 
     void on_timSach_pushButton_clicked();
+    void on_themSach_pushButton_2_clicked();
+
 public slots:
 
 private:

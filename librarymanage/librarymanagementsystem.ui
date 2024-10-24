@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
-    <height>718</height>
+    <width>1015</width>
+    <height>761</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -267,7 +267,7 @@ color: black;</string>
             <property name="geometry">
              <rect>
               <x>40</x>
-              <y>590</y>
+              <y>580</y>
               <width>111</width>
               <height>51</height>
              </rect>
@@ -393,6 +393,60 @@ QPushButton:focus {
             </property>
             <property name="text">
              <string>In Thể Loại</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="themSach_pushButton_2">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>580</y>
+              <width>171</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #1899D6;
+    border: none;
+    border-radius: 16px;
+    padding: 13px 16px;
+    font-family: &quot;Arial&quot;, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
+            </property>
+            <property name="text">
+             <string>Thanh lý</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Thanhly.png</normaloff>Thanhly.png</iconset>
             </property>
            </widget>
           </widget>
@@ -867,7 +921,7 @@ color: black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>937</width>
+     <width>1015</width>
      <height>26</height>
     </rect>
    </property>

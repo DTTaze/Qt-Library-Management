@@ -61,7 +61,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
 
     for (QChar c : text) {
-        if (c.isLetter() || c.isDigit()) {
+        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
             key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
             lastWasSpace = false; // Reset trạng thái lastWasSpace
         } else if (c.isSpace()) {
@@ -98,6 +98,23 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
             InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
         }
     }
+}
+
+void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
+{
+    QModelIndex index = ui->tableView_dausach->currentIndex();
+    int row = index.row();
+    int column = 0;
+
+    QVariant data = index.sibling(row, column).data();
+
+    string ma_ISBN = data.toString().toStdString();
+    int i = 0;
+    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+    qDebug()<<"Hang: "<<row<<"|"<<ma_ISBN;
+    if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
+    else {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
+
 }
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
@@ -248,3 +265,6 @@ void LibraryManagementSystem::on_timSach_pushButton_clicked()
     timkiem.setModal(true);
     timkiem.exec();
 }
+
+
+
