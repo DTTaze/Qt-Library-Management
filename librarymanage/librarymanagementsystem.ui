@@ -413,10 +413,10 @@ QPushButton:focus {
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTableWidget {
-        border-color: black;   
-        border: 1px  black;  
- }</string>
+             <string notr="true">QTableWidget::item:selected { background-color: #6bdcff; color: black; }
+QHeaderView::section { border: 1px solid black;border-collapse: collapse;  }
+QTableWidget::item { border: 1px solid black; border-collapse: collapse; }
+</string>
             </property>
             <column>
              <property name="text">
@@ -597,7 +597,7 @@ QPushButton:focus {
               <normaloff>download-solid.svg</normaloff>download-solid.svg</iconset>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>390</x>
@@ -609,8 +609,11 @@ QPushButton:focus {
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
               <widget class="QLabel" name="label">
+               <property name="styleSheet">
+                <string notr="true">text-align: right;</string>
+               </property>
                <property name="text">
-                <string>Sắp xếp</string>
+                <string>      Sắp xếp:</string>
                </property>
               </widget>
              </item>

@@ -16,7 +16,8 @@
 
 using namespace std;
 
-enum Phai{
+enum Phai
+{
     Nam = 1,
     Nu = 0
 };
