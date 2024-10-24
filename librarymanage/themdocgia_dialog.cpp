@@ -62,7 +62,7 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
         if ( i == 0 ) {
             newText[0] = newText[0].toUpper();
         }
-        if ( newText[i-1] == ' ') {
+        if ( i > 0 && newText[i-1] == ' ') {
             newText[i] = newText[i].toUpper();
         }
     }

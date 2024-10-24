@@ -252,30 +252,16 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
         while ( !fields[index].isEmpty()) {
             string ma_sach = fields[index].toStdString();
-            string ngay_muon = fields[index + 1].toStdString();
-            string ngay_tra;
+            Date ngay_muon = ChuyenStringSangDate(fields[index+1].toStdString());
+            Date ngay_tra;
             if (!fields[index + 2].isEmpty()){
-                ngay_tra = fields[index + 2].toStdString();
-            }else{
-                ngay_tra= "";
+                ngay_tra = ChuyenStringSangDate(fields[index+2].toStdString());
             }
-            Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+            // Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
+            ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
+            ThemSach(danh_sach_muon_tra, ma_sach, ngay_muon, ngay_tra);
             index += 3;
         }
-        // if(fields[4].isEmpty()){
-        //     continue;
-        // } else {
-        //     string ma_sach = fields[4].toStdString();
-        //     string ngay_muon = fields[5].toStdString();
-        //     string ngay_tra;
-        //     if (!fields[6].isEmpty()){
-        //         ngay_tra = fields[6].toStdString();
-        //     }else{
-        //         ngay_tra= "";
-        //     }
-        //     Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
-        //     Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
-        // }
     }
     Copy_Cay_Sang_Mang(root);
     inFile.close();

@@ -27,19 +27,16 @@ public:
 
 
 private slots:
-
-    void on_muonsach_buttom_clicked();
-
-    void on_trasach_buttom_clicked();
-
-    void on_timsach_buttom_clicked();
-
     void page1Widget();
     void page2Widget();
     void page3Widget();
-
+//---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 
+    void on_inTheLoai_pushButton_clicked();
+
+    void on_themSach_pushButton_clicked();
+//--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
@@ -50,17 +47,16 @@ private slots:
 
     void CapNhatBang();
 
-    void on_inTheLoai_pushButton_clicked();
-
-    void on_tableView_dausach_activated(const QModelIndex &index);
-
-    void on_themSach_pushButton_clicked();
-
     void on_luuFile_pushButton_clicked();
 
+//---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
+    void on_muonSach_pushButton_clicked();
+
+    void on_traSach_pushButton_clicked();
+
+    void on_timSach_pushButton_clicked();
+
 public slots:
-
-
 
 private:
     Ui::LibraryManagementSystem *ui;

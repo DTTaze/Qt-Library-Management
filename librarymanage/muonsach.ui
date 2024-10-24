@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>750</height>
+    <width>567</width>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>0</y>
-     <width>971</width>
+     <x>-20</x>
+     <y>-10</y>
+     <width>891</width>
      <height>741</height>
     </rect>
    </property>
@@ -26,59 +26,50 @@
     <string notr="true">background-color: rgb(255,255,255);
 </string>
    </property>
-   <widget class="QLineEdit" name="sachcanmuon_earch">
+   <widget class="QTableWidget" name="sachMuon_table">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>50</y>
-      <width>371</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-border-color: rgb(0, 0, 0)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="mathedocgia_search">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>371</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-border-color: rgb(0, 0, 0)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>170</y>
-      <width>591</width>
-      <height>411</height>
+      <x>40</x>
+      <y>160</y>
+      <width>521</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border: 1px solid gray;
 color: black;</string>
     </property>
+    <column>
+     <property name="text">
+      <string>Mã sách</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Tên Sách</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Ngày mượn </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Ngày Trả </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Trạng thái</string>
+     </property>
+    </column>
    </widget>
    <widget class="QDialogButtonBox" name="buttonBox">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>670</y>
+      <x>220</x>
+      <y>310</y>
       <width>341</width>
       <height>32</height>
      </rect>
@@ -94,18 +85,91 @@ border-color: rgb(0, 0, 0)</string>
      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>620</y>
-      <width>151</width>
-      <height>61</height>
+      <x>40</x>
+      <y>120</y>
+      <width>141</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>ádfasdf</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>338</x>
+      <y>120</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ádfsdf</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>60</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Mã sách:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="maSach_lineEdit">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+border-color: rgb(0, 0, 0)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>60</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Mã Thẻ:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="maThe_lineEdit">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+border-color: rgb(0, 0, 0)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

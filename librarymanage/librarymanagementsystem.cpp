@@ -27,14 +27,8 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
 
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
-    Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
+    // Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
 }
-//------------------------------------Hàm sử dụng ở Thẻ Đầu Sách-----------------------------------------------------------------------
-LibraryManagementSystem::~LibraryManagementSystem()
-{
-    delete ui;
-}
-
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
@@ -49,7 +43,62 @@ void LibraryManagementSystem::page2Widget()
 void LibraryManagementSystem::page3Widget()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
+}
+//------------------------------------Hàm sử dụng ở Thẻ Đầu Sách-----------------------------------------------------------------------
+LibraryManagementSystem::~LibraryManagementSystem()
+{
+    delete ui;
+}
 
+void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
+{
+    InTheoTheLoai intheloai;
+    intheloai.setModal(true);
+    intheloai.exec();
+}
+
+void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
+    QString key ;
+    bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
+
+    for (QChar c : text) {
+        if (c.isLetter() || c.isDigit()) {
+            key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+            }
+        }
+    }
+
+    string valid_key = key.toStdString();
+    // Xóa khoảng trắng ở đầu
+    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+
+    ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
+
+    // Kiểm tra nếu key rỗng, không cần tìm kiếm
+    if (valid_key.empty()) {
+        valid_key=""; // Không gọi hàm tìm kiếm
+    }
+
+    // Gọi hàm tìm kiếm với key đã được lọc
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, valid_key);
+}
+
+void LibraryManagementSystem::on_themSach_pushButton_clicked()
+{
+    if (KiemTraDaySachKV(danh_sach_dau_sach)){
+        QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
+    }else{
+        themdausach themds;
+        themds.setModal(true);
+        if (themds.exec() == QDialog::Accepted){
+            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+        }
+    }
 }
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
@@ -78,8 +127,8 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
 
         The_Doc_Gia docGia;
         docGia.MATHE = LayMaTheNgauNhien();
-        docGia.Ho = themDocGia.getHo().toStdString();
-        docGia.Ten = themDocGia.getTen().toStdString();
+        docGia.Ho = themDocGia.getHo().trimmed().toStdString();
+        docGia.Ten = themDocGia.getTen().trimmed().toStdString();
         if ( themDocGia.getPhai() == "Nam") {
             docGia.phai = Phai::Nam;
         } else {
@@ -172,85 +221,27 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     }
 }
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
-void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
-{
-    InTheoTheLoai intheloai;
-    intheloai.setModal(true);
-    intheloai.exec();
-}
-
-void LibraryManagementSystem::on_muonsach_buttom_clicked()
+void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     muonsach muon_sach;
     muon_sach.setModal(true);
     muon_sach.exec();
 }
 
-void LibraryManagementSystem::on_trasach_buttom_clicked()
+
+void LibraryManagementSystem::on_traSach_pushButton_clicked()
 {
     trasach tra_sach;
     tra_sach.setModal(true);
     tra_sach.exec();
 }
 
-void LibraryManagementSystem::on_timsach_buttom_clicked()
+
+void LibraryManagementSystem::on_timSach_pushButton_clicked()
 {
     timkiemmasach timkiem;
     timkiem.setModal(true);
     timkiem.exec();
-}
-
-void LibraryManagementSystem::on_tableView_dausach_activated(const QModelIndex &index)
-{
-
-}
-
-
-void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
-    QString key ;
-    bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
-
-    for (QChar c : text) {
-        if (c.isLetter() || c.isDigit()) {
-            key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
-            lastWasSpace = false; // Reset trạng thái lastWasSpace
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
-                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
-            }
-        }
-    }
-
-    string valid_key = key.toStdString();
-    // Xóa khoảng trắng ở đầu
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
-
-    ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
-
-    // Kiểm tra nếu key rỗng, không cần tìm kiếm
-    if (valid_key.empty()) {
-        valid_key=""; // Không gọi hàm tìm kiếm
-    }
-
-    // Gọi hàm tìm kiếm với key đã được lọc
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, valid_key);
-}
-
-
-
-
-void LibraryManagementSystem::on_themSach_pushButton_clicked()
-{
-    if (KiemTraDaySachKV(danh_sach_dau_sach)){
-        QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
-    }else{
-        themdausach themds;
-        themds.setModal(true);
-        if (themds.exec() == QDialog::Accepted){
-            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
-        }
-    }
 }
 
 

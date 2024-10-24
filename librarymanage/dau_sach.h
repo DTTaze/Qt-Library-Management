@@ -1,7 +1,6 @@
 #ifndef DAUSACH_H
 #define DAUSACH_H
 #define MAXSACH 10000
-#define HASHSIZE 1000
 
 #include <QObject>
 #include <QString>
