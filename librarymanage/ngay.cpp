@@ -190,6 +190,23 @@ string ChuyenDateSangString(Date Ngay) {
     return ngay;
 }
 
+Date ChuyenStringSangDate(string nhap_ngaythangnam) {
+    string ngay, thang, nam;
+    Date nhap_ngay_thang_nam;
+    size_t vitri1 = nhap_ngaythangnam.find('/');
+    size_t vitri2 = nhap_ngaythangnam.find('/', vitri1 + 1);
+
+    ngay = nhap_ngaythangnam.substr(0, vitri1);
+    thang = nhap_ngaythangnam.substr(vitri1 + 1, vitri2 - vitri1 - 1);
+    nam = nhap_ngaythangnam.substr(vitri2 + 1);
+
+    nhap_ngay_thang_nam.day = stoi(ngay);
+    nhap_ngay_thang_nam.month = stoi(thang);
+    nhap_ngay_thang_nam.year = stoi(nam);
+
+    return nhap_ngay_thang_nam;
+}
+
 // int main () {
 //     Date muonsach, trasach;
 //     int luachon = 1;

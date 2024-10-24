@@ -41,4 +41,6 @@ void InManHinhNgayThangNam(Date ngay_thang_nam);
 
 string ChuyenDateSangString(Date Ngay);
 
+Date ChuyenStringSangDate(string nhap_ngaythangnam);
+
 #endif
