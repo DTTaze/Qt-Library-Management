@@ -1,4 +1,4 @@
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|1
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|0
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|0
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|0
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|0

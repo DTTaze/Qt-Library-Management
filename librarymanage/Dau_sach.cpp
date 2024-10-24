@@ -455,11 +455,9 @@ bool InVaoTXT(){
 }
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
-    qDebug()<<"Bắt đầu cập nhật trạng thái sách";
     string ma_ISBN = ma_sach.substr(0,17);
     int i = 0;
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-    qDebug()<<"Index: "<<i;
     danh_sach_dau_sach.node[i]->dms->trangthai = trang_thai;
-    qDebug()<<"Kết thúc cập nhật";
+    qDebug() << danh_sach_dau_sach.node[i]->tensach << " " << i;
 }

@@ -87,4 +87,6 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTabl
 
 bool InVaoTXT();
 
+void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
+
 #endif
