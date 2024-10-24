@@ -97,4 +97,12 @@ void Them_lich_su_sach(Danh_Sach_The_Doc_Gia* the_doc_gia, DanhSachMUONTRA *&dan
 void Them_Vao_QTableWidget_danhsachmuontra(QTableWidget* tableWidget, const The_Doc_Gia& docGia, DanhSachMUONTRA *&danh_sach_lich_su_muon_tra);
 void Them_Cay_Vao_QTableWidget_danhsachquahan(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root, DanhSachMUONTRA *danh_sach_lich_su_muon_tra);
 void Top10QuyenSachNhieuLuotMuonNhat() ;
+
+void SapXepTheoThoiGianQuaHan(DanhSachMUONTRA *&head);
+
+DanhSachMUONTRA *DanhSachQuaHan ();
+
+string TimKiemTenDocGia (Danh_Sach_The_Doc_Gia *root, string ma_sach);
+
+void InDocGiaQuaHan(Danh_Sach_The_Doc_Gia * root) ;
 #endif

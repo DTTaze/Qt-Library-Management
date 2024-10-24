@@ -417,6 +417,80 @@ void Top10QuyenSachNhieuLuotMuonNhat() {
     }
 
 }
+/*------------------------------------------------------------------------------------------------------------*/
+
+void SapXepTheoThoiGianQuaHan(DanhSachMUONTRA *&head)
+{
+    DanhSachMUONTRA *p;
+    DanhSachMUONTRA *q;
+    DanhSachMUONTRA *pmin;
+
+    for (p = head; p != NULL; p = p->next)
+    {
+        int min = SoNgayQuaHan(p->data.NgayMuon, NgayHomNay());
+        pmin = p;
+
+        for(q = p->next; q != NULL; q = q->next)
+        {
+            if (SoNgayQuaHan(q->data.NgayMuon, NgayHomNay()) < min)
+            {
+                min = SoNgayQuaHan(q->data.NgayMuon, NgayHomNay());
+                pmin = q;
+            }
+        }
+
+        if (pmin != p)
+        {
+            MUONTRA temp = p->data;
+            p->data = pmin->data;
+            pmin->data = temp;
+        }
+    }
+}
+
+
+DanhSachMUONTRA *DanhSachQuaHan () {
+    DanhSachMUONTRA *danhsachquahan = nullptr;
+    DanhSachMUONTRA *head = danh_sach_muon_tra;
+    if (head == nullptr) return nullptr;
+    while (head != nullptr) {
+        if(head->data.NgayTra.day == 0 ) {
+            int songayquahan = SoNgayQuaHan(head->data.NgayMuon, NgayHomNay());
+            if(songayquahan > 0) {
+                DanhSachMUONTRA *node = new DanhSachMUONTRA;
+                node->data = head->data;
+                node->next = danhsachquahan;
+                danhsachquahan = node;
+                }
+            }
+        head = head->next;
+        }
+    SapXepTheoThoiGianQuaHan(danhsachquahan);
+    return danhsachquahan;
+}
+
+string TimKiemTenDocGia (Danh_Sach_The_Doc_Gia *root, string ma_sach)
+{
+    Danh_Sach_The_Doc_Gia* p;   p = root;
+    while (p != NULL && p->thong_tin.head_lsms->data.masach != ma_sach)
+        if(ma_sach < p->thong_tin.head_lsms->data.masach)
+            p = p->ptr_left;
+        else
+            p = p->ptr_right;
+    string ho_va_ten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
+
+    return ho_va_ten;
+}
+
+void InDocGiaQuaHan(Danh_Sach_The_Doc_Gia * root) {
+    DanhSachMUONTRA *head = DanhSachQuaHan();
+    while(head != nullptr) {
+        string HoVaTen = TimKiemTenDocGia(root, head->data.masach);
+        int so_ngay_qua_han = SoNgayQuaHan(head->data.NgayMuon, NgayHomNay());
+        cout<<HoVaTen << so_ngay_qua_han <<endl;
+        head = head->next;
+    }
+}
 
 // void DocFileDocGiaQuaHan(DocGiaQuaHan *danhsachquahan, QTableView* tableView_danhsachquahan, QWidget* parent) {
 //     ifstream file("docgia_100.txt");
