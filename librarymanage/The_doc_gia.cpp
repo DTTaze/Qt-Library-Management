@@ -35,7 +35,7 @@ void taoMangTrungVi(int& index, int start, int end) {
 
 int LayMaTheNgauNhien() {
     if ( mangMaThe.maThe[index_MangRandom] == 0 ) {
-        QMessageBox::warning(parent,"Lỗi", "Đã hết mã thẻ");
+        QMessageBox::warning(nullptr,"Lỗi", "Đã hết mã thẻ");
         return 0;
     }
     return mangMaThe.maThe[index_MangRandom++];

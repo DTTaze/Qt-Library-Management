@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>750</height>
+    <width>937</width>
+    <height>718</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -49,8 +49,8 @@
          <widget class="QLabel" name="name_project_Label">
           <property name="geometry">
            <rect>
-            <x>30</x>
-            <y>90</y>
+            <x>20</x>
+            <y>60</y>
             <width>321</width>
             <height>91</height>
            </rect>
@@ -69,8 +69,8 @@ text-align: center;
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>70</x>
-            <y>220</y>
+            <x>60</x>
+            <y>200</y>
             <width>181</width>
             <height>401</height>
            </rect>
@@ -230,10 +230,10 @@ QPushButton:focus {
          <widget class="QStackedWidget" name="stackedWidget_infor">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>20</y>
-            <width>661</width>
-            <height>661</height>
+            <x>0</x>
+            <y>10</y>
+            <width>641</width>
+            <height>631</height>
            </rect>
           </property>
           <widget class="QWidget" name="page_dausach">
@@ -400,15 +400,23 @@ QPushButton:focus {
            <widget class="QTableWidget" name="tableWidget_2">
             <property name="geometry">
              <rect>
-              <x>70</x>
-              <y>80</y>
-              <width>461</width>
-              <height>451</height>
+              <x>40</x>
+              <y>100</y>
+              <width>531</width>
+              <height>391</height>
              </rect>
             </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="styleSheet">
-             <string notr="true">border: 1px solid gray;
-color: black;</string>
+             <string notr="true">QTableWidget {
+        border-color: black;   
+        border: 1px  black;  
+ }</string>
             </property>
             <column>
              <property name="text">
@@ -435,31 +443,6 @@ color: black;</string>
               <string>Trạng Thái</string>
              </property>
             </column>
-           </widget>
-           <widget class="QComboBox" name="sapXepDocGia_ComboBox">
-            <property name="geometry">
-             <rect>
-              <x>470</x>
-              <y>20</y>
-              <width>121</width>
-              <height>28</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border: 1px solid gray;
-color: black;
-</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Mã số</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Tên</string>
-             </property>
-            </item>
            </widget>
            <widget class="QPushButton" name="themDocGia_pushButton">
             <property name="geometry">
@@ -613,6 +596,44 @@ QPushButton:focus {
              <iconset>
               <normaloff>download-solid.svg</normaloff>download-solid.svg</iconset>
             </property>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>390</x>
+              <y>50</y>
+              <width>181</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Sắp xếp</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="sapXepDocGia_ComboBox">
+               <property name="styleSheet">
+                <string notr="true">border: 1px solid gray;
+color: black;
+</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Mã số</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tên</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </widget>
           <widget class="QWidget" name="page_muontra">
@@ -843,7 +864,7 @@ color: black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>937</width>
      <height>26</height>
     </rect>
    </property>
