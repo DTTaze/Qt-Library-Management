@@ -49,13 +49,13 @@ private slots:
 
     void on_luuFile_pushButton_clicked();
 
+    void on_tableWidget_2_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
     void on_muonSach_pushButton_clicked();
 
     void on_traSach_pushButton_clicked();
 
     void on_timSach_pushButton_clicked();
-
 public slots:
 
 private:

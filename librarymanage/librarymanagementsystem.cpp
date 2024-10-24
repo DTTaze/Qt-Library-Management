@@ -27,7 +27,6 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
 
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
-    // Them_Cay_Vao_QTableWidget_danhsachquahan(ui->tableWidget_danhsachquahan, root, danh_sach_muon_tra);
 }
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
@@ -155,7 +154,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     if (item) {
         int MATHE = item->text().toInt();
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, MATHE);
-        if ( p->thong_tin.head_lsms != nullptr ) {
+        if ( p->thong_tin.head_lsms != nullptr || p->thong_tin.TrangThai == TrangThaiCuaThe::Khoa) {
             QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này");
         } else {
             Xoa_Doc_Gia(root, MATHE);
@@ -184,13 +183,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     int column = item->column();
 
     QTableWidgetItem* maTheItem = ui->tableWidget_2->item(row, 0);
-    bool ok;
-    int maThe = maTheItem->text().toInt(&ok);
-
-    if (!ok) {
-        QMessageBox::warning(this, "Cảnh báo", "Không thể lấy mã thẻ.");
-        return;
-    }
+    int maThe = maTheItem->text().toInt();
 
     QString newValue = item->text();
 
@@ -210,7 +203,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Phai", newValue.toStdString());
         break;
     case 4:
-        if (newValue != "Đang Hoạt Động" && newValue != "Bị Khóa") {
+        if (newValue != "Đang Hoạt Động" && newValue != "Khóa") {
             QMessageBox::warning(this, "Cảnh báo", "Giá trị trạng thái không hợp lệ. Vui lòng nhập 'Đang Hoạt Động' hoặc 'Bị Khóa'.");
             return;
         }
@@ -220,6 +213,18 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
         break;
     }
 }
+
+void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int column)
+{
+    if ( column == 0 ) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể thay đổi mã thẻ");
+        QTableWidgetItem *item = ui->tableWidget_2->item(row, 0);
+        if (item) {
+            item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Đặt ô này thành chỉ có thể xem
+        }
+    }
+}
+
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
@@ -243,5 +248,3 @@ void LibraryManagementSystem::on_timSach_pushButton_clicked()
     timkiem.setModal(true);
     timkiem.exec();
 }
-
-

@@ -65,7 +65,6 @@ void Ghi_Ma_The_Vao_File(int index) {
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
     if ( root == nullptr ) return;
-    // Them_Doc_Gia_Mang(root->thong_tin);
     Them_Doc_Gia_Vao_Mang(root);
     Copy_Cay_Sang_Mang(root->ptr_left);
     Copy_Cay_Sang_Mang(root->ptr_right);
@@ -199,11 +198,23 @@ void Ghi_The_Vao_File() {
                 << current->thong_tin.Ho << "|"
                 << current->thong_tin.Ten << "|"
                 << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
+        if ( current->thong_tin.TrangThai == TrangThaiCuaThe::Dang_Hoat_Dong ) {
+            outFile << "1" << "|";
+        } else {
+            outFile << "0" << "|";
+        }
         if ( current->thong_tin.head_lsms != nullptr ) {
             DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
             while ( temp != nullptr ) {
-                outFile << current->thong_tin.head_lsms->data.masach << "|"
-                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
+                outFile << current->thong_tin.head_lsms->data.masach << "|";
+                if ( current->thong_tin.TrangThai == 0 ) {
+                    outFile << "0" << "|";
+                } else if ( current->thong_tin.TrangThai == 1 ) {
+                    outFile << "1" << "|";
+                } else {
+                    outFile << "2" << "|";
+                }
+                outFile << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
                         << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
                 temp = temp->next;
             }
@@ -222,34 +233,40 @@ void Ghi_The_Vao_File() {
 void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file");
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file docgia_100.txt");
         return;
     }
+
     string line;
     while (getline(inFile, line)) {
         QString strLine = QString::fromStdString(line).trimmed(); // Đọc và xử lý dòng
         QStringList fields = strLine.split("|"); // Tách theo |
 
-        if (fields.size() < 4) {
+        if (fields.size() < 5) {
             continue;
         }
 
-        unsigned int mathe = fields[0].toUInt();
-        string Ho = fields[1].toStdString();
-        string Ten = fields[2].toStdString();
-        Phai phai = (fields[3].trimmed() == "Nam") ? Nam : Nu;
-
         The_Doc_Gia docGia;
-        docGia.MATHE = mathe;
-        docGia.Ho = Ho;
-        docGia.Ten = Ten;
-        docGia.phai = phai;
-        docGia.TrangThai = Dang_Hoat_Dong;
-
+        docGia.MATHE = fields[0].toUInt();
+        docGia.Ho = fields[1].toStdString();
+        docGia.Ten = fields[2].toStdString();
+        if ( fields[3] == "Nam") {
+            docGia.phai = Phai::Nam;
+        } else if ( fields[3] == "Nữ"){
+            docGia.phai = Phai::Nu;
+        } else {
+            QMessageBox::warning(nullptr, "Lỗi", "Giới tính không hợp lệ");
+        }
+        if ( fields[4] == "1" ) {
+            docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+        } else if ( fields[4] == "0" ){
+            docGia.TrangThai = TrangThaiCuaThe::Khoa;
+        } else {
+            QMessageBox::warning(nullptr, "Lỗi", "Trạng thái không hợp lệ");
+        }
         Them_Doc_Gia(root, docGia);
-
-        int index = 4;
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
+        int index = 5;
         while ( !fields[index].isEmpty()) {
             string ma_sach = fields[index].toStdString();
             Date ngay_muon = ChuyenStringSangDate(fields[index+1].toStdString());
@@ -257,10 +274,9 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
             if (!fields[index + 2].isEmpty()){
                 ngay_tra = ChuyenStringSangDate(fields[index+2].toStdString());
             }
-            // Them_lich_su_sach(p,danh_sach_muon_tra,ma_sach,ngay_muon,ngay_tra);
             ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
             ThemSach(danh_sach_muon_tra, ma_sach, ngay_muon, ngay_tra);
-            index += 3;
+            index += 4;
         }
     }
     Copy_Cay_Sang_Mang(root);
@@ -276,7 +292,7 @@ void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* doc
     tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ho))); // Họ
     tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ten))); // Tên
     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia->thong_tin.phai == Nam ? "Nam" : "Nữ")); // Phái
-    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
+    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa")); // Trạng thái
 }
 
 void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) { // Hàm thêm thông tin từ cây vào table
