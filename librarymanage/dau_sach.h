@@ -61,7 +61,9 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
 
-void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_intheloai);
+void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach);
+
+void InFullTheoTenSach(string key, QTableView* tableView_dausach);
 
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key);
 
@@ -82,5 +84,7 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach);
 void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach,DanhMucSach* &head_dms,string I_S_B_N, string ten_sach,int so_trang,string tac_gia,int nam_sx,string the_loai,string vi_tri);
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTableView *tableView_dausach,QWidget* parent);
+
+bool InVaoTXT();
 
 #endif

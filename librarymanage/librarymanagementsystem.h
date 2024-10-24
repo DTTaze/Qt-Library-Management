@@ -58,6 +58,8 @@ private slots:
     void on_timSach_pushButton_clicked();
     void on_themSach_pushButton_2_clicked();
 
+    void on_pushButton_luuds_clicked();
+
 public slots:
 
 private:

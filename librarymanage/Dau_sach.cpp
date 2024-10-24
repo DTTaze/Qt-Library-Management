@@ -113,6 +113,66 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
     tableView_dausach->setColumnWidth(8,100);
 }
 
+void ChuyenVeChuThuong(std::string& str) {
+    for (size_t i = 0; i < str.size(); ++i) {
+        str[i] = tolower(static_cast<unsigned char>(str[i]));
+    }
+}//static_cast<unsigned char> de cac ki tu am khong gay loi
+
+void InFullTheoTenSach(string key, QTableView* tableView_dausach){
+    QStandardItemModel* model;
+    int row_count = 0;
+    model = new QStandardItemModel(0, 7);
+
+    QString headers[7] = {
+        "ISBN", "Tên sách", "Tác giả", "Năm xuất bản", "Thể loại", "Mã sách", "Trạng thái"
+    };
+    for (int i = 0; i < 7; i++) {
+        model->setHeaderData(i, Qt::Horizontal, headers[i]);
+    }
+
+    ChuyenVeChuThuong(key);
+
+    for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
+
+        string ten_sach = danh_sach_dau_sach.node[i]->tensach;
+
+        ChuyenVeChuThuong(ten_sach);
+
+        if (ten_sach.find(key) != std::string::npos) {
+            int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
+            string trang_thai_std;
+
+            model->insertRow(row_count);
+            model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
+            model->setItem(row_count, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
+            model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
+            model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
+            model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
+            model->setItem(row_count, 5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->dms->masach)));
+            switch (trangthai){
+            case 0:trang_thai_std = "Có thể mượn";break;
+            case 1:trang_thai_std = "Đã được mượn";break;
+            case 2:trang_thai_std = "Đã thanh lý";break;
+            }
+
+            model->setItem(row_count, 6, new QStandardItem(QString::fromStdString(trang_thai_std)));
+            row_count++;
+        }
+    }
+
+    tableView_dausach->setModel(model);
+
+    tableView_dausach->setColumnWidth(0, 120);
+    tableView_dausach->setColumnWidth(1, 200);
+    tableView_dausach->setColumnWidth(2, 100);
+    tableView_dausach->setColumnWidth(3, 100);
+    tableView_dausach->setColumnWidth(4, 100);
+    tableView_dausach->setColumnWidth(5, 100);
+    tableView_dausach->setColumnWidth(6, 100);
+
+}
+
 int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key){
     int left = 0;
     int right = danh_sach_dau_sach.demsach-1;
@@ -295,67 +355,12 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 }
 
-void ChuyenVeChuThuong(std::string& str) {
-    for (size_t i = 0; i < str.size(); ++i) {
-        str[i] = tolower(static_cast<unsigned char>(str[i]));
-    }
-}//static_cast<unsigned char> de cac ki tu am khong gay loi
-
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach, string key) {
     QStandardItemModel* model;
 
     // Neu nguoi dung nhap key
     if (!key.empty()) {
-        int row_count = 0;
-        model = new QStandardItemModel(0, 7);
-
-        QString headers[7] = {
-            "ISBN", "Tên sách", "Tác giả", "Năm xuất bản", "Thể loại", "Mã sách", "Trạng thái"
-        };
-        for (int i = 0; i < 7; i++) {
-            model->setHeaderData(i, Qt::Horizontal, headers[i]);
-        }
-
-        ChuyenVeChuThuong(key);
-
-        for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
-
-            string ten_sach = danh_sach_dau_sach.node[i]->tensach;
-
-            ChuyenVeChuThuong(ten_sach);
-
-            if (ten_sach.find(key) != std::string::npos) {
-                int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
-                string trang_thai_std;
-
-                model->insertRow(row_count);
-                model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
-                model->setItem(row_count, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
-                model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
-                model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
-                model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
-                model->setItem(row_count, 5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->dms->masach)));
-                switch (trangthai){
-                case 0:trang_thai_std = "Có thể mượn";break;
-                case 1:trang_thai_std = "Đã được mượn";break;
-                case 2:trang_thai_std = "Đã thanh lý";break;
-                }
-
-                model->setItem(row_count, 6, new QStandardItem(QString::fromStdString(trang_thai_std)));
-                row_count++;
-            }
-        }
-
-        tableView_dausach->setModel(model);
-
-        tableView_dausach->setColumnWidth(0, 120);
-        tableView_dausach->setColumnWidth(1, 200);
-        tableView_dausach->setColumnWidth(2, 100);
-        tableView_dausach->setColumnWidth(3, 100);
-        tableView_dausach->setColumnWidth(4, 100);
-        tableView_dausach->setColumnWidth(5, 100);
-        tableView_dausach->setColumnWidth(6, 100);
-
+        InFullTheoTenSach(key,tableView_dausach);
     } else {
         InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
     }
@@ -386,7 +391,7 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
     std::string line;
     while (std::getline(file, line)) {
         std::string ISBN, tensach, tacgia, theloai, vitri;
-        int sotrang = 0, namsx = 0;
+        int sotrang = 0, namsx = 0,trangthai= -1;
 
         // Tách thông tin
         size_t pos = 0;
@@ -412,20 +417,21 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         pos = line.find('|');
         vitri = line.substr(0, pos); line.erase(0, pos + 1);
 
+        pos = line.find('|');
+        trangthai = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
         // Kiểm tra các trường hợp rỗng
         if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
             continue;
         }
 
         // Thêm đầu sách vào danh sách
-        ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, 0, vitri);
+        ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, trangthai, vitri);
     }
     file.close();
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
 }
-
-void InVaoTXT(){
+bool InVaoTXT(){
     ofstream file("Danh_sach_dau_sach.txt");
     if (file.is_open()) {
         for (int i = 0; i < danh_sach_dau_sach.demsach; ++i) {
@@ -438,10 +444,22 @@ void InVaoTXT(){
                  << dau_sach->namsx << '|'
                  << dau_sach->theloai << '|'
                  << dau_sach->dms->trangthai;
-            }
             file << endl; // Kết thúc dòng thông tin của đầu sách
+        }
         file.close();
+            return true;
     } else {
         qDebug() << "Khong the mo file de ghi!" << "\n";
+        return false;
     }
+}
+
+void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
+    qDebug()<<"Bắt đầu cập nhật trạng thái sách";
+    string ma_ISBN = ma_sach.substr(0,17);
+    int i = 0;
+    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+    qDebug()<<"Index: "<<i;
+    danh_sach_dau_sach.node[i]->dms->trangthai = trang_thai;
+    qDebug()<<"Kết thúc cập nhật";
 }

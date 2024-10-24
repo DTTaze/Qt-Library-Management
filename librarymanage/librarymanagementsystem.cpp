@@ -104,6 +104,8 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
 {
     QModelIndex index = ui->tableView_dausach->currentIndex();
     int row = index.row();
+    if (row == -1) return;
+
     int column = 0;
 
     QVariant data = index.sibling(row, column).data();
@@ -113,8 +115,24 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
     qDebug()<<"Hang: "<<row<<"|"<<ma_ISBN;
     if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
-    else {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
+    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
+    else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
+    if (ui->lineEdit_timkiemds->text().isEmpty()){
+        InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+    }else{
+        string key = ui->lineEdit_timkiemds->text().toStdString();
+        InFullTheoTenSach(key,ui->tableView_dausach);
+    }
+}
 
+
+void LibraryManagementSystem::on_pushButton_luuds_clicked()
+{
+    if(InVaoTXT()){
+    QMessageBox::information(this, "Thông báo", "Đã lưu danh sách ");
+    }else{
+        QMessageBox::warning(this, "Thông báo", "Đã lưu danh sách");
+    }
 }
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
@@ -265,6 +283,8 @@ void LibraryManagementSystem::on_timSach_pushButton_clicked()
     timkiem.setModal(true);
     timkiem.exec();
 }
+
+
 
 
 
