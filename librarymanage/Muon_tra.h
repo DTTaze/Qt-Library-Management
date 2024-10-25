@@ -68,7 +68,7 @@ void MuonSach(const int &maThe, const string& maSach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
-void TraSach (Danh_Sach_The_Doc_Gia doc_gia, string ma_sach) ;
+void TraSach(const unsigned int& ma_the, const string& ma_sach);
 //----------------------------------------------------------------Hàm liên quan tìm sách-----------------------------------------------------------------------------------------------
 void DanhSachSachDocGiaMuon(Danh_Sach_The_Doc_Gia doc_gia) ;
 //----------------------------------------------------------------Bảng top 10 sách được mượn nhiều nhất--------------------------------------------------------------------------------

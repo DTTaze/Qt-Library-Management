@@ -113,46 +113,35 @@ void MuonSach(const int& maThe, const string& maSach) {
 
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
-    // Tìm kiếm độc giả theo mã thẻ
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
-
-    // Kiểm tra nếu độc giả không tồn tại
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
         return;
     }
 
-    // Tìm kiếm trong danh sách mượn
-    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    bool sachDaTra = false;
-
+    if (doc_gia->thong_tin.head_lsms == nullptr) {
+        QMessageBox::warning(nullptr, "Lỗi", "Độc giả này không có sách mượn.");
+        return;
+    }
+    DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
-        // Kiểm tra xem mã sách có trong danh sách mượn không
-        if (current->data.masach == ma_sach) {
-            // Cập nhật ngày trả sách
-            current->data.NgayTra = NgayTraThucTe();
-            current->data.trangthai = 1; // Đánh dấu sách đã được trả
-
-            // Cập nhật thông tin trong danh sách đầu sách
+        if (current->data.masach == ma_sach && current->data.trangthai == 0) {
+            current->data.NgayTra = NgayHomNay();
+            current->data.trangthai = 1;
             string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach);
             if (!ten_sach.empty()) {
-                // Nếu cần, cập nhật số lượng sách trong danh sách đầu sách (giả sử đã có hàm thực hiện điều này)
-                CapNhatSoLuongSach(danh_sach_dau_sach, current->data.masach, true);
+                string ma_ISBN = ma_sach.substr(0,17);
+                int i = 0;
+                for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+                danh_sach_dau_sach.node[i]->dms->trangthai = 0;
+                qDebug()<<danh_sach_dau_sach.node[i]->dms->masach;
             }
 
-            sachDaTra = true; // Đánh dấu sách đã trả
-            break; // Thoát khỏi vòng lặp khi đã tìm thấy sách
+            break;
         }
-        current = current->next; // Chuyển đến phần tử tiếp theo
+        current = current->next;
     }
-
-    // Nếu sách không được tìm thấy trong danh sách mượn
-    if (!sachDaTra) {
-        QMessageBox::warning(nullptr, "Lỗi", "Sách không được tìm thấy trong danh sách mượn.");
-    } else {
-        // Thông báo thành công
-        QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
-    }
+    QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
 }
 
 
@@ -162,7 +151,6 @@ void DanhSachSachDocGiaMuon(const unsigned int & ma_the, QTableWidget* tableWidg
     while(current != nullptr) {
         ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
         current = current->next;
-        // tableWidget-
     }
 }
 

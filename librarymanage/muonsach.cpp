@@ -26,6 +26,9 @@ string muonsach::getMaSach() {
 
 void muonsach::inThongTin(int maThe, QTableView* tableView) {
     Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, maThe);
+
+    ui->tenDocGia_label->setText(QString::fromStdString(p->thong_tin.Ten));
+
     DanhSachMUONTRA* current = p->thong_tin.head_lsms;
     QStandardItemModel* model = new QStandardItemModel(3, 5);
 
@@ -51,6 +54,7 @@ void muonsach::inThongTin(int maThe, QTableView* tableView) {
         current = current->next;
     }
     tableView->setModel(model);
+
 }
 
 void muonsach::on_pushButton_ok_clicked()

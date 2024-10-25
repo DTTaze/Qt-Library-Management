@@ -341,7 +341,7 @@ QPushButton:focus {
              <string>In Thể Loại</string>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>70</x>
@@ -966,9 +966,8 @@ color: black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-
      <width>1025</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">
