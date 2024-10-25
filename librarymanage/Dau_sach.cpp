@@ -428,8 +428,6 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, trangthai, vitri);
     }
     file.close();
-
-    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
 }
 bool InVaoTXT(){
     ofstream file("Danh_sach_dau_sach.txt");

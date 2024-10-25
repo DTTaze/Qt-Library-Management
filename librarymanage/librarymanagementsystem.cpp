@@ -24,9 +24,10 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     Doc_File_Ma_The();
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2, ui->tableView_dausach); // Load thông tin từ file docgia_100.txt vào cây
+    Doc_Thong_Tin_Tu_File(danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
 
-    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
+    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
+    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
 
     Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
     inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);

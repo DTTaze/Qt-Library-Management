@@ -90,7 +90,7 @@ void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia);
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
 
 // Hàm đọc và ghi thông tin
-void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so, DanhSachMUONTRA *&danh_sach_muon_tra,QTableWidget* tableWidget, QTableView* tableView);
+void Doc_Thong_Tin_Tu_File(DanhSachMUONTRA *&danh_sach_muon_tra,QTableWidget* tableWidget);
 void Ghi_The_Vao_File();
 
 // Hàm chèn thông tin vào table
