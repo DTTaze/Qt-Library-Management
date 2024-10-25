@@ -230,7 +230,7 @@ void Ghi_The_Vao_File() {
     outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
+void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* tableWidget, QTableView* tableView) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file docgia_100.txt");
@@ -278,9 +278,11 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
             }
             ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
             ThemSach(danh_sach_muon_tra, ma_sach, ngay_muon, ngay_tra);
+            CapNhatTrangThaiSach(ma_sach, trangthai);
             index += 4;
         }
     }
+    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView);
     Copy_Cay_Sang_Mang(root);
     inFile.close();
 }

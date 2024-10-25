@@ -108,7 +108,7 @@ void themdausach::on_pushButton_clicked() {
     }
 
     // Gọi hàm thêm đầu sách với các tham số đã chuyển đổi
-    NhapDauSachMoi(danh_sach_dau_sach, danh_muc_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, vitriStd);
+    ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, danh_muc_sach,0, vitriStd);
 
     // Tìm mã sách từ danh mục sách
     int index = 0;
@@ -191,7 +191,7 @@ void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
     bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
 
     for (QChar c : text) {
-        if (c.isLetter() || c.isDigit()) {
+        if (c.isLetter() || c.isDigit()|| c.isPunct() || c.isSymbol()) {
             key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
             lastWasSpace = false; // Reset trạng thái lastWasSpace
         } else if (c.isSpace()) {

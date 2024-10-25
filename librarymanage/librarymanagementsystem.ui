@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1006</width>
-    <height>781</height>
+    <width>1025</width>
+    <height>754</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -232,15 +232,15 @@ QPushButton:focus {
            <rect>
             <x>0</x>
             <y>10</y>
-            <width>641</width>
-            <height>661</height>
+            <width>661</width>
+            <height>671</height>
            </rect>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableView" name="tableView_dausach">
             <property name="geometry">
              <rect>
-              <x>0</x>
+              <x>20</x>
               <y>130</y>
               <width>631</width>
               <height>438</height>
@@ -263,65 +263,11 @@ color: black;</string>
              <bool>false</bool>
             </property>
            </widget>
-           <widget class="QPushButton" name="themSach_pushButton">
-            <property name="geometry">
-             <rect>
-              <x>40</x>
-              <y>590</y>
-              <width>111</width>
-              <height>51</height>
-             </rect>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton {
-    background-color: #1899D6;
-    border: none;
-    border-radius: 16px;
-    padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 0.8px;
-    color: #FFFFFF;
-    text-align: center;
-    text-transform: uppercase;
-    width: 100%;
-}
-
-QPushButton:hover {
-    background-color: #1CB0F6;
-}
-
-QPushButton:pressed {
-    background-color: #1899D6;
-    border-width: 4px 0 0;
-}
-
-QPushButton:disabled {
-    background-color: #D6D6D6;
-    color: #7F7F7F;
-}
-
-QPushButton:focus {
-    outline: none;
-}</string>
-            </property>
-            <property name="text">
-             <string>Thêm</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>plus-solid.svg</normaloff>plus-solid.svg</iconset>
-            </property>
-           </widget>
            <widget class="QLabel" name="timKiemDuSach_Label">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>0</y>
+              <x>50</x>
+              <y>10</y>
               <width>101</width>
               <height>41</height>
              </rect>
@@ -338,8 +284,8 @@ font-weight:600;</string>
            <widget class="QLineEdit" name="lineEdit_timkiemds">
             <property name="geometry">
              <rect>
-              <x>120</x>
-              <y>10</y>
+              <x>150</x>
+              <y>20</y>
               <width>481</width>
               <height>24</height>
              </rect>
@@ -351,7 +297,7 @@ font-weight:600;</string>
            <widget class="QPushButton" name="inTheLoai_pushButton">
             <property name="geometry">
              <rect>
-              <x>440</x>
+              <x>480</x>
               <y>60</y>
               <width>171</width>
               <height>41</height>
@@ -394,6 +340,159 @@ QPushButton:focus {
             <property name="text">
              <string>In Thể Loại</string>
             </property>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>600</y>
+              <width>511</width>
+              <height>48</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,6,2">
+             <item>
+              <widget class="QPushButton" name="themSach_pushButton_2">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #1899D6;
+    border: none;
+    border-radius: 16px;
+    padding: 13px 16px;
+    font-family: &quot;Arial&quot;, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>Thanh lý</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Thanhly.png</normaloff>Thanhly.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="themSach_pushButton">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #1899D6;
+    border: none;
+    border-radius: 16px;
+    padding: 13px 16px;
+    font-family: &quot;Arial&quot;, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>Thêm</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>plus-solid.svg</normaloff>plus-solid.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_luuds">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #1899D6;
+    border: none;
+    border-radius: 16px;
+    padding: 13px 16px;
+    font-family: &quot;Arial&quot;, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}</string>
+               </property>
+               <property name="text">
+                <string>Lưu</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>download-solid.svg</normaloff>download-solid.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </widget>
           <widget class="QWidget" name="page_docgia">
@@ -867,8 +966,9 @@ color: black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1006</width>
-     <height>21</height>
+
+     <width>1025</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">
