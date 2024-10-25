@@ -449,7 +449,6 @@ bool InVaoTXT(){
         file.close();
             return true;
     } else {
-        qDebug() << "Khong the mo file de ghi!" << "\n";
         return false;
     }
 }
@@ -459,5 +458,4 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     int i = 0;
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
     danh_sach_dau_sach.node[i]->dms->trangthai = trang_thai;
-    qDebug() << danh_sach_dau_sach.node[i]->tensach << " " << i;
 }

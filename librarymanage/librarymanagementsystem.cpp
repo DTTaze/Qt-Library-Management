@@ -116,7 +116,6 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     string ma_ISBN = data.toString().toStdString();
     int i = 0;
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-    qDebug()<<"Hang: "<<row<<"|"<<ma_ISBN;
     if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
     else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
     else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");

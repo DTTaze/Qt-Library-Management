@@ -34,7 +34,6 @@ void timkiemmasach::inThongTin(const int& ma_the) {
         ui->tableWidget_timkiemmasach->setItem(indexRow, 0, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
         ui->tableWidget_timkiemmasach->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
         ui->tableWidget_timkiemmasach->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
-        qDebug() << current->data.masach << " " << ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach) << " " << ChuyenDateSangString(current->data.NgayMuon) << ChuyenDateSangString(current->data.NgayTra);
         if ( SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) <= 7 ) {
             ui->tableWidget_timkiemmasach->setItem(indexRow, 3, new QTableWidgetItem("Không"));
         } else {

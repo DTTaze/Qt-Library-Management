@@ -134,7 +134,6 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 int i = 0;
                 for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
                 danh_sach_dau_sach.node[i]->dms->trangthai = 0;
-                qDebug()<<danh_sach_dau_sach.node[i]->dms->masach;
             }
 
             break;
@@ -341,12 +340,10 @@ void MergeSortSachMuon(int* arr, int left, int right) {
 }
 
 void SaoChepDanhSachSachMuon( int* copy) {
-    qDebug()<<"bat dau sao chep\n";
     int n = SoLuongSach;
     for (int i = 0; i < n;i++){
         copy[i]=i;
     }
-    qDebug()<<"ket thuc\n\n";
 }
 
 void CapNhatTuDanhSachMUONTRA () {

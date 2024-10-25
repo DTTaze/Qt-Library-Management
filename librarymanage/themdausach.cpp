@@ -146,9 +146,6 @@ void themdausach::on_spinBox_namsb_valueChanged(int arg1)
     std::time_t now = std::time(0);
     std::tm *localTime = std::localtime(&now);
     int currentYear = localTime->tm_year + 1900; // Nam hien tai
-    qDebug() << "Current Year: " << currentYear;
-    qDebug() << "SpinBox Value: " << ui->spinBox_namsb->value();
-    qDebug() << "arg1: "<<arg1;
     // Kiểm tra xem năm nhập vào có lớn hơn năm hiện tại không
     if (arg1 > currentYear) {
         // Nếu lớn hơn năm hiện tại, thông báo và đặt lại giá trị
@@ -209,12 +206,8 @@ void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
     // Cập nhật lại tên sách vào QLineEdit
     ui->lineEdit_tensach->setText(QString::fromStdString(valid_key));
 
-    // In ra thông báo
-    qDebug() << "Tên sách đã được cập nhật: " << valid_key;
-
     // Nếu key rỗng, không cần cập nhật
     if (valid_key.empty()) {
-        qDebug() << "Tên sách rỗng.";
     }
 }
 
