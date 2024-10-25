@@ -3,12 +3,12 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <fstream>
 #include <QFile>
 #include <QMessageBox>
 #include <QTableWidget>
 #include <string>
 #include <QDir>
-#include <fstream>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
 #include "queue.h"
@@ -24,7 +24,8 @@ enum Phai
     Nu = 0
 };
 
-enum TrangThaiCuaThe{
+enum TrangThaiCuaThe
+{
     Dang_Hoat_Dong = 1,
     Khoa = 0
 };
@@ -43,7 +44,8 @@ struct Danh_Sach_The_Doc_Gia {
     Danh_Sach_The_Doc_Gia* ptr_left = nullptr;
     Danh_Sach_The_Doc_Gia* ptr_right = nullptr;
     Danh_Sach_The_Doc_Gia(){}
-    Danh_Sach_The_Doc_Gia(const The_Doc_Gia& thong_tin_the_doc_gia) {
+    Danh_Sach_The_Doc_Gia(const The_Doc_Gia& thong_tin_the_doc_gia)
+    {
         thong_tin.MATHE = thong_tin_the_doc_gia.MATHE;
         thong_tin.Ho = thong_tin_the_doc_gia.Ho;
         thong_tin.Ten = thong_tin_the_doc_gia.Ten;
@@ -52,23 +54,26 @@ struct Danh_Sach_The_Doc_Gia {
     }
 };
 
-struct Danh_Sach_Theo_Ten {
+struct Danh_Sach_Theo_Ten
+{
+    int soLuongThe = 0;
     string ten;
     Danh_Sach_The_Doc_Gia* PTR = nullptr;
 };
 
-struct danhSachMaThe {
+struct danhSachMaThe
+{
     int soLuongMaThe = 0;
     int maThe[MAXRANDOM];
 };
-
-extern danhSachMaThe mangMaThe;
-extern int Mang_Ma_The[MAXRANDOM];
 extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 extern int DS_PTR;
-extern Danh_Sach_The_Doc_Gia* root;
-extern Danh_Sach_The_Doc_Gia* rp;
+
+extern danhSachMaThe mangMaThe;
 extern int index_MangRandom;
+
+extern Danh_Sach_The_Doc_Gia* root;
+
 
 // Hàm liên quan đến mảng
 void Tao_Mang_The();

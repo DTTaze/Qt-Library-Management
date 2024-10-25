@@ -1,18 +1,13 @@
 #include "The_doc_gia.h"
 
 danhSachMaThe mangMaThe;
-Danh_Sach_The_Doc_Gia* root;
-Danh_Sach_The_Doc_Gia* rp;
+int index_MangRandom = 0;
+
 Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 int DS_PTR = 0;
-int Mang_Ma_The[MAXRANDOM];
-int index_MangRandom = 0;
-//--------------------------------------------------------------------------------------------------------------------------------------
-void Tao_Mang_The() {
-    int index = 0;
-    taoMangTrungVi(index, 1, 10000);
-}
 
+Danh_Sach_The_Doc_Gia* root;
+//--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
 void taoMangTrungVi(int& index, int start, int end) {
     Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
     ranges.push({start, end}); // [a,b]
@@ -21,20 +16,26 @@ void taoMangTrungVi(int& index, int start, int end) {
         auto range = ranges.front();
         ranges.pop();
 
-        int s = range.first; // a
-        int e = range.second; // b
+        int a = range.first;
+        int b = range.second;
 
-        if (s > e) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
+        if (a > b) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
 
-        int median = (s + e) / 2; // Tìm vị trí chính giữa
-        Mang_Ma_The[index++] = median; // Thêm giá trị vào mảng
-        ranges.push({s, median - 1}); // [a - 1, median]
-        ranges.push({median + 1, e}); // [median + 1, b]
+        int median = (a + b) / 2; // Tìm vị trí chính giữa
+        // Mang_Ma_The[index++] = median; // Thêm giá trị vào mảng
+        mangMaThe.maThe[index++] = median; // Thêm giá trị vào mảng
+        ranges.push({a, median - 1}); // [a - 1, median]
+        ranges.push({median + 1, b}); // [median + 1, b]
     }
 }
 
+void Tao_Mang_The() {
+    int index = 0;
+    taoMangTrungVi(index, 1, 10000);
+}
+
 int LayMaTheNgauNhien() {
-    if ( mangMaThe.maThe[index_MangRandom] == 0 ) {
+    if ( mangMaThe.maThe[index_MangRandom] == 0 || index_MangRandom > mangMaThe.soLuongMaThe) {
         QMessageBox::warning(nullptr,"Lỗi", "Đã hết mã thẻ");
         return 0;
     }
@@ -62,14 +63,7 @@ void Ghi_Ma_The_Vao_File(int index) {
     }
     outFile.close();
 }
-//---------------------------------------------------------------------------------------------------------------------------------------
-void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
-    if ( root == nullptr ) return;
-    Them_Doc_Gia_Vao_Mang(root);
-    Copy_Cay_Sang_Mang(root->ptr_left);
-    Copy_Cay_Sang_Mang(root->ptr_right);
-}
-
+//---------------------------------------------------Hàm liên quan đến tạo bảng theo tên------------------------------------------------------------------------------------
 void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia) {
     if ( DS_PTR < MAXRANDOM ) {
         int index = 0;
@@ -87,6 +81,12 @@ void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia) {
     }
 }
 
+void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
+    if ( root == nullptr ) return;
+    Them_Doc_Gia_Vao_Mang(root);
+    Copy_Cay_Sang_Mang(root->ptr_left);
+    Copy_Cay_Sang_Mang(root->ptr_right);
+}
 
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
     for( int i = 0; i < DS_PTR; i++) {
@@ -94,14 +94,14 @@ void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------Hàm liên quan đến thao tác trên cây--------------------------------------------------------------------------------------
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
         Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
         root = con_tro_the_doc_gia;
     } else {
         if ( root->thong_tin.MATHE == thong_tin_the_doc_gia.MATHE ) {
-            cout << "Ma the doc gia da ton tai." << endl;
+            QMessageBox::warning(nullptr, "Lỗi", "Mã thẻ độc giả đã tồn tại.");
             return;
         }
         if ( root->thong_tin.MATHE < thong_tin_the_doc_gia.MATHE ) {
@@ -251,24 +251,26 @@ void Doc_Thong_Tin_Tu_File(DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* t
         docGia.Ho = fields[1].toStdString();
         docGia.Ten = fields[2].toStdString();
         if ( fields[3] == "Nam") {
-            docGia.phai = Phai::Nam;
+            docGia.phai = Nam;
         } else if ( fields[3] == "Nữ"){
-            docGia.phai = Phai::Nu;
+            docGia.phai = Nu;
         } else {
             QMessageBox::warning(nullptr, "Lỗi", "Giới tính không hợp lệ");
         }
         if ( fields[4] == "1" ) {
-            docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+            docGia.TrangThai = Dang_Hoat_Dong;
         } else if ( fields[4] == "0" ){
-            docGia.TrangThai = TrangThaiCuaThe::Khoa;
+            docGia.TrangThai = Khoa;
         } else {
             QMessageBox::warning(nullptr, "Lỗi", "Trạng thái không hợp lệ");
         }
         Them_Doc_Gia(root, docGia);
+
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
         int index = 5;
-        while ( index < fields.size()) {
+        while ( index < fields.size() ) {
             if (fields[index].isEmpty()) break;
+
             string ma_sach = fields[index].toStdString();
             int trangthai = fields[index + 1].toInt();
             Date ngay_muon = ChuyenStringSangDate(fields[index+2].toStdString());
@@ -276,13 +278,13 @@ void Doc_Thong_Tin_Tu_File(DanhSachMUONTRA*& danh_sach_muon_tra, QTableWidget* t
             if (!fields[index + 3].isEmpty()){
                 ngay_tra = ChuyenStringSangDate(fields[index+3].toStdString());
             }
+
             ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
             ThemSach(danh_sach_muon_tra, ma_sach, ngay_muon, ngay_tra);
             CapNhatTrangThaiSach(ma_sach, trangthai);
             index += 4;
         }
     }
-    Copy_Cay_Sang_Mang(root);
     inFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
