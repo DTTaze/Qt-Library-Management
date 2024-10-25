@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
-    <height>718</height>
+    <width>1006</width>
+    <height>781</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -233,7 +233,7 @@ QPushButton:focus {
             <x>0</x>
             <y>10</y>
             <width>641</width>
-            <height>631</height>
+            <height>661</height>
            </rect>
           </property>
           <widget class="QWidget" name="page_dausach">
@@ -654,7 +654,7 @@ color: black;
 color: black;</string>
             </property>
            </widget>
-           <widget class="QListView" name="topTenMuonNhieuNhat_listView">
+           <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
             <property name="geometry">
              <rect>
               <x>400</x>
@@ -843,7 +843,7 @@ color: black;</string>
              <string>10 cuốn sách được mượn nhiều nhất </string>
             </property>
            </widget>
-           <widget class="QTableWidget" name="tableWidget_danhsachquahan">
+           <widget class="QTableView" name="tableView_danhsachquahan">
             <property name="geometry">
              <rect>
               <x>50</x>
@@ -867,8 +867,8 @@ color: black;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>937</width>
-     <height>26</height>
+     <width>1006</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

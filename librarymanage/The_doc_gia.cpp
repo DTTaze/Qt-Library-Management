@@ -267,12 +267,14 @@ void Doc_Thong_Tin_Tu_File(Danh_Sach_The_Doc_Gia*& root_ma_so,DanhSachMUONTRA*& 
         Them_Doc_Gia(root, docGia);
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
         int index = 5;
-        while ( !fields[index].isEmpty()) {
+        while ( index < fields.size()) {
+            if (fields[index].isEmpty()) break;
             string ma_sach = fields[index].toStdString();
-            Date ngay_muon = ChuyenStringSangDate(fields[index+1].toStdString());
+            int trangthai = fields[index + 1].toInt();
+            Date ngay_muon = ChuyenStringSangDate(fields[index+2].toStdString());
             Date ngay_tra;
-            if (!fields[index + 2].isEmpty()){
-                ngay_tra = ChuyenStringSangDate(fields[index+2].toStdString());
+            if (!fields[index + 3].isEmpty()){
+                ngay_tra = ChuyenStringSangDate(fields[index+3].toStdString());
             }
             ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
             ThemSach(danh_sach_muon_tra, ma_sach, ngay_muon, ngay_tra);

@@ -27,6 +27,9 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     Doc_Thong_Tin_Tu_File(root,danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
 
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // Thêm cây vào tableWidget_2
+
+    Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
+    inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);
 }
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
@@ -230,7 +233,26 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     muonsach muon_sach;
     muon_sach.setModal(true);
-    muon_sach.exec();
+    if (muon_sach.exec() == QDialog::Accepted) {
+
+        // if (themDocGia.exec() == QDialog::Accepted) {
+
+        //     The_Doc_Gia docGia;
+        //     docGia.MATHE = LayMaTheNgauNhien();
+        //     docGia.Ho = themDocGia.getHo().trimmed().toStdString();
+        //     docGia.Ten = themDocGia.getTen().trimmed().toStdString();
+        //     if ( themDocGia.getPhai() == "Nam") {
+        //         docGia.phai = Phai::Nam;
+        //     } else {
+        //         docGia.phai = Phai::Nu;
+        //     }
+        //     docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+
+        //     Them_Doc_Gia(root, docGia);
+        //     Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
+        //     CapNhatBang();
+        // }
+    }
 }
 
 

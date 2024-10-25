@@ -196,6 +196,11 @@ Date ChuyenStringSangDate(string nhap_ngaythangnam) {
     size_t vitri1 = nhap_ngaythangnam.find('/');
     size_t vitri2 = nhap_ngaythangnam.find('/', vitri1 + 1);
 
+    if (vitri1 == string::npos || vitri2 == string::npos) {
+        cout << "Lỗi: Chuỗi ngày tháng không hợp lệ" << endl;
+        return nhap_ngay_thang_nam;
+    }
+
     ngay = nhap_ngaythangnam.substr(0, vitri1);
     thang = nhap_ngaythangnam.substr(vitri1 + 1, vitri2 - vitri1 - 1);
     nam = nhap_ngaythangnam.substr(vitri2 + 1);
@@ -203,6 +208,20 @@ Date ChuyenStringSangDate(string nhap_ngaythangnam) {
     nhap_ngay_thang_nam.day = stoi(ngay);
     nhap_ngay_thang_nam.month = stoi(thang);
     nhap_ngay_thang_nam.year = stoi(nam);
+
+    // Kiểm tra giá trị ngày, tháng, năm hợp lệ
+    if (nhap_ngay_thang_nam.day <= 0 || nhap_ngay_thang_nam.day > 31) {
+        cout << "Lỗi: Ngày không hợp lệ" << endl;
+        return Date();
+    }
+    if (nhap_ngay_thang_nam.month <= 0 || nhap_ngay_thang_nam.month > 12) {
+        cout << "Lỗi: Tháng không hợp lệ" << endl;
+        return Date();
+    }
+    if (nhap_ngay_thang_nam.year < 1900 || nhap_ngay_thang_nam.year > 2100) {
+        cout << "Lỗi: Năm không hợp lệ" << endl;
+        return Date();
+    }
 
     return nhap_ngay_thang_nam;
 }

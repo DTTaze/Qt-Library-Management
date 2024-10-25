@@ -16,6 +16,8 @@
 
 using namespace std;
 
+struct DanhSachMUONTRA;
+
 enum Phai
 {
     Nam = 1,

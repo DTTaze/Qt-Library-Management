@@ -11,6 +11,33 @@ struct Date {
     int day = 0;
     int month = 0;
     int year = 0;
+    bool operator==(const Date& other) const {
+        return (day == other.day && month == other.month && year == other.year);
+    }
+
+    bool operator!=(const Date& other) const {
+        return !(*this == other);
+    }
+
+    bool operator<(const Date& other) const {
+        if (year < other.year) return true;
+        if (year > other.year) return false;
+        if (month < other.month) return true;
+        if (month > other.month) return false;
+        return day < other.day;
+    }
+
+    bool operator>(const Date& other) const {
+        return other < *this;
+    }
+
+    bool operator<=(const Date& other) const {
+        return !(*this > other);
+    }
+
+    bool operator>=(const Date& other) const {
+        return !(*this < other);
+    }
 };
 
 bool operator == (const Date &d1, const Date &d2);
