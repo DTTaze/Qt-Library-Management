@@ -47,6 +47,13 @@ void LibraryManagementSystem::page3Widget()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 }
+
+void LibraryManagementSystem::on_luuFile_pushButton_clicked()
+{
+    Ghi_The_Vao_File();
+    Ghi_Ma_The_Vao_File(index_MangRandom);
+    InVaoTXT();
+}
 //------------------------------------Hàm sử dụng ở Thẻ Đầu Sách-----------------------------------------------------------------------
 LibraryManagementSystem::~LibraryManagementSystem()
 {
@@ -128,15 +135,6 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     }
 }
 
-
-void LibraryManagementSystem::on_pushButton_luuds_clicked()
-{
-    if(InVaoTXT()){
-    QMessageBox::information(this, "Thông báo", "Đã lưu danh sách ");
-    }else{
-        QMessageBox::warning(this, "Thông báo", "Đã lưu danh sách");
-    }
-}
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
 {
@@ -208,12 +206,6 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     } else {
         QMessageBox::warning(this, "Cảnh báo", "Không thể lấy thông tin độc giả.");
     }
-}
-
-void LibraryManagementSystem::on_luuFile_pushButton_clicked()
-{
-    Ghi_The_Vao_File();
-    Ghi_Ma_The_Vao_File(index_MangRandom);
 }
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô

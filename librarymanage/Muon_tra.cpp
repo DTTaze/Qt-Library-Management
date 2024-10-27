@@ -11,8 +11,9 @@ i. In danh sách độc giả mượn sách quá hạn theo thứ tự thời gi
 j. In 10 sách có số lượt mượn nhiều nhất.*/
 
 int TrangThai(Date ngay_muon, Date ngay_tra) { // trạng thái sách của độc giả
-    if(ngay_tra.day == 0) {return 0;} // chưa trả
-    else if(ngay_tra.day >0 ) {
+    if(ngay_tra.day == 0) {
+        return 0;
+    } else {
         return 1; // đã trả
     }
 }
@@ -470,6 +471,19 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView) {
     danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
     QStandardItemModel* model = new QStandardItemModel();
     int i = 0;
+
+    QString headers[5] = {
+        "Mã thẻ",
+        "Họ và Tên",
+        "Giới tính",
+        "Trạng thái",
+        "Số ngày mượn quá hạn"
+    };
+
+    for (int i = 0; i < 5; i++) {
+        model->setHeaderData(i,Qt::Horizontal, headers[i]);
+    }
+
     while( current != nullptr) {
         int so_ngay_qua_han = SoNgayQuaHan(current->value.second->data.NgayMuon, current->value.second->data.NgayTra);
         if ( so_ngay_qua_han <= 7) {
@@ -487,6 +501,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView) {
             current = current->next;
             i++;
     }
+
     tableView->setModel(model);
 }
 

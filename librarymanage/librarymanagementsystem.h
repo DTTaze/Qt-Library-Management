@@ -24,8 +24,6 @@ public:
     LibraryManagementSystem(QWidget *parent = nullptr);
     ~LibraryManagementSystem();
 
-
-
 private slots:
     void page1Widget();
     void page2Widget();
@@ -47,7 +45,7 @@ private slots:
 
     void CapNhatBang();
 
-    void on_luuFile_pushButton_clicked();
+    // void on_luuFile_pushButton_clicked();
 
     void on_tableWidget_2_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
@@ -58,7 +56,9 @@ private slots:
     void on_timSach_pushButton_clicked();
     void on_themSach_pushButton_2_clicked();
 
-    void on_pushButton_luuds_clicked();
+    // void on_pushButton_luuds_clicked();
+
+    void on_luuFile_pushButton_clicked();
 
 public slots:
 

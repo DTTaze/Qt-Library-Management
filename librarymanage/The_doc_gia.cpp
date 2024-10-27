@@ -22,7 +22,6 @@ void taoMangTrungVi(int& index, int start, int end) {
         if (a > b) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
 
         int median = (a + b) / 2; // Tìm vị trí chính giữa
-        // Mang_Ma_The[index++] = median; // Thêm giá trị vào mảng
         mangMaThe.maThe[index++] = median; // Thêm giá trị vào mảng
         ranges.push({a, median - 1}); // [a - 1, median]
         ranges.push({median + 1, b}); // [median + 1, b]
@@ -166,7 +165,7 @@ Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) 
     return current;
 }
 
-void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const std::string& field, const std::string& newValue) {
+void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue) {
     Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(root, maThe);
     if (docGia) {
         if (field == "Ho") {

@@ -18,17 +18,9 @@ using namespace std;
 
 struct DanhSachMUONTRA;
 
-enum Phai
-{
-    Nam = 1,
-    Nu = 0
-};
+enum Phai{Nam,Nu};
 
-enum TrangThaiCuaThe
-{
-    Dang_Hoat_Dong = 1,
-    Khoa = 0
-};
+enum TrangThaiCuaThe{Dang_Hoat_Dong,Khoa};
 
 struct The_Doc_Gia {
     unsigned int MATHE;
@@ -74,7 +66,6 @@ extern int index_MangRandom;
 
 extern Danh_Sach_The_Doc_Gia* root;
 
-
 // Hàm liên quan đến mảng
 void Tao_Mang_The();
 void taoMangTrungVi(int& index, int start, int end);
@@ -88,7 +79,6 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
-
 // Hàm liên quan đến mảng tạm
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
 void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia);
