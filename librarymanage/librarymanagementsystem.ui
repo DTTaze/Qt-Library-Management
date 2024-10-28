@@ -44,7 +44,7 @@
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #eeeeee;</string>
+          <string notr="true">background-color: #D4D4D4;</string>
          </property>
          <widget class="QLabel" name="name_project_Label">
           <property name="geometry">
@@ -269,7 +269,7 @@ QPushButton:focus {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #ffffff;
+          <string notr="true">background-color: #F2F2F2;
 </string>
          </property>
          <widget class="QStackedWidget" name="stackedWidget_infor">
@@ -298,11 +298,37 @@ QPushButton:focus {
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">border: 1px solid gray;
-color: black;</string>
+             <string notr="true">QTableView {
+    gridline-color: #d3d3d3;
+    background-color: #f9f9f9;
+    alternate-background-color: #eaeaea;
+    border: 1px solid #d3d3d3;
+    color: black; /* Set default text color to black */
+}
+
+QHeaderView::section {
+    background-color: #D4D4D4;
+    color: black;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid #d3d3d3;
+}
+
+/* Selected cell style */
+QTableView::item:selected {
+    background-color: #cce5ff;
+    color: black; /* Ensure selected text color is black */
+}
+</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="editTriggers">
              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>false</bool>
             </property>
             <property name="sortingEnabled">
              <bool>false</bool>
@@ -389,13 +415,16 @@ QPushButton:focus {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>70</x>
-              <y>600</y>
+              <x>90</x>
+              <y>590</y>
               <width>511</width>
               <height>48</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,6">
+            <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
+             <property name="spacing">
+              <number>100</number>
+             </property>
              <item>
               <widget class="QPushButton" name="themSach_pushButton_2">
                <property name="cursor">
@@ -501,7 +530,7 @@ QPushButton:focus {
              <rect>
               <x>40</x>
               <y>100</y>
-              <width>541</width>
+              <width>531</width>
               <height>391</height>
              </rect>
             </property>
@@ -512,18 +541,34 @@ QPushButton:focus {
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">QTableWidget::item:selected {
- background-color: #6bdcff; color: black;
- }
-QHeaderView::section {
- border: 1px solid black;border-collapse: collapse; 
- }
-QTableWidget::item {
- border: 1px solid black; border-collapse: collapse;
- }
-QTableWidget {
-border: 1px solid black;
-}
+             <string notr="true">QTableWidget {
+        gridline-color: #d3d3d3;
+        background-color: #f9f9f9;  /* Light background for table */
+        alternate-background-color: #eaeaea;  /* Alternating row color */
+        border: 1px solid #d3d3d3;  /* Border around the table */
+    }
+
+    /* Header style */
+    QHeaderView::section {
+        background-color: #d3d3d3;  /* Gray background for header */
+        color: black;               /* Black text color */
+        font-weight: bold;          /* Bold text */
+        padding: 4px;               /* Padding inside header cells */
+        border: 1px solid #d3d3d3;  /* Header cell borders */
+    }
+
+    /* Cell styles */
+    QTableWidget::item {
+        padding: 4px;               /* Padding inside cells */
+        border: none;               /* No cell borders */
+		color:black;
+    }
+
+    /* Selected cell style */
+    QTableWidget::item:selected {
+        background-color: #cce5ff;  /* Light blue background for selected cell */
+        color: black;               /* Black text color for selected cell */
+    }
 
 </string>
             </property>
@@ -941,7 +986,7 @@ color: black;</string>
      <x>0</x>
      <y>0</y>
      <width>1025</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

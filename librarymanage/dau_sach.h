@@ -17,7 +17,6 @@
 #include <QDebug>
 using namespace std;
 
-
 struct DanhMucSach{
     string masach;
     int trangthai;
