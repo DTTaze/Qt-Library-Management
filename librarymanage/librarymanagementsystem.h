@@ -7,6 +7,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QTableWidgetItem>
+#include <QCloseEvent>
 #include "Dau_sach.h"
 #include "The_doc_gia.h"
 #include "Muon_tra.h"
@@ -64,6 +65,9 @@ public slots:
 
 private:
     Ui::LibraryManagementSystem *ui;
+    bool Saved;
+protected:
+    void closeEvent(QCloseEvent *event) override; // Khai báo hàm closeEvent
 
 };
 #endif // LIBRARYMANAGEMENTSYSTEM_H

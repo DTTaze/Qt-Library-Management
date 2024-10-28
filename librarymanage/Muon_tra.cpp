@@ -142,6 +142,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
         current = current->next;
     }
     QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
+
 }
 
 

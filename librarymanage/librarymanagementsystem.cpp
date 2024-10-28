@@ -31,6 +31,35 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
     inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);
+    Saved = true;
+    qDebug()<<Saved;
+}
+
+LibraryManagementSystem::~LibraryManagementSystem()
+{
+    delete ui;
+}
+
+void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
+    if (!Saved) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Chưa lưu",
+                                      "Bạn có muốn lưu trước khi thoát không?",
+                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+
+        if (reply == QMessageBox::Yes) {
+            Ghi_The_Vao_File();
+            Ghi_Ma_The_Vao_File(index_MangRandom);
+            InVaoTXT();
+            event->accept();
+        } else if (reply == QMessageBox::No) {
+            event->accept();
+        } else {
+            event->ignore();
+        }
+    } else {
+        event->accept();
+    }
 }
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
@@ -55,12 +84,10 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_The_Vao_File();
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
+    Saved = true;
+    qDebug()<<Saved;
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
-LibraryManagementSystem::~LibraryManagementSystem()
-{
-    delete ui;
-}
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
@@ -109,10 +136,11 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         themds.setModal(true);
         if (themds.exec() == QDialog::Accepted){
             InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+            Saved = false;
         }
     }
 }
-
+//Nut Thanh ly
 void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
 {
     QModelIndex index = ui->tableView_dausach->currentIndex();
@@ -127,7 +155,7 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     int i = 0;
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
     if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
-    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
+    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2; Saved = false;}
     else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
     if (ui->lineEdit_timkiemds->text().isEmpty()){
         InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
@@ -135,6 +163,7 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
         string key = ui->lineEdit_timkiemds->text().toStdString();
         InFullTheoTenSach(key,ui->tableView_dausach);
     }
+    qDebug()<<Saved;
 }
 
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
@@ -177,6 +206,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
         CapNhatBang();
+        Saved = false;
     }
 }
 
@@ -203,6 +233,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
             ui->tableWidget_2->removeRow(currentRow); // Xóa hàng từ bảng
 
             CapNhatBang();
+            Saved = false;
             QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
         }
     } else {
@@ -264,24 +295,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
     muonsach muon_sach;
     muon_sach.setModal(true);
     if (muon_sach.exec() == QDialog::Accepted) {
-
-        // if (themDocGia.exec() == QDialog::Accepted) {
-
-        //     The_Doc_Gia docGia;
-        //     docGia.MATHE = LayMaTheNgauNhien();
-        //     docGia.Ho = themDocGia.getHo().trimmed().toStdString();
-        //     docGia.Ten = themDocGia.getTen().trimmed().toStdString();
-        //     if ( themDocGia.getPhai() == "Nam") {
-        //         docGia.phai = Phai::Nam;
-        //     } else {
-        //         docGia.phai = Phai::Nu;
-        //     }
-        //     docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
-
-        //     Them_Doc_Gia(root, docGia);
-        //     Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
-        //     CapNhatBang();
-        // }
+        Saved = false;
     }
 }
 
