@@ -49,10 +49,10 @@
          <widget class="QLabel" name="name_project_Label">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>60</y>
-            <width>321</width>
-            <height>91</height>
+            <x>30</x>
+            <y>0</y>
+            <width>261</width>
+            <height>81</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -63,14 +63,14 @@ text-align: center;
 </string>
           </property>
           <property name="text">
-           <string>Library Management</string>
+           <string>Quản lý thư viện</string>
           </property>
          </widget>
          <widget class="QPushButton" name="luuFile_pushButton">
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>620</y>
+            <y>500</y>
             <width>321</width>
             <height>46</height>
            </rect>
@@ -79,7 +79,7 @@ text-align: center;
            <font>
             <family>Roboto Mono</family>
             <pointsize>-1</pointsize>
-            <bold>true</bold>
+            <bold>false</bold>
             <kerning>true</kerning>
            </font>
           </property>
@@ -88,10 +88,9 @@ text-align: center;
     border: none;
     padding: 13px 16px;
     font-family: &quot;Roboto Mono&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     letter-spacing: 0.8px;
-    color: #FFFFFF;
+    color: black;
     text-align: left;
     width: 100%;
 }
@@ -144,7 +143,7 @@ QPushButton:focus {
               <font>
                <family>Roboto Mono</family>
                <pointsize>-1</pointsize>
-               <bold>true</bold>
+               <bold>false</bold>
               </font>
              </property>
              <property name="styleSheet">
@@ -152,10 +151,9 @@ QPushButton:focus {
     border: none;
     padding: 13px 16px;
     font-family: &quot;Roboto Mono&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     letter-spacing: 0.8px;
-    color: #FFFFFF;
+    color: black;
     text-align: left;
     width: 100%;
 }
@@ -194,10 +192,9 @@ QPushButton:focus {
     border: none;
     padding: 13px 16px;
     font-family: &quot;Roboto Mono&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     letter-spacing: 0.8px;
-    color: #FFFFFF;
+    color: black;
     text-align: left;
     width: 100%;
 }
@@ -236,10 +233,9 @@ QPushButton:focus {
     border: none;
     padding: 13px 16px;
     font-family: &quot;Roboto Mono&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     letter-spacing: 0.8px;
-    color: #FFFFFF;
+    color: black;
     text-align: left;
     width: 100%;
 }
@@ -314,25 +310,28 @@ QPushButton:focus {
             </property>
             <property name="styleSheet">
              <string notr="true">QTableView {
-    gridline-color: #d3d3d3;
-    background-color: #f9f9f9;
-    alternate-background-color: #eaeaea;
-    border: 1px solid #d3d3d3;
-    color: black; /* Set default text color to black */
+    background-color: #F0F0F0;      
+    gridline-color: #A0A0A0; 
+    border: none;           
 }
 
 QHeaderView::section {
-    background-color: #D4D4D4;
-    color: black;
-    font-weight: bold;
-    padding: 4px;
-    border: 1px solid #d3d3d3;
+    background-color: #D3D3D3;  
+    color: black;                  
+    padding: 8px;                  
+    font-weight: bold;           
+    border-bottom: 1px solid #A0A0A0; 
 }
 
-/* Selected cell style */
+QTableView::item {
+	 padding: 8px;                
+    color: black;               
+    border: none; 
+}
+
 QTableView::item:selected {
-    background-color: #cce5ff;
-    color: black; /* Ensure selected text color is black */
+    background-color: #C0C0C0;     
+    color: black; 
 }
 </string>
             </property>
@@ -395,13 +394,11 @@ font-weight:600;</string>
     border: none;
     border-radius: 16px;
     padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
 
@@ -433,7 +430,7 @@ QPushButton:focus {
               <x>90</x>
               <y>590</y>
               <width>511</width>
-              <height>48</height>
+              <height>50</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
@@ -451,13 +448,11 @@ QPushButton:focus {
     border: none;
     border-radius: 16px;
     padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
 
@@ -499,13 +494,11 @@ QPushButton:focus {
     border: none;
     border-radius: 16px;
     padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
 
@@ -546,7 +539,7 @@ QPushButton:focus {
               <x>40</x>
               <y>100</y>
               <width>571</width>
-              <height>391</height>
+              <height>461</height>
              </rect>
             </property>
             <property name="sizePolicy">
@@ -557,32 +550,28 @@ QPushButton:focus {
             </property>
             <property name="styleSheet">
              <string notr="true">QTableWidget {
-    border-bottom: 2px solid #A0A0A0;
-    background-color: #F0F0F0;
- border-right: none;
+    background-color: #F0F0F0;      
+    gridline-color: #A0A0A0; 
+    border:  1px solid black;                    
 }
 
 QHeaderView::section {
-    background-color: #D3D3D3;
-    color: black;
-    padding: 4px;
-    border: none;
+    background-color: #D3D3D3;  
+    color: black;                  
+    padding: 8px;                  
+    font-weight: bold;           
+    border-bottom: 1px solid #A0A0A0; 
 }
 
 QTableWidget::item {
-	border-bottom: 1px solid #A0A0A0;
-	border-right: none;
-    padding: 6px;
-    color: black;
+    padding: 8px;                
+    color: black;                     
 }
 
 QTableWidget::item:selected {
-	border-bottom: 1px solid #A0A0A0;
- border-right: none;
-    background-color: #C0C0C0;
-    color: black;
-}
-</string>
+    background-color: #C0C0C0;     
+    color: black;                  
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::Shape::NoFrame</enum>
@@ -669,6 +658,7 @@ QTableWidget::item:selected {
     border: none;
     font-size: 15px;
     border-radius: 5px;
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
 }
 
 // Adjust the dropdown icon
@@ -715,10 +705,10 @@ QComboBox QAbstractItemView {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>90</x>
-              <y>530</y>
+              <x>100</x>
+              <y>590</y>
               <width>451</width>
-              <height>48</height>
+              <height>50</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -733,13 +723,11 @@ QComboBox QAbstractItemView {
     border: none;
     border-radius: 16px;
     padding: 13px 16px;
-    font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
 
@@ -779,12 +767,10 @@ QPushButton:focus {
     border-radius: 16px;
     padding: 13px 16px;
     font-family: &quot;Arial&quot;, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-align: center;
-    text-transform: uppercase;
     width: 100%;
 }
 
