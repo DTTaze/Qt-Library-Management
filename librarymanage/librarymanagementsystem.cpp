@@ -10,7 +10,6 @@
 #include "Muon_tra.h"
 #include "dau_sach.h"
 #include "themdocgia_dialog.h"
-#include <QDebug>
 #define MayConChoDoi "may con cho doi"
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
@@ -61,7 +60,7 @@ void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab �
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach);
-    qDebug()<<"In đầu sách";
+    //qDebug()<<"In đầu sách";
 }
 
 void LibraryManagementSystem::page2Widget()
@@ -80,7 +79,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
     Saved = true;
-    qDebug()<<"Đã lưu";
+    //qDebug()<<"Đã lưu";
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 

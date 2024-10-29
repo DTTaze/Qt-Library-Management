@@ -142,121 +142,127 @@ void themdausach::on_pushButton_2_clicked()
 
 void themdausach::on_spinBox_namsb_valueChanged(int arg1)
 {
-    // Lay nam hien tai
-    std::time_t now = std::time(0);
-    std::tm *localTime = std::localtime(&now);
-    int currentYear = localTime->tm_year + 1900; // Nam hien tai
-    // Kiểm tra xem năm nhập vào có lớn hơn năm hiện tại không
-    if (arg1 > currentYear) {
-        // Nếu lớn hơn năm hiện tại, thông báo và đặt lại giá trị
-        QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
+    if(arg1 != 0){
+        // Lay nam hien tai
+        std::time_t now = std::time(0);
+        std::tm *localTime = std::localtime(&now);
+        int currentYear = localTime->tm_year + 1900; // Nam hien tai
+        // Kiểm tra xem năm nhập vào có lớn hơn năm hiện tại không
+        if (arg1 > currentYear) {
+            // Nếu lớn hơn năm hiện tại, thông báo và đặt lại giá trị
+            QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
 
-        // Đặt lại giá trị cho QSpinBox về năm hiện tại
-        ui->spinBox_namsb->setValue(currentYear);
+            // Đặt lại giá trị cho QSpinBox về năm hiện tại
+            ui->spinBox_namsb->setValue(currentYear);
+        }
     }
 }
 
 
 void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 {
-    QString LocKiTu; // Chuỗi để lưu trữ các ký tự hợp lệ
+    if(!text.isEmpty()){
+        QString LocKiTu; // Chuỗi để lưu trữ các ký tự hợp lệ
 
-    // Lọc ra các ký tự là chữ số
-    for (int i = 0; i < text.length(); ++i) {
-        if (text[i].isDigit() || text[i] == '-') {
-            LocKiTu.append(text[i]); // Thêm ký tự hợp lệ vào LocKiTu
+        // Lọc ra các ký tự là chữ số
+        for (int i = 0; i < text.length(); ++i) {
+            if (text[i].isDigit() || text[i] == '-') {
+                LocKiTu.append(text[i]); // Thêm ký tự hợp lệ vào LocKiTu
+            }
         }
+
+        // Cập nhật lại nội dung của lineEdit với các ký tự hợp lệ
+        ui->lineEdit_ISBN->setText(LocKiTu);
+        ui->lineEdit_ISBN->setCursorPosition(LocKiTu.length()); // Đặt lại con trỏ
+        if (LocKiTu.length() == 0){
+            ui->lineEdit_ISBN->setStyleSheet("");
+        }else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
+            ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
+        } else {
+            ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
+        }
+    }else{
+        ui->lineEdit_ISBN->setStyleSheet("");
     }
-
-    // Cập nhật lại nội dung của lineEdit với các ký tự hợp lệ
-    ui->lineEdit_ISBN->setText(LocKiTu);
-    ui->lineEdit_ISBN->setCursorPosition(LocKiTu.length()); // Đặt lại con trỏ
-
-    // Nếu không có ký tự nào, đặt lại màu về mặc định
-    if (LocKiTu.length() == 0) {
-        ui->lineEdit_ISBN->setStyleSheet(""); // Đặt lại màu về mặc định
-    } else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
-        ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
-    } else {
-        ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
-    }
-
 }
 
 void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
-    QString key ;
-    bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
+    if(!text.isEmpty()){
+        QString key ;
+        bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
 
-    for (QChar c : text) {
-        if (c.isLetter() || c.isDigit()|| c.isPunct() || c.isSymbol()) {
-            key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
-            lastWasSpace = false; // Reset trạng thái lastWasSpace
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
-                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+        for (QChar c : text) {
+            if (c.isLetter() || c.isDigit()|| c.isPunct() || c.isSymbol()) {
+                key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
+                lastWasSpace = false; // Reset trạng thái lastWasSpace
+            } else if (c.isSpace()) {
+                if (!lastWasSpace) {
+                    key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                    lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+                }
             }
         }
+
+        string valid_key = key.toStdString();
+        // Xóa khoảng trắng ở đầu
+        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+
+        // Cập nhật lại tên sách vào QLineEdit
+        ui->lineEdit_tensach->setText(QString::fromStdString(valid_key));
     }
 
-    string valid_key = key.toStdString();
-    // Xóa khoảng trắng ở đầu
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
-
-    // Cập nhật lại tên sách vào QLineEdit
-    ui->lineEdit_tensach->setText(QString::fromStdString(valid_key));
-
-    // Nếu key rỗng, không cần cập nhật
-    if (valid_key.empty()) {
-    }
 }
 
 
 
 void themdausach::on_lineEdit_theloai_textChanged(const QString &text)
 {
-    QString key = RemoveSpace(text);
-    key = CapitalizeWords(key);
-    string valid_key = key.toStdString();
+    if(!text.isEmpty()){
+        QString key = RemoveSpace(text);
+        key = CapitalizeWords(key);
+        string valid_key = key.toStdString();
 
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
-    // Cập nhật lại tên thể loại vào QLineEdit
-    ui->lineEdit_theloai->setText(QString::fromStdString(valid_key));
+        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
+        // Cập nhật lại tên thể loại vào QLineEdit
+        ui->lineEdit_theloai->setText(QString::fromStdString(valid_key));
 
-    qDebug() << "The loai da duoc cap nhat: " << valid_key;
+        //qDebug() << "The loai da duoc cap nhat: " << valid_key;
 
-    // Nếu key rỗng, không cần cập nhật
-    if (valid_key.empty()) {
-        cout << "The loai rong." << endl;
+        // Nếu key rỗng, không cần cập nhật
+        // if (valid_key.empty()) {
+        //     //qDebug() << "The loai rong.";
+        // }
     }
 }
 
 
 void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
 {
-    string key = text.toStdString();
+    if(!text.isEmpty()){
+        string key = text.toStdString();
 
-    // Chỉ cho phép một ký tự
-    if (key.length() > 1) {
-        key = key.substr(0, 1); // Giới hạn chỉ lấy ký tự đầu tiên
-    }
+        // Chỉ cho phép một ký tự
+        if (key.length() > 1) {
+            key = key.substr(0, 1); // Giới hạn chỉ lấy ký tự đầu tiên
+        }
 
-    // Kiểm tra nếu ký tự là a-z hoặc A-Z
-    if (!key.empty() && (isalpha(key[0]))) {
-        // Chuyển ký tự thành in hoa
-        key[0] = toupper(key[0]); // Chuyển đổi ký tự thành chữ in hoa
-    } else {
-        key.clear(); // Nếu không phải là chữ cái a-z hoặc A-Z, xóa key
-    }
+        // Kiểm tra nếu ký tự là a-z hoặc A-Z
+        if (!key.empty() && (isalpha(key[0]))) {
+            // Chuyển ký tự thành in hoa
+            key[0] = toupper(key[0]); // Chuyển đổi ký tự thành chữ in hoa
+        } else {
+            key.clear(); // Nếu không phải là chữ cái a-z hoặc A-Z, xóa key
+        }
 
-    // Cập nhật lại giá trị trong lineEdit
-    ui->comboBox_vitri->setCurrentText(QString::fromStdString(key));
+        // Cập nhật lại giá trị trong lineEdit
+        ui->comboBox_vitri->setCurrentText(QString::fromStdString(key));
 
-    qDebug() << "Vi tri da duoc cap nhat: " << key;
+        //qDebug() << "Vi tri da duoc cap nhat: " << key;
 
-    // Nếu key rỗng, không cần cập nhật
-    if (key.empty()) {
-        cout << "Vi tri rong." << endl;
+        // Nếu key rỗng, không cần cập nhật
+        // if (key.empty()) {
+        //     //qDebug() << "Vi tri rong.";
+        // }
     }
 }
 
@@ -264,19 +270,21 @@ void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
 
 void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
 {
-    QString key = RemoveSpace(text);
-    key = CapitalizeWords(key);
-    string valid_key = key.toStdString();
+    if(!text.isEmpty()){
+        QString key = RemoveSpace(text);
+        key = CapitalizeWords(key);
+        string valid_key = key.toStdString();
 
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
-    // Cập nhật lại tên thể loại vào QLineEdit
-    ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
+        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
+        // Cập nhật lại tên thể loại vào QLineEdit
+        ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
 
-    qDebug() << "Tac gia da duoc cap nhat: " << valid_key;
+        //qDebug() << "Tac gia da duoc cap nhat: " << valid_key;
 
-    // Nếu key rỗng, không cần cập nhật
-    if (valid_key.empty()) {
-        cout << "Tac gia rong." << endl;
+        // Nếu key rỗng, không cần cập nhật
+        // if (valid_key.empty()) {
+        //     qDebug() << "Tac gia rong." << endl;
+        // }
     }
 }
 
