@@ -59,7 +59,6 @@ private slots:
 
     void on_luuFile_pushButton_clicked();
 
-
     void on_baocao_pushButton_clicked();
 
     int getmaThe() ;
