@@ -9,6 +9,7 @@
 #include "themdocgia_dialog.h"
 #include "Muon_tra.h"
 #include "dau_sach.h"
+#include "themdocgia_dialog.h"
 #include <QDebug>
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
@@ -167,6 +168,14 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
 }
 
 //------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
+bool LibraryManagementSystem::kiemTraChuoi(QString s) {
+    for ( int i = 0; i < s.length(); i++ ) {
+        if ( !s[i].isLetter() && !s[i].isSpace() ) {
+            return false;
+        }
+    }
+    return true;
+}
 void LibraryManagementSystem::CapNhatBang()
 {
     ui->tableWidget_2->setRowCount(0);
@@ -250,18 +259,29 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     int maThe = maTheItem->text().toInt();
 
     QString newValue = item->text();
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, maThe);
 
     switch (column) {
     case 1:
+        if (kiemTraChuoi(newValue) == false ) {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị họ không hợp lệ.");
+            item->setText(QString::fromStdString(p->thong_tin.Ho));
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ho", newValue.toStdString());
         break;
     case 2:
-
+        if (kiemTraChuoi(newValue) == false ) {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị tên không hợp lệ.");
+            item->setText(QString::fromStdString(p->thong_tin.Ten));
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ten", newValue.toStdString());
         break;
     case 3:
         if (newValue != "Nam" && newValue != "Nữ") {
             QMessageBox::warning(this, "Cảnh báo", "Giá trị phái không hợp lệ. Vui lòng nhập 'Nam' hoặc 'Nữ'.");
+            item->setText(QString::fromStdString(p->thong_tin.phai == Nam ? "Nam":"Nữ"));
             return;
         }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Phai", newValue.toStdString());
@@ -269,6 +289,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     case 4:
         if (newValue != "Đang Hoạt Động" && newValue != "Khóa") {
             QMessageBox::warning(this, "Cảnh báo", "Giá trị trạng thái không hợp lệ. Vui lòng nhập 'Đang Hoạt Động' hoặc 'Bị Khóa'.");
+            item->setText(QString::fromStdString(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang hoạt động":"Khóa"));
             return;
         }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "TrangThai", newValue.toStdString());
@@ -288,6 +309,7 @@ void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int co
         }
     }
 }
+
 
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
