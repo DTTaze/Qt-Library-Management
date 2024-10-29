@@ -22,6 +22,7 @@ enum Phai{Nam,Nu};
 
 enum TrangThaiCuaThe{Dang_Hoat_Dong,Khoa};
 
+// Thông tin thẻ độc giả
 struct The_Doc_Gia {
     unsigned int MATHE;
     string Ho;

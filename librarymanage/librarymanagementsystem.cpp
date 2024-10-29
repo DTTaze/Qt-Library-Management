@@ -86,7 +86,6 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
     Saved = true;
-    qDebug()<<Saved;
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
@@ -164,10 +163,9 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
         string key = ui->lineEdit_timkiemds->text().toStdString();
         InFullTheoTenSach(key,ui->tableView_dausach);
     }
-    qDebug()<<Saved;
 }
 
-//------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
+//------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 bool LibraryManagementSystem::kiemTraChuoi(QString s) {
     for ( int i = 0; i < s.length(); i++ ) {
         if ( !s[i].isLetter() && !s[i].isSpace() ) {
@@ -176,6 +174,7 @@ bool LibraryManagementSystem::kiemTraChuoi(QString s) {
     }
     return true;
 }
+
 void LibraryManagementSystem::CapNhatBang()
 {
     ui->tableWidget_2->setRowCount(0);
@@ -210,7 +209,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
         } else {
             docGia.phai = Phai::Nu;
         }
-        docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+        docGia.TrangThai = Dang_Hoat_Dong;
 
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
@@ -248,6 +247,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     } else {
         QMessageBox::warning(this, "Cảnh báo", "Không thể lấy thông tin độc giả.");
     }
+    Saved = false;
 }
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
@@ -297,6 +297,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     default:
         break;
     }
+    Saved = false;
 }
 
 void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int column)

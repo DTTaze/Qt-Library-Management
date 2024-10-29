@@ -97,14 +97,12 @@ void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
 //-------------------------------------------------Hàm liên quan đến thao tác trên cây--------------------------------------------------------------------------------------
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
-        Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
-        root = con_tro_the_doc_gia;
+        root = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
     } else {
         if ( root->thong_tin.MATHE == thong_tin_the_doc_gia.MATHE ) {
             QMessageBox::warning(nullptr, "Lỗi", "Mã thẻ độc giả đã tồn tại.");
             return;
-        }
-        if ( root->thong_tin.MATHE < thong_tin_the_doc_gia.MATHE ) {
+        } else if ( root->thong_tin.MATHE < thong_tin_the_doc_gia.MATHE ) {
             Them_Doc_Gia(root->ptr_right, thong_tin_the_doc_gia);
         } else {
             Them_Doc_Gia(root->ptr_left, thong_tin_the_doc_gia);
