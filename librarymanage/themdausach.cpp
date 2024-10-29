@@ -70,7 +70,7 @@ void themdausach::on_pushButton_clicked() {
 
     // Chuyển đổi sang string
     string isbnStd = ISBN.toStdString();
-    std::string tensachStd = tensach.toStdString(); // Chuyển đổi tên sách
+    string tensachStd = tensach.toStdString(); // Chuyển đổi tên sách
     string tacgiaStd = tacgia.toStdString();
     string theloaiStd = theloai.toStdString();
     string vitriStd = vitri.toStdString(); // Chuyển đổi từ QComboBox
@@ -175,7 +175,7 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
     // Nếu không có ký tự nào, đặt lại màu về mặc định
     if (LocKiTu.length() == 0) {
         ui->lineEdit_ISBN->setStyleSheet(""); // Đặt lại màu về mặc định
-    } else if (LocKiTu.length() == 10 || LocKiTu.length() == 13) {
+    } else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
         ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
     } else {
         ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
@@ -223,7 +223,7 @@ void themdausach::on_lineEdit_theloai_textChanged(const QString &text)
     // Cập nhật lại tên thể loại vào QLineEdit
     ui->lineEdit_theloai->setText(QString::fromStdString(valid_key));
 
-    cout << "The loai da duoc cap nhat: " << valid_key << endl;
+    qDebug() << "The loai da duoc cap nhat: " << valid_key;
 
     // Nếu key rỗng, không cần cập nhật
     if (valid_key.empty()) {
@@ -252,7 +252,7 @@ void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
     // Cập nhật lại giá trị trong lineEdit
     ui->comboBox_vitri->setCurrentText(QString::fromStdString(key));
 
-    cout << "Vi tri da duoc cap nhat: " << key << endl;
+    qDebug() << "Vi tri da duoc cap nhat: " << key;
 
     // Nếu key rỗng, không cần cập nhật
     if (key.empty()) {
@@ -260,11 +260,6 @@ void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
     }
 }
 
-
-void themdausach::on_spinBox_sotrang_valueChanged(int arg1)
-{
-
-}
 
 
 void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
@@ -277,7 +272,7 @@ void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
     // Cập nhật lại tên thể loại vào QLineEdit
     ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
 
-    cout << "Tac gia da duoc cap nhat: " << valid_key << endl;
+    qDebug() << "Tac gia da duoc cap nhat: " << valid_key;
 
     // Nếu key rỗng, không cần cập nhật
     if (valid_key.empty()) {

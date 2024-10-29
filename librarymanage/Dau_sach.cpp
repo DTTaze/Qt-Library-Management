@@ -4,9 +4,16 @@ DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
 
-void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach,const string &I_S_B_N,const string& vi_tri){
-ma_sach = I_S_B_N + "-" + vi_tri ;
+void TaoMaSach(string& ma_sach, DanhSachDauSach& danh_sach_dau_sach, const string& I_S_B_N, const string& vi_tri) {
+    string isbn_full = I_S_B_N;
+    // Kiểm tra nếu ISBN là loại 10 số
+    if (isbn_full.size() == 13) {
+        isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
+    }
+    // Gán mã sách bao gồm ISBN và vị trí
+    ma_sach = isbn_full + "-" + vi_tri;
 }
+
 
 
 DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach,const string& vi_tri,const string &I_S_B_N) {

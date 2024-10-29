@@ -61,7 +61,7 @@ void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab �
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach);
-    qDebug()<<"test";
+    qDebug()<<"In đầu sách";
 }
 
 void LibraryManagementSystem::page2Widget()
@@ -80,6 +80,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
     Saved = true;
+    qDebug()<<"Đã lưu";
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 

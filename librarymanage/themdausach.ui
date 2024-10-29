@@ -256,7 +256,7 @@
         <item>
          <widget class="QLineEdit" name="lineEdit_ISBN">
           <property name="placeholderText">
-           <string>ISBN-9 / ISBN-13</string>
+           <string>ISBN-10 / ISBN-13</string>
           </property>
          </widget>
         </item>
