@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <QDebug>
 
 using namespace std;
 
@@ -43,6 +44,8 @@ struct Date {
 bool operator == (const Date &d1, const Date &d2);
 
 bool laNamNhuan(int year);
+
+int ngayTrongThang(int month, int year);
 
 bool KiemTraNgayThangNam(Date NgayThangNam);
 

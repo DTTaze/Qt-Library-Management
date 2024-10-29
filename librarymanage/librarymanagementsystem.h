@@ -53,12 +53,20 @@ private slots:
 
     void on_traSach_pushButton_clicked();
 
-    void on_timSach_pushButton_clicked();
     void on_themSach_pushButton_2_clicked();
 
     // void on_pushButton_luuds_clicked();
 
     void on_luuFile_pushButton_clicked();
+
+
+    void on_baocao_pushButton_clicked();
+
+    int getmaThe() ;
+
+    void inThongTin(const int& ma_the) ;
+
+    void on_lineEdit_maThe_textChanged(const QString &arg1);
 
 public slots:
 

@@ -119,7 +119,7 @@ border-color: rgb(0, 0, 0)</string>
       <x>120</x>
       <y>70</y>
       <width>498</width>
-      <height>28</height>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -273,7 +273,7 @@ border-color: rgb(0, 0, 0)</string>
        <x>120</x>
        <y>70</y>
        <width>498</width>
-       <height>28</height>
+       <height>32</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -321,6 +321,32 @@ border-color: rgb(0, 0, 0)</string>
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_matsach">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>290</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mất Sách</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_densach">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>290</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Đền Sách</string>
+    </property>
    </widget>
   </widget>
  </widget>

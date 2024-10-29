@@ -25,7 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         muonsach.h muonsach.cpp muonsach.ui
         trasach.h trasach.cpp trasach.ui
-        timkiemmasach.h timkiemmasach.cpp timkiemmasach.ui
+
 
         Dau_sach.h
         Dau_sach.cpp
@@ -44,6 +44,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         queue.h
 
         Ma_The.txt
+        baocao.h baocao.cpp baocao.ui
+
 
     )
 # Define target properties for Android with Qt 6 as:

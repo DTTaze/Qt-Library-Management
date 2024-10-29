@@ -13,6 +13,7 @@
 #include <QTableWidget>
 #include <QTableView>
 #include <QStringListModel>
+#include <QLineEdit>
 struct The_Doc_Gia;
 struct Danh_Sach_The_Doc_Gia;
 using namespace std;
@@ -24,6 +25,10 @@ g. Trả sách
 h. Liệt kê danh sách các mã sách, tên sách mà 1 độc giả có số thẻ X đang mượn
 i. In danh sách độc giả mượn sách quá hạn theo thứ tự thời gian quá hạn giảm dần
 j. In 10 sách có số lượt mượn nhiều nhất.*/
+
+const int Chua_Tra = 0;
+const int Da_Tra = 1;
+const int Mat_Sach = 2;
 
 int TrangThai(Date ngay_muon, Date ngay_tra);
 
@@ -37,6 +42,11 @@ struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
 
     MUONTRA(string ma, const Date &ngayMuon, const Date &ngayTra) : masach(ma), NgayMuon(ngayMuon), NgayTra(ngayTra)
     { trangthai = TrangThai(NgayMuon, NgayTra);}
+
+    void setNgayTra(const Date &ngayTra) {
+        NgayTra = ngayTra;
+        trangthai = TrangThai(NgayMuon, NgayTra);
+    }
 };
 
 struct DanhSachMUONTRA { // danh sach cac quyen sach da hoac dang muon
@@ -60,8 +70,6 @@ extern SachMuon DanhSachSachMuon[MAXSACH];
 
 extern int SoLuongSach; //*
 
-extern DanhSachMUONTRA* danh_sach_muon_tra; //*
-
 void ThemSach(DanhSachMUONTRA * &head, string ma, const Date &ngayMuon, const Date &ngayTra);
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
 void MuonSach(const int &maThe, const string& maSach);
@@ -78,25 +86,21 @@ void MergeSortSachMuon(int* arr, int left, int right);
 
 void SaoChepDanhSachSachMuon( int* copy);
 
-void CapNhatTuDanhSachMUONTRA ();
+void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra);
 
-void Top10QuyenSachNhieuLuotMuonNhat(QTableView* tableView) ;
+void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
 
 int TimViTriMaSach(string maSach);
 
 void CapNhatSoLuotMuon (string ma_sach) ;
+
+void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia * root);
 //----------------------------------------------------------------Bảng độc giả quá hạn--------------------------------------------------------------------------------------------------
-void SapXepTheoThoiGianQuaHan(DanhSachMUONTRA *&head);
-
-DanhSachMUONTRA *DanhSachQuaHan ();
-
-void TimKiemTenDocGia (Danh_Sach_The_Doc_Gia *root, string ma_sach);
-
-void InDocGiaQuaHan(Danh_Sach_The_Doc_Gia * root) ;
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
 
 danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root);
 
-void inDanhSachDocGiaMuonQuaHan(QTableView *tableView);
+void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) ;
+
 #endif

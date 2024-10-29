@@ -2,7 +2,7 @@
 #include "./ui_librarymanagementsystem.h"
 #include "muonsach.h"
 #include "trasach.h"
-#include "timkiemmasach.h"
+#include "baocao.h"
 #include "intheotheloai.h"
 #include "themdausach.h"
 #include "The_doc_gia.h"
@@ -24,13 +24,12 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     Doc_File_Ma_The();
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(danh_sach_muon_tra,ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+    Doc_Thong_Tin_Tu_File(ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
 
-    Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
-    inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);
+
 }
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
@@ -283,7 +282,6 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
     }
 }
 
-
 void LibraryManagementSystem::on_traSach_pushButton_clicked()
 {
     trasach tra_sach;
@@ -291,15 +289,67 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
     tra_sach.exec();
 }
 
-
-void LibraryManagementSystem::on_timSach_pushButton_clicked()
+void LibraryManagementSystem::on_baocao_pushButton_clicked()
 {
-    timkiemmasach timkiem;
-    timkiem.setModal(true);
-    timkiem.exec();
+    baocao bao_cao;
+    bao_cao.setModal(true);
+    bao_cao.exec();
+}
+
+int LibraryManagementSystem::getmaThe() {
+    return ui->lineEdit_maThe->text().toInt();
+}
+
+void LibraryManagementSystem::inThongTin(const int& ma_the) {
+
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, ma_the);
+    ui->tableWidget_muonTra->setRowCount(0);
+    string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
+    DanhSachMUONTRA *current = p->thong_tin.head_lsms;
+
+    ui->lineEdit_hoTen->setText(QString::fromStdString(hovaten));
+    ui->lineEdit_Phai->setText(p->thong_tin.phai == Nam ? "Nam" : "Nữ");
+    ui->lineEdit_trangThai->setText(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Dang Hoạt Động": "Khóa");
+
+    while ( current != nullptr && current->data.NgayTra.day == 0) {
+        int indexRow = ui->tableWidget_muonTra->rowCount();
+        ui->tableWidget_muonTra->insertRow(indexRow);
+        ui->tableWidget_muonTra->setItem(indexRow, 0, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
+        ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
+        ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
+        ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
+        indexRow++;
+        current = current->next;
+    }
+
 }
 
 
-
-
+void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
+{
+    if ( arg1.isEmpty() ) {
+        ui->lineEdit_maThe->setStyleSheet("background-color: white;");
+        while (ui->tableWidget_muonTra->rowCount() > 0) {
+            ui->tableWidget_muonTra->removeRow(0);
+        }
+        ui->lineEdit_hoTen->setText("");
+        ui->lineEdit_Phai->setText("");
+        ui->lineEdit_trangThai->setText("");
+        return;
+    }
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, arg1.toInt());
+    if ( p != nullptr ) {
+        inThongTin(p->thong_tin.MATHE);
+        ui->lineEdit_maThe->setStyleSheet("background-color: lightgreen;");
+    } else {
+        ui->lineEdit_hoTen->setText("");
+        ui->lineEdit_Phai->setText("");
+        ui->lineEdit_trangThai->setText("");
+        ui->lineEdit_maThe->setStyleSheet("background-color: lightcoral;");
+        while (ui->tableWidget_muonTra->rowCount() > 0) {
+            ui->tableWidget_muonTra->removeRow(0);
+        }
+    }
+    ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
 

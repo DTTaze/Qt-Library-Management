@@ -8,14 +8,19 @@ bool laNamNhuan(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
+int ngayTrongThang(int month, int year) {
+    int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (month == 2 && laNamNhuan(year)) {
+        return 29;
+    }
+    return days[month - 1];
+}
+
 bool KiemTraNgayThangNam(Date NgayThangNam) {
 
-    if (NgayThangNam.year <= 0 ||NgayThangNam.year >2024|| NgayThangNam.month <= 0 || NgayThangNam.month > 12) return false;
-
-    int soNgayTrongThang[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (laNamNhuan(NgayThangNam.year)) soNgayTrongThang[1] = 29;
-
-    return NgayThangNam.day > 0 && NgayThangNam.day <= soNgayTrongThang[NgayThangNam.month - 1];
+    if (NgayThangNam.year < 1 || NgayThangNam.month < 1 || NgayThangNam.month > 12) return false;
+    if (NgayThangNam.day < 1 || NgayThangNam.day > ngayTrongThang(NgayThangNam.month, NgayThangNam.year)) return false;
+    return true;
 }
 
 bool isNumber(const string &str) {
@@ -120,32 +125,31 @@ Date NgayHomNay() {
 
 int DemSoNgay(Date ngay_muon, Date ngay_tra) {
 
-    tm ngaymuon = {0}, ngaytra = {0};
-    ngaymuon.tm_mday = ngay_muon.day;
-    ngaymuon.tm_mon = ngay_muon.month - 1;
-    ngaymuon.tm_year = ngay_muon.year - 1900;
-
-    ngaytra.tm_mday = ngay_tra.day;
-    ngaytra.tm_mon = ngay_tra.month - 1;
-    ngaytra.tm_year = ngay_tra.year - 1900;
-
-    time_t ngaymuon1 = mktime(&ngaymuon);
-    time_t ngaytra1 = mktime(&ngaytra);
-
-    // Đảm bảo ngày trả phải sau ngày mượn
-    if (ngaymuon1 == -1 || ngaytra1 == -1) {
-        cout << "Loi: ngay muon hoac ngay tra khong hop le" << endl;
-        return -1;
-    }
-    if (ngaytra1 < ngaymuon1) {
-        cout << "Ngay tra phai sau ngay muon!" << endl;
+    if (!KiemTraNgayThangNam(ngay_muon) || !KiemTraNgayThangNam(ngay_tra)) {
+        qDebug() << "Ngày trả hoặc ngày mượn không hợp lệ."<<
+            " ngày mượn: "<<ngay_muon.day<<"/"<<ngay_muon.month<<"/"<<ngay_muon.year <<
+            " ngày trả: "<< ngay_tra.day<<"/"<<ngay_tra.month<<"/" << ngay_tra.year;
         return -1;
     }
 
-    double sogiay = difftime(ngaytra1, ngaymuon1);
-    int songay = sogiay / (60 * 60 * 24);
-    return songay;
-    return 0;
+    int days1 = 0, days2 = 0;
+    for (int y = 1; y < ngay_muon.year; y++) {
+        days1 += laNamNhuan(y) ? 366 : 365;
+    }
+    for (int m = 1; m < ngay_muon.month; m++) {
+        days1 += ngayTrongThang(m, ngay_muon.year);
+    }
+    days1 += ngay_muon.day;
+
+    for (int y = 1; y < ngay_tra.year; y++) {
+        days2 += laNamNhuan(y) ? 366 : 365;
+    }
+    for (int m = 1; m < ngay_tra.month; m++) {
+        days2 += ngayTrongThang(m, ngay_tra.year);
+    }
+    days2 += ngay_tra.day;
+
+    return days2 - days1;
 }
 
 int SoNgayQuaHan(Date ngay_muon, Date ngay_tra) {
