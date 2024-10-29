@@ -11,7 +11,7 @@
 #include "dau_sach.h"
 #include "themdocgia_dialog.h"
 #include <QDebug>
-
+#define MayConChoDoi "may con cho doi"
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LibraryManagementSystem)
