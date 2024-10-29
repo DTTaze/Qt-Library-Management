@@ -29,8 +29,10 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
 
+
     Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
     inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);
+
     Saved = true;
 }
 
@@ -59,7 +61,6 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
     } else {
         event->accept();
     }
-}
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
@@ -389,3 +390,13 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
     }
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
+
+string LibraryManagementSystem::getmaSach() {
+
+}
+
+void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1)
+{
+
+}
+

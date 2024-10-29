@@ -66,6 +66,9 @@ private slots:
     void inThongTin(const int& ma_the) ;
 
     void on_lineEdit_maThe_textChanged(const QString &arg1);
+    string getmaSach();
+
+    void on_lineEdit_maSach_textChanged(const QString &arg1);
 
 public slots:
 
