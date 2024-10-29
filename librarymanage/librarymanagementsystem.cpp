@@ -9,12 +9,12 @@
 #include "themdocgia_dialog.h"
 #include "Muon_tra.h"
 #include "dau_sach.h"
+#include "themdocgia_dialog.h"
 #include <QDebug>
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LibraryManagementSystem)
-
 {
     ui->setupUi(this);
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
@@ -29,12 +29,48 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
 
+<<<<<<< HEAD
 
+=======
+    Top10QuyenSachNhieuLuotMuonNhat(ui->topTenMuonNhieuNhat_tableView);
+    inDanhSachDocGiaMuonQuaHan(ui->tableView_danhsachquahan);
+    Saved = true;
+    qDebug()<<Saved;
+}
+
+LibraryManagementSystem::~LibraryManagementSystem()
+{
+    delete ui;
+}
+
+void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
+    if (!Saved) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Chưa lưu",
+                                      "Bạn có muốn lưu trước khi thoát không?",
+                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+
+        if (reply == QMessageBox::Yes) {
+            Ghi_The_Vao_File();
+            Ghi_Ma_The_Vao_File(index_MangRandom);
+            InVaoTXT();
+            event->accept();
+        } else if (reply == QMessageBox::No) {
+            event->accept();
+        } else {
+            event->ignore();
+        }
+    } else {
+        event->accept();
+    }
+>>>>>>> 7d6a6b4235a377046cab08cee6a670d0205b86fa
 }
 
 void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
+    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach);
+    qDebug()<<"test";
 }
 
 void LibraryManagementSystem::page2Widget()
@@ -52,12 +88,9 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_The_Vao_File();
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
+    Saved = true;
 }
-//------------------------------------Hàm sử dụng ở Thẻ Đầu Sách-----------------------------------------------------------------------
-LibraryManagementSystem::~LibraryManagementSystem()
-{
-    delete ui;
-}
+//------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
@@ -106,10 +139,11 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         themds.setModal(true);
         if (themds.exec() == QDialog::Accepted){
             InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+            Saved = false;
         }
     }
 }
-
+//Nut Thanh ly
 void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
 {
     QModelIndex index = ui->tableView_dausach->currentIndex();
@@ -124,7 +158,7 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     int i = 0;
     for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
     if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
-    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2;}
+    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2; Saved = false;}
     else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
     if (ui->lineEdit_timkiemds->text().isEmpty()){
         InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
@@ -134,7 +168,16 @@ void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
     }
 }
 
-//------------------------------------Hàm sử dụng ở Thẻ Độc Giả-----------------------------------------------------------------------
+//------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
+bool LibraryManagementSystem::kiemTraChuoi(QString s) {
+    for ( int i = 0; i < s.length(); i++ ) {
+        if ( !s[i].isLetter() && !s[i].isSpace() ) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void LibraryManagementSystem::CapNhatBang()
 {
     ui->tableWidget_2->setRowCount(0);
@@ -169,11 +212,12 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
         } else {
             docGia.phai = Phai::Nu;
         }
-        docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
+        docGia.TrangThai = Dang_Hoat_Dong;
 
         Them_Doc_Gia(root, docGia);
         Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
         CapNhatBang();
+        Saved = false;
     }
 }
 
@@ -200,11 +244,13 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
             ui->tableWidget_2->removeRow(currentRow); // Xóa hàng từ bảng
 
             CapNhatBang();
+            Saved = false;
             QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
         }
     } else {
         QMessageBox::warning(this, "Cảnh báo", "Không thể lấy thông tin độc giả.");
     }
+    Saved = false;
 }
 
 void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
@@ -216,18 +262,29 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     int maThe = maTheItem->text().toInt();
 
     QString newValue = item->text();
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, maThe);
 
     switch (column) {
     case 1:
+        if (kiemTraChuoi(newValue) == false ) {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị họ không hợp lệ.");
+            item->setText(QString::fromStdString(p->thong_tin.Ho));
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ho", newValue.toStdString());
         break;
     case 2:
-
+        if (kiemTraChuoi(newValue) == false ) {
+            QMessageBox::warning(this, "Cảnh báo", "Giá trị tên không hợp lệ.");
+            item->setText(QString::fromStdString(p->thong_tin.Ten));
+            return;
+        }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ten", newValue.toStdString());
         break;
     case 3:
         if (newValue != "Nam" && newValue != "Nữ") {
             QMessageBox::warning(this, "Cảnh báo", "Giá trị phái không hợp lệ. Vui lòng nhập 'Nam' hoặc 'Nữ'.");
+            item->setText(QString::fromStdString(p->thong_tin.phai == Nam ? "Nam":"Nữ"));
             return;
         }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Phai", newValue.toStdString());
@@ -235,6 +292,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     case 4:
         if (newValue != "Đang Hoạt Động" && newValue != "Khóa") {
             QMessageBox::warning(this, "Cảnh báo", "Giá trị trạng thái không hợp lệ. Vui lòng nhập 'Đang Hoạt Động' hoặc 'Bị Khóa'.");
+            item->setText(QString::fromStdString(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang hoạt động":"Khóa"));
             return;
         }
         Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "TrangThai", newValue.toStdString());
@@ -242,6 +300,7 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
     default:
         break;
     }
+    Saved = false;
 }
 
 void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int column)
@@ -255,30 +314,14 @@ void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int co
     }
 }
 
+
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     muonsach muon_sach;
     muon_sach.setModal(true);
     if (muon_sach.exec() == QDialog::Accepted) {
-
-        // if (themDocGia.exec() == QDialog::Accepted) {
-
-        //     The_Doc_Gia docGia;
-        //     docGia.MATHE = LayMaTheNgauNhien();
-        //     docGia.Ho = themDocGia.getHo().trimmed().toStdString();
-        //     docGia.Ten = themDocGia.getTen().trimmed().toStdString();
-        //     if ( themDocGia.getPhai() == "Nam") {
-        //         docGia.phai = Phai::Nam;
-        //     } else {
-        //         docGia.phai = Phai::Nu;
-        //     }
-        //     docGia.TrangThai = TrangThaiCuaThe::Dang_Hoat_Dong;
-
-        //     Them_Doc_Gia(root, docGia);
-        //     Them_Doc_Gia_Vao_Mang(Tim_Kiem(root, docGia.MATHE));
-        //     CapNhatBang();
-        // }
+        Saved = false;
     }
 }
 

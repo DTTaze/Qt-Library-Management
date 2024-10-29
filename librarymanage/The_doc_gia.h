@@ -22,6 +22,7 @@ enum Phai{Nam,Nu};
 
 enum TrangThaiCuaThe{Dang_Hoat_Dong,Khoa};
 
+// Thông tin thẻ độc giả
 struct The_Doc_Gia {
     unsigned int MATHE;
     string Ho;
@@ -31,6 +32,7 @@ struct The_Doc_Gia {
     DanhSachMUONTRA* head_lsms = nullptr;
 };
 
+// Danh sách thẻ độc giả: cây nhị phân tìm kiếm
 struct Danh_Sach_The_Doc_Gia {
     The_Doc_Gia thong_tin;
     Danh_Sach_The_Doc_Gia* ptr_left = nullptr;
@@ -66,20 +68,21 @@ extern int index_MangRandom;
 
 extern Danh_Sach_The_Doc_Gia* root;
 
-// Hàm liên quan đến mảng
+// Mảng thẻ
 void Tao_Mang_The();
 void taoMangTrungVi(int& index, int start, int end);
 int LayMaTheNgauNhien();
 void Ghi_Ma_The_Vao_File(int i);
 void Doc_File_Ma_The();
 
-// Hàm liên quan đến các thao tác trên cây
+// thêm / xóa / hiệu chỉnh thông tin thẻ độc giả.
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
 void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
-// Hàm liên quan đến mảng tạm
+
+// In danh sách độc giả theo tên
 void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
 void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia);
 void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);

@@ -7,6 +7,7 @@ Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 int DS_PTR = 0;
 
 Danh_Sach_The_Doc_Gia* root;
+Danh_Sach_The_Doc_Gia* rp;
 //--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
 void taoMangTrungVi(int& index, int start, int end) {
     Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
@@ -96,14 +97,12 @@ void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
 //-------------------------------------------------Hàm liên quan đến thao tác trên cây--------------------------------------------------------------------------------------
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const The_Doc_Gia& thong_tin_the_doc_gia ) {
     if ( root == nullptr ) {
-        Danh_Sach_The_Doc_Gia* con_tro_the_doc_gia = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
-        root = con_tro_the_doc_gia;
+        root = new Danh_Sach_The_Doc_Gia(thong_tin_the_doc_gia);
     } else {
         if ( root->thong_tin.MATHE == thong_tin_the_doc_gia.MATHE ) {
             QMessageBox::warning(nullptr, "Lỗi", "Mã thẻ độc giả đã tồn tại.");
             return;
-        }
-        if ( root->thong_tin.MATHE < thong_tin_the_doc_gia.MATHE ) {
+        } else if ( root->thong_tin.MATHE < thong_tin_the_doc_gia.MATHE ) {
             Them_Doc_Gia(root->ptr_right, thong_tin_the_doc_gia);
         } else {
             Them_Doc_Gia(root->ptr_left, thong_tin_the_doc_gia);
@@ -115,6 +114,7 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
     if ( r->ptr_left != nullptr ) {
         Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_left);
     } else {
+        rp->thong_tin = r->thong_tin;
         Danh_Sach_The_Doc_Gia* temp = r;
         r = r->ptr_right;
         delete temp;
@@ -122,34 +122,22 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
 }
 
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
-    if (root == nullptr) {
-        QMessageBox::information(nullptr, "Thông báo", "Không tìm thấy độc giả");
-        return;
-    }
-
     if (root->thong_tin.MATHE < ma_the_doc_gia) {
         Xoa_Doc_Gia(root->ptr_right, ma_the_doc_gia);
     } else if (root->thong_tin.MATHE > ma_the_doc_gia) {
         Xoa_Doc_Gia(root->ptr_left, ma_the_doc_gia);
     } else { // root->MATHE == ma_the_doc_gia
+        rp = root;
         if (root->ptr_left == nullptr) {
-            Danh_Sach_The_Doc_Gia* temp = root;
-            root = root->ptr_right;
-            delete temp;
+            root = rp->ptr_right;
         }
         else if (root->ptr_right == nullptr) {
-            Danh_Sach_The_Doc_Gia* temp = root;
             root = root->ptr_left;
-            delete temp;
         }
         else {
-            Danh_Sach_The_Doc_Gia* minNode = root->ptr_right;
-            while (minNode->ptr_left != nullptr) {
-                minNode = minNode->ptr_left;
-            }
-            root->thong_tin = minNode->thong_tin;
-            Xoa_Truong_Hop_Co_Hai_Cay_Con(root->ptr_right);
+            Xoa_Truong_Hop_Co_Hai_Cay_Con(rp->ptr_right);
         }
+        delete rp;
     }
 }
 

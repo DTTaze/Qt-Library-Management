@@ -7,6 +7,7 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 #include <QTableWidgetItem>
+#include <QCloseEvent>
 #include "Dau_sach.h"
 #include "The_doc_gia.h"
 #include "Muon_tra.h"
@@ -45,7 +46,7 @@ private slots:
 
     void CapNhatBang();
 
-    // void on_luuFile_pushButton_clicked();
+    bool kiemTraChuoi(QString s);
 
     void on_tableWidget_2_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
@@ -55,7 +56,6 @@ private slots:
 
     void on_themSach_pushButton_2_clicked();
 
-    // void on_pushButton_luuds_clicked();
 
     void on_luuFile_pushButton_clicked();
 
@@ -72,6 +72,9 @@ public slots:
 
 private:
     Ui::LibraryManagementSystem *ui;
+    bool Saved;
+protected:
+    void closeEvent(QCloseEvent *event) override; // Khai báo hàm closeEvent
 
 };
 #endif // LIBRARYMANAGEMENTSYSTEM_H

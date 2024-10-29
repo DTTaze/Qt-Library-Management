@@ -104,7 +104,7 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
     tableView_dausach->setModel(model);
     tableView_dausach->setColumnWidth(0,120);
     tableView_dausach->setColumnWidth(1,200);
-    tableView_dausach->setColumnWidth(2,50);
+    tableView_dausach->setColumnWidth(2,70);
     tableView_dausach->setColumnWidth(3,100);
     tableView_dausach->setColumnWidth(4,100);
     tableView_dausach->setColumnWidth(5,100);
@@ -186,26 +186,6 @@ int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key){
             ket_qua = mid;
             right = mid - 1;//doi right ve mid de xac dinh vi tri tien to dau tien
         } else if (tien_to < key) {//key ben phai
-            left = mid + 1;
-        } else {//key ben trai
-            right = mid - 1;
-        }
-    }
-    return ket_qua;
-}
-
-int TimKiemNhiPhanTheLoai(DanhSachDauSach &danh_sach_dau_sach,string key){
-    int left = 0;
-    int right = danh_sach_dau_sach.demsach-1;
-    int ket_qua = -1;
-
-    while(left <= right){
-        int mid = (left + right) /2;
-
-        if (danh_sach_dau_sach.node[mid]->theloai == key) {
-            ket_qua = mid;
-            right = mid - 1;//doi right ve mid de xac dinh vi tri tien to dau tien
-        } else if (danh_sach_dau_sach.node[mid]->theloai < key) {//key ben phai
             left = mid + 1;
         } else {//key ben trai
             right = mid - 1;
@@ -376,9 +356,6 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
     }else{return false;};
 }
 
-void NhapDauSachMoi(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, string I_S_B_N, string ten_sach, int so_trang, string tac_gia, int nam_sx, string the_loai, string vi_tri) {
-    ThemDauSach(danh_sach_dau_sach, I_S_B_N, ten_sach, so_trang, tac_gia, nam_sx, the_loai, head_dms, 0, vi_tri);
-}
 
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTableView* tableView_dausach, QWidget* parent) {
 
