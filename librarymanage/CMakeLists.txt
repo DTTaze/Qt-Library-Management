@@ -44,7 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         queue.h
 
         Ma_The.txt
-        baocao.h baocao.cpp baocao.ui
+
 
 
     )

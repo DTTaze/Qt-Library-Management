@@ -26,11 +26,23 @@ public:
     ~LibraryManagementSystem();
 
 private slots:
-    void page1Widget();
-    void page2Widget();
-    void page3Widget();
-    void page4Widget();
+    void tabDauSach();
+
+    void tabTheDocGia();
+
+    void tabMuonTra();
+
+    void tabBaoCao();
+
     void on_luuFile_pushButton_clicked();
+
+    void on_dauSach_pushButton_clicked();
+
+    void on_thedocgia_pushButton_clicked();
+
+    void on_muontra_pushButton_clicked();
+
+    void on_baocao_pushButton_clicked();
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 
@@ -44,13 +56,13 @@ private slots:
 
     void on_xoaDocGia_pushButton_clicked();
 
-    void on_tableWidget_2_itemChanged(QTableWidgetItem *item);
+    void on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem *item);
 
     void CapNhatBang();
 
     bool kiemTraChuoi(QString s);
 
-    void on_tableWidget_2_cellDoubleClicked(int row, int column);
+    void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
     void on_muonSach_pushButton_clicked();
 

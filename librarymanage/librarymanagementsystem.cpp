@@ -2,7 +2,6 @@
 #include "./ui_librarymanagementsystem.h"
 #include "muonsach.h"
 #include "trasach.h"
-#include "baocao.h"
 #include "intheotheloai.h"
 #include "themdausach.h"
 #include "The_doc_gia.h"
@@ -16,18 +15,13 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
-    QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
-    QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
-    QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
-    QObject::connect(ui->baocao_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page4Widget); // Chuyển sang tab Báo cáo
-    QObject::connect(ui->lineEdit_timkiemds, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
     Doc_File_Ma_The();
     DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
-    Doc_Thong_Tin_Tu_File(ui->tableWidget_2); // Load thông tin từ file docgia_100.txt vào cây
+    Doc_Thong_Tin_Tu_File(ui->danhSachTheDocGia_tableWidget); // Load thông tin từ file docgia_100.txt vào cây
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
-    Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
+    Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root); // In bảng danh sách thẻ độc giả
 
     inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
     NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root); // In thông tin top 10 sách nhiều lượt xem
@@ -61,26 +55,49 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
         event->accept();
     }
 }
-void LibraryManagementSystem::page1Widget() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
+void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach);
-    //qDebug()<<"In đầu sách";
 }
 
-void LibraryManagementSystem::page2Widget()
+void LibraryManagementSystem::tabTheDocGia()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_docgia);
+    Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root);
 }
 
-void LibraryManagementSystem::page3Widget()
+void LibraryManagementSystem::tabMuonTra()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 }
 
-void LibraryManagementSystem::page4Widget()
+void LibraryManagementSystem::tabBaoCao()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
+}
+
+void LibraryManagementSystem::on_dauSach_pushButton_clicked()
+{
+    tabDauSach();
+}
+
+
+void LibraryManagementSystem::on_thedocgia_pushButton_clicked()
+{
+    tabTheDocGia();
+}
+
+
+void LibraryManagementSystem::on_muontra_pushButton_clicked()
+{
+    tabMuonTra();
+}
+
+
+void LibraryManagementSystem::on_baocao_pushButton_clicked()
+{
+    tabBaoCao();
 }
 
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
@@ -89,7 +106,6 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_Ma_The_Vao_File(index_MangRandom);
     InVaoTXT();
     Saved = true;
-    //qDebug()<<"Đã lưu";
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
@@ -181,15 +197,15 @@ bool LibraryManagementSystem::kiemTraChuoi(QString s) {
 
 void LibraryManagementSystem::CapNhatBang()
 {
-    ui->tableWidget_2->setRowCount(0);
+    ui->danhSachTheDocGia_tableWidget->setRowCount(0);
 
     if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
-        Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root);
+        Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root);
 
     } else {
         DS_PTR = 0;
         Copy_Cay_Sang_Mang(root);
-        Them_Mang_Vao_QTableWidget(ui->tableWidget_2);
+        Them_Mang_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget);
     }
 }
 
@@ -224,14 +240,14 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
 
 void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc giả
 {
-    int currentRow = ui->tableWidget_2->currentRow();
+    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
 
     if (currentRow == -1) {
         QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để xóa.");
         return;
     }
 
-    QTableWidgetItem* item = ui->tableWidget_2->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
+    QTableWidgetItem* item = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
     if (item) {
         int MATHE = item->text().toInt();
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, MATHE);
@@ -242,7 +258,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
             DS_PTR = 0;
             Copy_Cay_Sang_Mang(root);
 
-            ui->tableWidget_2->removeRow(currentRow); // Xóa hàng từ bảng
+            ui->danhSachTheDocGia_tableWidget->removeRow(currentRow); // Xóa hàng từ bảng
 
             CapNhatBang();
             Saved = false;
@@ -254,12 +270,12 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     Saved = false;
 }
 
-void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
+void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
 {
     int row = item->row();
     int column = item->column();
 
-    QTableWidgetItem* maTheItem = ui->tableWidget_2->item(row, 0);
+    QTableWidgetItem* maTheItem = ui->danhSachTheDocGia_tableWidget->item(row, 0);
     int maThe = maTheItem->text().toInt();
 
     QString newValue = item->text();
@@ -300,17 +316,17 @@ void LibraryManagementSystem::on_tableWidget_2_itemChanged(QTableWidgetItem* ite
         break;
     default:
         break;
+        Saved = false;
     }
-    Saved = false;
 }
 
-void LibraryManagementSystem::on_tableWidget_2_cellDoubleClicked(int row, int column)
+void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column)
 {
     if ( column == 0 ) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể thay đổi mã thẻ");
-        QTableWidgetItem *item = ui->tableWidget_2->item(row, 0);
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể thay đổi mã thẻ.");
+        QTableWidgetItem *item = ui->danhSachTheDocGia_tableWidget->item(row, 0);
         if (item) {
-            item->setFlags(item->flags() & ~Qt::ItemIsEditable); // Đặt ô này thành chỉ có thể xem
+            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         }
     }
 }
@@ -397,4 +413,5 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
 {
 
 }
+
 
