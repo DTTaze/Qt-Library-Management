@@ -731,10 +731,10 @@ font: 900 15pt &quot;Segoe UI Black&quot;;
            <widget class="QTableView" name="danhSachQuaHan_tableView">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>380</y>
-              <width>661</width>
-              <height>211</height>
+              <x>100</x>
+              <y>390</y>
+              <width>531</width>
+              <height>181</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -770,7 +770,7 @@ QTableView::item:selected {
            <widget class="QTableWidget" name="danhSachTheDocGia_tableWidget">
             <property name="geometry">
              <rect>
-              <x>40</x>
+              <x>70</x>
               <y>100</y>
               <width>571</width>
               <height>461</height>
@@ -855,8 +855,8 @@ QTableWidget::item:selected {
             <property name="geometry">
              <rect>
               <x>410</x>
-              <y>30</y>
-              <width>213</width>
+              <y>10</y>
+              <width>231</width>
               <height>55</height>
              </rect>
             </property>
@@ -946,7 +946,7 @@ QComboBox QAbstractItemView {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>100</x>
+              <x>140</x>
               <y>590</y>
               <width>451</width>
               <height>50</height>
@@ -1052,8 +1052,8 @@ QPushButton:focus {
            <widget class="QTableView" name="tableView_dausach">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>130</y>
+              <x>30</x>
+              <y>120</y>
               <width>631</width>
               <height>438</height>
              </rect>
@@ -1104,37 +1104,6 @@ QTableView::item:selected {
              <bool>false</bool>
             </property>
            </widget>
-           <widget class="QLabel" name="timKiemDuSach_Label">
-            <property name="geometry">
-             <rect>
-              <x>50</x>
-              <y>10</y>
-              <width>101</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: black;
-font-size:20px;
-font-weight:600;</string>
-            </property>
-            <property name="text">
-             <string>Tìm Kiếm :</string>
-            </property>
-           </widget>
-           <widget class="QLineEdit" name="lineEdit_timkiemds">
-            <property name="geometry">
-             <rect>
-              <x>150</x>
-              <y>20</y>
-              <width>481</width>
-              <height>24</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:black;</string>
-            </property>
-           </widget>
            <widget class="QPushButton" name="inTheLoai_pushButton">
             <property name="geometry">
              <rect>
@@ -1183,10 +1152,10 @@ QPushButton:focus {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>90</x>
+              <x>110</x>
               <y>590</y>
-              <width>511</width>
-              <height>50</height>
+              <width>491</width>
+              <height>51</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
@@ -1250,7 +1219,7 @@ QPushButton:focus {
     border: none;
     border-radius: 16px;
     padding: 13px 16px;
-    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-family: &quot;Arial&quot;, sans-serif;
     font-size: 18px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
@@ -1282,6 +1251,37 @@ QPushButton:focus {
                <property name="icon">
                 <iconset>
                  <normaloff>plus-solid.svg</normaloff>plus-solid.svg</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>10</y>
+              <width>601</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLabel" name="timKiemDuSach_Label">
+               <property name="styleSheet">
+                <string notr="true">color: black;
+font-size:20px;
+font-weight:600;</string>
+               </property>
+               <property name="text">
+                <string>Tìm Kiếm :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_timkiemds">
+               <property name="styleSheet">
+                <string notr="true">color:black;</string>
                </property>
               </widget>
              </item>
