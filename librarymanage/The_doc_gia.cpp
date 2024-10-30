@@ -35,7 +35,7 @@ void Tao_Mang_The() {
 }
 
 int LayMaTheNgauNhien() {
-    if ( mangMaThe.maThe[index_MangRandom] == 0 || index_MangRandom > mangMaThe.soLuongMaThe) {
+    if ( index_MangRandom >= mangMaThe.soLuongMaThe || mangMaThe.maThe[index_MangRandom] == 0) {
         QMessageBox::warning(nullptr,"Lỗi", "Đã hết mã thẻ");
         return 0;
     }
@@ -47,6 +47,7 @@ void Doc_File_Ma_The() {
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
     }
+
     for (int i = 0; i < MAXRANDOM; ++i) {
         inFile >> mangMaThe.maThe[i];
         mangMaThe.soLuongMaThe++;
