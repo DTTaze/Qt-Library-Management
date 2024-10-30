@@ -115,9 +115,8 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r ) {
         Xoa_Truong_Hop_Co_Hai_Cay_Con(r->ptr_left);
     } else {
         rp->thong_tin = r->thong_tin;
-        Danh_Sach_The_Doc_Gia* temp = r;
-        r = r->ptr_right;
-        delete temp;
+        rp = r;
+        r = rp->ptr_right;
     }
 }
 

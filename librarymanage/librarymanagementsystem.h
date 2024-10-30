@@ -29,6 +29,8 @@ private slots:
     void page1Widget();
     void page2Widget();
     void page3Widget();
+    void page4Widget();
+    void on_luuFile_pushButton_clicked();
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 
@@ -55,11 +57,6 @@ private slots:
     void on_traSach_pushButton_clicked();
 
     void on_themSach_pushButton_2_clicked();
-
-
-    void on_luuFile_pushButton_clicked();
-
-    void on_baocao_pushButton_clicked();
 
     int getmaThe() ;
 

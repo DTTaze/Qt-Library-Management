@@ -60,6 +60,7 @@ struct danhSachMaThe
     int soLuongMaThe = 0;
     int maThe[MAXRANDOM];
 };
+
 extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 extern int DS_PTR;
 
@@ -67,7 +68,7 @@ extern danhSachMaThe mangMaThe;
 extern int index_MangRandom;
 
 extern Danh_Sach_The_Doc_Gia* root;
-
+extern Danh_Sach_The_Doc_Gia* rp;
 // Mảng thẻ
 void Tao_Mang_The();
 void taoMangTrungVi(int& index, int start, int end);

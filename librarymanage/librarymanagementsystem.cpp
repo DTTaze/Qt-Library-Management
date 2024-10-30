@@ -10,7 +10,7 @@
 #include "Muon_tra.h"
 #include "dau_sach.h"
 #include "themdocgia_dialog.h"
-#define MayConChoDoi "may con cho doi"
+
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LibraryManagementSystem)
@@ -19,6 +19,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     QObject::connect(ui->dauSach_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page1Widget); // Chuyển sang tab Đầu Sách
     QObject::connect(ui->thedocgia_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page2Widget); // Chuyển sang tab Độc Giả
     QObject::connect(ui->muontra_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page3Widget); // Chuyển sang tab Mượn Trả
+    QObject::connect(ui->baocao_pushButton, &QPushButton::clicked, this, &LibraryManagementSystem::page4Widget); // Chuyển sang tab Báo cáo
     QObject::connect(ui->lineEdit_timkiemds, &QLineEdit::textChanged, this, &LibraryManagementSystem::on_lineEdit_timkiemds_textChanged);
 
     Doc_File_Ma_The();
@@ -27,6 +28,10 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
     Them_Cay_Vao_QTableWidget(ui->tableWidget_2, root); // In bảng danh sách thẻ độc giả
+
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
+    NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root); // In thông tin top 10 sách nhiều lượt xem
+
     Saved = true;
 }
 
@@ -71,6 +76,11 @@ void LibraryManagementSystem::page2Widget()
 void LibraryManagementSystem::page3Widget()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
+}
+
+void LibraryManagementSystem::page4Widget()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
 }
 
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
@@ -321,13 +331,6 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
     trasach tra_sach;
     tra_sach.setModal(true);
     tra_sach.exec();
-}
-
-void LibraryManagementSystem::on_baocao_pushButton_clicked()
-{
-    baocao bao_cao;
-    bao_cao.setModal(true);
-    bao_cao.exec();
 }
 
 int LibraryManagementSystem::getmaThe() {
