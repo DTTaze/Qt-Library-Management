@@ -11,7 +11,6 @@
 #include <QDir>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
-#include "queue.h"
 #define MAXRANDOM 10000
 
 using namespace std;
@@ -55,25 +54,16 @@ struct Danh_Sach_Theo_Ten
     Danh_Sach_The_Doc_Gia* PTR = nullptr;
 };
 
-struct danhSachMaThe
-{
-    int soLuongMaThe = 0;
-    int maThe[MAXRANDOM];
-};
-
 extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 extern int DS_PTR;
 
-extern danhSachMaThe mangMaThe;
-extern int index_MangRandom;
-
 extern Danh_Sach_The_Doc_Gia* root;
 extern Danh_Sach_The_Doc_Gia* rp;
+
 // Mảng thẻ
-void Tao_Mang_The();
-void taoMangTrungVi(int& index, int start, int end);
+void taoDanhSachMaThe(int start, int end);
 int LayMaTheNgauNhien();
-void Ghi_Ma_The_Vao_File(int i);
+void Ghi_Ma_The_Vao_File();
 void Doc_File_Ma_The();
 
 // thêm / xóa / hiệu chỉnh thông tin thẻ độc giả.

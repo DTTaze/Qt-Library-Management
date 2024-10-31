@@ -4,6 +4,7 @@
 #include "trasach.h"
 #include "intheotheloai.h"
 #include "themdausach.h"
+#include "queue.h"
 #include "The_doc_gia.h"
 #include "themdocgia_dialog.h"
 #include "Muon_tra.h"
@@ -43,7 +44,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 
         if (reply == QMessageBox::Yes) {
             Ghi_The_Vao_File();
-            Ghi_Ma_The_Vao_File(index_MangRandom);
+            Ghi_Ma_The_Vao_File();
             InVaoTXT();
             event->accept();
         } else if (reply == QMessageBox::No) {
@@ -103,7 +104,7 @@ void LibraryManagementSystem::on_baocao_pushButton_clicked()
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 {
     Ghi_The_Vao_File();
-    Ghi_Ma_The_Vao_File(index_MangRandom);
+    Ghi_Ma_The_Vao_File();
     InVaoTXT();
     Saved = true;
 }

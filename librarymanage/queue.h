@@ -38,7 +38,6 @@ void Queue<T>::push(T value) {
         this->Rear->next= p;
     }
     this->Rear = p;
-    return;
 }
 
 template<typename T>
@@ -48,8 +47,10 @@ void Queue<T>::pop() {
     }
     node<T>* p = this->Front;    // nut can xoa la nut dau
     this->Front = p->next;
+    if (this->Front == nullptr) { // Nếu hàng đợi trống sau khi xóa
+        this->Rear = nullptr;
+    }
     delete p;
-    return;
 }
 
 template<typename T>
@@ -60,11 +61,7 @@ T Queue<T>::front() {
 
 template<typename T>
 bool Queue<T>::empty() {
-    if ( this->Front == nullptr ) {
-        return true;
-    } else {
-        return false;
-    }
+    return this->Front == nullptr;
 }
 
 #endif // QUEUE_H

@@ -1,15 +1,14 @@
 #include "The_doc_gia.h"
 
-danhSachMaThe mangMaThe;
-int index_MangRandom = 0;
-
 Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
 int DS_PTR = 0;
+
+Queue<int> danhSachMaThe;
 
 Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
 //--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
-void taoMangTrungVi(int& index, int start, int end) {
+void taoDanhSachMaThe(int start, int end) {
     Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
     ranges.push({start, end}); // [a,b]
 
@@ -23,23 +22,21 @@ void taoMangTrungVi(int& index, int start, int end) {
         if (a > b) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
 
         int median = (a + b) / 2; // Tìm vị trí chính giữa
-        mangMaThe.maThe[index++] = median; // Thêm giá trị vào mảng
+        danhSachMaThe.push(median);
         ranges.push({a, median - 1}); // [a - 1, median]
         ranges.push({median + 1, b}); // [median + 1, b]
     }
 }
 
-void Tao_Mang_The() {
-    int index = 0;
-    taoMangTrungVi(index, 1, 10000);
-}
-
 int LayMaTheNgauNhien() {
-    if ( index_MangRandom >= mangMaThe.soLuongMaThe || mangMaThe.maThe[index_MangRandom] == 0) {
-        QMessageBox::warning(nullptr,"Lỗi", "Đã hết mã thẻ");
-        return 0;
+    if (danhSachMaThe.empty()) {
+        QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng!");
+        return -1;
     }
-    return mangMaThe.maThe[index_MangRandom++];
+    int maThe = danhSachMaThe.front();
+    danhSachMaThe.pop();
+    danhSachMaThe.push(maThe);
+    return maThe;
 }
 
 void Doc_File_Ma_The() {
@@ -48,19 +45,23 @@ void Doc_File_Ma_The() {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
     }
 
-    for (int i = 0; i < MAXRANDOM; ++i) {
-        inFile >> mangMaThe.maThe[i];
-        mangMaThe.soLuongMaThe++;
+    int maThe;
+    while (inFile >> maThe) {
+        danhSachMaThe.push(maThe);
     }
+    inFile.close();
 }
 
-void Ghi_Ma_The_Vao_File(int index) {
+void Ghi_Ma_The_Vao_File() {
     ofstream outFile("Ma_The.txt");
     if (!outFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
     }
-    for (int i = index; i < mangMaThe.soLuongMaThe; i++) {
-        outFile << mangMaThe.maThe[i] << " "; // Ghi từng số, cách nhau bằng khoảng trắng
+
+    Queue<int> tempQueue = danhSachMaThe;
+    while (!tempQueue.empty()) {
+        outFile << tempQueue.front() << " ";
+        tempQueue.pop();
     }
     outFile.close();
 }

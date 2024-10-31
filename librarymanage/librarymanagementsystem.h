@@ -9,6 +9,7 @@
 #include <QTableWidgetItem>
 #include <QCloseEvent>
 #include "Dau_sach.h"
+#include "queue.h"
 #include "The_doc_gia.h"
 #include "Muon_tra.h"
 QT_BEGIN_NAMESPACE
