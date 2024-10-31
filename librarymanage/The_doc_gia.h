@@ -49,22 +49,19 @@ struct Danh_Sach_The_Doc_Gia {
 
 struct Danh_Sach_Theo_Ten
 {
-    int soLuongThe = 0;
     string ten;
     Danh_Sach_The_Doc_Gia* PTR = nullptr;
+    Danh_Sach_Theo_Ten* next = nullptr;
 };
-
-extern Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
-extern int DS_PTR;
 
 extern Danh_Sach_The_Doc_Gia* root;
 extern Danh_Sach_The_Doc_Gia* rp;
 
 // Mảng thẻ
 void taoDanhSachMaThe(int start, int end);
-int LayMaTheNgauNhien();
-void Ghi_Ma_The_Vao_File();
-void Doc_File_Ma_The();
+int layMaThe();
+void docFileMaThe();
+void ghiMaTheVaoFile();
 
 // thêm / xóa / hiệu chỉnh thông tin thẻ độc giả.
 void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the_doc_gia);
@@ -72,11 +69,13 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
+void capNhatThongTinMuonSach(Danh_Sach_The_Doc_Gia* docGia);
 
 // In danh sách độc giả theo tên
-void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root);
-void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia);
-void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget);
+void themVaoDanhSachTheoTenCoThuTu(Danh_Sach_The_Doc_Gia* docgia);
+void taoDanhSachTheoTen(Danh_Sach_The_Doc_Gia* root);
+void xoaDanhSachTheoTen();
+void inDanhSachVaoBang(QTableWidget* tableWidget);
 
 // Hàm đọc và ghi thông tin
 void Doc_Thong_Tin_Tu_File(QTableWidget* tableWidget);

@@ -25,6 +25,7 @@ struct Queue
     void pop();
     T front();
     bool empty();
+    void clear();
 };
 
 template<typename T>
@@ -62,6 +63,16 @@ T Queue<T>::front() {
 template<typename T>
 bool Queue<T>::empty() {
     return this->Front == nullptr;
+}
+
+template<typename T>
+void Queue<T>::clear() {
+    while (this->Front != nullptr) {
+        node<T>* temp = this->Front;
+        this->Front = this->Front->next;
+        delete temp;
+    }
+    this->Rear = nullptr;  // Đảm bảo Rear cũng là nullptr sau khi xóa
 }
 
 #endif // QUEUE_H
