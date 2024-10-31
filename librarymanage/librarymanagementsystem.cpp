@@ -334,21 +334,6 @@ void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_cellDoubleClicked
 
 
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
-void LibraryManagementSystem::on_muonSach_pushButton_clicked()
-{
-    muonsach muon_sach;
-    muon_sach.setModal(true);
-    if (muon_sach.exec() == QDialog::Accepted) {
-        Saved = false;
-    }
-}
-
-void LibraryManagementSystem::on_traSach_pushButton_clicked()
-{
-    trasach tra_sach;
-    tra_sach.setModal(true);
-    tra_sach.exec();
-}
 
 int LibraryManagementSystem::getmaThe() {
     return ui->lineEdit_maThe->text().toInt();

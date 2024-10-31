@@ -23,9 +23,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(librarymanage
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        muonsach.h muonsach.cpp muonsach.ui
-        trasach.h trasach.cpp trasach.ui
-
 
         Dau_sach.h
         Dau_sach.cpp
