@@ -425,6 +425,7 @@ bool InVaoTXT(){
                  << dau_sach->tacgia << '|'
                  << dau_sach->namsx << '|'
                  << dau_sach->theloai << '|'
+                 << dau_sach->dms->vitri << '|'
                  << dau_sach->dms->trangthai;
             file << endl; // Kết thúc dòng thông tin của đầu sách
         }
