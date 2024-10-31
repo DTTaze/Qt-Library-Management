@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include <QCloseEvent>
+#include <QCheckBox>
 #include "Dau_sach.h"
 #include "queue.h"
 #include "The_doc_gia.h"
@@ -72,7 +73,10 @@ private slots:
     void inThongTin(const int& ma_the) ;
 
     void on_lineEdit_maThe_textChanged(const QString &arg1);
-    string getmaSach();
+
+    void inThongTinmaSach( string key_ma_sach);
+
+    string getmaSach() ;
 
     void on_lineEdit_maSach_textChanged(const QString &arg1);
 
@@ -86,3 +90,4 @@ protected:
 
 };
 #endif // LIBRARYMANAGEMENTSYSTEM_H
+
