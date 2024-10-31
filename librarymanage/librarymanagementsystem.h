@@ -80,6 +80,10 @@ private slots:
 
     void on_lineEdit_maSach_textChanged(const QString &arg1);
 
+    void on_traSach_pushButton_clicked();
+
+    void on_muonSach_pushButton_clicked();
+
 public slots:
 
 private:

@@ -104,9 +104,6 @@ void MuonSach( const int& maThe, const string& maSach) {
 
     // Nhập ngày trả (có thể thêm logic ở đây để tự động tính toán ngày trả)
     Date ngaytra;
-    ngaytra.day = ngaymuon.day + 14; // Giả sử cho mượn trong 14 ngày
-    ngaytra.month = ngaymuon.month;
-    ngaytra.year = ngaymuon.year;
 
     // Thêm sách vào lịch sử mượn
     ThemSach(doc_gia->thong_tin.head_lsms, maSach, ngaymuon, ngaytra);

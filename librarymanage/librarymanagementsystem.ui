@@ -1049,6 +1049,11 @@ QTableWidget::item:selected {
             </attribute>
             <column>
              <property name="text">
+              <string>Trả Sách</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Mã Sách</string>
              </property>
             </column>
