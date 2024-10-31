@@ -131,11 +131,10 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     }
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
-        if (current->data.masach == ma_sach && current->data.trangthai == Chua_Tra) {
-            if (current->data.masach == ma_sach && current->data.trangthai == 0) {
+        if (current->data.masach == ma_sach && current->data.trangthai == 0) {
+            if (current->data.masach == ma_sach) {
                 current->data.NgayTra = NgayHomNay();
-                current->data.trangthai = Da_Tra;
-                current->data.trangthai = 1;
+                current->data.setNgayTra(NgayHomNay());
                 string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach);
                 if (!ten_sach.empty()) {
                     string ma_ISBN = ma_sach.substr(0,17);
@@ -144,11 +143,13 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                     danh_sach_dau_sach.node[i]->dms->trangthai = 0;
                 }
 
+                QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công, vui lòng nhấn lưu để hoàn tất thao tác.");
+
+
                 break;
             }
             current = current->next;
         }
-        QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công, vui lòng nhấn lưu để hoàn tất thao tác.");
     }
 }
 
