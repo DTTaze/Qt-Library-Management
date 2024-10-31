@@ -66,10 +66,6 @@ private slots:
 
     void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
-    void on_muonSach_pushButton_clicked();
-
-    void on_traSach_pushButton_clicked();
-
     void on_themSach_pushButton_2_clicked();
 
     int getmaThe() ;

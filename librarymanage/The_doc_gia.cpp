@@ -1,7 +1,6 @@
 #include "The_doc_gia.h"
 
-Danh_Sach_Theo_Ten DS_Tam_Thoi[MAXRANDOM];
-int DS_PTR = 0;
+Danh_Sach_Theo_Ten* head = nullptr;
 
 Queue<int> danhSachMaThe;
 
@@ -28,7 +27,7 @@ void taoDanhSachMaThe(int start, int end) {
     }
 }
 
-int LayMaTheNgauNhien() {
+int layMaThe() {
     if (danhSachMaThe.empty()) {
         QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng!");
         return -1;
@@ -39,7 +38,7 @@ int LayMaTheNgauNhien() {
     return maThe;
 }
 
-void Doc_File_Ma_The() {
+void docFileMaThe() {
     ifstream inFile("Ma_The.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
@@ -52,7 +51,7 @@ void Doc_File_Ma_The() {
     inFile.close();
 }
 
-void Ghi_Ma_The_Vao_File() {
+void ghiMaTheVaoFile() {
     ofstream outFile("Ma_The.txt");
     if (!outFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
@@ -66,33 +65,52 @@ void Ghi_Ma_The_Vao_File() {
     outFile.close();
 }
 //---------------------------------------------------Hàm liên quan đến tạo bảng theo tên------------------------------------------------------------------------------------
-void Them_Doc_Gia_Vao_Mang(Danh_Sach_The_Doc_Gia* docgia) {
-    if ( DS_PTR < MAXRANDOM ) {
-        int index = 0;
-        while (index < DS_PTR && (docgia->thong_tin.Ten > DS_Tam_Thoi[index].ten || (docgia->thong_tin.Ten == DS_Tam_Thoi[index].ten && docgia->thong_tin.Ten > DS_Tam_Thoi[index].PTR->thong_tin.Ho))) {
-            index++;
-        }
-        for ( int i = DS_PTR; i > index; i-- ) {
-            DS_Tam_Thoi[i] = DS_Tam_Thoi[i - 1];
-        }
-        DS_Tam_Thoi[index].ten = docgia->thong_tin.Ten;
-        DS_Tam_Thoi[index].PTR = docgia;
-        DS_PTR++;
+void themVaoDanhSachTheoTenCoThuTu(Danh_Sach_The_Doc_Gia* docgia) {
+    Danh_Sach_Theo_Ten* p = new Danh_Sach_Theo_Ten;
+    p->PTR = docgia;
+    p->ten = docgia->thong_tin.Ten;
+
+    Danh_Sach_Theo_Ten* t = nullptr;
+    Danh_Sach_Theo_Ten* s = head;
+
+    while (s != nullptr && s->ten < p->ten) {
+        t = s;
+        s = s->next;
+    }
+
+    p->next = s;
+    if (t == nullptr) {
+        head = p;
     } else {
-        QMessageBox::warning(nullptr, "Lỗi", "Mảng thẻ tạm thời đã đầu");
+        t->next = p;
     }
 }
 
-void Copy_Cay_Sang_Mang(Danh_Sach_The_Doc_Gia* root) {
+void taoDanhSachTheoTen(Danh_Sach_The_Doc_Gia* root) {
     if ( root == nullptr ) return;
-    Them_Doc_Gia_Vao_Mang(root);
-    Copy_Cay_Sang_Mang(root->ptr_left);
-    Copy_Cay_Sang_Mang(root->ptr_right);
+    themVaoDanhSachTheoTenCoThuTu(root);
+    taoDanhSachTheoTen(root->ptr_left);
+    taoDanhSachTheoTen(root->ptr_right);
 }
 
-void Them_Mang_Vao_QTableWidget(QTableWidget* tableWidget) {
-    for( int i = 0; i < DS_PTR; i++) {
-        Them_Vao_QTableWidget(tableWidget, DS_Tam_Thoi[i].PTR);
+void xoaDanhSachTheoTen() {
+    Danh_Sach_Theo_Ten* current = head;
+    Danh_Sach_Theo_Ten* nextNode = nullptr;
+
+    while (current != nullptr) {
+        nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+
+    head = nullptr;
+}
+
+void inDanhSachVaoBang(QTableWidget* tableWidget) {
+    Danh_Sach_Theo_Ten* temp = head;
+    while ( temp != nullptr ) {
+        Them_Vao_QTableWidget(tableWidget, temp->PTR);
+        temp = temp->next;
     }
 }
 
@@ -168,54 +186,16 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
         }
     }
 }
-void Ghi_The_Vao_File() {
-    ofstream outFile("docgia_100.txt");
-    if ( !outFile ) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file docgia_100.txt");
+
+void capNhatThongTinMuonSach(Danh_Sach_The_Doc_Gia* docGia, int trangThai, string maSach) {
+    DanhSachMUONTRA* temp = docGia->thong_tin.head_lsms;
+    while ( temp != nullptr ) {
+        if ( temp->data.masach == maSach ) {
+            temp->data.masach = trangThai;
+            break;
+        }
+        temp = temp->next;
     }
-    if ( root == nullptr ) return;
-
-    Queue<Danh_Sach_The_Doc_Gia*> q;
-    q.push(root);
-
-    while ( !q.empty() ) {
-        Danh_Sach_The_Doc_Gia* current = q.front();
-        q.pop();
-
-        outFile << current->thong_tin.MATHE << "|"
-                << current->thong_tin.Ho << "|"
-                << current->thong_tin.Ten << "|"
-                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
-        if ( current->thong_tin.TrangThai == TrangThaiCuaThe::Dang_Hoat_Dong ) {
-            outFile << "1" << "|";
-        } else {
-            outFile << "0" << "|";
-        }
-        if ( current->thong_tin.head_lsms != nullptr ) {
-            DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
-            while ( temp != nullptr ) {
-                outFile << current->thong_tin.head_lsms->data.masach << "|";
-                if ( current->thong_tin.TrangThai == 0 ) {
-                    outFile << "0" << "|";
-                } else if ( current->thong_tin.TrangThai == 1 ) {
-                    outFile << "1" << "|";
-                } else {
-                    outFile << "2" << "|";
-                }
-                outFile << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
-                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
-                temp = temp->next;
-            }
-        }
-        outFile << endl;
-        if ( current->ptr_left != nullptr ) {
-            q.push(current->ptr_left);
-        }
-        if ( current->ptr_right != nullptr ) {
-            q.push(current->ptr_right);
-        }
-    }
-    outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
@@ -273,6 +253,56 @@ void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông t
         }
     }
     inFile.close();
+}
+
+void Ghi_The_Vao_File() {
+    ofstream outFile("docgia_100.txt");
+    if ( !outFile ) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file docgia_100.txt");
+    }
+    if ( root == nullptr ) return;
+
+    Queue<Danh_Sach_The_Doc_Gia*> q;
+    q.push(root);
+
+    while ( !q.empty() ) {
+        Danh_Sach_The_Doc_Gia* current = q.front();
+        q.pop();
+
+        outFile << current->thong_tin.MATHE << "|"
+                << current->thong_tin.Ho << "|"
+                << current->thong_tin.Ten << "|"
+                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
+        if ( current->thong_tin.TrangThai == TrangThaiCuaThe::Dang_Hoat_Dong ) {
+            outFile << "1" << "|";
+        } else {
+            outFile << "0" << "|";
+        }
+        if ( current->thong_tin.head_lsms != nullptr ) {
+            DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
+            while ( temp != nullptr ) {
+                outFile << current->thong_tin.head_lsms->data.masach << "|";
+                if ( current->thong_tin.TrangThai == 0 ) {
+                    outFile << "0" << "|";
+                } else if ( current->thong_tin.TrangThai == 1 ) {
+                    outFile << "1" << "|";
+                } else {
+                    outFile << "2" << "|";
+                }
+                outFile << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
+                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
+                temp = temp->next;
+            }
+        }
+        outFile << endl;
+        if ( current->ptr_left != nullptr ) {
+            q.push(current->ptr_left);
+        }
+        if ( current->ptr_right != nullptr ) {
+            q.push(current->ptr_right);
+        }
+    }
+    outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) { // Hàm thêm nút thông tin vào table
