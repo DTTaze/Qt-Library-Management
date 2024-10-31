@@ -51,6 +51,8 @@ private slots:
     void on_inTheLoai_pushButton_clicked();
 
     void on_themSach_pushButton_clicked();
+
+    void on_themSach_pushButton_2_clicked();
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 
@@ -66,17 +68,15 @@ private slots:
 
     void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
-    void on_themSach_pushButton_2_clicked();
-
     int getmaThe() ;
 
     void inThongTin(const int& ma_the) ;
 
     void on_lineEdit_maThe_textChanged(const QString &arg1);
 
-    void inThongTinmaSach( string key_ma_sach);
-
     string getmaSach() ;
+
+    void inThongTinmaSach( string key_ma_sach);
 
     void on_lineEdit_maSach_textChanged(const QString &arg1);
 

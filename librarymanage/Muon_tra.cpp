@@ -12,8 +12,12 @@ j. In 10 sách có số lượt mượn nhiều nhất.*/
 
 int TrangThai(Date ngay_muon, Date ngay_tra) { // trạng thái sách của độc giả
 
-    if(ngay_tra.day == 0) {return Chua_Tra;} // chưa trả
-    else if(ngay_tra.day >0 ) {
+    if(ngay_tra.day == 0)
+    {
+        return Chua_Tra;
+    } // chưa trả
+    else
+    {
         return Da_Tra; // đã trả
     }
 }
@@ -60,33 +64,28 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
 
 void ThemSach (DanhSachMUONTRA*& head, string ma, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra);
-    DanhSachMUONTRA *newMUONTRA = new DanhSachMUONTRA(data);
+    DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
 
-    if (head == nullptr || ma < head->data.masach) {
-        newMUONTRA->next = head;
+    if (head == nullptr) {
         head = newMUONTRA;
     } else {
-        DanhSachMUONTRA *temp = head;
-        while (temp->next != nullptr && temp->next->data.masach < ma) {
-            temp = temp->next;
+        DanhSachMUONTRA* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
         }
-        newMUONTRA->next = temp->next;
-        temp->next = newMUONTRA;
+        current->next = newMUONTRA;
     }
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
-    // Tìm kiếm thẻ độc giả theo mã
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, maThe);
 
-    // Kiểm tra nếu thẻ độc giả không tồn tại
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
         return;
     }
 
-    // Đếm số sách đang mượn
-    int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+    int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms); // Đếm số sách đang mượn
 
     // Kiểm tra trạng thái thẻ và số sách đang mượn
     if (doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3) {
@@ -95,25 +94,20 @@ void MuonSach( const int& maThe, const string& maSach) {
     }
 
     // Nhập ngày mượn
-    Date ngaymuon = NgayMuon();
-    // Kiểm tra tính hợp lệ của ngày mượn
-    if (ngaymuon.day == 0 || ngaymuon.month == 0 || ngaymuon.year == 0) {
-        QMessageBox::warning(nullptr, "Lỗi", "Ngày mượn không hợp lệ.");
-        return;
-    }
+    Date ngaymuon = NgayHomNay();
 
     // Nhập ngày trả (có thể thêm logic ở đây để tự động tính toán ngày trả)
     Date ngaytra;
 
+
     // Thêm sách vào lịch sử mượn
     ThemSach(doc_gia->thong_tin.head_lsms, maSach, ngaymuon, ngaytra);
+    CapNhatTrangThaiSach(maSach, 1);
     CapNhatSoLuotMuon(maSach); // Cập nhật số lượt mượn cho sách
 
     // Thông báo thành công
-    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công, vui lòng nhấn nút lưu để hoàn tất.");
+    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
 }
-
-
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
@@ -129,24 +123,17 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
         if (current->data.masach == ma_sach && current->data.trangthai == 0) {
-            if (current->data.masach == ma_sach) {
+
                 current->data.NgayTra = NgayHomNay();
-                current->data.setNgayTra(NgayHomNay());
-                string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach);
-                if (!ten_sach.empty()) {
-                    string ma_ISBN = ma_sach.substr(0,17);
-                    int i = 0;
-                    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-                    danh_sach_dau_sach.node[i]->dms->trangthai = 0;
-                }
+                current->data.capNhatTrangThaiMuonTra(NgayHomNay());
 
-                QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công, vui lòng nhấn lưu để hoàn tất thao tác.");
+                CapNhatTrangThaiSach(ma_sach, 0);
+                capNhatTrangThaiThe(doc_gia);
 
-
+                QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
                 break;
-            }
-            current = current->next;
         }
+        current = current->next;
     }
 }
 
@@ -335,7 +322,6 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
     while( current != nullptr) {
         Date ngay_hom_nay = NgayHomNay();
         int so_ngay_qua_han = SoNgayQuaHan(current->value.second->data.NgayMuon, ngay_hom_nay);
-        qDebug()<<so_ngay_qua_han;
         if ( so_ngay_qua_han <= 7) {
             current = current->next;
             continue;
@@ -343,13 +329,11 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
         string hovaten = current->value.first->thong_tin.Ho + " " + current->value.first->thong_tin.Ten;
         model->insertRow(row);
         model->setItem(row, 0, new QStandardItem(QString::number(current->value.first->thong_tin.MATHE)));
-        qDebug() << current->value.first->thong_tin.MATHE;
         model->setItem(row, 1, new QStandardItem(QString::fromStdString(hovaten)));
         model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
         model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
         model->setItem(row, 4, new QStandardItem(QString::number(so_ngay_qua_han)));
         current = current->next;
-        qDebug() << "số hàng: "<< row;
         row++;
     }
 

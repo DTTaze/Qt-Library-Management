@@ -33,7 +33,7 @@ struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
     MUONTRA(string ma, const Date &ngayMuon, const Date &ngayTra) : masach(ma), NgayMuon(ngayMuon), NgayTra(ngayTra)
     { trangthai = TrangThai(NgayMuon, NgayTra);}
 
-    void setNgayTra(const Date &ngayTra) {
+    void capNhatTrangThaiMuonTra(const Date &ngayTra) {
         NgayTra = ngayTra;
         trangthai = TrangThai(NgayMuon, NgayTra);
     }

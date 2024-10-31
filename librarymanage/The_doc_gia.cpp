@@ -187,15 +187,15 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
     }
 }
 
-void capNhatThongTinMuonSach(Danh_Sach_The_Doc_Gia* docGia, int trangThai, string maSach) {
+void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     DanhSachMUONTRA* temp = docGia->thong_tin.head_lsms;
     while ( temp != nullptr ) {
-        if ( temp->data.masach == maSach ) {
-            temp->data.masach = trangThai;
-            break;
+        if ( SoNgayQuaHan(temp->data.NgayMuon, temp->data.NgayTra) > 7 || temp->data.trangthai == 2 ) { // Thẻ sẽ bị khóa nếu số ngày mượn quá 7 ngày hoặc làm mất sách
+            docGia->thong_tin.TrangThai = Khoa;
         }
         temp = temp->next;
     }
+    docGia->thong_tin.TrangThai = Dang_Hoat_Dong;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm

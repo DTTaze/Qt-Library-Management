@@ -339,6 +339,7 @@ void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_cellDoubleClicked
 
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 
+
 int LibraryManagementSystem::getmaThe() {
     return ui->lineEdit_maThe->text().toInt();
 }
@@ -491,6 +492,7 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
         string maSach = ma_sach.toStdString();
         TraSach(getmaThe(), maSach);
     }
+    Saved = false;
 }
 
 string LibraryManagementSystem::getmaSach() {

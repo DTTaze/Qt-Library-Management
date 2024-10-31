@@ -59,7 +59,7 @@ void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe);
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
-void capNhatThongTinMuonSach(Danh_Sach_The_Doc_Gia* docGia);
+void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia);
 
 // In danh sách độc giả theo tên
 void themVaoDanhSachTheoTenCoThuTu(Danh_Sach_The_Doc_Gia* docgia);

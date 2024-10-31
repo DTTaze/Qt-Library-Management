@@ -362,6 +362,116 @@ QPushButton:focus {
           <property name="currentIndex">
            <number>1</number>
           </property>
+          <widget class="QWidget" name="page_baoCao">
+           <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
+            <property name="geometry">
+             <rect>
+              <x>220</x>
+              <y>60</y>
+              <width>281</width>
+              <height>261</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTableView {
+    background-color: #F0F0F0;      
+    gridline-color: #A0A0A0; 
+ 	border:  1px solid black;                  
+}
+
+QHeaderView::section {
+    background-color: #D3D3D3;  
+    color: black;                  
+    padding: 8px;                  
+    font-weight: bold;           
+    border-bottom: 1px solid #A0A0A0; 
+}
+
+QTableView::item {
+	 padding: 8px;                
+    color: black;               
+    border: none; 
+}
+
+QTableView::item:selected {
+    background-color: #C0C0C0;     
+    color: black; 
+}
+</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="danhSachQuaHan_label">
+            <property name="geometry">
+             <rect>
+              <x>150</x>
+              <y>330</y>
+              <width>451</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+font: 900 15pt &quot;Segoe UI Black&quot;;
+</string>
+            </property>
+            <property name="text">
+             <string>Danh sách độc giả mượn quá hạn</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>10</y>
+              <width>541</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 15pt &quot;Segoe UI Black&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Top 10 quyển sách được mượn nhiều nhất</string>
+            </property>
+           </widget>
+           <widget class="QTableView" name="danhSachQuaHan_tableView">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>390</y>
+              <width>531</width>
+              <height>181</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTableView {
+    background-color: #F0F0F0;      
+    gridline-color: #A0A0A0; 
+ 	border:  1px solid black;                  
+}
+
+QHeaderView::section {
+    background-color: #D3D3D3;  
+    color: black;                  
+    padding: 8px;                  
+    font-weight: bold;           
+    border-bottom: 1px solid #A0A0A0; 
+}
+
+QTableView::item {
+	 padding: 8px;                
+    color: black;               
+    border: none; 
+}
+
+QTableView::item:selected {
+    background-color: #C0C0C0;     
+    color: black; 
+}
+</string>
+            </property>
+           </widget>
+          </widget>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableView" name="tableView_dausach">
             <property name="geometry">
@@ -600,116 +710,6 @@ font-weight:600;</string>
               </widget>
              </item>
             </layout>
-           </widget>
-          </widget>
-          <widget class="QWidget" name="page_baoCao">
-           <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
-            <property name="geometry">
-             <rect>
-              <x>220</x>
-              <y>60</y>
-              <width>281</width>
-              <height>261</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QTableView {
-    background-color: #F0F0F0;      
-    gridline-color: #A0A0A0; 
- 	border:  1px solid black;                  
-}
-
-QHeaderView::section {
-    background-color: #D3D3D3;  
-    color: black;                  
-    padding: 8px;                  
-    font-weight: bold;           
-    border-bottom: 1px solid #A0A0A0; 
-}
-
-QTableView::item {
-	 padding: 8px;                
-    color: black;               
-    border: none; 
-}
-
-QTableView::item:selected {
-    background-color: #C0C0C0;     
-    color: black; 
-}
-</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="danhSachQuaHan_label">
-            <property name="geometry">
-             <rect>
-              <x>150</x>
-              <y>330</y>
-              <width>451</width>
-              <height>41</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">
-font: 900 15pt &quot;Segoe UI Black&quot;;
-</string>
-            </property>
-            <property name="text">
-             <string>Danh sách độc giả mượn quá hạn</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_2">
-            <property name="geometry">
-             <rect>
-              <x>60</x>
-              <y>10</y>
-              <width>541</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">font: 700 15pt &quot;Segoe UI Black&quot;;</string>
-            </property>
-            <property name="text">
-             <string>Top 10 quyển sách được mượn nhiều nhất</string>
-            </property>
-           </widget>
-           <widget class="QTableView" name="danhSachQuaHan_tableView">
-            <property name="geometry">
-             <rect>
-              <x>100</x>
-              <y>390</y>
-              <width>531</width>
-              <height>181</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QTableView {
-    background-color: #F0F0F0;      
-    gridline-color: #A0A0A0; 
- 	border:  1px solid black;                  
-}
-
-QHeaderView::section {
-    background-color: #D3D3D3;  
-    color: black;                  
-    padding: 8px;                  
-    font-weight: bold;           
-    border-bottom: 1px solid #A0A0A0; 
-}
-
-QTableView::item {
-	 padding: 8px;                
-    color: black;               
-    border: none; 
-}
-
-QTableView::item:selected {
-    background-color: #C0C0C0;     
-    color: black; 
-}
-</string>
-            </property>
            </widget>
           </widget>
           <widget class="QWidget" name="page_docgia">
