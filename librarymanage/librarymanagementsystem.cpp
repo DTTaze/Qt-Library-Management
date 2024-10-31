@@ -223,7 +223,11 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
     if (themDocGia.exec() == QDialog::Accepted) {
 
         The_Doc_Gia docGia;
-        docGia.MATHE = layMaThe();
+        int maThe = layMaThe();
+        while ( Tim_Kiem(root, maThe) != nullptr ) { // Lấy thẻ độc giả tới khi nào không còn trùng
+            maThe = layMaThe();
+        }
+        docGia.MATHE = maThe;
         docGia.Ho = themDocGia.getHo().trimmed().toStdString();
         docGia.Ten = themDocGia.getTen().trimmed().toStdString();
         if ( themDocGia.getPhai() == "Nam") {
@@ -254,7 +258,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
         int MATHE = item->text().toInt();
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, MATHE);
         if ( p->thong_tin.head_lsms != nullptr || p->thong_tin.TrangThai == TrangThaiCuaThe::Khoa) {
-            QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này");
+            QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này.");
         } else {
             Xoa_Doc_Gia(root, MATHE);
             taoDanhSachTheoTen(root);

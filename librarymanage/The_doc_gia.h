@@ -55,7 +55,6 @@ struct Danh_Sach_Theo_Ten
 };
 
 extern Danh_Sach_The_Doc_Gia* root;
-extern Danh_Sach_The_Doc_Gia* rp;
 
 // Mảng thẻ
 void taoDanhSachMaThe(int start, int end);
