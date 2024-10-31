@@ -38,6 +38,12 @@ void CapNhatSoLuotMuon (string ma_sach) {
     }
 }
 
+void DatLaiSoLuotMuon() {
+    for (int i = 0; i < SoLuongSach; i++) {
+        DanhSachSachMuon[i].demsoluotmuon = 0;
+    }
+}
+
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     DanhSachMUONTRA *temp = demsach;
@@ -107,7 +113,7 @@ void MuonSach( const int& maThe, const string& maSach) {
     CapNhatSoLuotMuon(maSach); // Cập nhật số lượt mượn cho sách
 
     // Thông báo thành công
-    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
+    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công, vui lòng nhấn nút lưu để hoàn tất.");
 }
 
 
@@ -126,159 +132,26 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
         if (current->data.masach == ma_sach && current->data.trangthai == Chua_Tra) {
-            current->data.NgayTra = NgayHomNay();
-            current->data.trangthai = Da_Tra;
-            string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach);
-            if (!ten_sach.empty()) {
-                string ma_ISBN = ma_sach.substr(0,17);
-                int i = 0;
-                for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-                danh_sach_dau_sach.node[i]->dms->trangthai = 0;
+            if (current->data.masach == ma_sach && current->data.trangthai == 0) {
+                current->data.NgayTra = NgayHomNay();
+                current->data.trangthai = Da_Tra;
+                current->data.trangthai = 1;
+                string ten_sach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach);
+                if (!ten_sach.empty()) {
+                    string ma_ISBN = ma_sach.substr(0,17);
+                    int i = 0;
+                    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+                    danh_sach_dau_sach.node[i]->dms->trangthai = 0;
+                }
+
+                break;
             }
-
-            break;
+            current = current->next;
         }
-        current = current->next;
-    }
-    QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
-
-}
-
-
-void DanhSachSachDocGiaMuon(const unsigned int & ma_the, QTableWidget* tableWidget) {
-    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
-    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    while(current != nullptr) {
-        ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach );
-        current = current->next;
+        QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công, vui lòng nhấn lưu để hoàn tất thao tác.");
     }
 }
 
-DanhSachMUONTRA* CopyDanhSachMUONTRA(DanhSachMUONTRA *danh_sach_goc) {
-    if(danh_sach_goc == nullptr) return nullptr;
-
-    DanhSachMUONTRA *copy = new DanhSachMUONTRA(danh_sach_goc->data);
-    DanhSachMUONTRA *temp = danh_sach_goc->next;
-    DanhSachMUONTRA *head_copy = copy;
-
-    while(temp != nullptr) {
-        head_copy->next = new DanhSachMUONTRA(temp->data);
-        head_copy = head_copy->next;
-        temp = temp->next;
-    }
-    return copy;
-}
-
-
-
-void ChenDocGiaQuaHan(DanhSachMUONTRA*& danh_sach_lich_su_muon_tra, Danh_Sach_The_Doc_Gia* docGia, DanhSachMUONTRA* currentMuonTra) {
-    // Tính toán số ngày quá hạn từ currentMuonTra thay vì chỉ dùng head_lsms
-    int soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
-
-    // Tạo node mới với thông tin từ currentMuonTra
-    DanhSachMUONTRA* newNode = new DanhSachMUONTRA(*currentMuonTra);
-
-    // Nếu danh sách quá hạn rỗng hoặc so sánh thấy số ngày quá hạn của bản ghi mới lớn hơn, chèn vào đầu danh sách
-    if (danh_sach_lich_su_muon_tra == nullptr || SoNgayQuaHan(danh_sach_lich_su_muon_tra->data.NgayMuon, danh_sach_lich_su_muon_tra->data.NgayTra) < soNgayQuaHan) {
-        newNode->next = danh_sach_lich_su_muon_tra;
-        danh_sach_lich_su_muon_tra = newNode;
-        return;
-    }
-
-    // Duyệt danh sách quá hạn để tìm vị trí chèn
-    DanhSachMUONTRA* current = danh_sach_lich_su_muon_tra;
-    while (current->next != nullptr && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > soNgayQuaHan) {
-        current = current->next;
-    }
-
-    newNode->next = current->next;
-    current->next = newNode;
-}
-
-
-
-void KiemTraVaChenDocGiaQuaHan(DanhSachMUONTRA*& danh_sach_lich_su_muon_tra, Danh_Sach_The_Doc_Gia* docGia) {
-    DanhSachMUONTRA* currentMuonTra = docGia->thong_tin.head_lsms;
-
-    // Duyệt qua danh sách mượn trả của độc giả
-    while (currentMuonTra != nullptr) {
-        int soNgayQuaHan = 0;
-
-        if (currentMuonTra->data.trangthai == 0) {
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
-        }
-        else if (currentMuonTra->data.trangthai == 1) {
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
-        }
-
-        // Nếu số ngày quá hạn > 0, gọi hàm ChenDocGiaQuaHan với currentMuonTra hiện tại
-        if (soNgayQuaHan > 0) {
-            ChenDocGiaQuaHan(danh_sach_lich_su_muon_tra, docGia, currentMuonTra);
-        }
-
-        currentMuonTra = currentMuonTra->next;
-    }
-}
-
-
-// int DemDocGiaQuaHan(DocGiaQuaHan *head) {
-//     DocGiaQuaHan *temp = head;
-//     int count = 0;
-//     while(temp != nullptr) {
-//         temp = temp->next;
-//         count ++;
-//     }
-//     return count;
-// }
-// void Them_Vao_QTableWidget(QTableWidget* tableWidget, const The_Doc_Gia& docGia) { // Hàm thêm nút thông tin vào table
-//     int row = tableWidget->rowCount();
-//     tableWidget->insertRow(row);
-
-//     // Thêm dữ liệu vào từng ô
-//     tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(docGia.Ho))); // Họ
-//     tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia.Ten))); // Tên
-//     tableWidget->setItem(row, 2, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
-//     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Không Hoạt Động")); // Trạng thái
-// }
-
-
-
-void Them_Vao_QTableWidget_danhsachmuontra(QTableWidget* tableWidget, const The_Doc_Gia& docGia, DanhSachMUONTRA *&danh_sach_lich_su_muon_tra) {
-    DanhSachMUONTRA* currentMuonTra = danh_sach_lich_su_muon_tra;
-
-    // Duyệt qua từng bản ghi trong danh sách mượn trả của độc giả
-    while (currentMuonTra != nullptr) {
-        int row = tableWidget->rowCount(); // Lấy số dòng hiện có trong bảng
-        tableWidget->insertRow(row); // Thêm một dòng mới
-        string ngaymuon = ChuyenDateSangString(currentMuonTra->data.NgayMuon);
-        string ngaytra = (currentMuonTra->data.trangthai == Da_Tra) ? ChuyenDateSangString(currentMuonTra->data.NgayTra) : "Chưa trả";
-
-        // Thêm thông tin mã thẻ, họ, tên và phái của độc giả vào các ô tương ứng
-        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia.MATHE))); // Mã thẻ
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia.Ho))); // Họ
-        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia.Ten))); // Tên
-        tableWidget->setItem(row, 3, new QTableWidgetItem(docGia.phai == Nam ? "Nam" : "Nữ")); // Phái
-
-        // Thêm thông tin mượn trả vào các ô tương ứng
-        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(currentMuonTra->data.masach))); // Mã sách
-        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ngaymuon))); // Ngày mượn
-        tableWidget->setItem(row, 6, new QTableWidgetItem(QString::fromStdString(ngaytra))); // Ngày trả
-
-        // Tính số ngày quá hạn
-        int soNgayQuaHan = 0;
-        if (currentMuonTra->data.trangthai == Chua_Tra) {
-            // Nếu sách chưa được trả, tính số ngày quá hạn so với ngày hiện tại
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, NgayHomNay());
-        } else if (currentMuonTra->data.trangthai == Da_Tra) {
-            // Nếu sách đã trả, tính số ngày quá hạn so với ngày trả
-            soNgayQuaHan = SoNgayQuaHan(currentMuonTra->data.NgayMuon, currentMuonTra->data.NgayTra);
-        }
-        tableWidget->setItem(row, 7, new QTableWidgetItem(QString::number(soNgayQuaHan))); // Số ngày quá hạn
-
-        // Chuyển sang bản ghi mượn trả tiếp theo
-        currentMuonTra = currentMuonTra->next;
-    }
-}
 
 
 void MergeSachMuon(int* arr, int left, int mid, int right) {
@@ -356,11 +229,14 @@ void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra) {
 }
 
 void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) {
+    tableView->setModel(nullptr);
+
     CapNhatTuDanhSachMUONTRA(danh_sach_muon_tra);
     int *copy = new int[SoLuongSach] ();
     SaoChepDanhSachSachMuon(copy);
     MergeSortSachMuon(copy, 0, SoLuongSach-1);
     QStandardItemModel *model = new QStandardItemModel();
+
     model->setColumnCount(2);
     model->setHeaderData(0, Qt::Horizontal, "Tên sách"); // Tiêu đề cột 1
     model->setHeaderData(1, Qt::Horizontal, "Số lượt mượn"); // Tiêu đề cột 2
@@ -374,16 +250,18 @@ void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTabl
     }
     tableView->setModel(model);
     tableView->setColumnWidth(0, 150);
+
     delete[] copy;
 }
 
 
-void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia * root) {
-    if(root == nullptr) return;
+void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
+    if (root == nullptr) return;
     NhapThongTinVaoTop10(tableView, root->ptr_left);
     Top10QuyenSachNhieuLuotMuonNhat(root->thong_tin.head_lsms, tableView);
     NhapThongTinVaoTop10(tableView, root->ptr_right);
 }
+
 /*------------------------------------------------------------------------------------------------------------*/
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
@@ -465,15 +343,15 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
             continue;
         }
         string hovaten = current->value.first->thong_tin.Ho + " " + current->value.first->thong_tin.Ten;
-            model->insertRow(row);
-            model->setItem(row, 0, new QStandardItem(QString::number(current->value.first->thong_tin.MATHE)));
-            qDebug() << current->value.first->thong_tin.MATHE;
-            model->setItem(row, 1, new QStandardItem(QString::fromStdString(hovaten)));
-            model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
-            model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
-            model->setItem(row, 4, new QStandardItem(QString::number(so_ngay_qua_han)));
-            current = current->next;
-            qDebug() << "số hàng: "<< row;
+        model->insertRow(row);
+        model->setItem(row, 0, new QStandardItem(QString::number(current->value.first->thong_tin.MATHE)));
+        qDebug() << current->value.first->thong_tin.MATHE;
+        model->setItem(row, 1, new QStandardItem(QString::fromStdString(hovaten)));
+        model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
+        model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
+        model->setItem(row, 4, new QStandardItem(QString::number(so_ngay_qua_han)));
+        current = current->next;
+        qDebug() << "số hàng: "<< row;
         row++;
     }
 

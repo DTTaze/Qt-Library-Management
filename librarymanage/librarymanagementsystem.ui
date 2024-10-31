@@ -360,7 +360,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_muontra">
            <widget class="QTableWidget" name="tableWidget_muonTra">
@@ -1302,7 +1302,7 @@ font-weight:600;</string>
      <x>0</x>
      <y>0</y>
      <width>1045</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

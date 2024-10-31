@@ -346,6 +346,10 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
     DanhSachMUONTRA *current = p->thong_tin.head_lsms;
 
+    ui->lineEdit_hoTen->setReadOnly(true);
+    ui->lineEdit_Phai->setReadOnly(true);
+    ui->lineEdit_trangThai->setReadOnly(true);
+
     ui->lineEdit_hoTen->setText(QString::fromStdString(hovaten));
     ui->lineEdit_Phai->setText(p->thong_tin.phai == Nam ? "Nam" : "Nữ");
     ui->lineEdit_trangThai->setText(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Dang Hoạt Động": "Khóa");
@@ -353,10 +357,12 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     while ( current != nullptr && current->data.NgayTra.day == 0) {
         int indexRow = ui->tableWidget_muonTra->rowCount();
         ui->tableWidget_muonTra->insertRow(indexRow);
-        ui->tableWidget_muonTra->setItem(indexRow, 0, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
-        ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
-        ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
-        ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
+        QCheckBox *checkBox = new QCheckBox(this);
+        ui->tableWidget_muonTra->setCellWidget(indexRow, 0, checkBox);
+        ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
+        ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
+        ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
+        ui->tableWidget_muonTra->setItem(indexRow, 4, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
         indexRow++;
         current = current->next;
     }
@@ -391,13 +397,105 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-string LibraryManagementSystem::getmaSach() {
+//===================
 
+
+void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
+    // Đưa chuỗi về dạng chữ thường
+    string key_tensach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, key_ma_sach);
+    ChuyenVeChuThuong(key_tensach);
+    ui->lineEdit_tenSach->setReadOnly(true);
+    ui->lineEdit_tacGia->setReadOnly(true);
+    ui->lineEdit_trangThaiSach->setReadOnly(true);
+
+    bool found = false; // Đánh dấu nếu tìm thấy sách
+
+    for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
+        string ten_sach = danh_sach_dau_sach.node[i]->tensach;
+        ChuyenVeChuThuong(ten_sach);
+
+        if (ten_sach == key_tensach) {
+            int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
+            string trang_thai_std;
+
+            ui->lineEdit_tenSach->setText(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
+            ui->lineEdit_tacGia->setText(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
+
+            switch(trangthai) {
+            case 0: trang_thai_std = "Có thể mượn"; break;
+            case 1: trang_thai_std = "Đã được mượn"; break;
+            case 2: trang_thai_std = "Đã thanh lý"; break;
+            }
+            ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
+
+            found = true;
+            break; // Dừng sau khi tìm thấy sách đầu tiên
+        }
+    }
+
+    // Nếu không tìm thấy sách, đặt lại các trường hiển thị
+    if (!found) {
+        ui->lineEdit_tenSach->clear();
+        ui->lineEdit_tacGia->clear();
+        ui->lineEdit_trangThaiSach->clear();
+    }
 }
 
-void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1)
-{
 
+void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1) {
+    QString key;
+    bool lastWasSpace = false;
+
+    for (QChar c : arg1) {
+        if (c.isDigit() || c.isPunct()) {
+            key += c;
+            lastWasSpace = false;
+        } else if (c.isSpace() && !lastWasSpace) {
+            key += ' ';
+            lastWasSpace = true;
+        }
+    }
+
+    string valid_key = key.toStdString();
+    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+
+    // Cập nhật lại chuỗi đã lọc
+    if (valid_key != arg1.toStdString()) {
+        ui->lineEdit_maSach->setText(QString::fromStdString(valid_key));
+    }
+
+    // Nếu chuỗi tìm kiếm rỗng, không thực hiện tìm kiếm
+    if (!valid_key.empty()) {
+        inThongTinmaSach(valid_key);
+    } else {
+        // Nếu ô tìm kiếm rỗng, xóa các trường hiển thị
+        ui->lineEdit_tenSach->clear();
+        ui->lineEdit_tacGia->clear();
+        ui->lineEdit_trangThaiSach->clear();
+    }
+}
+
+//--------------------------------------
+
+void LibraryManagementSystem::on_traSach_pushButton_clicked()
+{
+    int row = 0;
+    for (int i = 0; i<ui->tableWidget_muonTra->rowCount(); i++) {
+        QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
+        QCheckBox *traSach_checkBox = qobject_cast<QCheckBox *>(traSach_widget);
+        QString ma_sach =ui->tableWidget_muonTra->item(row, 1)->text();
+        string maSach = ma_sach.toStdString();
+        TraSach(getmaThe(), maSach);
+    }
+}
+
+string LibraryManagementSystem::getmaSach() {
+    return ui->lineEdit_maSach->text().toStdString();
+}
+
+void LibraryManagementSystem::on_muonSach_pushButton_clicked()
+{
+    MuonSach(getmaThe(), getmaSach());
 }
 
 

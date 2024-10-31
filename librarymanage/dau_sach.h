@@ -60,6 +60,8 @@ string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string
 //Hàm kiểm tra sách đã đầy
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach);
 
+void ChuyenVeChuThuong(std::string& str);
+
 //Hàm cập nhật trạng thái của sách
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
