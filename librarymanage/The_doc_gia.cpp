@@ -257,6 +257,7 @@ void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông t
 
 void Ghi_The_Vao_File() {
     ofstream outFile("docgia_100.txt");
+
     if ( !outFile ) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file docgia_100.txt");
     }
@@ -272,29 +273,20 @@ void Ghi_The_Vao_File() {
         outFile << current->thong_tin.MATHE << "|"
                 << current->thong_tin.Ho << "|"
                 << current->thong_tin.Ten << "|"
-                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|";
-        if ( current->thong_tin.TrangThai == TrangThaiCuaThe::Dang_Hoat_Dong ) {
-            outFile << "1" << "|";
-        } else {
-            outFile << "0" << "|";
+                << (current->thong_tin.phai == Nam ? "Nam" : "Nữ") << "|"
+                << (current->thong_tin.TrangThai == TrangThaiCuaThe::Dang_Hoat_Dong ? "1" : "0" ) << "|";
+
+        DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
+        while (temp != nullptr) {
+            outFile << temp->data.masach << "|"
+                    << (temp->data.trangthai == Chua_Tra ? "0" : "1") << "|"
+                    << ChuyenDateSangString(temp->data.NgayMuon) << "|"
+                    << ChuyenDateSangString(temp->data.NgayTra) << "|";
+            temp = temp->next;
         }
-        if ( current->thong_tin.head_lsms != nullptr ) {
-            DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
-            while ( temp != nullptr ) {
-                outFile << current->thong_tin.head_lsms->data.masach << "|";
-                if ( current->thong_tin.TrangThai == 0 ) {
-                    outFile << "0" << "|";
-                } else if ( current->thong_tin.TrangThai == 1 ) {
-                    outFile << "1" << "|";
-                } else {
-                    outFile << "2" << "|";
-                }
-                outFile << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayMuon) << "|"
-                        << ChuyenDateSangString(current->thong_tin.head_lsms->data.NgayTra) << "|";
-                temp = temp->next;
-            }
-        }
+
         outFile << endl;
+
         if ( current->ptr_left != nullptr ) {
             q.push(current->ptr_left);
         }

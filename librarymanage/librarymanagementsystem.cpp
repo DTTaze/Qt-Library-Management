@@ -66,6 +66,7 @@ void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đ
 void LibraryManagementSystem::tabTheDocGia()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_docgia);
+    ui->danhSachTheDocGia_tableWidget->setRowCount(0);
     Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root);
 }
 
@@ -359,19 +360,20 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     ui->lineEdit_Phai->setText(p->thong_tin.phai == Nam ? "Nam" : "Nữ");
     ui->lineEdit_trangThai->setText(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Dang Hoạt Động": "Khóa");
 
-    while ( current != nullptr && current->data.NgayTra.day == 0) {
-        int indexRow = ui->tableWidget_muonTra->rowCount();
-        ui->tableWidget_muonTra->insertRow(indexRow);
-        QCheckBox *checkBox = new QCheckBox(this);
-        ui->tableWidget_muonTra->setCellWidget(indexRow, 0, checkBox);
-        ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
-        ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
-        ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
-        ui->tableWidget_muonTra->setItem(indexRow, 4, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
-        indexRow++;
+    while ( current != nullptr ) {
+        if ( current->data.trangthai == 0 ) {
+            int indexRow = ui->tableWidget_muonTra->rowCount();
+            QCheckBox *checkBox = new QCheckBox(this);
+            ui->tableWidget_muonTra->insertRow(indexRow);
+            ui->tableWidget_muonTra->setCellWidget(indexRow, 0, checkBox);
+            ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
+            ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
+            ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
+            ui->tableWidget_muonTra->setItem(indexRow, 4, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
+            indexRow++;
+        }
         current = current->next;
     }
-
 }
 
 void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
@@ -485,12 +487,14 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
 void LibraryManagementSystem::on_traSach_pushButton_clicked()
 {
     int row = 0;
-    for (int i = 0; i<ui->tableWidget_muonTra->rowCount(); i++) {
+    for (; row < ui->tableWidget_muonTra->rowCount(); row++) {
         QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
         QCheckBox *traSach_checkBox = qobject_cast<QCheckBox *>(traSach_widget);
-        QString ma_sach =ui->tableWidget_muonTra->item(row, 1)->text();
-        string maSach = ma_sach.toStdString();
-        TraSach(getmaThe(), maSach);
+        if ( traSach_checkBox->isChecked() ) {
+            QString ma_sach =ui->tableWidget_muonTra->item(row, 1)->text();
+            string maSach = ma_sach.toStdString();
+            TraSach(getmaThe(), maSach);
+        }
     }
     Saved = false;
 }
@@ -502,6 +506,7 @@ string LibraryManagementSystem::getmaSach() {
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     MuonSach(getmaThe(), getmaSach());
+    Saved = false;
 }
 
 

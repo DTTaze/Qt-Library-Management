@@ -15,10 +15,10 @@ int TrangThai(Date ngay_muon, Date ngay_tra) { // trạng thái sách của đ
     if(ngay_tra.day == 0)
     {
         return Chua_Tra;
-    } // chưa trả
+    }
     else
     {
-        return Da_Tra; // đã trả
+        return Da_Tra;
     }
 }
 
@@ -55,9 +55,9 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
 
     while(temp!=nullptr) {
         if(temp->data.trangthai == Chua_Tra) {
-            temp = temp->next;
             dem++;
         }
+        temp = temp->next;
     }
     return dem;
 }
@@ -75,6 +75,7 @@ void ThemSach (DanhSachMUONTRA*& head, string ma, const Date &ngayMuon, const Da
         }
         current->next = newMUONTRA;
     }
+    DanhSachMUONTRA* temp = head;
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
@@ -98,7 +99,6 @@ void MuonSach( const int& maThe, const string& maSach) {
 
     // Nhập ngày trả (có thể thêm logic ở đây để tự động tính toán ngày trả)
     Date ngaytra;
-
 
     // Thêm sách vào lịch sử mượn
     ThemSach(doc_gia->thong_tin.head_lsms, maSach, ngaymuon, ngaytra);
@@ -207,7 +207,7 @@ void SaoChepDanhSachSachMuon( int* copy) {
 
 void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra) {
     DanhSachMUONTRA *head = danh_sach_muon_tra;
-    while(head!=nullptr) {
+    while( head != nullptr ) {
         CapNhatSoLuotMuon(head->data.masach);
         head = head->next;
     }
