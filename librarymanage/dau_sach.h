@@ -14,6 +14,12 @@
 #include <QTableView>
 #include <QStandardItemModel>
 #include <QLineEdit>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
+#include <QTableWidget>
+#include <QStringListModel>
+#include <QDir>
 #include <QDebug>
 using namespace std;
 

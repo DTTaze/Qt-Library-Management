@@ -1,19 +1,9 @@
 #ifndef MUON_TRA_H
 #define MUON_TRA_H
-#include <iostream>
 #include <ctime>
-#include <fstream>
 #include "ngay.h"
 #include "dau_sach.h"
 #include "queue.h"
-#include <QStandardItemModel>
-#include <QFile>
-#include <QTextStream>
-#include <QStringList>
-#include <QTableWidget>
-#include <QTableView>
-#include <QStringListModel>
-#include <QLineEdit>
 struct The_Doc_Gia;
 struct Danh_Sach_The_Doc_Gia;
 using namespace std;

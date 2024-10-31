@@ -1,14 +1,5 @@
 #ifndef THE_DOC_GIA_H
 #define THE_DOC_GIA_H
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <fstream>
-#include <QFile>
-#include <QMessageBox>
-#include <QTableWidget>
-#include <string>
-#include <QDir>
 #include "Dau_sach.h"
 #include "Muon_tra.h"
 #define MAXRANDOM 10000
