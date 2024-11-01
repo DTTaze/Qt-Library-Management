@@ -219,13 +219,20 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
 
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
 {
+    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == 10000 ) {
+        QMessageBox::warning(nullptr, "Thông báo", "Đã hết mã thẻ");
+        return;
+    }
     themDocGia_Dialog themDocGia;
     themDocGia.setModal(true);
     if (themDocGia.exec() == QDialog::Accepted) {
 
         The_Doc_Gia docGia;
         int maThe = layMaThe();
-        while ( Tim_Kiem(root, maThe) != nullptr ) { // Lấy thẻ độc giả tới khi nào không còn trùng
+        while ( true ) { // Tìm mã thẻ chưa tồn tại trong danh sách
+            if ( Tim_Kiem(root, maThe ) == nullptr ) { // Chỉ dừng khi tìm được
+                break;
+            }
             maThe = layMaThe();
         }
         docGia.MATHE = maThe;

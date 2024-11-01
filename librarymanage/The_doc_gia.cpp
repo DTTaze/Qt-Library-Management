@@ -8,6 +8,7 @@ Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
 //--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
 void taoDanhSachMaThe(int start, int end) {
+    danhSachMaThe.clear();
     Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
     ranges.push({start, end}); // [a,b]
 
