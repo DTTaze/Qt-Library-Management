@@ -54,7 +54,7 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     int dem = 0;
 
     while(temp!=nullptr) {
-        if(temp->data.trangthai == Chua_Tra) {
+        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) {
             dem++;
         }
         temp = temp->next;
