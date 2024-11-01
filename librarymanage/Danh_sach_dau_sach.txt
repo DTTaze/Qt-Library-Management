@@ -1,12 +1,12 @@
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|1
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|1
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0
-978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|1
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|1
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|1
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|1
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|1
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0
@@ -66,5 +66,5 @@
 978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0
 978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0
 978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|1
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|2
 978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0

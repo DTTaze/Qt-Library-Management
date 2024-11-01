@@ -248,7 +248,7 @@ void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông t
                 ngay_tra = ChuyenStringSangDate(fields[index+3].toStdString());
             }
 
-            ThemSach(p->thong_tin.head_lsms, ma_sach, ngay_muon, ngay_tra);
+            ThemSach(p->thong_tin.head_lsms, ma_sach,trangthai, ngay_muon, ngay_tra);
             CapNhatTrangThaiSach(ma_sach, trangthai);
             index += 4;
         }

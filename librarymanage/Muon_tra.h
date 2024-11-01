@@ -19,8 +19,7 @@ j. In 10 sách có số lượt mượn nhiều nhất.*/
 const int Chua_Tra = 0;
 const int Da_Tra = 1;
 const int Mat_Sach = 2;
-
-int TrangThai(Date ngay_muon, Date ngay_tra);
+int TrangThai(Date ngay_muon, Date ngay_tra) ;
 
 struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
     string masach;
@@ -30,8 +29,8 @@ struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
 
     MUONTRA() : masach(""), NgayMuon(), NgayTra(), trangthai(0) {}
 
-    MUONTRA(string ma, const Date &ngayMuon, const Date &ngayTra) : masach(ma), NgayMuon(ngayMuon), NgayTra(ngayTra)
-    { trangthai = TrangThai(NgayMuon, NgayTra);}
+    MUONTRA(string ma, const Date &ngayMuon, const Date &ngayTra, int trangthai) : masach(ma), NgayMuon(ngayMuon), NgayTra(ngayTra), trangthai(trangthai)
+    {}
 
     void capNhatTrangThaiMuonTra(const Date &ngayTra) {
         NgayTra = ngayTra;
@@ -61,7 +60,7 @@ extern SachMuon DanhSachSachMuon[MAXSACH];
 
 extern int SoLuongSach; //*
 
-void ThemSach(DanhSachMUONTRA * &head, string ma, const Date &ngayMuon, const Date &ngayTra);
+void ThemSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
 void MuonSach(const int &maThe, const string& maSach);
 
@@ -94,4 +93,9 @@ danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* ro
 
 void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) ;
 
+//-----------------------------------------------------------------Mất Sách-----------------------------------------------
+
+void ChuaDenSach(int mathe, string masach);
+
+void DaDenSach(int mathe, string masach);
 #endif

@@ -84,6 +84,8 @@ private slots:
 
     void on_muonSach_pushButton_clicked();
 
+    void on_MatSach_pushButton_2_clicked();
+
 public slots:
 
 private:

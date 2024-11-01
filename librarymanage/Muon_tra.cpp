@@ -62,8 +62,8 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     return dem;
 }
 
-void ThemSach (DanhSachMUONTRA*& head, string ma, const Date &ngayMuon, const Date &ngayTra) {
-    MUONTRA data(ma, ngayMuon, ngayTra);
+void ThemSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
+    MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
     DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
 
     if (head == nullptr) {
@@ -101,7 +101,7 @@ void MuonSach( const int& maThe, const string& maSach) {
     Date ngaytra;
 
     // Thêm sách vào lịch sử mượn
-    ThemSach(doc_gia->thong_tin.head_lsms, maSach, ngaymuon, ngaytra);
+    ThemSach(doc_gia->thong_tin.head_lsms, maSach,0, ngaymuon, ngaytra);
     CapNhatTrangThaiSach(maSach, 1);
     CapNhatSoLuotMuon(maSach); // Cập nhật số lượt mượn cho sách
 
@@ -341,5 +341,40 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
     tableView->setModel(model);
 }
 
+/* viết 2 hàm: hàm thứ nhất là mất sách, khi báo mất sách sẽ hiện thông tin là đền hay chưa, nếu đền rồi thì trạng thái thẻ giữ im
+còn trạng thái mượn trả hiện đã trả, trạng thái sách hiện là có thể cho mượn
+còn nếu nhấn nút chưa đền thì trạng thái thẻ bị khóa, trạng thái mượn trả chuyển sang mất sách, trạng thái sách vẫn hiện là chưa
+mượn được
+                hàm thứ 2 là trạng thái mượn trả đang là mất sách, nhất vào nút đền sách thì sẽ đổi trạng thái thẻ sang đang hoạt
+động, trạng thái mượn trả là đã trả, trạng thái sách là có thể cho mượn được
+*/
+void ChuaDenSach(int mathe, string masach) {
+    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(root, mathe);
+    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
+    while(sach_mat != nullptr) {
+        if(sach_mat->data.masach == masach) {
+            p->thong_tin.TrangThai = Khoa;
+            sach_mat->data.trangthai = 2;
+            CapNhatTrangThaiSach(masach, 1);
+            break;
+        }
+        sach_mat = sach_mat->next;
+    }
+
+}
+
+void DaDenSach(int mathe, string masach) {
+    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(root, mathe);
+    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
+    while(sach_mat != nullptr) {
+        if(sach_mat->data.masach == masach) {
+            p->thong_tin.TrangThai = Dang_Hoat_Dong;
+            sach_mat->data.trangthai = 1;
+            CapNhatTrangThaiSach(masach, 0);
+            break;
+        }
+        sach_mat = sach_mat->next;
+    }
+}
 
 
