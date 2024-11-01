@@ -38,6 +38,9 @@
      <height>421</height>
     </rect>
    </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::EditTrigger::DoubleClicked</set>
+   </property>
   </widget>
  </widget>
  <resources/>

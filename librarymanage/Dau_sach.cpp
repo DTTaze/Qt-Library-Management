@@ -109,15 +109,7 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
 
     // Gán model vào QTableView
     tableView_dausach->setModel(model);
-    tableView_dausach->setColumnWidth(0,120);
-    tableView_dausach->setColumnWidth(1,200);
-    tableView_dausach->setColumnWidth(2,70);
-    tableView_dausach->setColumnWidth(3,100);
-    tableView_dausach->setColumnWidth(4,100);
-    tableView_dausach->setColumnWidth(5,100);
-    tableView_dausach->setColumnWidth(6,40);
-    tableView_dausach->setColumnWidth(7,135);
-    tableView_dausach->setColumnWidth(8,100);
+    tableView_dausach->resizeColumnsToContents();
 }
 
 void ChuyenVeChuThuong(std::string& str) {
@@ -169,14 +161,7 @@ void InFullTheoTenSach(string key, QTableView* tableView_dausach){
     }
 
     tableView_dausach->setModel(model);
-
-    tableView_dausach->setColumnWidth(0, 120);
-    tableView_dausach->setColumnWidth(1, 200);
-    tableView_dausach->setColumnWidth(2, 100);
-    tableView_dausach->setColumnWidth(3, 100);
-    tableView_dausach->setColumnWidth(4, 100);
-    tableView_dausach->setColumnWidth(5, 100);
-    tableView_dausach->setColumnWidth(6, 100);
+    tableView_dausach->resizeColumnsToContents();
 
 }
 
@@ -337,7 +322,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
     }
 
     tableView_intheloai->setModel(model);
-
+    tableView_intheloai->resizeColumnsToContents();
     delete[] copy;
 
 }
