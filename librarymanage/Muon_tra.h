@@ -65,6 +65,8 @@ void ThemSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngay
 void MuonSach(const int &maThe, const string& maSach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
+
+bool SachDaMuon (DanhSachMUONTRA *head, string masach) ;
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
 //----------------------------------------------------------------Bảng top 10 sách được mượn nhiều nhất--------------------------------------------------------------------------------

@@ -75,7 +75,17 @@ void ThemSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngay
         }
         current->next = newMUONTRA;
     }
-    DanhSachMUONTRA* temp = head;
+}
+
+bool SachDaMuon (DanhSachMUONTRA *head, string masach) {
+    DanhSachMUONTRA *p = head;
+    while(p!=nullptr) {
+        if(p->data.masach == masach) {
+            return true;
+        }
+        p = p->next;
+    }
+    return false;
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
@@ -89,7 +99,7 @@ void MuonSach( const int& maThe, const string& maSach) {
     int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms); // Đếm số sách đang mượn
 
     // Kiểm tra trạng thái thẻ và số sách đang mượn
-    if (doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3) {
+    if (doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách vì thẻ độc giả đã bị khóa hoặc đã mượn nhiều hơn 3 quyển.");
         return;
     }
