@@ -360,7 +360,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="page_baoCao">
            <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
@@ -1282,7 +1282,7 @@ QPushButton:focus {
                <item>
                 <widget class="QLineEdit" name="lineEdit_maSach">
                  <property name="placeholderText">
-                  <string>Nhập mã sách muốn mượn</string>
+                  <string>Nhập mã ISBN sách muốn mượn</string>
                  </property>
                 </widget>
                </item>

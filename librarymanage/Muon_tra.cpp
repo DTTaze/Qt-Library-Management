@@ -140,7 +140,6 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 CapNhatTrangThaiSach(ma_sach, 0);
                 capNhatTrangThaiThe(doc_gia);
 
-                QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
                 break;
         }
         current = current->next;
