@@ -14,7 +14,7 @@
 8125|Xuân|Ca|Nữ|1|
 9375|Bùi Công|Dũng|Nam|1|
 312|Mai Quang|Huy|Nam|1|978-0-12-345678-0|0|2/11/2024||
-937|Yui|Hatano|Nữ|0|978-0-12-345678-9|2|2/11/2024||
+937|Yui|Hatano|Nữ|0|978-0-12-345678-9|1|2/11/2024||
 1562|Hà Thị Thu|Trinh|Nữ|1|
 2187|Hà Thị Thu|Trinh|Nữ|1|
 2812|Nguyễn Thị Kim|Ngọc|Nữ|1|
@@ -26,3 +26,5 @@
 6562|Nguyễn Xuân|Vinh|Nam|1|
 7187|Bùi Quang|Huy|Nam|1|
 7812|Đào Thanh|Duy|Nam|1|
+8437|Phạm Tường|Vy|Nữ|1|
+9062|Lê Chí|Trung|Nam|1|
