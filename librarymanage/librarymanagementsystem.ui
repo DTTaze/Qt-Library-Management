@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1045</width>
+    <width>1030</width>
     <height>754</height>
    </rect>
   </property>
@@ -350,7 +350,7 @@ QPushButton:focus {
            <rect>
             <x>0</x>
             <y>10</y>
-            <width>691</width>
+            <width>851</width>
             <height>671</height>
            </rect>
           </property>
@@ -360,7 +360,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="page_baoCao">
            <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
@@ -476,9 +476,9 @@ QTableView::item:selected {
            <widget class="QTableView" name="tableView_dausach">
             <property name="geometry">
              <rect>
-              <x>30</x>
+              <x>20</x>
               <y>120</y>
-              <width>631</width>
+              <width>651</width>
               <height>438</height>
              </rect>
             </property>
@@ -718,7 +718,7 @@ font-weight:600;</string>
              <rect>
               <x>70</x>
               <y>100</y>
-              <width>571</width>
+              <width>611</width>
               <height>461</height>
              </rect>
             </property>
@@ -1350,7 +1350,7 @@ QPushButton:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1045</width>
+     <width>1030</width>
      <height>26</height>
     </rect>
    </property>
