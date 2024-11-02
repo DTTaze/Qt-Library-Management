@@ -24,10 +24,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
 
-    Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root); // In bảng danh sách thẻ độc giả
 
-    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
-    NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root); // In thông tin top 10 sách nhiều lượt xem
 
     Saved = true;
 }
@@ -79,6 +76,8 @@ void LibraryManagementSystem::tabMuonTra()
 void LibraryManagementSystem::tabBaoCao()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
+    NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root);
 }
 
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
@@ -505,6 +504,9 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
             TraSach(getmaThe(), maSach);
         }
     }
+    ui->tableWidget_muonTra->setRowCount(0);
+    inThongTin(getmaThe());
+    ui->lineEdit_maSach->clear();
     Saved = false;
 }
 
@@ -514,7 +516,11 @@ string LibraryManagementSystem::getmaSach() {
 
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
+
     MuonSach(getmaThe(), getmaSach());
+    ui->tableWidget_muonTra->setRowCount(0);
+    inThongTin(getmaThe());
+    ui->lineEdit_maSach->clear();
     Saved = false;
 }
 
