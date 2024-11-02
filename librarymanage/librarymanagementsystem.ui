@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1030</width>
+    <width>1314</width>
     <height>754</height>
    </rect>
   </property>
@@ -337,7 +337,7 @@ QPushButton:focus {
           <rect>
            <x>320</x>
            <y>0</y>
-           <width>691</width>
+           <width>891</width>
            <height>681</height>
           </rect>
          </property>
@@ -478,7 +478,7 @@ QTableView::item:selected {
              <rect>
               <x>20</x>
               <y>120</y>
-              <width>651</width>
+              <width>811</width>
               <height>438</height>
              </rect>
             </property>
@@ -1350,7 +1350,7 @@ QPushButton:focus {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1030</width>
+     <width>1314</width>
      <height>26</height>
     </rect>
    </property>

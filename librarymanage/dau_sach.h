@@ -40,11 +40,13 @@ struct DauSach {
     int sotrang;
     string tacgia;
     int namsx;
+    int demsosach =0;
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
-    DauSach(const string& I_S_B_N, const string& ten_sach, int so_trang,const string& tac_gia,int nam_sx, const string& the_loai, DanhMucSach* ptr_dms)
-        : ISBN(I_S_B_N), tensach(ten_sach), sotrang(so_trang), tacgia(tac_gia),namsx(nam_sx), theloai(the_loai), dms(ptr_dms) {}
+    DauSach(const string& I_S_B_N, const string& ten_sach, int so_trang,const string& tac_gia,int nam_sx, const string& the_loai)
+        : ISBN(I_S_B_N), tensach(ten_sach), sotrang(so_trang), tacgia(tac_gia),namsx(nam_sx), theloai(the_loai) {
+    }
 };
 
 
@@ -56,10 +58,13 @@ struct DanhSachDauSach{
 
 
 extern DanhSachDauSach danh_sach_dau_sach;
-extern DanhMucSach* danh_muc_sach;
+
 
 //Hàm in danh sách đầu sách mặc định
 void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach);
+
+//Hàm tìm kiếm vị trí của mã isbn trong danh sách
+int TimKiemIndexDauSach(string ma_isbn);
 
 //Hàm chuyển từ mã sách thành tên sách
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
@@ -73,14 +78,14 @@ void ChuyenVeChuThuong(std::string& str);
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms,QTableView *tableView_dausach,QWidget* parent);
+void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QTableView *tableView_dausach,QWidget* parent);
 bool InVaoTXT();
 
 //Chức năng thêm sách
-void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri);
-DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach, string& vi_tri);
+void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach,int demsosach);
+void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, DanhSachDauSach &danh_sach_dau_sach, const string& vi_tri, const string &I_S_B_N,int demsosach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                 DanhMucSach* &head_dms, int trang_thai,string &vi_tri);
+                 int trang_thai,string &vi_tri);
 
 //Chức năng in đầu sách theo thể loại
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);

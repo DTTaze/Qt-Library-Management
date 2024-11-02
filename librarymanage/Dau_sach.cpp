@@ -3,66 +3,84 @@
 DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
+int TimKiemIndexDauSach(string ma_isbn){
+    int i = 0;
+    for (; i < danh_sach_dau_sach.demsach;i++){
+        if(danh_sach_dau_sach.node[i]->ISBN == ma_isbn){
+            return i;
+        }
+    }
+    return -1;
 
-void TaoMaSach(string& ma_sach, DanhSachDauSach& danh_sach_dau_sach, const string& I_S_B_N, const string& vi_tri) {
+}
+
+void TaoMaSach(string& ma_sach, DanhSachDauSach& danh_sach_dau_sach, const string& I_S_B_N, int demsosach) {
     string isbn_full = I_S_B_N;
+
     // Kiểm tra nếu ISBN là loại 10 số
     if (isbn_full.size() == 13) {
         isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
     }
-    // Gán mã sách bao gồm ISBN và vị trí
-    ma_sach = isbn_full + "-" + vi_tri;
+
+    // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
+    ma_sach = isbn_full + "-" + to_string(demsosach);
 }
 
 
 
-DanhMucSach* ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,DanhSachDauSach &danh_sach_dau_sach,const string& vi_tri,const string &I_S_B_N) {
 
-    //them vao dau danh sach sap xep theo ma sach
+void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, DanhSachDauSach &danh_sach_dau_sach, const string& vi_tri, const string &I_S_B_N,int demsosach) {
+    // Tạo mã sách mới
     string ma_sach = "";
-    TaoMaSach(ma_sach,danh_sach_dau_sach,I_S_B_N,vi_tri);
-    DanhMucSach* new_dms = new DanhMucSach(ma_sach,trang_thai,vi_tri);
-    DanhMucSach* t = nullptr;
-    DanhMucSach* s = head_dms;
-    for ( ; s != nullptr && new_dms->masach > s->masach; t = s , s = s->next);
-    if (t == nullptr){
-        new_dms->next = head_dms;
-        head_dms = new_dms;
-    }else{
-        new_dms->next = s;
-        t->next = new_dms;
-    }
-    return new_dms;
+    TaoMaSach(ma_sach, danh_sach_dau_sach, I_S_B_N,demsosach);
+
+    // Tạo node mới với thông tin mã sách, trạng thái và vị trí
+    DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
+
+    // Thêm node mới vào đầu danh sách
+    new_dms->next = head_dms;
+    head_dms = new_dms;
 }
+
 
 //danh sach dau sach tham chieu mang, danh muc sach tham chieu con tro vi lien ket don
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                 DanhMucSach* &head_dms, int trang_thai,string &vi_tri){
+                  int trang_thai,string &vi_tri){
 
-    DanhMucSach* danh_muc_sach = ThemDanhMucSach(head_dms,trang_thai,danh_sach_dau_sach,vi_tri,I_S_B_N);
+    int index_isbn = TimKiemIndexDauSach(I_S_B_N);
 
-    int n = danh_sach_dau_sach.demsach;
-    // cap phat bo nho cho sach moi voi con trá» dms chi vao danh_muc_sach vua tao
-    DauSach* new_sach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai,danh_muc_sach);
+    if(index_isbn == -1){//Neu khong ton tai thi them moi
 
-    //mac dinh chen vao cuoi
-    int vi_tri_them = n;
-    //xac dinh vi tri chen
-    for (int i = 0; i < n ; i++){
-        if (ten_sach <= danh_sach_dau_sach.node[i]->tensach){
-            vi_tri_them = i;
-            break;
+        int n = danh_sach_dau_sach.demsach;
+        DauSach* new_sach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
+
+        ThemDanhMucSach(new_sach->dms,trang_thai,danh_sach_dau_sach,vi_tri,I_S_B_N,new_sach->demsosach+1);
+
+
+        //mac dinh chen vao cuoi
+        int vi_tri_them = n;
+        //xac dinh vi tri chen
+        for (int i = 0; i < n ; i++){
+            if (ten_sach <= danh_sach_dau_sach.node[i]->tensach){
+                vi_tri_them = i;
+                break;
+            }
         }
-    }
 
-    //doi cac sach khac ra sau 1 vi tri
-    for (int i = n; i > vi_tri_them ; i--){
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i-1];
+        //doi cac sach khac ra sau 1 vi tri
+        for (int i = n; i > vi_tri_them ; i--){
+            danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i-1];
+        }
+        //chen sach vao vi tri tim duoc
+        danh_sach_dau_sach.node[vi_tri_them] = new_sach;
+        //tăng đầu sách và số sách trong đầu sách lên 1
+        danh_sach_dau_sach.node[vi_tri_them]->demsosach++;
+        danh_sach_dau_sach.demsach++;
+    }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
+        ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,danh_sach_dau_sach,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1);
+        danh_sach_dau_sach.node[index_isbn]->demsosach++;
+
     }
-    //chen sach vao vi tri tim duoc
-    danh_sach_dau_sach.node[vi_tri_them] = new_sach;
-    //tang dem sach len 1
-    danh_sach_dau_sach.demsach++;
 }
 
 void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach){
@@ -70,21 +88,18 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
     const int row_count = so_luong_sach;
 
     // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count, 9);
+    QStandardItemModel* model = new QStandardItemModel(row_count, 6);
 
-    QString headers[9] = {
+    QString headers[6] = {
         "ISBN",
         "Tên sách",
         "Số trang",
         "Tác giả",
         "Năm xuất bản",
         "Thể loại",
-        "Vị trí" ,
-        "Mã sách" ,
-        "Trạng Thái"
     };
 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 6; i++) {
         model->setHeaderData(i, Qt::Horizontal, headers[i]);
     }
 
@@ -95,16 +110,6 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
         model->setItem(i, 3, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
         model->setItem(i, 4, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
         model->setItem(i, 5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
-        model->setItem(i, 6, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->dms->vitri)));
-        model->setItem(i, 7, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->dms->masach)));
-        int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
-        string trang_thai_std;
-        switch (trangthai){
-        case 0:trang_thai_std = "Có thể mượn";break;
-        case 1:trang_thai_std = "Đã được mượn";break;
-        case 2:trang_thai_std = "Đã thanh lý";break;
-        }
-        model->setItem(i, 8, new QStandardItem(QString::fromStdString(trang_thai_std)));
     }
 
     // Gán model vào QTableView
@@ -186,11 +191,11 @@ int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key){
     return ket_qua;
 }
 
+
+
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
     string ma_ISBN = ma_sach.substr(0,17);
-    int i = 0;
-    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-
+    int i = TimKiemIndexDauSach(ma_ISBN);
     if (i < danh_sach_dau_sach.demsach){
         return danh_sach_dau_sach.node[i]->tensach;
     }else{
@@ -274,12 +279,10 @@ void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc) {
 }
 
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
-    cout<<"bat dau sao chep\n";
     int n = Dau_sach_goc.demsach;
     for (int i = 0; i < n;i++){
         copy[i]=i;
     }
-    cout<<"ket thuc\n\n";
 }
 
 //Su dung tham chieu nen phai tao ban sao roi xoa ban sao
@@ -289,9 +292,9 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
     int* copy = new int[so_luong_sach]();// cap phat dong mang, mac dinh phan tu = 0
 
     SaoChepDanhSach(danh_sach_dau_sach,copy);
-    cout<<"bat dau sap xep \n";
+
     MergeSort(copy,0,so_luong_sach-1,danh_sach_dau_sach);
-    cout<<"da sap xep xong";
+
 
     const int row_count = so_luong_sach;
     // Tạo model cho table
@@ -349,7 +352,7 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
 }
 
 
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTableView* tableView_dausach, QWidget* parent) {
+void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach, QWidget* parent) {
 
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
@@ -394,7 +397,7 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, DanhMucSach* &head_dms, QTab
         }
 
         // Thêm đầu sách vào danh sách
-        ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai, head_dms, trangthai, vitri);
+        ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri);
     }
     file.close();
 }
@@ -402,17 +405,19 @@ bool InVaoTXT(){
     ofstream file("Danh_sach_dau_sach.txt");
     if (file.is_open()) {
         for (int i = 0; i < danh_sach_dau_sach.demsach; ++i) {
-            DauSach* dau_sach = danh_sach_dau_sach.node[i];
+            for(DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!= nullptr;cur=cur->next){
+                DauSach* dau_sach = danh_sach_dau_sach.node[i];
 
-            file << dau_sach->ISBN << '|'
-                 << dau_sach->tensach << '|'
-                 << dau_sach->sotrang << '|'
-                 << dau_sach->tacgia << '|'
-                 << dau_sach->namsx << '|'
-                 << dau_sach->theloai << '|'
-                 << dau_sach->dms->vitri << '|'
-                 << dau_sach->dms->trangthai;
-            file << endl; // Kết thúc dòng thông tin của đầu sách
+                file << dau_sach->ISBN << '|'
+                     << dau_sach->tensach << '|'
+                     << dau_sach->sotrang << '|'
+                     << dau_sach->tacgia << '|'
+                     << dau_sach->namsx << '|'
+                     << dau_sach->theloai << '|'
+                     << dau_sach->dms->vitri << '|'
+                     << dau_sach->dms->trangthai;
+                file << endl; // Kết thúc dòng thông tin của đầu sách
+            }
         }
         file.close();
             return true;
@@ -423,7 +428,6 @@ bool InVaoTXT(){
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     string ma_ISBN = ma_sach.substr(0,17);
-    int i = 0;
-    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+    int i = TimKiemIndexDauSach(ma_ISBN);
     danh_sach_dau_sach.node[i]->dms->trangthai = trang_thai;
 }

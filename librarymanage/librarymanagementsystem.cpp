@@ -19,7 +19,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     ui->setupUi(this);
 
     docFileMaThe();
-    DocTuFile(danh_sach_dau_sach,danh_muc_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
+    DocTuFile(danh_sach_dau_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
     Doc_Thong_Tin_Tu_File(ui->danhSachTheDocGia_tableWidget); // Load thông tin từ file docgia_100.txt vào cây
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
@@ -205,8 +205,8 @@ void LibraryManagementSystem::CapNhatBang()
     if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
         xoaDanhSachTheoTen();
         Them_Cay_Vao_QTableWidget(ui->danhSachTheDocGia_tableWidget, root);
-
     } else {
+        xoaDanhSachTheoTen();
         taoDanhSachTheoTen(root);
         inDanhSachVaoBang(ui->danhSachTheDocGia_tableWidget);
     }
