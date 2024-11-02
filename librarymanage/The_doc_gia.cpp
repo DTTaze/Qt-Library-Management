@@ -241,15 +241,21 @@ void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông t
             if (fields[index].isEmpty()) break;
 
             string ma_sach = fields[index].toStdString();
-            int trangthai = fields[index + 1].toInt();
+            int trangthaimuontra = fields[index + 1].toInt();
             Date ngay_muon = ChuyenStringSangDate(fields[index+2].toStdString());
             Date ngay_tra;
             if (!fields[index + 3].isEmpty()){
                 ngay_tra = ChuyenStringSangDate(fields[index+3].toStdString());
             }
 
-            ThemSach(p->thong_tin.head_lsms, ma_sach,trangthai, ngay_muon, ngay_tra);
-            CapNhatTrangThaiSach(ma_sach, trangthai);
+            ThemSach(p->thong_tin.head_lsms, ma_sach,trangthaimuontra, ngay_muon, ngay_tra);
+            if(trangthaimuontra == 0 || trangthaimuontra == 2) {
+                CapNhatTrangThaiSach(ma_sach, 1);
+            }
+            else {
+                CapNhatTrangThaiSach(ma_sach, 0);
+            }
+
             index += 4;
         }
     }
