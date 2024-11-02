@@ -75,7 +75,6 @@ void ThemSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngay
         }
         current->next = newMUONTRA;
     }
-    DanhSachMUONTRA* temp = head;
 }
 
 void MuonSach( const int& maThe, const string& maSach) {

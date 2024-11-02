@@ -10,6 +10,7 @@
 #include "Muon_tra.h"
 #include "dau_sach.h"
 #include "themdocgia_dialog.h"
+#define bachuheocon "ba chú heo con"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
