@@ -604,7 +604,7 @@ QPushButton:focus {
               <number>150</number>
              </property>
              <item>
-              <widget class="QPushButton" name="themSach_pushButton_2">
+              <widget class="QPushButton" name="thanhly_pushButton">
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>

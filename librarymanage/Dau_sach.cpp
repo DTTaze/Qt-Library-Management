@@ -324,9 +324,6 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
     } else {
         InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
     }
-
-
-
 }
 
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){

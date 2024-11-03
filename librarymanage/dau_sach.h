@@ -22,6 +22,7 @@
 #include <QStringListModel>
 #include <QDir>
 #include <QDebug>
+#include <QCheckBox>
 using namespace std;
 
 struct DanhMucSach{
@@ -92,9 +93,10 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
 void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc);
 void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc);
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai);
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
+
 
 //Chức năng tìm tên sách
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
 void InFullTheoTenSach(string key, QTableView* tableView_dausach);
 
 

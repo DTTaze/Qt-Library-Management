@@ -52,7 +52,7 @@ private slots:
 
     void on_themSach_pushButton_clicked();
 
-    void on_themSach_pushButton_2_clicked();
+    void on_thanhly_pushButton_clicked();
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 

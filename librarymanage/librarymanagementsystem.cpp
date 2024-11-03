@@ -3,6 +3,7 @@
 #include "muonsach.h"
 #include "trasach.h"
 #include "intheotheloai.h"
+#include "thanh_ly.h"
 #include "themdausach.h"
 #include "queue.h"
 #include "The_doc_gia.h"
@@ -117,6 +118,7 @@ void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 {
     InTheoTheLoai intheloai;
     intheloai.setModal(true);
+    intheloai.setWindowTitle("In danh sách theo thể loại");
     intheloai.exec();
 }
 
@@ -164,29 +166,34 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         }
     }
 }
-//Nut Thanh ly
-void LibraryManagementSystem::on_themSach_pushButton_2_clicked()
+
+void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 {
     QModelIndex index = ui->tableView_dausach->currentIndex();
     int row = index.row();
-    if (row == -1) return;
+    if (row == -1) {QMessageBox::information(this, "Thông báo", "Vui lòng chọn sách thanh lý.");return;}
 
     int column = 0;
 
     QVariant data = index.sibling(row, column).data();
 
     string ma_ISBN = data.toString().toStdString();
-    int i = 0;
-    for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-    if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
-    else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2; Saved = false;}
-    else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
-    if (ui->lineEdit_timkiemds->text().isEmpty()){
-        InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
-    }else{
-        string key = ui->lineEdit_timkiemds->text().toStdString();
-        InFullTheoTenSach(key,ui->tableView_dausach);
-    }
+
+    Thanh_ly thanhly(ma_ISBN);
+    thanhly.setModal(true);
+    thanhly.setWindowTitle("In danh sách theo thể loại");
+    thanhly.exec();
+    // int i = 0;
+    // for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
+    // if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
+    // else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2; Saved = false;}
+    // else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
+    // if (ui->lineEdit_timkiemds->text().isEmpty()){
+    //     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+    // }else{
+    //     string key = ui->lineEdit_timkiemds->text().toStdString();
+    //     InFullTheoTenSach(key,ui->tableView_dausach);
+    // }
 }
 
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
