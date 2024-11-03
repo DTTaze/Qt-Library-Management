@@ -25,6 +25,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
 
+    connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::ChenMaSach);
     Saved = true;
 }
 
@@ -147,6 +148,29 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
 
     // Gọi hàm tìm kiếm với key đã được lọc
     TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, valid_key);
+
+
+}
+
+void LibraryManagementSystem::ChenMaSach(const QModelIndex &index) {
+    // Kiểm tra nếu lineEdit_timkiemds rỗng
+    if (ui->lineEdit_timkiemds->text().isEmpty()) {
+        return; // Không thực hiện thao tác nào nếu lineEdit rỗng
+    }
+
+    if (index.isValid()) {
+        int rowClicked = index.row();
+        // Lấy dữ liệu của cột đầu tiên của hàng được nhấn
+        QVariant data = index.siblingAtColumn(0).data();
+
+        // Kiểm tra và in ra dữ liệu nếu có
+        if (data.isValid()) {
+            string Ma_ISBN = data.toString().toStdString();
+            qDebug() << "Người dùng đã nhấp vào hàng:" << rowClicked << ", Dữ liệu cột đầu tiên:" <<  QString::fromStdString(Ma_ISBN);
+
+        ChenMaSachVaoTable(Ma_ISBN,rowClicked,ui->tableView_dausach,ui->lineEdit_timkiemds->text().toStdString());
+        }
+    }
 }
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
@@ -175,21 +199,25 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 
     string ma_ISBN = data.toString().toStdString();
 
-    Thanh_ly thanhly(ma_ISBN);
-    thanhly.setModal(true);
-    thanhly.setWindowTitle("In danh sách theo thể loại");
-    thanhly.exec();
-    // int i = 0;
-    // for (; i < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[i]->ISBN != ma_ISBN;i++);
-    // if (danh_sach_dau_sach.node[i]->dms->trangthai == 1 ) {QMessageBox::warning(this, "Lỗi", "Sách đã được mượn.");}
-    // else if(danh_sach_dau_sach.node[i]->dms->trangthai == 0) {danh_sach_dau_sach.node[i]->dms->trangthai=2; Saved = false;}
-    // else QMessageBox::warning(this, "Lỗi", "Sách đã được thanh lý.");
-    // if (ui->lineEdit_timkiemds->text().isEmpty()){
-    //     InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
-    // }else{
-    //     string key = ui->lineEdit_timkiemds->text().toStdString();
-    //     InFullTheoTenSach(key,ui->tableView_dausach);
-    // }
+    int DS_index = TimKiemIndexDauSach(ma_ISBN);
+    int allowed=0;
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
+        if(cur->trangthai == 0){
+            allowed++;
+        }
+    }
+    if(allowed == 0){
+        QMessageBox::warning(this,"Cảnh báo","Không có sách có thể thanh lý");
+        return;
+    }else{
+        Thanh_ly thanhly(DS_index);
+        thanhly.setModal(true);
+        thanhly.setWindowTitle("In danh sách theo thể loại");
+        if (thanhly.exec() == QDialog::Accepted){
+            Saved = false;
+        }
+    }
+
 }
 
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------

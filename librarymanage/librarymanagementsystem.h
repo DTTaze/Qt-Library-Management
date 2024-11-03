@@ -53,6 +53,8 @@ private slots:
     void on_themSach_pushButton_clicked();
 
     void on_thanhly_pushButton_clicked();
+
+    void ChenMaSach(const QModelIndex &index);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 

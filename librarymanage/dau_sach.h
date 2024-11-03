@@ -98,6 +98,6 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 //Chức năng tìm tên sách
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
 void InFullTheoTenSach(string key, QTableView* tableView_dausach);
-
+void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,string key);
 
 #endif

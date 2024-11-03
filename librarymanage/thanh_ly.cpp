@@ -1,14 +1,14 @@
 #include "thanh_ly.h"
 #include "ui_thanh_ly.h"
 
-Thanh_ly::Thanh_ly(const string &ISBN,QWidget *parent)
+Thanh_ly::Thanh_ly(int DS_vitri,QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Thanh_ly)
-    , ma_ISBN(ISBN)
+    , vi_tri_DS(DS_vitri)
 {
     ui->setupUi(this);
 
-    HienThongtin(ma_ISBN);
+    HienThongtin(vi_tri_DS);
 }
 
 Thanh_ly::~Thanh_ly()
@@ -17,8 +17,7 @@ Thanh_ly::~Thanh_ly()
 
 }
 
-void Thanh_ly::HienThongtin(const string &ma_isbn){
-    int index = TimKiemIndexDauSach(ma_isbn);
+void Thanh_ly::HienThongtin(int vi_tri){
 
     // Thiết lập các QLineEdit chỉ đọc
     ui->lineEdit_ISBN->setReadOnly(true);
@@ -28,15 +27,15 @@ void Thanh_ly::HienThongtin(const string &ma_isbn){
     ui->lineEdit_namsb->setReadOnly(true);
     ui->lineEdit_theloai->setReadOnly(true);
 
-    ui->lineEdit_ISBN->setText(QString::fromStdString(ma_isbn));
-    ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tensach));
-    ui->lineEdit_sotrang->setText(QString::number(danh_sach_dau_sach.node[index]->sotrang));
-    ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tacgia));
-    ui->lineEdit_namsb->setText(QString::number(danh_sach_dau_sach.node[index]->namsx));
-    ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
+    ui->lineEdit_ISBN->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->ISBN));
+    ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tensach));
+    ui->lineEdit_sotrang->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->sotrang));
+    ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tacgia));
+    ui->lineEdit_namsb->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->namsx));
+    ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->theloai));
 
     int row_count = 0;
-    for(DanhMucSach* cur = danh_sach_dau_sach.node[index]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[index]->demsosach;cur = cur->next , row_count++){
+    for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->demsosach;cur = cur->next , row_count++){
         ui->tableWidget_thanhly->insertRow(row_count);
 
         // Kiểm tra trạng thái
@@ -77,9 +76,16 @@ void Thanh_ly::on_pushButton_thanhly_clicked()
 
         if (QCheckBox *checkBox = qobject_cast<QCheckBox*>(widget)) { // Kiểm tra nếu widget là QCheckBox
             if (checkBox->isChecked()) { // Nếu checkbox đã được tích chọn
+
                 QString ma_sach = ui->tableWidget_thanhly->item(row,1)->text();
                 string ma_sachstd = ma_sach.toStdString();
-                CapNhatTrangThaiSach(ma_sachstd,2);
+
+                for (DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri_DS]->dms;cur!=nullptr;cur=cur->next){
+                    if(cur->masach == ma_sachstd){
+                        cur->trangthai = 2;
+                    }
+                }
+
                 sach_thanh_ly++;
             }
         }
