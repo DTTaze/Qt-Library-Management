@@ -33,8 +33,6 @@ private slots:
 
     void on_ten_lineEdit_textChanged(const QString &arg1);
 
-    void on_nam_radioButton_clicked();
-
 private:
     Ui::themDocGia_Dialog *ui;
 };

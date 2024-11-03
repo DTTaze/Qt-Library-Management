@@ -72,6 +72,15 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     }
 }
 
+bool themDocGia_Dialog::kiemTraChuoi(QString s) {
+    for ( int i = 0; i < s.length(); i++ ) {
+        if ( !s[i].isLetter() && !s[i].isSpace() ) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void themDocGia_Dialog::on_cancel_pushButton_clicked()
 {
     close();
@@ -82,23 +91,9 @@ void themDocGia_Dialog::on_hoEdit_textChanged(const QString &arg1)
     xuLyChuoi(arg1, ui->hoEdit);
 }
 
-bool themDocGia_Dialog::kiemTraChuoi(QString s) {
-    for ( int i = 0; i < s.length(); i++ ) {
-        if ( !s[i].isLetter() && !s[i].isSpace() ) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
 void themDocGia_Dialog::on_ten_lineEdit_textChanged(const QString &arg1)
 {
     xuLyChuoi(arg1, ui->ten_lineEdit);
 }
 
-
-void themDocGia_Dialog::on_nam_radioButton_clicked()
-{
-}
 

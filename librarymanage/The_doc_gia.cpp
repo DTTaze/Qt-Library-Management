@@ -28,17 +28,6 @@ void taoDanhSachMaThe(int start, int end) {
     }
 }
 
-int layMaThe() {
-    if (danhSachMaThe.empty()) {
-        QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng!");
-        return -1;
-    }
-    int maThe = danhSachMaThe.front();
-    danhSachMaThe.pop();
-    danhSachMaThe.push(maThe);
-    return maThe;
-}
-
 void docFileMaThe() {
     ifstream inFile("Ma_The.txt");
     if (!inFile) {
@@ -59,37 +48,27 @@ void ghiMaTheVaoFile() {
     }
 
     Queue<int> tempQueue = danhSachMaThe;
-    while (!tempQueue.empty()) {
+    while ( !tempQueue.empty() ) {
         outFile << tempQueue.front() << " ";
         tempQueue.pop();
     }
     outFile.close();
 }
-//---------------------------------------------------Hàm liên quan đến tạo bảng theo tên------------------------------------------------------------------------------------
-void themVaoDanhSachTheoTenCoThuTu(Danh_Sach_The_Doc_Gia* docgia) {
-    Danh_Sach_Theo_Ten* p = new Danh_Sach_Theo_Ten;
-    p->PTR = docgia;
-    p->ten = docgia->thong_tin.Ten;
 
-    Danh_Sach_Theo_Ten* t = nullptr;
-    Danh_Sach_Theo_Ten* s = head;
-
-    while (s != nullptr && s->ten < p->ten) {
-        t = s;
-        s = s->next;
+int layMaThe() {
+    if (danhSachMaThe.empty()) {
+        QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng!");
+        return -1;
     }
-
-    p->next = s;
-    if (t == nullptr) {
-        head = p;
-    } else {
-        t->next = p;
-    }
+    int maThe = danhSachMaThe.front();
+    danhSachMaThe.pop();
+    danhSachMaThe.push(maThe);
+    return maThe;
 }
-
+//---------------------------------------------------Hàm liên quan đến tạo bảng theo tên------------------------------------------------------------------------------------
 void taoDanhSachTheoTen(Danh_Sach_The_Doc_Gia* root) {
     if ( root == nullptr ) return;
-    themVaoDanhSachTheoTenCoThuTu(root);
+    themVaoCoThuTuDanhSachTheDocGiaTheoTen(root);
     taoDanhSachTheoTen(root->ptr_left);
     taoDanhSachTheoTen(root->ptr_right);
 }
@@ -107,10 +86,31 @@ void xoaDanhSachTheoTen() {
     head = nullptr;
 }
 
-void inDanhSachVaoBang(QTableWidget* tableWidget) {
+void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
+    Danh_Sach_Theo_Ten* newNode = new Danh_Sach_Theo_Ten;
+    newNode->PTR = docgia;
+    newNode->ten = docgia->thong_tin.Ten;
+
+    Danh_Sach_Theo_Ten* truoc = nullptr;
+    Danh_Sach_Theo_Ten* sau = head;
+
+    while (s != nullptr && newNode->ten > s->ten) {
+        truoc = s;
+        sau = sau->next;
+    }
+
+    newNode->next = sau;
+    if (truoc == nullptr) {
+        head = newNode;
+    } else {
+        truoc->next = newNode;
+    }
+}
+
+void inDanhSachTheDocGiaTheoTen(QTableWidget* tableWidget) {
     Danh_Sach_Theo_Ten* temp = head;
     while ( temp != nullptr ) {
-        Them_Vao_QTableWidget(tableWidget, temp->PTR);
+        themTheDocGiaVaoBang(tableWidget, temp->PTR);
         temp = temp->next;
     }
 }
@@ -199,7 +199,7 @@ void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     docGia->thong_tin.TrangThai = Dang_Hoat_Dong;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
+void docFileThongTinTheDocGia( QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file docgia_100.txt");
@@ -262,7 +262,7 @@ void Doc_Thong_Tin_Tu_File( QTableWidget* tableWidget) { // Hàm đọc thông t
     inFile.close();
 }
 
-void Ghi_The_Vao_File() {
+void ghiThongTinTheDocGia() {
     ofstream outFile("docgia_100.txt");
 
     if ( !outFile ) {
@@ -304,23 +304,22 @@ void Ghi_The_Vao_File() {
     outFile.close();
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) { // Hàm thêm nút thông tin vào table
+void themTheDocGiaVaoBang(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) {
     int row = tableWidget->rowCount();
     tableWidget->insertRow(row);
 
-    // Thêm dữ liệu vào từng ô
-    tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia->thong_tin.MATHE))); // Mã thẻ
-    tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ho))); // Họ
-    tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ten))); // Tên
-    tableWidget->setItem(row, 3, new QTableWidgetItem(docGia->thong_tin.phai == Nam ? "Nam" : "Nữ")); // Phái
-    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa")); // Trạng thái
+    tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(docGia->thong_tin.MATHE)));
+    tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ho)));
+    tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ten)));
+    tableWidget->setItem(row, 3, new QTableWidgetItem(docGia->thong_tin.phai == Nam ? "Nam" : "Nữ"));
+    tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
 }
 
-void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) { // Hàm thêm thông tin từ cây vào table
+void inDanhSachTheDocGiaTheoMaSo(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) {
     if ( root == nullptr ) return;
-    Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_left);
-    Them_Vao_QTableWidget(tableWidget, root);
-    Them_Cay_Vao_QTableWidget(tableWidget, root->ptr_right);
+    inDanhSachTheDocGiaTheoMaSo(tableWidget, root->ptr_left);
+    themTheDocGiaVaoBang(tableWidget, root);
+    inDanhSachTheDocGiaTheoMaSo(tableWidget, root->ptr_right);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
 

@@ -62,16 +62,16 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
 void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia);
 
 // In danh sách độc giả theo tên
-void themVaoDanhSachTheoTenCoThuTu(Danh_Sach_The_Doc_Gia* docgia);
+void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia);
 void taoDanhSachTheoTen(Danh_Sach_The_Doc_Gia* root);
 void xoaDanhSachTheoTen();
-void inDanhSachVaoBang(QTableWidget* tableWidget);
+void inDanhSachTheDocGiaTheoTen(QTableWidget* tableWidget);
 
 // Hàm đọc và ghi thông tin
-void Doc_Thong_Tin_Tu_File(QTableWidget* tableWidget);
-void Ghi_The_Vao_File();
+void docFileThongTinTheDocGia(QTableWidget* tableWidget);
+void ghiThongTinTheDocGia();
 
 // Hàm chèn thông tin vào table
-void Them_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia);
-void Them_Cay_Vao_QTableWidget(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root );
+void themTheDocGiaVaoBang(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia);
+void inDanhSachTheDocGiaTheoMaSo(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root );
 #endif
