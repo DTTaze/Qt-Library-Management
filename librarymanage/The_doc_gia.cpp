@@ -8,7 +8,6 @@ Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
 //--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
 void taoDanhSachMaThe(int start, int end) {
-    danhSachMaThe.clear();
     Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
     ranges.push({start, end}); // [a,b]
 
@@ -32,6 +31,7 @@ void docFileMaThe() {
     ifstream inFile("Ma_The.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
+        return;
     }
 
     int maThe;
@@ -42,15 +42,20 @@ void docFileMaThe() {
 }
 
 void ghiMaTheVaoFile() {
+    if ( danhSachMaThe.empty() ) {
+        QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng");
+        return;
+    }
     ofstream outFile("Ma_The.txt");
     if (!outFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
+        return;
     }
 
-    Queue<int> tempQueue = danhSachMaThe;
-    while ( !tempQueue.empty() ) {
-        outFile << tempQueue.front() << " ";
-        tempQueue.pop();
+    Queue<int> danhSachMaTheTamThoi = danhSachMaThe.copy();
+    while ( !danhSachMaTheTamThoi.empty() ) {
+        outFile << danhSachMaTheTamThoi.front() << " ";
+        danhSachMaTheTamThoi.pop();
     }
     outFile.close();
 }

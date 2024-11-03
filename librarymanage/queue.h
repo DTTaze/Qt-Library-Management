@@ -8,7 +8,7 @@ template<typename T>
 struct node
 {
     T data;
-    node *next;
+    node *next = nullptr;
     node() {}
     node(T val) : data(val), next(nullptr) {}
 };
@@ -16,23 +16,20 @@ struct node
 template<typename T>
 struct Queue
 {
-    node<T>* Front;
-    node<T>* Rear;
-    Queue() {
-        Front = Rear = nullptr;
-    }
+    node<T>* Front = nullptr;
+    node<T>* Rear = nullptr;
+    Queue() : Front(nullptr), Rear(nullptr) {}
     void push(T value);
     void pop();
     T front();
     bool empty();
     void clear();
+    Queue<T> copy();
 };
 
 template<typename T>
 void Queue<T>::push(T value) {
-    node<T>* p = new node<T>();
-    p->data = value;
-    p->next = nullptr;
+    node<T>* p = new node<T>(value);
     if (this->Front == nullptr) {
         this->Front = p;
     } else {
@@ -73,6 +70,17 @@ void Queue<T>::clear() {
         delete temp;
     }
     this->Rear = nullptr;  // Đảm bảo Rear cũng là nullptr sau khi xóa
+}
+
+template<typename T>
+Queue<T> Queue<T>::copy() {
+    Queue<T> newQueue;
+    node<T>* current = this->Front;
+    while (current != nullptr) {
+        newQueue.push(current->data);
+        current = current->next;
+    }
+    return newQueue;
 }
 
 #endif // QUEUE_H

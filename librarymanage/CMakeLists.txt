@@ -40,8 +40,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         themdausach.h themdausach.cpp themdausach.ui
         queue.h
 
-        Ma_The.txt
+
         thanh_ly.h thanh_ly.cpp thanh_ly.ui
+        Ma_The.txt
 
 
 
