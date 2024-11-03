@@ -79,13 +79,13 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
 void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QTableView *tableView_dausach,QWidget* parent);
-bool InVaoTXT();
+void InVaoTXT();
 
 //Chức năng thêm sách
-void TaoMaSach(string& ma_sach ,DanhSachDauSach &danh_sach_dau_sach,int demsosach);
-void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, DanhSachDauSach &danh_sach_dau_sach, const string& vi_tri, const string &I_S_B_N,int demsosach);
+void TaoMaSach(string& ma_sach,int demsosach);
+void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                 int trang_thai,string &vi_tri);
+                 int trang_thai,string &vi_tri,string ma_sach);
 
 //Chức năng in đầu sách theo thể loại
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
@@ -95,7 +95,6 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
 
 //Chức năng tìm tên sách
-int TimKiemNhiPhanTenSach(DanhSachDauSach &danh_sach_dau_sach,string key);
 void InFullTheoTenSach(string key, QTableView* tableView_dausach);
 
 

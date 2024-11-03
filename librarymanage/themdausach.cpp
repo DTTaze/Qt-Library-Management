@@ -108,7 +108,7 @@ void themdausach::on_pushButton_clicked() {
     }
 
     // Gọi hàm thêm đầu sách với các tham số đã chuyển đổi
-    ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd);
+    ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd,"");
 
     // Tìm mã sách từ danh mục sách
     int index = 0;

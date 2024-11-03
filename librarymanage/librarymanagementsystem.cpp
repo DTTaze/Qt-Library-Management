@@ -109,6 +109,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Ghi_The_Vao_File();
     InVaoTXT();
     Saved = true;
+    qDebug()<<"đã lưu";
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
