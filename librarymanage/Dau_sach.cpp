@@ -38,7 +38,6 @@ void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_t
     }
     // Tạo node mới với thông tin mã sách, trạng thái và vị trí
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
-
     // Thêm node mới vào đầu danh sách
     new_dms->next = head_dms;
     head_dms = new_dms;
@@ -56,7 +55,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
         DauSach* new_sach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
 
-        ThemDanhMucSach(new_sach->dms,trang_thai,vi_tri,I_S_B_N,new_sach->demsosach+1,"");
+        ThemDanhMucSach(new_sach->dms,trang_thai,vi_tri,I_S_B_N,new_sach->demsosach+1,ma_sach);
 
 
         //Mặc định chèn vào cuối
@@ -84,6 +83,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
         danh_sach_dau_sach.demsach++;
 
     }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
+
         ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
         danh_sach_dau_sach.node[index_isbn]->demsosach++;
 

@@ -19,6 +19,15 @@ Thanh_ly::~Thanh_ly()
 
 void Thanh_ly::HienThongtin(const string &ma_isbn){
     int index = TimKiemIndexDauSach(ma_isbn);
+
+    // Thiết lập các QLineEdit chỉ đọc
+    ui->lineEdit_ISBN->setReadOnly(true);
+    ui->lineEdit_tensach->setReadOnly(true);
+    ui->lineEdit_sotrang->setReadOnly(true);
+    ui->lineEdit_tacgia->setReadOnly(true);
+    ui->lineEdit_namsb->setReadOnly(true);
+    ui->lineEdit_theloai->setReadOnly(true);
+
     ui->lineEdit_ISBN->setText(QString::fromStdString(ma_isbn));
     ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tensach));
     ui->lineEdit_sotrang->setText(QString::number(danh_sach_dau_sach.node[index]->sotrang));
@@ -57,3 +66,65 @@ void Thanh_ly::HienThongtin(const string &ma_isbn){
     ui->tableWidget_thanhly->resizeColumnsToContents();
     ui->tableWidget_thanhly->setColumnWidth(1,160);
 }
+
+void Thanh_ly::on_pushButton_thanhly_clicked()
+{
+    int sach_thanh_ly = 0;
+    int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
+
+    for (int row = 0; row < rowCount; ++row) {
+        QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
+
+        if (QCheckBox *checkBox = qobject_cast<QCheckBox*>(widget)) { // Kiểm tra nếu widget là QCheckBox
+            if (checkBox->isChecked()) { // Nếu checkbox đã được tích chọn
+                QString ma_sach = ui->tableWidget_thanhly->item(row,1)->text();
+                string ma_sachstd = ma_sach.toStdString();
+                CapNhatTrangThaiSach(ma_sachstd,2);
+                sach_thanh_ly++;
+            }
+        }
+    }
+
+    if (sach_thanh_ly > 0){
+        QString message = QString("Số lượng sách thanh lý: %1").arg(sach_thanh_ly);
+        QMessageBox::information(this, "Thông báo", message);
+
+        accept();
+    }else QMessageBox::information(this, "Thông báo", "Vui lòng chọn sách thanh lý ");return;
+}
+
+
+void Thanh_ly::on_pushButton_cancel_clicked()
+{
+    close();
+}
+
+
+void Thanh_ly::on_pushButton_chontatca_clicked()
+{
+    int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
+
+    for (int row = 0; row < rowCount; ++row) {
+        QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
+
+        if (QCheckBox *checkBox = qobject_cast<QCheckBox*>(widget)) { // Kiểm tra nếu widget là QCheckBox
+            checkBox->setChecked(true); // Tích chọn checkbox
+        }
+    }
+}
+
+
+
+void Thanh_ly::on_pushButton_bochon_clicked()
+{
+    int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
+
+    for (int row = 0; row < rowCount; ++row) {
+        QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
+
+        if (QCheckBox *checkBox = qobject_cast<QCheckBox*>(widget)) { // Kiểm tra nếu widget là QCheckBox
+            checkBox->setChecked(false); // Tích chọn checkbox
+        }
+    }
+}
+
