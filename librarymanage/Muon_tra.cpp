@@ -99,8 +99,8 @@ void MuonSach( const int& maThe, const string& maSach) {
     int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms); // Đếm số sách đang mượn
 
     // Kiểm tra trạng thái thẻ và số sách đang mượn
-    if (doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach)) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách vì thẻ độc giả đã bị khóa hoặc đã mượn nhiều hơn 3 quyển.");
+    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách vì thẻ độc giả đã bị khóa hoặc sách không tồn tại hoặc đã mượn nhiều hơn 3 quyển.");
         return;
     }
 

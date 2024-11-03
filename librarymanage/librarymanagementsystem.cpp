@@ -419,40 +419,38 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
 
 
 void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
-    // Đưa chuỗi về dạng chữ thường
-    string key_tensach = ChuyenMaSachThanhTenSach(danh_sach_dau_sach, key_ma_sach);
-    ChuyenVeChuThuong(key_tensach);
+    int vitri = TimKiemIndexDauSach(key_ma_sach);
     ui->lineEdit_tenSach->setReadOnly(true);
     ui->lineEdit_tacGia->setReadOnly(true);
     ui->lineEdit_trangThaiSach->setReadOnly(true);
 
-    bool found = false; // Đánh dấu nếu tìm thấy sách
+    if (vitri != -1) {
+        string trang_thai_std;
 
-    for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
-        string ten_sach = danh_sach_dau_sach.node[i]->tensach;
-        ChuyenVeChuThuong(ten_sach);
+        ui->lineEdit_tenSach->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tensach));
+        ui->lineEdit_tacGia->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia));
+        DanhMucSach *danh_muc_sach = danh_sach_dau_sach.node[vitri]->dms;
+        int trangthai = danh_muc_sach->trangthai;
 
-        if (ten_sach == key_tensach) {
-            int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
-            string trang_thai_std;
-
-            ui->lineEdit_tenSach->setText(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
-            ui->lineEdit_tacGia->setText(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
-
+        while(danh_muc_sach != nullptr) {
+            trangthai = danh_muc_sach->trangthai;
+            if(trangthai == 0) {
+                trang_thai_std = "có thể mượn";
+                ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
+                break;
+            }
+            danh_muc_sach = danh_muc_sach->next;
+        }
+        if (trang_thai_std != "có thể mượn") {
             switch(trangthai) {
-            case 0: trang_thai_std = "Có thể mượn"; break;
             case 1: trang_thai_std = "Đã được mượn"; break;
             case 2: trang_thai_std = "Đã thanh lý"; break;
             }
             ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
-
-            found = true;
-            break; // Dừng sau khi tìm thấy sách đầu tiên
         }
     }
-
     // Nếu không tìm thấy sách, đặt lại các trường hiển thị
-    if (!found) {
+    else {
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
         ui->lineEdit_trangThaiSach->clear();
@@ -473,7 +471,6 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
             lastWasSpace = true;
         }
     }
-
     string valid_key = key.toStdString();
     valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
@@ -518,14 +515,25 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
     Saved = false;
 }
 
-string LibraryManagementSystem::getmaSach() {
-    return ui->lineEdit_maSach->text().toStdString();
+string LibraryManagementSystem::getmaSachCoTheMuon() {
+    string ma_ISBN =  ui->lineEdit_maSach->text().toStdString();
+    int vitri = TimKiemIndexDauSach(ma_ISBN);
+    if (vitri != -1) {
+        DanhMucSach *danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
+        while (danh_muc_sach != nullptr) {
+            if(danh_muc_sach->trangthai == 0) {
+                return danh_muc_sach->masach;
+            }
+            danh_muc_sach = danh_muc_sach->next;
+        }
+    }
+    return "";
 }
 
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
 
-    MuonSach(getmaThe(), getmaSach());
+    MuonSach(getmaThe(), getmaSachCoTheMuon());
     ui->tableWidget_muonTra->setRowCount(0);
     inThongTin(getmaThe());
     ui->lineEdit_maSach->clear();

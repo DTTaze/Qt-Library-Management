@@ -94,8 +94,8 @@ void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
     Danh_Sach_Theo_Ten* truoc = nullptr;
     Danh_Sach_Theo_Ten* sau = head;
 
-    while (s != nullptr && newNode->ten > s->ten) {
-        truoc = s;
+    while (sau != nullptr && newNode->ten > sau->ten) {
+        truoc = sau;
         sau = sau->next;
     }
 

@@ -74,7 +74,7 @@ private slots:
 
     void on_lineEdit_maThe_textChanged(const QString &arg1);
 
-    string getmaSach() ;
+    string getmaSachCoTheMuon() ;
 
     void inThongTinmaSach( string key_ma_sach);
 
