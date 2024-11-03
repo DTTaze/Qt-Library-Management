@@ -93,6 +93,7 @@ public slots:
 private:
     Ui::LibraryManagementSystem *ui;
     bool Saved;
+    QStandardItemModel* model_Dausach;
 protected:
     void closeEvent(QCloseEvent *event) override; // Khai báo hàm closeEvent
 

@@ -14,16 +14,17 @@
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
+    ,model_Dausach(new QStandardItemModel(0, 7, this))
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
 
-    DocTuFile(danh_sach_dau_sach,ui->tableView_dausach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
+    DocTuFile(danh_sach_dau_sach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
 
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
 
-    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach); // In bảng đầu sách
+    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach,model_Dausach); // In bảng đầu sách
 
     connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::ChenMaSach);
     Saved = true;
@@ -58,7 +59,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach);
+    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach,model_Dausach);
 }
 
 void LibraryManagementSystem::tabTheDocGia()
@@ -147,7 +148,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     }
 
     // Gọi hàm tìm kiếm với key đã được lọc
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach, valid_key);
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach,model_Dausach, valid_key);
 
 
 }
@@ -168,7 +169,7 @@ void LibraryManagementSystem::ChenMaSach(const QModelIndex &index) {
             string Ma_ISBN = data.toString().toStdString();
             qDebug() << "Người dùng đã nhấp vào hàng:" << rowClicked << ", Dữ liệu cột đầu tiên:" <<  QString::fromStdString(Ma_ISBN);
 
-        ChenMaSachVaoTable(Ma_ISBN,rowClicked,ui->tableView_dausach,ui->lineEdit_timkiemds->text().toStdString());
+        ChenMaSachVaoTable(Ma_ISBN,rowClicked,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
         }
     }
 }
@@ -181,7 +182,7 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         themdausach themds;
         themds.setModal(true);
         if (themds.exec() == QDialog::Accepted){
-            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach);
+            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach,model_Dausach);
             Saved = false;
         }
     }

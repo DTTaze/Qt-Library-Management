@@ -62,7 +62,7 @@ extern DanhSachDauSach danh_sach_dau_sach;
 
 
 //Hàm in danh sách đầu sách mặc định
-void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach);
+void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
 //Hàm tìm kiếm vị trí của mã isbn trong danh sách
 int TimKiemIndexDauSach(string ma_isbn);
@@ -79,7 +79,7 @@ void ChuyenVeChuThuong(std::string& str);
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QTableView *tableView_dausach,QWidget* parent);
+void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent);
 void InVaoTXT();
 
 //Chức năng thêm sách
@@ -96,8 +96,8 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 
 //Chức năng tìm tên sách
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,string key);
-void InFullTheoTenSach(string key, QTableView* tableView_dausach);
-void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,string key);
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
+void InFullTheoTenSach(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
+void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
 
 #endif

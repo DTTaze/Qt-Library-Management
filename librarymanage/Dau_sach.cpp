@@ -90,12 +90,19 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
-void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach){
+void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model){
+
+    if (model) {
+        // Xóa dữ liệu cũ
+        model->clear(); // Xóa tất cả các dòng và cột
+        delete model;   // Giải phóng bộ nhớ của model
+        model = nullptr; // Đặt model về nullptr
+    }
 
     const int row_count = so_luong_sach;
 
     // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count, 6);
+    model = new QStandardItemModel(row_count, 6);
 
     QString headers[6] = {
         "ISBN",
@@ -131,8 +138,15 @@ void ChuyenVeChuThuong(std::string& str) {
     }
 }//static_cast<unsigned char> de cac ki tu am khong gay loi
 
-void InFullTheoTenSach(string key, QTableView* tableView_dausach){
-    QStandardItemModel* model;
+void InFullTheoTenSach(string key, QTableView* tableView_dausach,QStandardItemModel*& model){
+
+    if (model) {
+        // Xóa dữ liệu cũ
+        model->clear(); // Xóa tất cả các dòng và cột
+        delete model;   // Giải phóng bộ nhớ của model
+        model = nullptr; // Đặt model về nullptr
+    }
+
     int row_count = 0;
     model = new QStandardItemModel(0, 7);
 
@@ -157,22 +171,7 @@ void InFullTheoTenSach(string key, QTableView* tableView_dausach){
             model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
             model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
             model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
-            // for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
 
-            //     int trangthai = cur->trangthai;
-            //     string trang_thai_std;
-
-
-            //     model->setItem(row_count, 5, new QStandardItem(QString::fromStdString(cur->masach)));
-            //     switch (trangthai){
-            //     case 0:trang_thai_std = "Có thể mượn";break;
-            //     case 1:trang_thai_std = "Đã được mượn";break;
-            //     case 2:trang_thai_std = "Đã thanh lý";break;
-            //     }
-
-            //     model->setItem(row_count, 6, new QStandardItem(QString::fromStdString(trang_thai_std)));
-            //     row_count++;
-            // }
             int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
             string trang_thai_std;
 
@@ -288,6 +287,9 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
 
 //Su dung tham chieu nen phai tao ban sao roi xoa ban sao
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai){
+
+
+
     cout<<"bat dau in theo the loai \n\n";
     int so_luong_sach = danh_sach_dau_sach.demsach;
     int* copy = new int[so_luong_sach]();// cap phat dong mang, mac dinh phan tu = 0
@@ -299,7 +301,8 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
     const int row_count = so_luong_sach;
     // Tạo model cho table
-    QStandardItemModel* model = new QStandardItemModel(row_count,7);
+    QStandardItemModel* model;
+    model = new QStandardItemModel(row_count,7);
 
     QString headers[7] = {
         "Thể loại",
@@ -331,17 +334,25 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 }
 
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach, string key) {
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model, string key) {
+
     // Neu nguoi dung nhap key
     if (!key.empty()) {
-        InFullTheoTenSach(key,tableView_dausach);
+        InFullTheoTenSach(key,tableView_dausach,model);
     } else {
-        InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach);
+        InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach,model);
     }
 }
 
-void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,string key){
-    QStandardItemModel* model;
+void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,QStandardItemModel*& model,string key){
+
+    if (model) {
+        // Xóa dữ liệu cũ
+        model->clear(); // Xóa tất cả các dòng và cột
+        delete model;   // Giải phóng bộ nhớ của model
+        model = nullptr; // Đặt model về nullptr
+    }
+
     int row_count = 0;
     model = new QStandardItemModel(0, 7);
 
@@ -399,7 +410,7 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
 }
 
 
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach, QWidget* parent) {
+void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
 
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
