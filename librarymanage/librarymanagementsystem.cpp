@@ -435,13 +435,13 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
         while(danh_muc_sach != nullptr) {
             trangthai = danh_muc_sach->trangthai;
             if(trangthai == 0) {
-                trang_thai_std = "có thể mượn";
+                trang_thai_std = "Có thể mượn";
                 ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
                 break;
             }
             danh_muc_sach = danh_muc_sach->next;
         }
-        if (trang_thai_std != "có thể mượn") {
+        if (trang_thai_std != "Có thể mượn") {
             switch(trangthai) {
             case 1: trang_thai_std = "Đã được mượn"; break;
             case 2: trang_thai_std = "Đã thanh lý"; break;
@@ -532,12 +532,16 @@ string LibraryManagementSystem::getmaSachCoTheMuon() {
 
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
+    if(!ui->lineEdit_maSach->text().isEmpty() && !ui->lineEdit_maThe->text().isEmpty()) {
+        MuonSach(getmaThe(), getmaSachCoTheMuon());
+        ui->tableWidget_muonTra->setRowCount(0);
+        inThongTin(getmaThe());
+        ui->lineEdit_maSach->clear();
+        Saved = false;
+    } else {
+        QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
+    }
 
-    MuonSach(getmaThe(), getmaSachCoTheMuon());
-    ui->tableWidget_muonTra->setRowCount(0);
-    inThongTin(getmaThe());
-    ui->lineEdit_maSach->clear();
-    Saved = false;
 }
 
 
@@ -572,6 +576,7 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
                     ChuaDenSach(getmaThe(), maSach);
                     if(thongbao[1] == false) {
                         QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là chưa đền.");
+                        inThongTin(getmaThe());
                         thongbao[1] = true;
                     }
                 }
@@ -580,6 +585,7 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
                 DaDenSach(getmaThe(), maSach);
                 if(thongbao[2] == false) {
                     QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
+                    inThongTin(getmaThe());
                     thongbao[2] = true;
                 }
             }
