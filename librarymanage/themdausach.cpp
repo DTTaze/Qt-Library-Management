@@ -6,6 +6,12 @@ themdausach::themdausach( QWidget *parent)
     , ui(new Ui::themdausach)
 {
     ui->setupUi(this);
+    ui->lineEdit_tacgia->setReadOnly(true);
+    ui->lineEdit_tensach->setReadOnly(true);
+    ui->lineEdit_theloai->setReadOnly(true);
+    ui->comboBox_vitri->setEnabled(false);
+    ui->spinBox_namsb->setReadOnly(true);
+    ui->spinBox_sotrang->setReadOnly(true);
 }
 
 themdausach::~themdausach()
@@ -67,6 +73,7 @@ void themdausach::on_pushButton_clicked() {
     QString vitri = ui->comboBox_vitri->currentText().simplified(); // Dữ liệu từ QComboBox
     int sotrang = ui->spinBox_sotrang->value();
     int namsx = ui->spinBox_namsb->value();
+    int soluong = ui->spinBox_soluong->value();
 
     // Chuyển đổi sang string
     string isbnStd = ISBN.toStdString();
@@ -107,8 +114,9 @@ void themdausach::on_pushButton_clicked() {
         return;
     }
 
-    // Gọi hàm thêm đầu sách với các tham số đã chuyển đổi
-    ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd,"");
+    for (int i =0; i < soluong;i++){
+        ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd,"");
+    }
 
     // Tìm mã sách từ danh mục sách
     int index = 0;
@@ -117,15 +125,14 @@ void themdausach::on_pushButton_clicked() {
     string ma_sach = danh_sach_dau_sach.node[index]->dms->masach;
 
     // Hiển thị thông tin đã nhập
-    QString infoMessage = QString("Thông tin đã nhập:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được\nMã sách: %8")
+    QString infoMessage = QString("Thông tin đã nhập:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được")
                               .arg(QString::fromStdString(isbnStd))
                               .arg(QString::fromStdString(tensachStd))
                               .arg(QString::fromStdString(tacgiaStd))
                               .arg(QString::fromStdString(theloaiStd))
                               .arg(sotrang)
                               .arg(namsx)
-                              .arg(QString::fromStdString(vitriStd))
-                              .arg(QString::fromStdString(ma_sach));
+                              .arg(QString::fromStdString(vitriStd));
 
     QMessageBox::information(this, "Thông tin đã nhập", infoMessage);
 
@@ -163,7 +170,7 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 {
     if(!text.isEmpty()){
         QString LocKiTu; // Chuỗi để lưu trữ các ký tự hợp lệ
-
+        int cursorPosition = ui->lineEdit_ISBN->cursorPosition(); // Ghi nhớ vị trí con trỏ
         // Lọc ra các ký tự là chữ số
         for (int i = 0; i < text.length(); ++i) {
             if (text[i].isDigit() || text[i] == '-') {
@@ -173,11 +180,44 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 
         // Cập nhật lại nội dung của lineEdit với các ký tự hợp lệ
         ui->lineEdit_ISBN->setText(LocKiTu);
-        ui->lineEdit_ISBN->setCursorPosition(LocKiTu.length()); // Đặt lại con trỏ
+
+        // Thiết lập lại vị trí con trỏ
+        if (cursorPosition < LocKiTu.length()) {
+            ui->lineEdit_ISBN->setCursorPosition(cursorPosition);
+        } else {
+            ui->lineEdit_ISBN->setCursorPosition(LocKiTu.length());
+        }
+
         if (LocKiTu.length() == 0){
             ui->lineEdit_ISBN->setStyleSheet("");
         }else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
+            string ma_isbn_hople = LocKiTu.toStdString();
+            int index = TimKiemIndexDauSach(ma_isbn_hople);
+            if (index != -1){
+
+                ui->lineEdit_tacgia->setReadOnly(true);
+                ui->lineEdit_tensach->setReadOnly(true);
+                ui->lineEdit_theloai->setReadOnly(true);
+                ui->comboBox_vitri->setEnabled(false);
+                ui->spinBox_namsb->setReadOnly(true);
+                ui->spinBox_sotrang->setReadOnly(true);
+
+                ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tacgia));
+                ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tensach));
+                ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
+                ui->comboBox_vitri->setCurrentText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
+                ui->spinBox_namsb->setValue(danh_sach_dau_sach.node[index]->namsx);
+                ui->spinBox_sotrang->setValue(danh_sach_dau_sach.node[index]->sotrang);
+
+            }else{
+                ui->lineEdit_tacgia->setReadOnly(false);
+                ui->lineEdit_tensach->setReadOnly(false);
+                ui->lineEdit_theloai->setReadOnly(false);
+                ui->comboBox_vitri->setEnabled(true);
+                ui->spinBox_namsb->setReadOnly(false);
+                ui->spinBox_sotrang->setReadOnly(false);
+            }
         } else {
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
         }
@@ -188,12 +228,13 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 
 void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
     if(!text.isEmpty()){
-        QString key ;
-        bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
+        QString key;
+        bool lastWasSpace = false; // Kiểm tra xem ký tự trước có phải là khoảng trắng không
+        int cursorPosition = ui->lineEdit_tensach->cursorPosition(); // Lưu vị trí con trỏ
 
         for (QChar c : text) {
-            if (c.isLetter() || c.isDigit()|| c.isPunct() || c.isSymbol()) {
-                key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
+            if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
+                key += c; // Thêm ký tự hợp lệ vào key
                 lastWasSpace = false; // Reset trạng thái lastWasSpace
             } else if (c.isSpace()) {
                 if (!lastWasSpace) {
@@ -203,15 +244,23 @@ void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
             }
         }
 
-        string valid_key = key.toStdString();
         // Xóa khoảng trắng ở đầu
+        string valid_key = key.toStdString();
         valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
         // Cập nhật lại tên sách vào QLineEdit
         ui->lineEdit_tensach->setText(QString::fromStdString(valid_key));
-    }
 
+        // Đặt lại vị trí con trỏ
+        if (cursorPosition < valid_key.length()) {
+            ui->lineEdit_tensach->setCursorPosition(cursorPosition);
+        } else {
+            ui->lineEdit_tensach->setCursorPosition(valid_key.length());
+        }
+    }
 }
+
+
 
 
 
@@ -225,13 +274,6 @@ void themdausach::on_lineEdit_theloai_textChanged(const QString &text)
         valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
         // Cập nhật lại tên thể loại vào QLineEdit
         ui->lineEdit_theloai->setText(QString::fromStdString(valid_key));
-
-        //qDebug() << "The loai da duoc cap nhat: " << valid_key;
-
-        // Nếu key rỗng, không cần cập nhật
-        // if (valid_key.empty()) {
-        //     //qDebug() << "The loai rong.";
-        // }
     }
 }
 
@@ -278,13 +320,6 @@ void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
         valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
         // Cập nhật lại tên thể loại vào QLineEdit
         ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
-
-        //qDebug() << "Tac gia da duoc cap nhat: " << valid_key;
-
-        // Nếu key rỗng, không cần cập nhật
-        // if (valid_key.empty()) {
-        //     qDebug() << "Tac gia rong." << endl;
-        // }
     }
 }
 
