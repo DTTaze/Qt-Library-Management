@@ -38,7 +38,6 @@ void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_t
     }
     // Tạo node mới với thông tin mã sách, trạng thái và vị trí
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
-
     // Thêm node mới vào đầu danh sách
     new_dms->next = head_dms;
     head_dms = new_dms;
@@ -56,7 +55,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
         DauSach* new_sach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
 
-        ThemDanhMucSach(new_sach->dms,trang_thai,vi_tri,I_S_B_N,new_sach->demsosach+1,"");
+        ThemDanhMucSach(new_sach->dms,trang_thai,vi_tri,I_S_B_N,new_sach->demsosach+1,ma_sach);
 
 
         //Mặc định chèn vào cuối
@@ -84,6 +83,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
         danh_sach_dau_sach.demsach++;
 
     }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
+
         ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
         danh_sach_dau_sach.node[index_isbn]->demsosach++;
 
@@ -144,7 +144,6 @@ void InFullTheoTenSach(string key, QTableView* tableView_dausach){
     }
 
     ChuyenVeChuThuong(key);
-
     for (int i = 0; i < danh_sach_dau_sach.demsach; i++) {
 
         string ten_sach = danh_sach_dau_sach.node[i]->tensach;
@@ -152,24 +151,27 @@ void InFullTheoTenSach(string key, QTableView* tableView_dausach){
         ChuyenVeChuThuong(ten_sach);
 
         if (ten_sach.find(key) != std::string::npos) {
-            int trangthai = danh_sach_dau_sach.node[i]->dms->trangthai;
-            string trang_thai_std;
-
             model->insertRow(row_count);
             model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
             model->setItem(row_count, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
             model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
             model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
             model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
-            model->setItem(row_count, 5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->dms->masach)));
-            switch (trangthai){
-            case 0:trang_thai_std = "Có thể mượn";break;
-            case 1:trang_thai_std = "Đã được mượn";break;
-            case 2:trang_thai_std = "Đã thanh lý";break;
-            }
+            for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
+                int trangthai = cur->trangthai;
+                string trang_thai_std;
 
-            model->setItem(row_count, 6, new QStandardItem(QString::fromStdString(trang_thai_std)));
-            row_count++;
+
+                model->setItem(row_count, 5, new QStandardItem(QString::fromStdString(cur->masach)));
+                switch (trangthai){
+                case 0:trang_thai_std = "Có thể mượn";break;
+                case 1:trang_thai_std = "Đã được mượn";break;
+                case 2:trang_thai_std = "Đã thanh lý";break;
+                }
+
+                model->setItem(row_count, 6, new QStandardItem(QString::fromStdString(trang_thai_std)));
+                row_count++;
+            }
         }
     }
 

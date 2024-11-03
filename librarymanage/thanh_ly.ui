@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>635</width>
-    <height>409</height>
+    <height>437</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="tableWidget_thanhly">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>160</y>
-     <width>531</width>
-     <height>192</height>
+     <x>50</x>
+     <y>130</y>
+     <width>491</width>
+     <height>231</height>
     </rect>
    </property>
    <attribute name="horizontalHeaderStretchLastSection">
@@ -208,6 +208,126 @@
        <widget class="QLineEdit" name="lineEdit_theloai"/>
       </item>
      </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton_chontatca">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>370</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #28C3E5;
+    border: none;
+    border-radius: 12px; /* Giảm border-radius để nút nhỏ hơn */
+    padding: 8px 10px; /* Giảm padding */
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 14px; /* Giảm cỡ chữ */
+    font-weight: bold; /* Giữ độ dày chữ */
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Chọn tất cả</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_bochon">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>370</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #28C3E5;
+    border: none;
+    border-radius: 12px; /* Giảm border-radius để nút nhỏ hơn */
+    padding: 8px 10px; /* Giảm padding */
+    font-family: &quot;Roboto Mono&quot;, sans-serif;
+    font-size: 14px; /* Giảm cỡ chữ */
+    font-weight: bold; /* Giữ độ dày chữ */
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 100%;
+}
+
+QPushButton:hover {
+    background-color: #1CB0F6;
+}
+
+QPushButton:pressed {
+    background-color: #1899D6;
+    border-width: 4px 0 0;
+}
+
+QPushButton:disabled {
+    background-color: #D6D6D6;
+    color: #7F7F7F;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Bỏ chọn</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>400</y>
+     <width>168</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <item>
+     <widget class="QPushButton" name="pushButton_thanhly">
+      <property name="text">
+       <string>Thanh lý</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_cancel">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

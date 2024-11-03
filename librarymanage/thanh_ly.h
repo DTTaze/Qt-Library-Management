@@ -16,6 +16,15 @@ public:
     ~Thanh_ly();
     void HienThongtin(const string &ma_isbn);
 
+private slots:
+    void on_pushButton_thanhly_clicked();
+
+    void on_pushButton_cancel_clicked();
+
+    void on_pushButton_chontatca_clicked();
+
+    void on_pushButton_bochon_clicked();
+
 private:
     Ui::Thanh_ly *ui;
     string ma_ISBN;
