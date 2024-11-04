@@ -449,55 +449,84 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
 
 void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
     string ma_ISBN;
-    if(key_ma_sach.size() == 13 || key_ma_sach.size() == 17) ma_ISBN = key_ma_sach;
-    else ma_ISBN = key_ma_sach.substr(0, 17);
+    if(key_ma_sach.size() == 13 || key_ma_sach.size() == 17) {
+        ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
+        ma_ISBN = key_ma_sach;
+    }
+    else if(key_ma_sach.size() > 17) {
+        qDebug()<<"test";
+        if(TonTaiMaSachDS(key_ma_sach)) {
+            qDebug()<<"test2";
+            ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
+            ma_ISBN = key_ma_sach.substr(0, 17);
+        }
+        else {qDebug()<<"test3";
+            ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
+            ui->lineEdit_tenSach->clear();
+            ui->lineEdit_tacGia->clear();
+            ui->lineEdit_trangThaiSach->clear();
+            return;
+        }
+    } else {
+        ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
+    }
     int vitri = TimKiemIndexDauSach(ma_ISBN);
     ui->lineEdit_tenSach->setReadOnly(true);
     ui->lineEdit_tacGia->setReadOnly(true);
     ui->lineEdit_trangThaiSach->setReadOnly(true);
 
-    if (vitri != -1) {
+    if (vitri != -1 ) {
         string trang_thai_std;
 
         ui->lineEdit_tenSach->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tensach));
         ui->lineEdit_tacGia->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia));
         DanhMucSach *danh_muc_sach = danh_sach_dau_sach.node[vitri]->dms;
-        int trangthai = danh_muc_sach->trangthai;
+        int trangthai;
+        if (key_ma_sach.size() > 17) {
+            while(danh_muc_sach != nullptr) {
+                trangthai = danh_muc_sach->trangthai;
+                if(danh_muc_sach->masach == key_ma_sach) {
+                    switch(trangthai) {
+                    case 0: trang_thai_std = "Có thể mượn"; break;
+                    case 1: trang_thai_std = "Đã được mượn"; break;
+                    case 2: trang_thai_std = "Đã thanh lý"; break;
+                    }
+                    ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
+                    break;
+                }
+                danh_muc_sach = danh_muc_sach->next;
+            }
+        } else if (key_ma_sach.size() == 13 || key_ma_sach.size() == 17) {
+            while(danh_muc_sach != nullptr) {
+                trangthai = danh_muc_sach->trangthai;
+                if(trangthai == 0) {
+                    trang_thai_std = "Có thể mượn";
+                    break;
+                } else {
+                    switch(trangthai) {
+                    case 1: trang_thai_std = "Đã được mượn"; break;
+                    case 2: trang_thai_std = "Đã thanh lý"; break;
+                    }
+                }
+                danh_muc_sach = danh_muc_sach->next;
+            }
 
-        while(danh_muc_sach != nullptr) {
-            trangthai = danh_muc_sach->trangthai;
-            if(trangthai == 0) {
-                trang_thai_std = "Có thể mượn";
-                ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
-                break;
-            }
-            danh_muc_sach = danh_muc_sach->next;
         }
-        if (trang_thai_std != "Có thể mượn") {
-            switch(trangthai) {
-            case 1: trang_thai_std = "Đã được mượn"; break;
-            case 2: trang_thai_std = "Đã thanh lý"; break;
-            }
-            ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
-        }
-    }
-    // Nếu không tìm thấy sách, đặt lại các trường hiển thị
-    else {
+        ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
+    } else {
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
         ui->lineEdit_trangThaiSach->clear();
     }
 }
 
-void LibraryManagementSystem::on_lineEdit_maSach_returnPressed()
+void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1)
 {
-    // Lấy dữ liệu từ lineEdit trực tiếp
-    QString inputText = ui->lineEdit_maSach->text();
     QString filteredText;
     bool lastWasSpace = false;
 
     // Lọc chuỗi để loại bỏ các ký tự không cần thiết
-    for (QChar c : inputText) {
+    for (QChar c : arg1) {
         if (c.isDigit() || c.isPunct()) {
             filteredText += c;
             lastWasSpace = false;
@@ -511,15 +540,24 @@ void LibraryManagementSystem::on_lineEdit_maSach_returnPressed()
     filteredText = filteredText.trimmed();
 
     // Cập nhật lại chuỗi đã lọc nếu có thay đổi
-    if (filteredText != inputText) {
+    if (filteredText != arg1) {
         ui->lineEdit_maSach->setText(filteredText);
     }
 
     // Nếu chuỗi tìm kiếm không rỗng, thực hiện tìm kiếm
     if (!filteredText.isEmpty()) {
-        inThongTinmaSach(filteredText.toStdString());
+        if(filteredText.length() == 13 || filteredText.length() >= 17) {
+            inThongTinmaSach(filteredText.toStdString());
+        }
+        else {
+            ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
+            ui->lineEdit_tenSach->clear();
+            ui->lineEdit_tacGia->clear();
+            ui->lineEdit_trangThaiSach->clear();
+        }
     } else {
         // Nếu ô tìm kiếm rỗng, xóa các trường hiển thị thông tin
+        ui->lineEdit_maSach->setStyleSheet("background-color: white");
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
         ui->lineEdit_trangThaiSach->clear();
@@ -583,10 +621,6 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
             inThongTin(getmaThe());
             inThongTinmaSach(maSach);
         }
-        ui->lineEdit_maSach->clear();
-        ui->lineEdit_tacGia->clear();
-        ui->lineEdit_tenSach->clear();
-        ui->lineEdit_trangThaiSach->clear();
         Saved = false;
     } else {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");

@@ -103,6 +103,8 @@ bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
 
 void MuonSach( const int& maThe, const string& maSach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, maThe);
+    string ma_isbn = maSach.substr(0, 17);
+    int vitri = TimKiemIndexDauSach(ma_isbn);
     // Nhập ngày mượn
     Date ngaymuon = NgayHomNay();
 
@@ -115,9 +117,16 @@ void MuonSach( const int& maThe, const string& maSach) {
     }
 
     int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms); // Đếm số sách đang mượn
+    DanhMucSach* cur = danh_sach_dau_sach.node[vitri]->dms;
+    for (; cur!= nullptr; cur = cur->next){
+        if(cur->masach == maSach) break;
+    }
 
     // Kiểm tra trạng thái thẻ và số sách đang mượn
-    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach) || KiemTraSachCoQuaHanKhong(doc_gia->thong_tin.head_lsms)) {
+    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa ||
+        sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach) ||
+        KiemTraSachCoQuaHanKhong(doc_gia->thong_tin.head_lsms) ||
+        cur->trangthai == 1 || cur->trangthai == 2) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách vì thẻ độc giả đã bị khóa hoặc sách không tồn tại hoặc đã mượn nhiều hơn 3 quyển.");
         return;
     }
