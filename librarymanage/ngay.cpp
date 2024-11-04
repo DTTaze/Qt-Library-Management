@@ -124,14 +124,7 @@ Date NgayHomNay() {
 }
 
 int DemSoNgay(Date ngay_muon, Date ngay_tra) {
-
-    if (!KiemTraNgayThangNam(ngay_muon) || !KiemTraNgayThangNam(ngay_tra)) {
-        qDebug() << "Ngày trả hoặc ngày mượn không hợp lệ."<<
-            " ngày mượn: "<<ngay_muon.day<<"/"<<ngay_muon.month<<"/"<<ngay_muon.year <<
-            " ngày trả: "<< ngay_tra.day<<"/"<<ngay_tra.month<<"/" << ngay_tra.year;
-        return -1;
-    }
-
+    if(ngay_tra.day == 0) ngay_tra = NgayHomNay();
     int days1 = 0, days2 = 0;
     for (int y = 1; y < ngay_muon.year; y++) {
         days1 += laNamNhuan(y) ? 366 : 365;

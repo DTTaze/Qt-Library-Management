@@ -88,8 +88,24 @@ bool SachDaMuon (DanhSachMUONTRA *head, string masach) {
     return false;
 }
 
+bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
+    DanhSachMUONTRA *p = head;
+    while(p != nullptr) {
+        qDebug() << SoNgayQuaHan(p->data.NgayMuon, p->data.NgayTra);
+        if(SoNgayQuaHan(p->data.NgayMuon, p->data.NgayTra) > 0) {
+            return 1;
+        } else p = p->next;
+    }
+    return 0;
+}
+
 void MuonSach( const int& maThe, const string& maSach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, maThe);
+    // Nhập ngày mượn
+    Date ngaymuon = NgayHomNay();
+
+    // Nhập ngày trả (có thể thêm logic ở đây để tự động tính toán ngày trả)
+    Date ngaytra;
 
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
@@ -99,16 +115,10 @@ void MuonSach( const int& maThe, const string& maSach) {
     int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms); // Đếm số sách đang mượn
 
     // Kiểm tra trạng thái thẻ và số sách đang mượn
-    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach)) {
+    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa || sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach) || KiemTraSachCoQuaHanKhong(doc_gia->thong_tin.head_lsms)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách vì thẻ độc giả đã bị khóa hoặc sách không tồn tại hoặc đã mượn nhiều hơn 3 quyển.");
         return;
     }
-
-    // Nhập ngày mượn
-    Date ngaymuon = NgayHomNay();
-
-    // Nhập ngày trả (có thể thêm logic ở đây để tự động tính toán ngày trả)
-    Date ngaytra;
 
     // Thêm sách vào lịch sử mượn
     ThemSach(doc_gia->thong_tin.head_lsms, maSach,0, ngaymuon, ngaytra);
@@ -118,6 +128,8 @@ void MuonSach( const int& maThe, const string& maSach) {
     // Thông báo thành công
     QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
 }
+
+
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);

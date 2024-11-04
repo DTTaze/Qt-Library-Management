@@ -448,7 +448,10 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
 
 
 void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
-    int vitri = TimKiemIndexDauSach(key_ma_sach);
+    string ma_ISBN;
+    if(key_ma_sach.size() == 13 || key_ma_sach.size() == 17) ma_ISBN = key_ma_sach;
+    else ma_ISBN = key_ma_sach.substr(0, 17);
+    int vitri = TimKiemIndexDauSach(ma_ISBN);
     ui->lineEdit_tenSach->setReadOnly(true);
     ui->lineEdit_tacGia->setReadOnly(true);
     ui->lineEdit_trangThaiSach->setReadOnly(true);
@@ -486,38 +489,43 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
     }
 }
 
-
-void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1) {
-    QString key;
+void LibraryManagementSystem::on_lineEdit_maSach_returnPressed()
+{
+    // Lấy dữ liệu từ lineEdit trực tiếp
+    QString inputText = ui->lineEdit_maSach->text();
+    QString filteredText;
     bool lastWasSpace = false;
 
-    for (QChar c : arg1) {
+    // Lọc chuỗi để loại bỏ các ký tự không cần thiết
+    for (QChar c : inputText) {
         if (c.isDigit() || c.isPunct()) {
-            key += c;
+            filteredText += c;
             lastWasSpace = false;
         } else if (c.isSpace() && !lastWasSpace) {
-            key += ' ';
+            filteredText += ' ';
             lastWasSpace = true;
         }
     }
-    string valid_key = key.toStdString();
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
-    // Cập nhật lại chuỗi đã lọc
-    if (valid_key != arg1.toStdString()) {
-        ui->lineEdit_maSach->setText(QString::fromStdString(valid_key));
+    // Xóa khoảng trắng đầu và cuối của chuỗi
+    filteredText = filteredText.trimmed();
+
+    // Cập nhật lại chuỗi đã lọc nếu có thay đổi
+    if (filteredText != inputText) {
+        ui->lineEdit_maSach->setText(filteredText);
     }
 
-    // Nếu chuỗi tìm kiếm rỗng, không thực hiện tìm kiếm
-    if (!valid_key.empty()) {
-        inThongTinmaSach(valid_key);
+    // Nếu chuỗi tìm kiếm không rỗng, thực hiện tìm kiếm
+    if (!filteredText.isEmpty()) {
+        inThongTinmaSach(filteredText.toStdString());
     } else {
-        // Nếu ô tìm kiếm rỗng, xóa các trường hiển thị
+        // Nếu ô tìm kiếm rỗng, xóa các trường hiển thị thông tin
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
         ui->lineEdit_trangThaiSach->clear();
     }
 }
+
 
 //--------------------------------------
 
@@ -562,10 +570,23 @@ string LibraryManagementSystem::getmaSachCoTheMuon() {
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     if(!ui->lineEdit_maSach->text().isEmpty() && !ui->lineEdit_maThe->text().isEmpty()) {
-        MuonSach(getmaThe(), getmaSachCoTheMuon());
-        ui->tableWidget_muonTra->setRowCount(0);
-        inThongTin(getmaThe());
+        string maSach = ui->lineEdit_maSach->text().toStdString();
+        if(maSach.size() == 13 || maSach.size() == 17) {
+            MuonSach(getmaThe(), getmaSachCoTheMuon());
+            ui->tableWidget_muonTra->setRowCount(0);
+            inThongTin(getmaThe());
+            inThongTinmaSach(getmaSachCoTheMuon());
+        }
+        else {
+            MuonSach(getmaThe(), maSach);
+            ui->tableWidget_muonTra->setRowCount(0);
+            inThongTin(getmaThe());
+            inThongTinmaSach(maSach);
+        }
         ui->lineEdit_maSach->clear();
+        ui->lineEdit_tacGia->clear();
+        ui->lineEdit_tenSach->clear();
+        ui->lineEdit_trangThaiSach->clear();
         Saved = false;
     } else {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
@@ -621,4 +642,10 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         }
     }
 }
+
+
+
+
+
+
 

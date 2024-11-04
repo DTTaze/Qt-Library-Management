@@ -66,6 +66,8 @@ void MuonSach(const int &maThe, const string& maSach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
+bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head);
+
 bool SachDaMuon (DanhSachMUONTRA *head, string masach) ;
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);

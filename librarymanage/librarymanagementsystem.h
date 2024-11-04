@@ -80,13 +80,14 @@ private slots:
 
     void inThongTinmaSach( string key_ma_sach);
 
-    void on_lineEdit_maSach_textChanged(const QString &arg1);
+    void on_lineEdit_maSach_returnPressed();
 
     void on_traSach_pushButton_clicked();
 
     void on_muonSach_pushButton_clicked();
 
     void on_MatSach_pushButton_2_clicked();
+
 
 public slots:
 
