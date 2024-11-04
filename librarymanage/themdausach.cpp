@@ -113,7 +113,7 @@ void themdausach::on_pushButton_clicked() {
         QMessageBox::warning(this, "Lỗi", "Năm xuất bản không hợp lệ.");
         return;
     }
-
+    // Kiểm tra điều kiện số lượng sách tối đa có thể thêm
 
     for (int i =0; i < soluong;i++){
         ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd,"");

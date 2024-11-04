@@ -62,10 +62,10 @@ extern DanhSachDauSach danh_sach_dau_sach;
 
 
 //Hàm in danh sách đầu sách mặc định
-void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
+void InToanBoDanhSachDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
 //Hàm tìm kiếm vị trí của mã isbn trong danh sách
-int TimKiemIndexDauSach(string ma_isbn);
+int TimKiemIndexDauSach(string ma_isbn); // sửa thành tìm kiếm vị trí đầu sách
 
 //Hàm xác định mã sách có tồn tại trong đầu sách
 bool TonTaiMaSachDS(string ma_sach);

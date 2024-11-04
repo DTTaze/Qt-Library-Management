@@ -22,7 +22,7 @@ void taoDanhSachMaThe(int start, int end) {
 
         int median = (a + b) / 2; // Tìm vị trí chính giữa
         danhSachMaThe.push(median);
-        ranges.push({a, median - 1}); // [a - 1, median]
+        ranges.push({a, median - 1}); // [a, median - 1]
         ranges.push({median + 1, b}); // [median + 1, b]
     }
 }

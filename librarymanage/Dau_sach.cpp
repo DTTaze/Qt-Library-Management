@@ -3,8 +3,8 @@
 DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
-int TimKiemIndexDauSach(string ma_isbn) {
-    // Kiểm tra và loại bỏ 4 ký tự "0000" ở cuối nếu có
+int TimKiemIndexDauSach(string ma_isbn) { // xét trường hợp rồng và sửa tên
+    // Kiểm tra và loại bỏ 4 ký tự "0000" ở cuối nếu là mã sách
     if (ma_isbn.substr(ma_isbn.size() - 4) == "0000") {
         ma_isbn = ma_isbn.substr(0, ma_isbn.size() - 4);
     }
@@ -83,16 +83,14 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
         danh_sach_dau_sach.demsach++;
 
     }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
-        qDebug()<<danh_sach_dau_sach.node[index_isbn]->demsosach;
         ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
         danh_sach_dau_sach.node[index_isbn]->demsosach++;
-
     }
 }
 
-void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model){
+void InToanBoDanhSachDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model){
 
-    if (model) {
+    if (model != nullptr ) {
         // Xóa dữ liệu cũ
         model->clear(); // Xóa tất cả các dòng và cột
         delete model;   // Giải phóng bộ nhớ của model
@@ -138,9 +136,9 @@ void ChuyenVeChuThuong(std::string& str) {
     }
 }//static_cast<unsigned char> de cac ki tu am khong gay loi
 
-void InFullTheoTenSach(string key, QTableView* tableView_dausach,QStandardItemModel*& model){
+void InFullTheoTenSach(string key, QTableView* tableView_dausach,QStandardItemModel*& model){ // sửa thành in theo tên tìm kiếm
 
-    if (model) {
+    if (model != nullptr ) {
         // Xóa dữ liệu cũ
         model->clear(); // Xóa tất cả các dòng và cột
         delete model;   // Giải phóng bộ nhớ của model
@@ -288,9 +286,6 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
 //Su dung tham chieu nen phai tao ban sao roi xoa ban sao
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai){
 
-
-
-    cout<<"bat dau in theo the loai \n\n";
     int so_luong_sach = danh_sach_dau_sach.demsach;
     int* copy = new int[so_luong_sach]();// cap phat dong mang, mac dinh phan tu = 0
 
@@ -340,13 +335,13 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
     if (!key.empty()) {
         InFullTheoTenSach(key,tableView_dausach,model);
     } else {
-        InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach,model);
+        InToanBoDanhSachDauSach(danh_sach_dau_sach,danh_sach_dau_sach.demsach,tableView_dausach,model);
     }
 }
 
 void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,QStandardItemModel*& model,string key){
 
-    if (model) {
+    if (model != nullptr ) {
         // Xóa dữ liệu cũ
         model->clear(); // Xóa tất cả các dòng và cột
         delete model;   // Giải phóng bộ nhớ của model
@@ -402,11 +397,12 @@ void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableVie
     tableView_dausach->resizeColumnsToContents();
 }
 
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
-    if (danh_sach_dau_sach.demsach > 9999){
-        qDebug()<<"So sach da day\n";
+bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){ // Kiểm tra đầu sách
+    if (danh_sach_dau_sach.demsach >= MAXSACH){
         return true;
-    }else{return false;};
+    }else{
+        return false;
+    };
 }
 
 
@@ -423,7 +419,6 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
         string ISBN, tensach, tacgia, theloai, vitri, masach;
         int sotrang = 0, namsx = 0,trangthai= -1;
 
-        // Tách thông tin
         size_t pos = 0;
 
         pos = line.find('|');
@@ -452,21 +447,14 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
 
         pos = line.find('|');
         masach = line.substr(0, pos); line.erase(0, pos + 1);
-        // Kiểm tra các trường hợp rỗng
+
         if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty() || masach.empty()) {
-            cout<<"loi thieu thong tin";
             continue;
         }
 
-        // Thêm đầu sách vào danh sách
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
     }
     file.close();
-    // for (int i = 0; i < danh_sach_dau_sach.demsach;i++){
-    //     for(DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur != nullptr;cur=cur->next){
-    //         qDebug()<<cur->masach;
-    //     }
-    // }
 }
 
 void InVaoTXT() {
@@ -496,11 +484,14 @@ void InVaoTXT() {
     file.close();
 }
 
-void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
+void CapNhatTrangThaiSach(string ma_sach,int trang_thai){ // Thêm thông báo
     string ma_ISBN = ma_sach.substr(0,17);
     int i = TimKiemIndexDauSach(ma_ISBN);
-    if (i == -1) {qDebug()<<"Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.";return ;}
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
+    if (i == -1) {
+        QMessageBox::warning(nullptr, "Lỗi","Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.");
+        return;
+    }
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur!=nullptr ;cur=cur->next){
         if(cur->masach == ma_sach){
             cur->trangthai = trang_thai;
             return;
