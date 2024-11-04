@@ -18,13 +18,12 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
-
     DocTuFile(danh_sach_dau_sach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
 
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
 
-    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach,model_Dausach); // In bảng đầu sách
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach); // In bảng đầu sách
 
     connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::ChenMaSach);
     Saved = true;
@@ -59,7 +58,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach, ui->tableView_dausach,model_Dausach);
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach);
 }
 
 void LibraryManagementSystem::tabTheDocGia()
@@ -160,16 +159,14 @@ void LibraryManagementSystem::ChenMaSach(const QModelIndex &index) {
     }
 
     if (index.isValid()) {
-        int rowClicked = index.row();
         // Lấy dữ liệu của cột đầu tiên của hàng được nhấn
         QVariant data = index.siblingAtColumn(0).data();
 
         // Kiểm tra và in ra dữ liệu nếu có
         if (data.isValid()) {
             string Ma_ISBN = data.toString().toStdString();
-            qDebug() << "Người dùng đã nhấp vào hàng:" << rowClicked << ", Dữ liệu cột đầu tiên:" <<  QString::fromStdString(Ma_ISBN);
 
-        ChenMaSachVaoTable(Ma_ISBN,rowClicked,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
+        ChenMaSachVaoTable(Ma_ISBN,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
         }
     }
 }
@@ -182,7 +179,7 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         themdausach themds;
         themds.setModal(true);
         if (themds.exec() == QDialog::Accepted){
-            InFull(danh_sach_dau_sach,danh_sach_dau_sach.demsach,ui->tableView_dausach,model_Dausach);
+            InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableView_dausach,model_Dausach);
             Saved = false;
         }
     }
@@ -197,17 +194,17 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
     int column = 0;
 
     QVariant data = index.sibling(row, column).data();
-
+    if (data.isValid() == false) {QMessageBox::warning(this,"Cảnh báo","Vui lòng chọn đầu sách chứa ISBN");return;}
     string ma_ISBN = data.toString().toStdString();
 
-    int DS_index = TimKiemIndexDauSach(ma_ISBN);
-    int allowed=0;
+    int DS_index = TimKiemViTriDauSach(ma_ISBN);
+    bool allowed = false;
     for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
         if(cur->trangthai == 0){
-            allowed++;
+            allowed = true;
         }
     }
-    if(allowed == 0){
+    if(allowed != true){
         QMessageBox::warning(this,"Cảnh báo","Không có sách có thể thanh lý");
         return;
     }else{
@@ -215,6 +212,10 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
         thanhly.setModal(true);
         thanhly.setWindowTitle("In danh sách theo thể loại");
         if (thanhly.exec() == QDialog::Accepted){
+            string TuKhoa = ui->lineEdit_timkiemds->text().toStdString();
+            if ( !TuKhoa.empty()){//nếu đang tìm kiếm và thực hiện thao tác thanh lý
+                ChenMaSachVaoTable(ma_ISBN,ui->tableView_dausach,model_Dausach,TuKhoa);
+            }
             Saved = false;
         }
     }
@@ -470,7 +471,7 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
     } else {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
     }
-    int vitri = TimKiemIndexDauSach(ma_ISBN);
+    int vitri = TimKiemViTriDauSach(ma_ISBN);
     ui->lineEdit_tenSach->setReadOnly(true);
     ui->lineEdit_tacGia->setReadOnly(true);
     ui->lineEdit_trangThaiSach->setReadOnly(true);
@@ -592,7 +593,7 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
 
 string LibraryManagementSystem::getmaSachCoTheMuon() {
     string ma_ISBN =  ui->lineEdit_maSach->text().toStdString();
-    int vitri = TimKiemIndexDauSach(ma_ISBN);
+    int vitri = TimKiemViTriDauSach(ma_ISBN);
     if (vitri != -1) {
         DanhMucSach *danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
         while (danh_muc_sach != nullptr) {

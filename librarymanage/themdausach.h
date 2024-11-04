@@ -14,6 +14,8 @@ class themdausach : public QDialog
 public:
     explicit themdausach(QWidget *parent = nullptr);
     ~themdausach();
+    QString CapitalizeWords(const QString& text);
+    QString RemoveSpace(const QString &key) ;
 
 private slots:
 
@@ -34,8 +36,11 @@ private slots:
 
     void on_lineEdit_tacgia_textChanged(const QString &arg1);
 
+    void on_spinBox_soluong_valueChanged(int arg1);
+
 private:
     Ui::themdausach *ui;
+
 };
 
 #endif // THEMDAUSACH_H

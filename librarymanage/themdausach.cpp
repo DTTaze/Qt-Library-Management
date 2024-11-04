@@ -18,7 +18,7 @@ themdausach::~themdausach()
 {
     delete ui;
 }
-QString CapitalizeWords(const QString& text) {
+QString themdausach::CapitalizeWords(const QString& text) {
     QString result;
     bool isNewWord = true;
 
@@ -42,7 +42,7 @@ QString CapitalizeWords(const QString& text) {
 
 
 
-QString RemoveSpace(const QString &key) {
+QString themdausach::RemoveSpace(const QString &key) {
     QString valid_key;
     bool lastWasSpace = false;
 
@@ -84,7 +84,6 @@ void themdausach::on_pushButton_clicked() {
 
     // Mảng đầu vào và mảng thông báo lỗi
     string inputs[] = {isbnStd, tensachStd, tacgiaStd, theloaiStd, vitriStd};
-    string tenloi[] = {"ISBN", "Tên sách", "Tác giả", "Thể loại", "Vị trí"};
     QString messages[] = {
         "Bạn chưa điền ISBN.",
         "Bạn chưa điền tên sách.",
@@ -121,9 +120,7 @@ void themdausach::on_pushButton_clicked() {
 
     // Tìm mã sách từ danh mục sách
     int index = 0;
-    for (; index < danh_sach_dau_sach.demsach && danh_sach_dau_sach.node[index]->ISBN != isbnStd; index++);
-
-    string ma_sach = danh_sach_dau_sach.node[index]->dms->masach;
+    for (; index < danh_sach_dau_sach.soluongdausach && danh_sach_dau_sach.node[index]->ISBN != isbnStd; index++);
 
     // Hiển thị thông tin đã nhập
     QString infoMessage = QString("Thông tin đã nhập:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được")
@@ -194,7 +191,7 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
         }else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
             string ma_isbn_hople = LocKiTu.toStdString();
-            int index = TimKiemIndexDauSach(ma_isbn_hople);
+            int index = TimKiemViTriDauSach(ma_isbn_hople);
             if (index != -1){
 
                 ui->lineEdit_tacgia->setReadOnly(true);
@@ -321,6 +318,16 @@ void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
         valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
         // Cập nhật lại tên thể loại vào QLineEdit
         ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
+    }
+}
+
+
+void themdausach::on_spinBox_soluong_valueChanged(int arg1)
+{   int sosachconlai=MAXSACH - danh_sach_dau_sach.soluongdausach;
+    if (arg1 > sosachconlai ){
+        QString mes = "Số sách có thể thêm tối đa là " + QString::number(sosachconlai);
+        QMessageBox::warning(this,"Cảnh báo số lương sách",mes);
+        ui->spinBox_soluong->setValue(sosachconlai);
     }
 }
 

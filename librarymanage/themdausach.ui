@@ -39,7 +39,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -93,7 +93,7 @@
        <number>1</number>
       </property>
       <property name="maximum">
-       <number>100</number>
+       <number>10000</number>
       </property>
      </widget>
     </item>
