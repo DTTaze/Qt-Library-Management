@@ -83,7 +83,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
         danh_sach_dau_sach.demsach++;
 
     }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
-
+        qDebug()<<danh_sach_dau_sach.node[index_isbn]->demsosach;
         ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
         danh_sach_dau_sach.node[index_isbn]->demsosach++;
 
@@ -506,4 +506,15 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
             return;
         }
     }
+}
+bool TonTaiMaSachDS(string ma_sach){
+    string ma_ISBN = ma_sach.substr(0,17);
+    int i = TimKiemIndexDauSach(ma_ISBN);
+    if (i == -1) {qDebug()<<"Không tồn tại đầu sách mã ISBN "<<ma_ISBN;return false;}
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
+        if(cur->masach == ma_sach){
+            return true;
+        }
+    }
+    return false;
 }

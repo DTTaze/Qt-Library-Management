@@ -362,6 +362,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 
 
     tableView->setModel(model);
+    tableView->setColumnWidth(0,160);
 }
 
 /* viết 2 hàm: hàm thứ nhất là mất sách, khi báo mất sách sẽ hiện thông tin là đền hay chưa, nếu đền rồi thì trạng thái thẻ giữ im

@@ -67,6 +67,9 @@ void InFull(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* 
 //Hàm tìm kiếm vị trí của mã isbn trong danh sách
 int TimKiemIndexDauSach(string ma_isbn);
 
+//Hàm xác định mã sách có tồn tại trong đầu sách
+bool TonTaiMaSachDS(string ma_sach);
+
 //Hàm chuyển từ mã sách thành tên sách
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
 
