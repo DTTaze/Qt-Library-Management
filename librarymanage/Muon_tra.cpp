@@ -90,11 +90,13 @@ bool SachDaMuon (DanhSachMUONTRA *head, string masach) {
 
 bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
     DanhSachMUONTRA *p = head;
+    Date ngaytra;
     while(p != nullptr) {
-        qDebug() << SoNgayQuaHan(p->data.NgayMuon, p->data.NgayTra);
-        if(SoNgayQuaHan(p->data.NgayMuon, p->data.NgayTra) > 0) {
-            return 1;
-        } else p = p->next;
+        if(p->data.NgayTra.day == 0){
+            ngaytra = NgayHomNay();
+            if(SoNgayQuaHan(p->data.NgayMuon, ngaytra)) return 1;
+        }
+        p = p->next;
     }
     return 0;
 }
