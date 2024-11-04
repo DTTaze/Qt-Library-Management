@@ -80,7 +80,7 @@ void ThemSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngay
 bool SachDaMuon (DanhSachMUONTRA *head, string masach) {
     DanhSachMUONTRA *p = head;
     while(p!=nullptr) {
-        if(p->data.masach == masach) {
+        if(p->data.masach == masach && p->data.NgayTra.day == 0) {
             return true;
         }
         p = p->next;
@@ -92,9 +92,9 @@ bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
     DanhSachMUONTRA *p = head;
     Date ngaytra;
     while(p != nullptr) {
-        if(p->data.NgayTra.day == 0){
+        if(p->data.NgayTra.day == 0 ){
             ngaytra = NgayHomNay();
-            if(SoNgayQuaHan(p->data.NgayMuon, ngaytra)) return 1;
+            if(SoNgayQuaHan(p->data.NgayMuon, ngaytra) > 7) return 1;
         }
         p = p->next;
     }
