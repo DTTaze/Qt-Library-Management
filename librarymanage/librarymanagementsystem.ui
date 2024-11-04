@@ -366,7 +366,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_baoCao">
            <widget class="QTableView" name="topTenMuonNhieuNhat_tableView">
@@ -453,7 +453,7 @@ font: 900 15pt &quot;Segoe UI Black&quot;;
              <rect>
               <x>500</x>
               <y>120</y>
-              <width>531</width>
+              <width>521</width>
               <height>481</height>
              </rect>
             </property>
@@ -483,6 +483,9 @@ QTableView::item:selected {
     color: black; 
 }
 </string>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
             </property>
            </widget>
           </widget>
