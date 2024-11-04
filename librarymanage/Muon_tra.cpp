@@ -104,7 +104,7 @@ bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
 void MuonSach( const int& maThe, const string& maSach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, maThe);
     string ma_isbn = maSach.substr(0, 17);
-    int vitri = TimKiemIndexDauSach(ma_isbn);
+    int vitri = TimKiemViTriDauSach(ma_isbn);
     // Nhập ngày mượn
     Date ngaymuon = NgayHomNay();
 
@@ -266,7 +266,7 @@ void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTabl
 
     }
     tableView->setModel(model);
-    tableView->setColumnWidth(0, 150);
+    tableView->setColumnWidth(0, 300);
 
     delete[] copy;
 }
@@ -371,7 +371,8 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 
 
     tableView->setModel(model);
-    tableView->setColumnWidth(0,160);
+    tableView->resizeColumnsToContents();
+
 }
 
 /* viết 2 hàm: hàm thứ nhất là mất sách, khi báo mất sách sẽ hiện thông tin là đền hay chưa, nếu đền rồi thì trạng thái thẻ giữ im

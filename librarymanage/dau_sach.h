@@ -52,7 +52,7 @@ struct DauSach {
 
 
 struct DanhSachDauSach{
-    int demsach= 0;
+    int soluongdausach= 0;
     DauSach* node[MAXSACH] ;
     DanhSachDauSach(){}
 };
@@ -62,10 +62,10 @@ extern DanhSachDauSach danh_sach_dau_sach;
 
 
 //Hàm in danh sách đầu sách mặc định
-void InToanBoDanhSachDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
+void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
 //Hàm tìm kiếm vị trí của mã isbn trong danh sách
-int TimKiemIndexDauSach(string ma_isbn); // sửa thành tìm kiếm vị trí đầu sách
+int TimKiemViTriDauSach(string ma_isbn);
 
 //Hàm xác định mã sách có tồn tại trong đầu sách
 bool TonTaiMaSachDS(string ma_sach);
@@ -88,6 +88,7 @@ void InVaoTXT();
 //Chức năng thêm sách
 void TaoMaSach(string& ma_sach,int demsosach);
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach);
+void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string ten_sach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                  int trang_thai,string &vi_tri,string ma_sach);
 
@@ -100,7 +101,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 //Chức năng tìm tên sách
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
-void InFullTheoTenSach(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
-void ChenMaSachVaoTable(const string& ma_ISBN ,int cur_row, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
+void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
+void ChenMaSachVaoTable(const string& ma_ISBN , QTableView* tableView_dausach,QStandardItemModel*& model,string key);
 
 #endif
