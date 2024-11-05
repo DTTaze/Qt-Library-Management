@@ -10,6 +10,8 @@
 #include <cctype>
 #include <string>
 #include <fstream>
+#include <locale>
+#include <codecvt>
 
 #include <QMessageBox>
 #include <QTableView>
@@ -24,6 +26,7 @@
 #include <QDebug>
 #include <QCheckBox>
 #include <QHeaderView>
+#include <QLocale>
 using namespace std;
 
 struct DanhMucSach{
@@ -77,7 +80,7 @@ string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string
 //Hàm kiểm tra sách đã đầy
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach);
 
-void ChuyenVeChuThuong(std::string& str);
+string ChuyenVeChuThuong(std::string str);
 
 //Hàm cập nhật trạng thái của sách
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
@@ -89,7 +92,7 @@ void InVaoTXT();
 //Chức năng thêm sách
 void TaoMaSach(string& ma_sach,int demsosach);
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach);
-void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string ten_sach);
+void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                  int trang_thai,string &vi_tri,string ma_sach);
 

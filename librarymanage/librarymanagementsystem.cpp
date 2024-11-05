@@ -25,7 +25,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach); // In bảng đầu sách
 
-    connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::ChenMaSach);
+    connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::HienMaSach);
     Saved = true;
 }
 
@@ -152,7 +152,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
 
 }
 
-void LibraryManagementSystem::ChenMaSach(const QModelIndex &index) {
+void LibraryManagementSystem::HienMaSach(const QModelIndex &index) {
     // Kiểm tra nếu lineEdit_timkiemds rỗng
     if (ui->lineEdit_timkiemds->text().isEmpty()) {
         return; // Không thực hiện thao tác nào nếu lineEdit rỗng
@@ -161,11 +161,9 @@ void LibraryManagementSystem::ChenMaSach(const QModelIndex &index) {
     if (index.isValid()) {
         // Lấy dữ liệu của cột đầu tiên của hàng được nhấn
         QVariant data = index.siblingAtColumn(0).data();
-
         // Kiểm tra và in ra dữ liệu nếu có
         if (data.isValid()) {
-            string Ma_ISBN = data.toString().toStdString();
-
+        string Ma_ISBN = data.toString().toStdString();
         ChenMaSachVaoTable(Ma_ISBN,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
         }
     }
