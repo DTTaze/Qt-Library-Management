@@ -39,7 +39,7 @@
     </rect>
    </property>
    <property name="editTriggers">
-    <set>QAbstractItemView::EditTrigger::DoubleClicked</set>
+    <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
    </property>
    <attribute name="horizontalHeaderStretchLastSection">
     <bool>true</bool>

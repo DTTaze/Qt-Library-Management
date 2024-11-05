@@ -322,12 +322,3 @@ void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
 }
 
 
-void themdausach::on_spinBox_soluong_valueChanged(int arg1)
-{   int sosachconlai=MAXSACH - danh_sach_dau_sach.soluongdausach;
-    if (arg1 > sosachconlai ){
-        QString mes = "Số sách có thể thêm tối đa là " + QString::number(sosachconlai);
-        QMessageBox::warning(this,"Cảnh báo số lương sách",mes);
-        ui->spinBox_soluong->setValue(sosachconlai);
-    }
-}
-

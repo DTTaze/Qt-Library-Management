@@ -23,6 +23,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QCheckBox>
+#include <QHeaderView>
 using namespace std;
 
 struct DanhMucSach{

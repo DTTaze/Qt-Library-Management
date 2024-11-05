@@ -292,6 +292,7 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
         copy[i]=i;
     }
 }
+
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_intheloai) {
     cout << "Bắt đầu in theo thể loại \n\n";
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
@@ -352,6 +353,8 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
 
     // Ẩn cột thể loại
     tableView_intheloai->hideColumn(0);
+    tableView_intheloai->verticalHeader()->hide();
+
 
     // Giải phóng bộ nhớ
     delete[] copy;
