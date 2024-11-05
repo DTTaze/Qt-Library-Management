@@ -65,7 +65,7 @@ extern DanhSachDauSach danh_sach_dau_sach;
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
 //Hàm tìm kiếm vị trí của mã isbn trong danh sách
-int TimKiemViTriDauSach(string ma_isbn);
+int TimKiemViTriDauSach(string ma);
 
 //Hàm xác định mã sách có tồn tại trong đầu sách
 bool TonTaiMaSachDS(string ma_sach);
