@@ -1454,7 +1454,7 @@ QTableView::item:selected {
      <x>0</x>
      <y>0</y>
      <width>1411</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLibrary_Manegement_System">

@@ -294,7 +294,6 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
 }
 
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_intheloai) {
-    cout << "Bắt đầu in theo thể loại \n\n";
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
     int* copy = new int[so_luong_sach](); // Cấp phát động mảng, mặc định phần tử = 0
 
@@ -431,7 +430,6 @@ void ChenMaSachVaoTable(const string& ma_ISBN , QTableView* tableView_dausach,QS
 
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
     if (danh_sach_dau_sach.soluongdausach > 9999){
-        qDebug()<<"So sach da day\n";
         return true;
     }else{
         return false;

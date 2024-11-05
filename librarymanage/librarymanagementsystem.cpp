@@ -254,7 +254,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
 {
     themDocGia_Dialog themDocGia;
 
-    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == 10000 ) { // Kiểm tra đã hết mã thẻ hay chưa
+    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == MAXRANDOM ) { // Kiểm tra đã hết mã thẻ hay chưa
         QMessageBox::warning(nullptr, "Thông báo", "Đã hết mã thẻ");
         themDocGia.close();
         return;
@@ -270,9 +270,13 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
             }
             maThe = layMaThe();
         }
+
         docGia.MATHE = maThe;
-        docGia.Ho = themDocGia.getHo().trimmed().toStdString();
-        docGia.Ten = themDocGia.getTen().trimmed().toStdString();
+        QString hoVaTen = themDocGia.getHoVaTen();
+        int viTriDeTachHoVaTen = hoVaTen.lastIndexOf(" ") + 1;
+
+        docGia.Ho = hoVaTen.mid(0, viTriDeTachHoVaTen).toStdString();
+        docGia.Ten = hoVaTen.mid(viTriDeTachHoVaTen).toStdString();
         if ( themDocGia.getPhai() == "Nam") {
             docGia.phai = Phai::Nam;
         } else {

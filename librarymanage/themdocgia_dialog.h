@@ -17,10 +17,8 @@ class themDocGia_Dialog : public QDialog
 public:
     explicit themDocGia_Dialog(QWidget *parent = nullptr);
     ~themDocGia_Dialog();
-    QString getHo();
-    QString getTen();
+    QString getHoVaTen();
     QString getPhai();
-    bool kiemTraChuoi(QString s);
     void xuLyChuoi(const QString &s, QLineEdit* lineEdit);
 
 private slots:
@@ -29,9 +27,7 @@ private slots:
 
     void on_cancel_pushButton_clicked();
 
-    void on_hoEdit_textChanged(const QString &arg1);
-
-    void on_ten_lineEdit_textChanged(const QString &arg1);
+    void on_hoVaTen_lineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::themDocGia_Dialog *ui;
