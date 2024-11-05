@@ -449,19 +449,14 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
 
 
 void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
-    string ma_ISBN;
     if(key_ma_sach.size() == 13 || key_ma_sach.size() == 17) {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
-        ma_ISBN = key_ma_sach;
     }
-    else if(key_ma_sach.size() > 17) {
-        qDebug()<<"test";
-        if(TonTaiMaSachDS(key_ma_sach)) {
-            qDebug()<<"test2";
+    else if(key_ma_sach.size() > 18) {
+        if(TonTaiMaSachDS(key_ma_sach)) {;
             ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
-            ma_ISBN = key_ma_sach.substr(0, 17);
         }
-        else {qDebug()<<"test3";
+        else {
             ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
             ui->lineEdit_tenSach->clear();
             ui->lineEdit_tacGia->clear();
@@ -470,8 +465,9 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
         }
     } else {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
+        return;
     }
-    int vitri = TimKiemViTriDauSach(ma_ISBN);
+    int vitri = TimKiemViTriDauSach(key_ma_sach);
     ui->lineEdit_tenSach->setReadOnly(true);
     ui->lineEdit_tacGia->setReadOnly(true);
     ui->lineEdit_trangThaiSach->setReadOnly(true);
@@ -515,6 +511,7 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
         }
         ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
     } else {
+        ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
         ui->lineEdit_trangThaiSach->clear();

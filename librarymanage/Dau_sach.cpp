@@ -3,16 +3,21 @@
 DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
-int TimKiemViTriDauSach(string ma_isbn) {
-    if(ma_isbn.size() < 13) return -1;
-    // Kiểm tra và loại bỏ 4 ký tự "0000" ở cuối nếu có
-    if (ma_isbn.substr(ma_isbn.size() - 4) == "0000") {
-        ma_isbn = ma_isbn.substr(0, ma_isbn.size() - 4);
+int TimKiemViTriDauSach(string ma) {// nhan ma isbn // ma sach
+    if(ma.size() < 13) return -1;
+
+    if(ma.size() > 17) {// ma sach cua ISBN-13
+        ma = ma.substr(0,17);
     }
 
+    if (ma.size() == 17){
+        if (ma.substr(13) == "0000") {// ma sach cua ISBN-10
+            ma = ma.substr(0, 13);
+        }
+    }
     // Tìm kiếm ISBN trong danh_sach_dau_sach
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-        if (danh_sach_dau_sach.node[i]->ISBN == ma_isbn) {
+        if (danh_sach_dau_sach.node[i]->ISBN == ma) {
             return i;
         }
     }
@@ -199,8 +204,7 @@ void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemMod
 }
 
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
-    string ma_ISBN = ma_sach.substr(0,17);
-    int i = TimKiemViTriDauSach(ma_ISBN);
+    int i = TimKiemViTriDauSach(ma_sach);
     if (i != -1){
         return danh_sach_dau_sach.node[i]->tensach;
     }else{
@@ -289,26 +293,17 @@ void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
         copy[i]=i;
     }
 }
-
-//Su dung tham chieu nen phai tao ban sao roi xoa ban sao
-void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai){
-
-
-
-    cout<<"bat dau in theo the loai \n\n";
+void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_intheloai) {
+    cout << "Bắt đầu in theo thể loại \n\n";
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
-    int* copy = new int[so_luong_sach]();// cap phat dong mang, mac dinh phan tu = 0
+    int* copy = new int[so_luong_sach](); // Cấp phát động mảng, mặc định phần tử = 0
 
-    SaoChepDanhSach(danh_sach_dau_sach,copy);
+    // Sao chép và sắp xếp danh sách đầu sách
+    SaoChepDanhSach(danh_sach_dau_sach, copy);
+    MergeSort(copy, 0, so_luong_sach - 1, danh_sach_dau_sach);
 
-    MergeSort(copy,0,so_luong_sach-1,danh_sach_dau_sach);
-
-
-    const int row_count = so_luong_sach;
     // Tạo model cho table
-    QStandardItemModel* model;
-    model = new QStandardItemModel(row_count,7);
-
+    QStandardItemModel* model = new QStandardItemModel(so_luong_sach, 7);
     QString headers[7] = {
         "Thể loại",
         "Tên sách",
@@ -323,21 +318,46 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
         model->setHeaderData(i, Qt::Horizontal, headers[i]);
     }
 
-    for (int i = 0; i < row_count; i++){
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->theloai)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tensach)));
-        model->setItem(i, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->ISBN)));
-        model->setItem(i, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->sotrang)));
-        model->setItem(i, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tacgia)));
-        model->setItem(i, 5, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx)));
-        model->setItem(i, 6, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->dms->vitri)));
+    // Thiết lập dữ liệu và gộp ô theo thể loại
+    string The_loai_hien_tai = "";
+    int row_index = 0; // Biến để lưu chỉ số hàng hiện tại
+
+    for (int i = 0; i < so_luong_sach; i++) {
+        if (The_loai_hien_tai != danh_sach_dau_sach.node[copy[i]]->theloai) {
+
+            QStandardItem* Item_theloai = new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->theloai));
+            Item_theloai->setTextAlignment(Qt::AlignCenter);//canh giữa thể loại
+
+            model->setItem(row_index, 0, Item_theloai);// Thêm thể loại cột đầu tiên
+
+            tableView_intheloai->setSpan(row_index, 0, 1, 7); // Gộp toàn bộ 7 cột cho hàng thể loại mới
+
+            The_loai_hien_tai = danh_sach_dau_sach.node[copy[i]]->theloai;
+            row_index++;
+        }
+
+        // Thêm thông tin sách
+        model->setItem(row_index, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tensach)));
+        model->setItem(row_index, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->ISBN)));
+        model->setItem(row_index, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->sotrang)));
+        model->setItem(row_index, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tacgia)));
+        model->setItem(row_index, 5, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx)));
+        model->setItem(row_index, 6, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->dms->vitri)));
+
+        row_index++; // Tăng chỉ số hàng sau khi thêm sách
     }
 
+    // Gán model vào tableView và thiết lập kích thước cột
     tableView_intheloai->setModel(model);
     tableView_intheloai->resizeColumnsToContents();
-    delete[] copy;
 
+    // Ẩn cột thể loại
+    tableView_intheloai->hideColumn(0);
+
+    // Giải phóng bộ nhớ
+    delete[] copy;
 }
+
 
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model, string key) {
 
@@ -502,8 +522,7 @@ void InVaoTXT() {
 }
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
-    string ma_ISBN = ma_sach.substr(0,17);
-    int i = TimKiemViTriDauSach(ma_ISBN);
+    int i = TimKiemViTriDauSach(ma_sach);
     if (i == -1) {qDebug()<<"Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.";return ;}
     for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
         if(cur->masach == ma_sach){
@@ -513,9 +532,8 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     }
 }
 bool TonTaiMaSachDS(string ma_sach){
-    string ma_ISBN = ma_sach.substr(0,17);
-    int i = TimKiemViTriDauSach(ma_ISBN);
-    if (i == -1) {qDebug()<<"Không tồn tại đầu sách mã ISBN "<<ma_ISBN;return false;}
+    int i = TimKiemViTriDauSach(ma_sach);
+    if (i == -1) {return false;}
     for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
         if(cur->masach == ma_sach){
             return true;
