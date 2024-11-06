@@ -204,7 +204,7 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
                 ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tacgia));
                 ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tensach));
                 ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
-                ui->comboBox_vitri->setCurrentText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
+                ui->comboBox_vitri->setCurrentText(QString::fromStdString(danh_sach_dau_sach.node[index]->dms->vitri));
                 ui->spinBox_namsb->setValue(danh_sach_dau_sach.node[index]->namsx);
                 ui->spinBox_sotrang->setValue(danh_sach_dau_sach.node[index]->sotrang);
 

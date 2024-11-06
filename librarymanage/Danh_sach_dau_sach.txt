@@ -1,4 +1,10 @@
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-1
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-2
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-3
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-4
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-5
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-6
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-7
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-7
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-6
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-5
@@ -6,12 +12,6 @@
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-3
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-2
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-1
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-2
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-3
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-4
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-5
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-6
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-7
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-7
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-6
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-5
@@ -40,7 +40,7 @@
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-2
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-1
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|1|978-0-321-88483-4-5
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-4
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|2|978-0-321-88483-4-4
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-3
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-2
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-1
@@ -71,8 +71,8 @@
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-8
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-7
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-6
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-5
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-4
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-5
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-4
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-3
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-2
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-1
@@ -391,15 +391,6 @@
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-3
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-2
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-1
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-9
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-8
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-7
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-6
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-5
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-4
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-3
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-2
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-1
 978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-9
 978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-8
 978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-7
@@ -418,6 +409,15 @@
 978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-3
 978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-2
 978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-1
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-9
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-8
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-7
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-6
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-5
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-4
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-3
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-2
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-1
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-9
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-8
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-7
@@ -472,17 +472,6 @@
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-9
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-10
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-11
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-11
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-10
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-9
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-8
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-7
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-6
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-5
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-4
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-3
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-2
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-1
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-11
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-10
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-9
@@ -494,6 +483,17 @@
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-3
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-2
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-1
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-11
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-10
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-9
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-8
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-7
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-6
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-5
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-4
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-3
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-2
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-1
 978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-11
 978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-10
 978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-9

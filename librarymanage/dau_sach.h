@@ -106,6 +106,6 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 //Chức năng tìm tên sách
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
 void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
-void HienMaSachTrongTableMoi(const string& ma_ISBN , QTableView* tableView_dausach,QStandardItemModel*& model,string key);
+void HienMaSachTrongTableMoi(int Vi_Tri , QTableView* tableView_dausach, QStandardItemModel*& model, string key);
 
 #endif

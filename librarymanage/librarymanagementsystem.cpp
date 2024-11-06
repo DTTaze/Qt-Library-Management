@@ -11,6 +11,7 @@
 #include "Muon_tra.h"
 #include "dau_sach.h"
 #include "themdocgia_dialog.h"
+#include "danhmucsach.h"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
@@ -159,15 +160,16 @@ void LibraryManagementSystem::HienMaSach(const QModelIndex &index) {
     }
 
     if (index.isValid()) {
-        // Lấy dữ liệu của cột đầu tiên của hàng được nhấn
-        QVariant data = index.siblingAtColumn(0).data();
-        // Kiểm tra và in ra dữ liệu nếu có
-        if (data.isValid()) {
-        string Ma_ISBN = data.toString().toStdString();
-        HienMaSachTrongTableMoi(Ma_ISBN,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
-        }
+        // Lấy số hàng từ index và dùng nó để lấy giá trị header dọc
+        int row = index.row();
+        int ViTriDauSach = model_Dausach->headerData(row, Qt::Vertical).toInt();
+
+        Danhmucsach dms(ViTriDauSach);
+        dms.setModal(true);
+        dms.exec();
     }
 }
+
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
@@ -210,10 +212,6 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
         thanhly.setModal(true);
         thanhly.setWindowTitle("In danh sách theo thể loại");
         if (thanhly.exec() == QDialog::Accepted){
-            string TuKhoa = ui->lineEdit_timkiemds->text().toStdString();
-            if ( !TuKhoa.empty()){//nếu đang tìm kiếm và thực hiện thao tác thanh lý
-                HienMaSachTrongTableMoi(ma_ISBN,ui->tableView_dausach,model_Dausach,TuKhoa);
-            }
             Saved = false;
         }
     }
