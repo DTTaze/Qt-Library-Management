@@ -77,6 +77,7 @@ void LibraryManagementSystem::tabBaoCao()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
     inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
+    DatLaiSoLuotMuon();
     NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root);
 }
 
@@ -608,6 +609,10 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
     if(!ui->lineEdit_maSach->text().isEmpty() && !ui->lineEdit_maThe->text().isEmpty()) {
         string maSach = ui->lineEdit_maSach->text().toStdString();
         if(maSach.size() == 13 || maSach.size() == 17) {
+            if(getmaSachCoTheMuon() == "") {
+                QMessageBox::information(nullptr, "Thông báo", "Không thể mượn sách.");
+                return;
+            }
             MuonSach(getmaThe(), getmaSachCoTheMuon());
             ui->tableWidget_muonTra->setRowCount(0);
             inThongTin(getmaThe());
