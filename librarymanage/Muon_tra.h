@@ -56,13 +56,14 @@ struct danhSachDocGiaMuonQuaHan {
 };
 
 
-extern SachMuon DanhSachSachMuon[MAXSACH];
 
-extern int SoLuongSach; //*
-
-void ThemSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
+void ThemSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra); // sửa lại thành ThemSachMUONTRA
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
+bool KiemTraDieuKienMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
+
 void MuonSach(const int &maThe, const string& maSach);
+
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach) ;
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
@@ -72,17 +73,15 @@ bool SachDaMuon (DanhSachMUONTRA *head, string masach) ;
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
 //----------------------------------------------------------------Bảng top 10 sách được mượn nhiều nhất--------------------------------------------------------------------------------
-void MergeSachMuon(int* arr, int left, int mid, int right) ;
+void MergeSachMuon(SachMuon* arr, int left, int mid, int right) ;
 
-void MergeSortSachMuon(int* arr, int left, int right);
-
-void SaoChepDanhSachSachMuon( int* copy);
+void MergeSortSachMuon(SachMuon* arr, int left, int right);
 
 void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra);
 
 void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
 
-int TimViTriMaSach(string maSach);
+int TimViTriMaSachTrongDanhSachSachMuon(string maSach);
 
 void CapNhatSoLuotMuon (string ma_sach) ;
 
