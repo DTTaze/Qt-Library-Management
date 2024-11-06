@@ -1,9 +1,5 @@
 #include "ngay.h"
 
-bool operator == (const Date &d1, const Date &d2) {
-    return d1.day == d2.day && d1.month == d2.month && d1.year == d2.year;
-}
-
 bool laNamNhuan(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
@@ -18,9 +14,11 @@ int ngayTrongThang(int month, int year) {
 
 bool KiemTraNgayThangNam(Date NgayThangNam) {
 
-    if (NgayThangNam.year < 1 || NgayThangNam.month < 1 || NgayThangNam.month > 12) return false;
-    if (NgayThangNam.day < 1 || NgayThangNam.day > ngayTrongThang(NgayThangNam.month, NgayThangNam.year)) return false;
-    return true;
+    if (NgayThangNam.year < 1 || NgayThangNam.month < 1 || (NgayThangNam.month > 12) ||
+        NgayThangNam.day < 1 || NgayThangNam.day > ngayTrongThang(NgayThangNam.month, NgayThangNam.year)) {
+        return false;
+    }
+        return true;
 }
 
 bool isNumber(const string &str) {

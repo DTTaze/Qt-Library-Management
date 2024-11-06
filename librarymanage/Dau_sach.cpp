@@ -375,7 +375,7 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
     }
 }
 
-void ChenMaSachVaoTable(const string& ma_ISBN , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
+void HienMaSachTrongTableMoi(const string& ma_ISBN , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
 
     if (model != nullptr ) {
         // Xóa dữ liệu cũ

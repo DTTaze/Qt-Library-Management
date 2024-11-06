@@ -164,7 +164,7 @@ void LibraryManagementSystem::HienMaSach(const QModelIndex &index) {
         // Kiểm tra và in ra dữ liệu nếu có
         if (data.isValid()) {
         string Ma_ISBN = data.toString().toStdString();
-        ChenMaSachVaoTable(Ma_ISBN,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
+        HienMaSachTrongTableMoi(Ma_ISBN,ui->tableView_dausach,model_Dausach,ui->lineEdit_timkiemds->text().toStdString());
         }
     }
 }
@@ -212,7 +212,7 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
         if (thanhly.exec() == QDialog::Accepted){
             string TuKhoa = ui->lineEdit_timkiemds->text().toStdString();
             if ( !TuKhoa.empty()){//nếu đang tìm kiếm và thực hiện thao tác thanh lý
-                ChenMaSachVaoTable(ma_ISBN,ui->tableView_dausach,model_Dausach,TuKhoa);
+                HienMaSachTrongTableMoi(ma_ISBN,ui->tableView_dausach,model_Dausach,TuKhoa);
             }
             Saved = false;
         }

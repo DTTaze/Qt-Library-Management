@@ -366,7 +366,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableView" name="tableView_dausach">
@@ -1447,22 +1447,6 @@ QTableView::item:selected {
      </layout>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1411</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuLibrary_Manegement_System">
-    <property name="title">
-     <string>Library Manegement System</string>
-    </property>
-   </widget>
-   <addaction name="menuLibrary_Manegement_System"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
