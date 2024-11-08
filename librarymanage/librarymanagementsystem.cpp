@@ -659,6 +659,7 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
                     DaDenSach(getmaThe(), maSach);
                     if(thongbao[0] == false) {
                         QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
+                        inThongTin(getmaThe());
                         thongbao[0] = true;
                     }
                 } else {

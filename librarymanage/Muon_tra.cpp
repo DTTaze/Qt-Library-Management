@@ -407,7 +407,7 @@ void DaDenSach(int mathe, string masach) {
     p->thong_tin.TrangThai = Dang_Hoat_Dong;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
     while(sach_mat != nullptr) {
-        if(sach_mat->data.masach == masach && p->thong_tin.head_lsms->data.trangthai == Mat_Sach) {
+        if(sach_mat->data.masach == masach && (p->thong_tin.head_lsms->data.trangthai == Mat_Sach || p->thong_tin.head_lsms->data.trangthai == Chua_Tra)) {
             sach_mat->data.trangthai = Da_Tra;
             CapNhatTrangThaiSach(masach, 0);
             break;
