@@ -679,6 +679,7 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
             }
         }
     }
+    Saved = false;
 }
 
 
