@@ -59,6 +59,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
+    ui->lineEdit_timkiemds->setText("");
     InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach);
 }
 
