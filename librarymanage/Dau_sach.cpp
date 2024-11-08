@@ -152,12 +152,12 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
     tableView_dausach->setModel(model);
     tableView_dausach->resizeColumnsToContents();
     tableView_dausach->setColumnWidth(1,300);
+    tableView_dausach->verticalHeader()->hide();
+
 }
 
-
-void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemModel*& model){
-
-    if (model != nullptr ) {
+void InTheoTenTimKiem(string key, QTableView* tableView_dausach, QStandardItemModel*& model) {
+    if (model != nullptr) {
         // Xóa dữ liệu cũ
         model->clear(); // Xóa tất cả các dòng và cột
         delete model;   // Giải phóng bộ nhớ của model
@@ -174,12 +174,10 @@ void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemMod
         model->setHeaderData(i, Qt::Horizontal, headers[i]);
     }
 
-    ChuyenVeChuThuong(key);
+    key = ChuyenVeChuThuong(key);
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-
         string ten_sach = danh_sach_dau_sach.node[i]->tensach;
-
-        ChuyenVeChuThuong(ten_sach);
+        ten_sach = ChuyenVeChuThuong(ten_sach);
 
         if (ten_sach.find(key) != std::string::npos) {
             model->insertRow(row_count);
@@ -188,15 +186,21 @@ void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemMod
             model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
             model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
             model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
+
+            // Đặt tiêu đề dọc thành giá trị `i`
+            model->setHeaderData(row_count, Qt::Vertical, QString::number(i));
+
             row_count++;
         }
     }
 
-    if (row_count == 0)  {model->clear();return;}
+    if (row_count == 0)  {
+        model->clear();
+        return;
+    }
 
     tableView_dausach->setModel(model);
     tableView_dausach->resizeColumnsToContents();
-
 }
 
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
@@ -375,81 +379,8 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
     }
 }
 
-void HienMaSachTrongTableMoi(const string& ma_ISBN , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
+void HienMaSachTrongTableMoi(int Vi_Tri , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
 
-    if (model != nullptr ) {
-        // Xóa dữ liệu cũ
-        model->clear(); // Xóa tất cả các dòng và cột
-        delete model;   // Giải phóng bộ nhớ của model
-        model = nullptr; // Đặt model về nullptr
-    }
-
-    int row_count = 0;
-    model = new QStandardItemModel(0, 5);  // Model với 5 cột
-
-    QString headers[5] = {
-        "ISBN", "Tên sách", "Tác giả", "Năm xuất bản", "Thể loại",
-    };
-    for (int i = 0; i < 5; i++) {
-        model->setHeaderData(i, Qt::Horizontal, headers[i]);
-    }
-
-    ChuyenVeChuThuong(key);
-    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-
-        string ten_sach = danh_sach_dau_sach.node[i]->tensach;
-        ChuyenVeChuThuong(ten_sach);
-
-        if (danh_sach_dau_sach.node[i]->ISBN == ma_ISBN) {
-            model->insertRow(row_count);
-            model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
-            model->setItem(row_count, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
-            model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
-            model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
-            model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
-            row_count++;
-
-            // Thêm tiêu đề phụ cho "Mã sách" và "Trạng thái sách"
-            QStandardItem* header_ma_sach = new QStandardItem(QString::fromStdString("Mã sách"));
-            QStandardItem* header_trang_thai = new QStandardItem(QString::fromStdString("Trạng thái"));
-            header_ma_sach->setFont(QFont("Arial", 10, QFont::Bold)); // Chữ đậm
-            header_trang_thai->setFont(QFont("Arial", 10, QFont::Bold)); // Chữ đậm
-
-            model->setItem(row_count, 0, header_ma_sach);
-            model->setItem(row_count, 1, header_trang_thai);
-            row_count++;
-
-            // Thêm từng mã sách và trạng thái sách
-            for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
-                int trangthai = cur->trangthai;
-                string trang_thai_std;
-
-                switch (trangthai) {
-                case 0: trang_thai_std = "Có thể mượn"; break;
-                case 1: trang_thai_std = "Đã được mượn"; break;
-                case 2: trang_thai_std = "Đã thanh lý"; break;
-                }
-
-                QStandardItem* item_ma_sach = new QStandardItem(QString::fromStdString(cur->masach));
-                QStandardItem* item_trang_thai = new QStandardItem(QString::fromStdString(trang_thai_std));
-
-                model->setItem(row_count, 0, item_ma_sach);
-                model->setItem(row_count, 1, item_trang_thai);
-                row_count++;
-            }
-        }
-    }
-
-    // Gán model vào tableView
-    tableView_dausach->setModel(model);
-    tableView_dausach->resizeColumnsToContents();
-
-    // Ẩn cột chỉ mục dọc
-    tableView_dausach->verticalHeader()->hide();
-
-    // Kéo dài cột cuối cùng
-    QHeaderView* horizontalHeader = tableView_dausach->horizontalHeader();
-    horizontalHeader->setSectionResizeMode(4, QHeaderView::Stretch); // Kéo dài cột thứ 5
 }
 
 
@@ -530,7 +461,7 @@ void InVaoTXT() {
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
         for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
             DauSach* dau_sach = danh_sach_dau_sach.node[i];
-
+            qDebug()<<cur->masach;
             // Ghi thông tin đầu sách vào tệp
             file << dau_sach->ISBN << '|'
                  << dau_sach->tensach << '|'
