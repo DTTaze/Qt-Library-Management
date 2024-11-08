@@ -461,7 +461,6 @@ void InVaoTXT() {
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
         for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
             DauSach* dau_sach = danh_sach_dau_sach.node[i];
-            qDebug()<<cur->masach;
             // Ghi thông tin đầu sách vào tệp
             file << dau_sach->ISBN << '|'
                  << dau_sach->tensach << '|'
