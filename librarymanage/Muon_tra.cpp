@@ -168,7 +168,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     }
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
-        if (current->data.masach == ma_sach && current->data.trangthai == 0) {
+        if (current->data.masach == ma_sach && current->data.trangthai != Da_Tra) {
 
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
