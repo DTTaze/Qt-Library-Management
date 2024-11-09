@@ -402,7 +402,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     ui->lineEdit_trangThai->setText(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động": "Khóa");
 
     while ( current != nullptr ) {
-        if ( current->data.trangthai == 0 || current->data.trangthai == 2) {
+        if ( current->data.trangthai != Da_Tra) {
             int indexRow = ui->tableWidget_muonTra->rowCount();
             QCheckBox *checkBox = new QCheckBox(this);
             ui->tableWidget_muonTra->insertRow(indexRow);
@@ -411,7 +411,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
             ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
             ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
             ui->tableWidget_muonTra->setItem(indexRow, 4, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
-            ui->tableWidget_muonTra->setItem(indexRow, 5, new QTableWidgetItem(current->data.trangthai == 2 ? "Mất Sách" : "Chưa Trả"));
+            ui->tableWidget_muonTra->setItem(indexRow, 5, new QTableWidgetItem(current->data.trangthai == Mat_Sach ? "Mất Sách" : "Chưa Trả"));
             indexRow++;
         }
         current = current->next;
@@ -637,7 +637,9 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
 {
 
     bool thongbao[3] = {0, 0, 0};
-    for(int row = 0; row < ui->tableWidget_muonTra->rowCount(); row ++) {
+
+
+    for(int row = 0 ; row < ui->tableWidget_muonTra->rowCount(); row ++) {
         QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
         QCheckBox *traSach_checkBox = qobject_cast<QCheckBox *>(traSach_widget);
         if ( traSach_checkBox->isChecked() ) {
@@ -645,40 +647,50 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
             string maSach = ma_sach.toStdString();
             QString trang_thai = ui->tableWidget_muonTra->item(row, 5)->text();
             string trangthai = trang_thai.toStdString();
-            if(trangthai == "Chưa Trả") {
-                QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(
-                    this,
-                    "Đền sách",
-                    "Bạn đã đền sách chưa?",
-                    QMessageBox::Yes | QMessageBox::No
-                );
-                if (reply == QMessageBox::Yes) {
-                    DaDenSach(getmaThe(), maSach);
-                    if(thongbao[0] == false) {
-                        QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
-                        inThongTin(getmaThe());
-                        thongbao[0] = true;
-                    }
-                } else {
-                    ChuaDenSach(getmaThe(), maSach);
-                    if(thongbao[1] == false) {
-                        QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là chưa đền.");
-                        inThongTin(getmaThe());
-                        thongbao[1] = true;
-                    }
-                }
-            }
-            else {
+            if(thongbao[0] == 1 && trangthai == "Chưa Trả") {
                 DaDenSach(getmaThe(), maSach);
-                if(thongbao[2] == false) {
-                    QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
-                    inThongTin(getmaThe());
-                    thongbao[2] = true;
+            } else if (thongbao[1] == 1 && trangthai == "Chưa Trả") {
+                ChuaDenSach(getmaThe(), maSach);
+            } else if (thongbao[2] == 1 && trangthai == "Mất Sách") {
+                DaDenSach(getmaThe(), maSach);
+            } else {
+                if(trangthai == "Chưa Trả") {
+                    QMessageBox::StandardButton reply;
+                    reply = QMessageBox::question(
+                        this,
+                        "Đền sách",
+                        "Bạn đã đền sách chưa?",
+                        QMessageBox::Yes | QMessageBox::No
+                    );
+
+                    if (reply == QMessageBox::Yes) {
+                        DaDenSach(getmaThe(), maSach);
+                        if(thongbao[0] == false) {
+                            QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
+
+                            thongbao[0] = true;
+                        }
+                    } else {
+                        ChuaDenSach(getmaThe(), maSach);
+                        if(thongbao[1] == false) {
+                            QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là chưa đền.");
+
+                            thongbao[1] = true;
+                        }
+                    }
+
+                }
+                else {
+                    DaDenSach(getmaThe(), maSach);
+                    if(thongbao[2] == false) {
+                        QMessageBox::information(this, "Thông báo", "Sách đã được đánh dấu là đã đền.");
+                        thongbao[2] = true;
+                    }
                 }
             }
         }
     }
+    inThongTin(getmaThe());
     Saved = false;
 }
 
