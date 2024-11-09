@@ -182,13 +182,13 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
     Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(root, maThe);
     if (docGia) {
         if (field == "Ho") {
-            docGia->thong_tin.Ho = newValue; // Cập nhật họ
+            docGia->thong_tin.Ho = newValue;
         } else if (field == "Ten") {
-            docGia->thong_tin.Ten = newValue; // Cập nhật tên
+            docGia->thong_tin.Ten = newValue;
         } else if (field == "Phai") {
-            docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu; // Cập nhật phái
+            docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu;
         } else if (field == "TrangThai") {
-            docGia->thong_tin.TrangThai = (newValue == "Đang Hoạt Động") ? Dang_Hoat_Dong : Khoa; // Cập nhật trạng thái
+            docGia->thong_tin.TrangThai = (newValue == "Đang Hoạt Động") ? Dang_Hoat_Dong : Khoa;
         }
     }
 }
@@ -196,15 +196,16 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
 void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     DanhSachMUONTRA* temp = docGia->thong_tin.head_lsms;
     while ( temp != nullptr ) {
-        if ( SoNgayQuaHan(temp->data.NgayMuon, temp->data.NgayTra) > 7 || temp->data.trangthai == 2 ) { // Thẻ sẽ bị khóa nếu số ngày mượn quá 7 ngày hoặc làm mất sách
+        if ( temp->data.trangthai == 2 ) { // Thẻ sẽ bị khóa nếu số ngày mượn quá 7 ngày hoặc làm mất sách
             docGia->thong_tin.TrangThai = Khoa;
+            return;
         }
         temp = temp->next;
     }
     docGia->thong_tin.TrangThai = Dang_Hoat_Dong;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------
-void docFileThongTinTheDocGia( QTableWidget* tableWidget) { // Hàm đọc thông tin từ file sao đó thêm nó vào cây nhị phân tìm kiếm
+void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file docgia_100.txt");
@@ -213,8 +214,8 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) { // Hàm đọc thôn
 
     string line;
     while (getline(inFile, line)) {
-        QString strLine = QString::fromStdString(line).trimmed(); // Đọc và xử lý dòng
-        QStringList fields = strLine.split("|"); // Tách theo |
+        QString strLine = QString::fromStdString(line).trimmed();
+        QStringList fields = strLine.split("|");
 
         if (fields.size() < 5) {
             continue;
@@ -260,9 +261,9 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) { // Hàm đọc thôn
             else {
                 CapNhatTrangThaiSach(ma_sach, 0);
             }
-
             index += 4;
         }
+        capNhatTrangThaiThe(p);
     }
     inFile.close();
 }
