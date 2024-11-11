@@ -1,14 +1,14 @@
 #include "Muon_tra.h"
 using namespace std;
 
-SachMuon DanhSachSachMuon[MAXSACH]; // Chuyển thành cục bộ
+SachMuon DanhSachSachMuon[MAXSACH]; // Chuyển thành cục bộ ( đang chuyển đến hàm đặt lại số lượt mượn)
 int SoLuongSach = 0;
 
 int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
-int TimViTriMaSachTrongDanhSachSachMuon(string maSach) {
+int TimViTriMaSachTrongDanhSachSachMuon( string maSach) {
     string ma_ISBN = maSach.substr(0, 17);
     for (int i = 0; i < SoLuongSach; i++) {
         if (DanhSachSachMuon[i].masach == ma_ISBN) {
@@ -18,7 +18,7 @@ int TimViTriMaSachTrongDanhSachSachMuon(string maSach) {
     return -1;
 }
 
-void CapNhatSoLuotMuon (string ma_sach) {
+void CapNhatSoLuotMuon ( string ma_sach) {
     int vitri = TimViTriMaSachTrongDanhSachSachMuon(ma_sach) ;
     string ma_ISBN = ma_sach.substr(0, 17);
     if(vitri != -1) {
