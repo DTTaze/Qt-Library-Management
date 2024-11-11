@@ -6,30 +6,32 @@ Queue<int> danhSachMaThe;
 
 Danh_Sach_The_Doc_Gia* root;
 Danh_Sach_The_Doc_Gia* rp;
+
 //--------------------------------------------------------Hàm liên quan đến mã thẻ------------------------------------------------------------------------------
 void taoDanhSachMaThe(int start, int end) {
-    Queue<pair<int,int>> ranges; // Queue dùng để duyệt các khoảng theo thứ tự hạng
-    ranges.push({start, end}); // [a,b]
+    Queue<pair<int,int>> ranges;
+    ranges.push({start, end});
 
-    while (!ranges.empty()) { // Lặp lại cho tới khi không còn khoảng nào
+    while (!ranges.empty()) {
         auto range = ranges.front();
         ranges.pop();
 
         int a = range.first;
         int b = range.second;
 
-        if (a > b) continue; // Nếu mà khoảng không hợp lệ thì bỏ qua
+        if (a > b) continue;
 
-        int median = (a + b) / 2; // Tìm vị trí chính giữa
+        int median = (a + b) / 2;
         danhSachMaThe.push(median);
-        ranges.push({a, median - 1}); // [a, median - 1]
-        ranges.push({median + 1, b}); // [median + 1, b]
+        ranges.push({a, median - 1});
+        ranges.push({median + 1, b});
     }
 }
 
 void docFileMaThe() {
     ifstream inFile("Ma_The.txt");
-    if (!inFile) {
+
+    if ( !inFile ) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể đọc file Ma_The.txt");
         return;
     }
@@ -39,6 +41,7 @@ void docFileMaThe() {
         danhSachMaThe.push(maThe);
     }
     inFile.close();
+
 }
 
 void ghiMaTheVaoFile() {
@@ -46,6 +49,7 @@ void ghiMaTheVaoFile() {
         QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng");
         return;
     }
+
     ofstream outFile("Ma_The.txt");
     if (!outFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể ghi file Ma_The.txt");
@@ -58,13 +62,15 @@ void ghiMaTheVaoFile() {
         danhSachMaTheTamThoi.pop();
     }
     outFile.close();
+
 }
 
 int layMaThe() {
-    if (danhSachMaThe.empty()) {
+    if ( danhSachMaThe.empty() ) {
         QMessageBox::warning(nullptr, "Lỗi", "Danh sách mã thẻ rỗng!");
         return -1;
     }
+
     int maThe = danhSachMaThe.front();
     danhSachMaThe.pop();
     danhSachMaThe.push(maThe);
@@ -151,7 +157,7 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
         Xoa_Doc_Gia(root->ptr_right, ma_the_doc_gia);
     } else if (root->thong_tin.MATHE > ma_the_doc_gia) {
         Xoa_Doc_Gia(root->ptr_left, ma_the_doc_gia);
-    } else { // root->MATHE == ma_the_doc_gia
+    } else {
         rp = root;
         if (root->ptr_left == nullptr) {
             root = rp->ptr_right;
@@ -204,7 +210,7 @@ void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     }
     docGia->thong_tin.TrangThai = Dang_Hoat_Dong;
 }
-//---------------------------------------------------------------------------------------------------------------------------------------
+
 void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
@@ -216,6 +222,7 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
     while (getline(inFile, line)) {
         QString strLine = QString::fromStdString(line).trimmed();
         QStringList fields = strLine.split("|");
+
 
         if (fields.size() < 5) {
             continue;
@@ -239,31 +246,23 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
         } else {
             QMessageBox::warning(nullptr, "Lỗi", "Trạng thái không hợp lệ");
         }
-        Them_Doc_Gia(root, docGia);
 
-        Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, docGia.MATHE);
         int index = 5;
-        while ( index < fields.size() ) {
-            if (fields[index].isEmpty()) break;
-
+        while (index + 3 < fields.size()) {
             string ma_sach = fields[index].toStdString();
             int trangthaimuontra = fields[index + 1].toInt();
-            Date ngay_muon = ChuyenStringSangDate(fields[index+2].toStdString());
+            Date ngay_muon = ChuyenStringSangDate(fields[index + 2].toStdString());
             Date ngay_tra;
-            if (!fields[index + 3].isEmpty()){
-                ngay_tra = ChuyenStringSangDate(fields[index+3].toStdString());
+
+            if (!fields[index + 3].isEmpty()) {
+                ngay_tra = ChuyenStringSangDate(fields[index + 3].toStdString());
             }
 
-            ThemSach(p->thong_tin.head_lsms, ma_sach,trangthaimuontra, ngay_muon, ngay_tra);
-            if(trangthaimuontra == 0 || trangthaimuontra == 2) {
-                CapNhatTrangThaiSach(ma_sach, 1);
-            }
-            else {
-                CapNhatTrangThaiSach(ma_sach, 0);
-            }
+            ThemSach(docGia.head_lsms, ma_sach, trangthaimuontra, ngay_muon, ngay_tra);
             index += 4;
         }
-        capNhatTrangThaiThe(p);
+
+        Them_Doc_Gia(root, docGia);
     }
     inFile.close();
 }
@@ -309,7 +308,7 @@ void ghiThongTinTheDocGia() {
     }
     outFile.close();
 }
-//---------------------------------------------------------------------------------------------------------------------------------------
+
 void themTheDocGiaVaoBang(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docGia) {
     int row = tableWidget->rowCount();
     tableWidget->insertRow(row);
@@ -327,6 +326,6 @@ void inDanhSachTheDocGiaTheoMaSo(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gi
     themTheDocGiaVaoBang(tableWidget, root);
     inDanhSachTheDocGiaTheoMaSo(tableWidget, root->ptr_right);
 }
-//---------------------------------------------------------------------------------------------------------------------------------------
+
 
 

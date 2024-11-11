@@ -247,11 +247,11 @@ void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int i
     CapNhatBang();
 }
 
-void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cửa số để nhập thông tin độc giả cần thêm
+void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 {
     themDocGia_Dialog themDocGia;
 
-    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == MAXRANDOM ) { // Kiểm tra đã hết mã thẻ hay chưa
+    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == SOLUONGMATHETOIDA ) {
         QMessageBox::warning(nullptr, "Thông báo", "Đã hết mã thẻ");
         themDocGia.close();
         return;
@@ -261,8 +261,8 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked() // Mở ra cử
 
         The_Doc_Gia docGia;
         int maThe = layMaThe();
-        while ( true ) { // Tìm mã thẻ chưa tồn tại trong danh sách
-            if ( Tim_Kiem(root, maThe ) == nullptr ) { // Chỉ dừng khi tìm được
+        while ( true ) {
+            if ( Tim_Kiem(root, maThe ) == nullptr ) {
                 break;
             }
             maThe = layMaThe();

@@ -2,7 +2,7 @@
 #define THE_DOC_GIA_H
 #include "Dau_sach.h"
 #include "Muon_tra.h"
-#define MAXRANDOM 10000
+#define SOLUONGMATHETOIDA 10000
 
 using namespace std;
 
@@ -12,7 +12,7 @@ enum Phai{Nam,Nu};
 
 enum TrangThaiCuaThe{Dang_Hoat_Dong,Khoa};
 
-// Thông tin thẻ độc giả
+
 struct The_Doc_Gia {
     unsigned int MATHE;
     string Ho;
@@ -22,7 +22,7 @@ struct The_Doc_Gia {
     DanhSachMUONTRA* head_lsms = nullptr;
 };
 
-// Danh sách thẻ độc giả: cây nhị phân tìm kiếm
+
 struct Danh_Sach_The_Doc_Gia {
     The_Doc_Gia thong_tin;
     Danh_Sach_The_Doc_Gia* ptr_left = nullptr;
@@ -35,6 +35,7 @@ struct Danh_Sach_The_Doc_Gia {
         thong_tin.Ten = thong_tin_the_doc_gia.Ten;
         thong_tin.TrangThai = thong_tin_the_doc_gia.TrangThai;
         thong_tin.phai = thong_tin_the_doc_gia.phai;
+        thong_tin.head_lsms = thong_tin_the_doc_gia.head_lsms;
     }
 };
 
