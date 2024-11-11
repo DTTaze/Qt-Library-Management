@@ -72,7 +72,7 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
 int TimKiemViTriDauSach(string ma);
 
 //Hàm xác định mã sách có tồn tại trong đầu sách
-bool TonTaiMaSachDS(string ma_sach);
+bool TonTaiMaSach(string ma_sach);
 
 //Hàm chuyển từ mã sách thành tên sách
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);

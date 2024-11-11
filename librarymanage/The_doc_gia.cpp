@@ -258,7 +258,7 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
                 ngay_tra = ChuyenStringSangDate(fields[index + 3].toStdString());
             }
 
-            ThemSach(docGia.head_lsms, ma_sach, trangthaimuontra, ngay_muon, ngay_tra);
+            ThemSachVaoLichSuMuonSach(docGia.head_lsms, ma_sach, trangthaimuontra, ngay_muon, ngay_tra);
             index += 4;
         }
 

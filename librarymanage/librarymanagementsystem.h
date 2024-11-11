@@ -70,6 +70,12 @@ private slots:
 
     void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
+    bool laISBN(string text );
+
+    bool laMaSach(string text);
+
+    void clearBookInformation();
+
     int getmaThe() ;
 
     void inThongTin(const int& ma_the) ;

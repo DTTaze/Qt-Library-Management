@@ -1,4 +1,4 @@
-#include "librarymanagementsystem.h"
+    #include "librarymanagementsystem.h"
 #include "./ui_librarymanagementsystem.h"
 #include "muonsach.h"
 #include "trasach.h"
@@ -19,7 +19,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
-    DocTuFile(danh_sach_dau_sach,this); // Load thông tin từ file Danh_sach_dau_sach.txt vào Bảng Danh Sách Đầu Sách
+    DocTuFile(danh_sach_dau_sach,this);
 
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
@@ -388,14 +388,10 @@ int LibraryManagementSystem::getmaThe() {
 
 void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
-    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, ma_the);
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, ma_the); // Đổi tên biến
     ui->tableWidget_muonTra->setRowCount(0);
     string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
     DanhSachMUONTRA *current = p->thong_tin.head_lsms;
-
-    ui->lineEdit_hoTen->setReadOnly(true);
-    ui->lineEdit_Phai->setReadOnly(true);
-    ui->lineEdit_trangThai->setReadOnly(true);
 
     ui->lineEdit_hoTen->setText(QString::fromStdString(hovaten));
     ui->lineEdit_Phai->setText(p->thong_tin.phai == Nam ? "Nam" : "Nữ");
@@ -446,62 +442,65 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-//===================
+bool LibraryManagementSystem::laISBN( string text ) {
+    return text.length() == 13 || text.length() == 17;
+}
 
+bool LibraryManagementSystem::laMaSach( string text ) {
+    return text.length() > 18;
+}
 
-void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
-    if(key_ma_sach.size() == 13 || key_ma_sach.size() == 17) {
+void LibraryManagementSystem::clearBookInformation() {
+
+    ui->lineEdit_tacGia->clear();
+    ui->lineEdit_trangThaiSach->clear();
+}
+
+void LibraryManagementSystem::inThongTinmaSach(string text) {
+    if( laISBN(text) ) {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
     }
-    else if(key_ma_sach.size() > 18) {
-        if(TonTaiMaSachDS(key_ma_sach)) {;
+    else if( laMaSach(text)) {
+        if( TonTaiMaSach(text) ) {;
             ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
-        }
-        else {
+        } else {
             ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
-            ui->lineEdit_tenSach->clear();
-            ui->lineEdit_tacGia->clear();
-            ui->lineEdit_trangThaiSach->clear();
-            return;
+            clearBookInformation();
         }
     } else {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
         return;
     }
-    int vitri = TimKiemViTriDauSach(key_ma_sach);
-    ui->lineEdit_tenSach->setReadOnly(true);
-    ui->lineEdit_tacGia->setReadOnly(true);
-    ui->lineEdit_trangThaiSach->setReadOnly(true);
+
+    int vitri = TimKiemViTriDauSach(text);
 
     if (vitri != -1 ) {
         string trang_thai_std;
 
-        ui->lineEdit_tenSach->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tensach));
-        ui->lineEdit_tacGia->setText(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia));
+        ui->lineEdit_tenSach->setText(QString::fromStdString( danh_sach_dau_sach.node[vitri]->tensach) );
+        ui->lineEdit_tacGia->setText(QString::fromStdString( danh_sach_dau_sach.node[vitri]->tacgia) );
         DanhMucSach *danh_muc_sach = danh_sach_dau_sach.node[vitri]->dms;
-        int trangthai;
-        if (key_ma_sach.size() > 17) {
+
+        if ( laMaSach(text) ) {
             while(danh_muc_sach != nullptr) {
-                trangthai = danh_muc_sach->trangthai;
-                if(danh_muc_sach->masach == key_ma_sach) {
-                    switch(trangthai) {
-                    case 0: trang_thai_std = "Có thể mượn"; break;
-                    case 1: trang_thai_std = "Đã được mượn"; break;
-                    case 2: trang_thai_std = "Đã thanh lý"; break;
+                if(danh_muc_sach->masach == text) {
+                    switch(danh_muc_sach->trangthai) {
+                        case 0: trang_thai_std = "Có thể mượn"; break;
+                        case 1: trang_thai_std = "Đã được mượn"; break;
+                        case 2: trang_thai_std = "Đã thanh lý"; break;
                     }
                     ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
                     break;
                 }
                 danh_muc_sach = danh_muc_sach->next;
             }
-        } else if (key_ma_sach.size() == 13 || key_ma_sach.size() == 17) {
-            while(danh_muc_sach != nullptr) {
-                trangthai = danh_muc_sach->trangthai;
-                if(trangthai == 0) {
+        } else if ( laISBN(text) ) {
+            while( danh_muc_sach != nullptr ) {
+                if(danh_muc_sach->trangthai == 0) {
                     trang_thai_std = "Có thể mượn";
                     break;
                 } else {
-                    switch(trangthai) {
+                    switch ( danh_muc_sach->trangthai ) {
                     case 1: trang_thai_std = "Đã được mượn"; break;
                     case 2: trang_thai_std = "Đã thanh lý"; break;
                     }
@@ -513,9 +512,7 @@ void LibraryManagementSystem::inThongTinmaSach(string key_ma_sach) {
         ui->lineEdit_trangThaiSach->setText(QString::fromStdString(trang_thai_std));
     } else {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightcoral");
-        ui->lineEdit_tenSach->clear();
-        ui->lineEdit_tacGia->clear();
-        ui->lineEdit_trangThaiSach->clear();
+        clearBookInformation();
     }
 }
 

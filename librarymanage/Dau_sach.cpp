@@ -3,7 +3,7 @@
 DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
-int TimKiemViTriDauSach(string ma) {// nhan ma isbn // ma sach
+int TimKiemViTriDauSach(string ma) {// Đổi tên biến sang tên cụ thể hơn, xóa comment thừa
     if(ma.size() < 13) return -1;
 
     if(ma.size() > 17) {// ma sach cua ISBN-13
@@ -50,14 +50,14 @@ void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_t
 }
 
 // Hàm chuyển đổi chuỗi sang chữ thường
-string ChuyenVeChuThuong(string str) {
+string ChuyenVeChuThuong(string str) { // Đổi tên biến cụ thể hơn
     for (size_t i = 0; i < str.size(); ++i) {
         str[i] = tolower(static_cast<unsigned char>(str[i]));
     }
     return str;
 }
 
-void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
+void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) { // Xóa comment thừa
     // Mặc định chèn vào cuối
     int n = danh_sach_dau_sach.soluongdausach;
     int vi_tri_them = n;
@@ -88,7 +88,7 @@ void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
     danh_sach_dau_sach.node[vi_tri_them]->demsosach++;
 }
 
-//danh sach dau sach tham chieu mang, danh muc sach tham chieu con tro vi lien ket don
+
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                   int trang_thai,string &vi_tri,string ma_sach){
 
@@ -156,6 +156,7 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
 
 }
 
+// Xóa comment thừa
 void InTheoTenTimKiem(string key, QTableView* tableView_dausach, QStandardItemModel*& model) {
     if (model != nullptr) {
         // Xóa dữ liệu cũ
@@ -378,16 +379,16 @@ void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_d
         InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableView_dausach,model);
     }
 }
-
+// *** Hàm rỗng
 void HienMaSachTrongTableMoi(int Vi_Tri , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
 
 }
 
 
 
-
+// *** Đổi tên hàm
 bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
-    if (danh_sach_dau_sach.soluongdausach > 9999){
+    if (danh_sach_dau_sach.soluongdausach > 9999){ // *** So sánh với
         return true;
     }else{
         return false;
@@ -444,17 +445,17 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
     }
     file.close();
-    // for (int i = 0; i < danh_sach_dau_sach.soluongdausach;i++){
+    // for (int i = 0; i < danh_sach_dau_sach.soluongdausach;i++){ // *** Comment dư
     //     for(DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur != nullptr;cur=cur->next){
     //         qDebug()<<cur->masach;
     //     }
     // }
 }
 
-void InVaoTXT() {
+void InVaoTXT() { // Đổi tên hàm
     ofstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
-        qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi.";
+        qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog
         return;
     }
 
@@ -476,7 +477,7 @@ void InVaoTXT() {
 
     file.close();
 }
-
+//*** Thông báo lỗi bằng dialog
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     int i = TimKiemViTriDauSach(ma_sach);
     if (i == -1) {qDebug()<<"Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.";return ;}
@@ -487,7 +488,8 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
         }
     }
 }
-bool TonTaiMaSachDS(string ma_sach){
+
+bool TonTaiMaSach(string ma_sach){
     int i = TimKiemViTriDauSach(ma_sach);
     if (i == -1) {return false;}
     for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){

@@ -366,7 +366,7 @@ QPushButton:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableView" name="tableView_dausach">
@@ -1140,7 +1140,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_hoTen"/>
+                    <widget class="QLineEdit" name="lineEdit_hoTen">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1154,7 +1158,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_Phai"/>
+                    <widget class="QLineEdit" name="lineEdit_Phai">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1168,7 +1176,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_trangThai"/>
+                    <widget class="QLineEdit" name="lineEdit_trangThai">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1197,7 +1209,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_tenSach"/>
+                    <widget class="QLineEdit" name="lineEdit_tenSach">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1211,7 +1227,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_tacGia"/>
+                    <widget class="QLineEdit" name="lineEdit_tacGia">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>
@@ -1225,7 +1245,11 @@ QPushButton:focus {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="lineEdit_trangThaiSach"/>
+                    <widget class="QLineEdit" name="lineEdit_trangThaiSach">
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
                    </item>
                   </layout>
                  </item>

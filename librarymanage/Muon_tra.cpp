@@ -1,26 +1,11 @@
 #include "Muon_tra.h"
 using namespace std;
 
-SachMuon DanhSachSachMuon[MAXSACH];
+SachMuon DanhSachSachMuon[MAXSACH]; // Chuyển thành cục bộ
 int SoLuongSach = 0;
-/*f. Mượn sách : nhập vào mã thẻ độc giả, chương trình sẽ liệt kê các sách mà độc giả đang mượn. Mỗi độc giả chỉ được mượn tối đa 3 cuốn,
-không cho mượn khi giữ 1 sách quá hạn (7 ngày)
-g. Trả sách
-h. Liệt kê danh sách các mã sách, tên sách mà 1 độc giả có số thẻ X đang mượn
-i. In danh sách độc giả mượn sách quá hạn theo thứ tự thời gian quá hạn giảm dần
-j. In 10 sách có số lượt mượn nhiều nhất.*/
 
-
-int TrangThai(Date ngay_muon, Date ngay_tra) { // trạng thái sách của độc giả
-
-    if(ngay_tra.day == 0)
-    {
-        return Chua_Tra;
-    }
-    else
-    {
-        return Da_Tra;
-    }
+int TrangThai(Date ngay_muon, Date ngay_tra) {
+    return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
 int TimViTriMaSachTrongDanhSachSachMuon(string maSach) {
@@ -64,41 +49,28 @@ void DatLaiSoLuotMuon() {
     }
 }
 
-void ThemSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
+void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
     DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
 
     if (head == nullptr) {
         head = newMUONTRA;
     } else {
-        DanhSachMUONTRA* current = head;
         newMUONTRA->next = head;
         head = newMUONTRA;
     }
 }
 
-bool SachDaMuon (DanhSachMUONTRA *head, string masach) {
+
+bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
     DanhSachMUONTRA *p = head;
-    while(p!=nullptr) {
-        if(p->data.masach == masach && p->data.NgayTra.day == 0) {
-            return true;
+    while(p != nullptr) {
+        if(p->data.NgayTra.day == 0 ){
+            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
         }
         p = p->next;
     }
     return false;
-}
-
-bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
-    DanhSachMUONTRA *p = head;
-    Date ngaytra;
-    while(p != nullptr) {
-        if(p->data.NgayTra.day == 0 ){
-            ngaytra = NgayHomNay();
-            if(SoNgayQuaHan(p->data.NgayMuon, ngaytra) > 7) return 1;
-        }
-        p = p->next;
-    }
-    return 0;
 }
 
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
@@ -107,18 +79,17 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     if (vitri == -1) {
         return nullptr;
     }
-    DanhMucSach* cur = danh_sach_dau_sach.node[vitri]->dms;
-    for (; cur != nullptr; cur = cur->next) {
-        if (cur->masach == maSach) return cur;
+    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+        if (current->masach == maSach) return current;
     }
     return nullptr;
 }
 
-bool KiemTraDieuKienMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+bool CoTheMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
     int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
     DanhMucSach* cur = danhmucsach;
     if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa ||
-        sosach >= 3 || SachDaMuon(doc_gia->thong_tin.head_lsms, maSach) ||
+        sosach >= 3 ||
         KiemTraSachCoQuaHanKhong(doc_gia->thong_tin.head_lsms) ||
         cur->trangthai == 1 || cur->trangthai == 2) return false;
     return true;
@@ -138,18 +109,15 @@ void MuonSach( const int& maThe, const string& maSach) {
 
     DanhMucSach *cur = TimDiaChiSachTrongDanhMucSach(maSach);
 
-    // viết hàm Kiểm tra điều kiện mượn sách
-    if (!KiemTraDieuKienMuonSach(maSach, cur, doc_gia)) {
+    if ( !CoTheMuonSach(maSach, cur, doc_gia) ) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách.");
         return;
     }
 
-    // Thêm sách vào lịch sử mượn
-    ThemSach(doc_gia->thong_tin.head_lsms, maSach,0, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, 1);
-    CapNhatSoLuotMuon(maSach); // Cập nhật số lượt mượn cho sách
+    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
+    CapNhatTrangThaiSach(maSach, 1); // Chỉnh sửa lại int theo tên hằng
+    CapNhatSoLuotMuon(maSach);
 
-    // Thông báo thành công
     QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
 }
 
@@ -173,7 +141,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
 
-                CapNhatTrangThaiSach(ma_sach, 0);
+                CapNhatTrangThaiSach(ma_sach, 0); // Cập nhật theo tên hằng
                 capNhatTrangThaiThe(doc_gia);
 
                 break;
@@ -188,7 +156,6 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // Tạo các mảng con tạm thời cho hai nửa của mảng
     SachMuon* L = new SachMuon[n1];
     SachMuon* R = new SachMuon[n2];
 
@@ -200,7 +167,6 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) {
     }
 
     int i = 0, j = 0, k = left;
-    // Gộp hai mảng L và R lại với nhau dựa trên `demsoluotmuon`
     while (i < n1 && j < n2) {
         if (L[i].demsoluotmuon > R[j].demsoluotmuon) {
             arr[k] = L[i];
@@ -243,7 +209,7 @@ void MergeSortSachMuon(SachMuon* arr, int left, int right) {
     }
 }
 
-void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra) {
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (DanhSachMUONTRA *danh_sach_muon_tra) {
     DanhSachMUONTRA *current = danh_sach_muon_tra;
     while( current != nullptr ) {
         CapNhatSoLuotMuon(current->data.masach);
@@ -253,7 +219,7 @@ void CapNhatTuDanhSachMUONTRA (DanhSachMUONTRA *danh_sach_muon_tra) {
 
 void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) {
 
-    CapNhatTuDanhSachMUONTRA(danh_sach_muon_tra);
+    CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(danh_sach_muon_tra);
     MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
     QStandardItemModel *model = new QStandardItemModel();
 
@@ -306,9 +272,7 @@ void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* curre
     }
 }
 
-
-
-danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root) {
+danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root) { // Chuyển thành đệ quy
     Queue<Danh_Sach_The_Doc_Gia*> q;
     danhSachDocGiaMuonQuaHan* head = nullptr;
     if ( root == nullptr ) {
@@ -379,13 +343,6 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 
 }
 
-/* viết 2 hàm: hàm thứ nhất là mất sách, khi báo mất sách sẽ hiện thông tin là đền hay chưa, nếu đền rồi thì trạng thái thẻ giữ im
-còn trạng thái mượn trả hiện đã trả, trạng thái sách hiện là có thể cho mượn
-còn nếu nhấn nút chưa đền thì trạng thái thẻ bị khóa, trạng thái mượn trả chuyển sang mất sách, trạng thái sách vẫn hiện là chưa
-mượn được
-                hàm thứ 2 là trạng thái mượn trả đang là mất sách, nhất vào nút đền sách thì sẽ đổi trạng thái thẻ sang đang hoạt
-động, trạng thái mượn trả là đã trả, trạng thái sách là có thể cho mượn được
-*/
 void ChuaDenSach(int mathe, string masach) {
     Danh_Sach_The_Doc_Gia *p = Tim_Kiem(root, mathe);
     p->thong_tin.TrangThai = Khoa;
@@ -394,7 +351,6 @@ void ChuaDenSach(int mathe, string masach) {
     while(sach_mat != nullptr) {
         if(sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra) {
             sach_mat->data.trangthai = Mat_Sach;
-            CapNhatTrangThaiSach(masach, 1);
             break;
         }
         sach_mat = sach_mat->next;
@@ -409,7 +365,7 @@ void DaDenSach(int mathe, string masach) {
     while(sach_mat != nullptr) {
         if(sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra) {
             sach_mat->data.trangthai = Da_Tra;
-            CapNhatTrangThaiSach(masach, 0);
+            CapNhatTrangThaiSach(masach, 0); // Điều chỉnh lại theo hằng
             break;
         }
         sach_mat = sach_mat->next;
