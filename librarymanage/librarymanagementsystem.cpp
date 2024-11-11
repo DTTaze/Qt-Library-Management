@@ -636,7 +636,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
 {
-    if(!ui->lineEdit_maSach->text().isEmpty() && !ui->lineEdit_maThe->text().isEmpty()) {
+    if(!ui->lineEdit_maThe->text().isEmpty()) {
         bool thongbao[3] = {0, 0, 0};
         for(int row = 0 ; row < ui->tableWidget_muonTra->rowCount(); row ++) {
             QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
