@@ -66,32 +66,28 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
-//*** Xóa comment thừa, đọc tên hàm là hiểu
+const int co_the_muon = 0;
+const int da_duoc_muon = 1;
+const int da_thanh_ly = 2;
 
 
-//Hàm in danh sách đầu sách mặc định ( Xóa )
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
-//Hàm tìm kiếm vị trí của mã isbn trong danh sách ( Xóa )
 int TimKiemViTriDauSach(string ma);
 
-//Hàm xác định mã sách có tồn tại trong đầu sách ( Xóa )
 bool TonTaiMaSach(string ma_sach);
 
-//Hàm chuyển từ mã sách thành tên sách ( Xóa )
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
 
-//Hàm kiểm tra sách đã đầy ( Xóa )
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach); //*** Đổi tên hàm
+bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach);
 
 string ChuyenVeChuThuong(std::string str);
 
-//Hàm cập nhật trạng thái của sách ( Xóa )
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent); // Đổi tên hàm
-void InVaoTXT(); // Đổi tên hàm
+void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent);
+void GhiDauSachVaoFile();
 
 //Chức năng thêm sách
 void TaoMaSach(string& ma_sach,int demsosach);
@@ -110,6 +106,5 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 //Chức năng tìm tên sách
 void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
 void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
-void HienMaSachTrongTableMoi(int Vi_Tri , QTableView* tableView_dausach, QStandardItemModel*& model, string key);
 
 #endif

@@ -116,7 +116,7 @@ void MuonSach( const int& maThe, const string& maSach) {
     }
 
     ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, 1); // Chỉnh sửa lại int theo tên hằng
+    CapNhatTrangThaiSach(maSach, da_duoc_muon); // Chỉnh sửa lại int theo tên hằng
     CapNhatSoLuotMuon(maSach);
 
     QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
@@ -144,7 +144,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
 
-                CapNhatTrangThaiSach(ma_sach, 0); // Cập nhật theo tên hằng
+                CapNhatTrangThaiSach(ma_sach, co_the_muon); // Cập nhật theo tên hằng
                 capNhatTrangThaiThe(doc_gia);
 
                 break;
@@ -368,7 +368,7 @@ void DaDenSach(int mathe, string masach) {
     while(sach_mat != nullptr) {
         if(sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra) {
             sach_mat->data.trangthai = Da_Tra;
-            CapNhatTrangThaiSach(masach, 0); // Điều chỉnh lại theo hằng
+            CapNhatTrangThaiSach(masach, co_the_muon); // Điều chỉnh lại theo hằng
             break;
         }
         sach_mat = sach_mat->next;

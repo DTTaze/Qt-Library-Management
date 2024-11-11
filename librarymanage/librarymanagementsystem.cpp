@@ -19,7 +19,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
-    DocTuFile(danh_sach_dau_sach,this);
+    DocTuFileDauSach(danh_sach_dau_sach,this);
 
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
@@ -45,7 +45,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
         if (reply == QMessageBox::Yes) {
             ghiMaTheVaoFile();
             ghiThongTinTheDocGia();
-            InVaoTXT();
+            GhiDauSachVaoFile();
             event->accept();
         } else if (reply == QMessageBox::No) {
             event->accept();
@@ -108,7 +108,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 {
     ghiMaTheVaoFile();
     ghiThongTinTheDocGia();
-    InVaoTXT();
+    GhiDauSachVaoFile();
     Saved = true;
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
@@ -174,7 +174,7 @@ void LibraryManagementSystem::HienMaSach(const QModelIndex &index) {
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
-    if (KiemTraDaySachKV(danh_sach_dau_sach)){
+    if (DayDauSach(danh_sach_dau_sach)){
         QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
     }else{
         themdausach themds;

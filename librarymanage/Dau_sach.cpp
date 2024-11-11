@@ -204,6 +204,16 @@ void InTheoTenTimKiem(string key, QTableView* tableView_dausach, QStandardItemMo
     tableView_dausach->resizeColumnsToContents();
 }
 
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model, string key) {
+
+    // Neu nguoi dung nhap key
+    if (!key.empty()) {
+        InTheoTenTimKiem(key,tableView_dausach,model);
+    } else {
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableView_dausach,model);
+    }
+}
+
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
     int i = TimKiemViTriDauSach(ma_sach);
     if (i != -1){
@@ -368,27 +378,9 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
     delete[] copy;
 }
 
-
-
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model, string key) {
-
-    // Neu nguoi dung nhap key
-    if (!key.empty()) {
-        InTheoTenTimKiem(key,tableView_dausach,model);
-    } else {
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableView_dausach,model);
-    }
-}
-// *** Hàm rỗng
-void HienMaSachTrongTableMoi(int Vi_Tri , QTableView* tableView_dausach, QStandardItemModel*& model, string key) {
-
-}
-
-
-
 // *** Đổi tên hàm
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
-    if (danh_sach_dau_sach.soluongdausach > 9999){ // *** So sánh với
+bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
+    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){ // *** So sánh với
         return true;
     }else{
         return false;
@@ -396,7 +388,7 @@ bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach){
 }
 
 
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
+void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
 
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
@@ -445,14 +437,9 @@ void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
         ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
     }
     file.close();
-    // for (int i = 0; i < danh_sach_dau_sach.soluongdausach;i++){ // *** Comment dư
-    //     for(DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur != nullptr;cur=cur->next){
-    //         qDebug()<<cur->masach;
-    //     }
-    // }
 }
 
-void InVaoTXT() { // Đổi tên hàm
+void GhiDauSachVaoFile() { // Đổi tên hàm
     ofstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
         qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog

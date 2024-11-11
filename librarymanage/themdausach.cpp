@@ -115,7 +115,7 @@ void themdausach::on_pushButton_clicked() {
     // Kiểm tra điều kiện số lượng sách tối đa có thể thêm
 
     for (int i =0; i < soluong;i++){
-        ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, 0, vitriStd,"");
+        ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd,"");
     }
 
     // Tìm mã sách từ danh mục sách
