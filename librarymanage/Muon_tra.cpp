@@ -62,7 +62,7 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
 }
 
 
-bool KiemTraSachCoQuaHanKhong(DanhSachMUONTRA *head) {
+bool MuonSachQuaHan(DanhSachMUONTRA *head) {
     DanhSachMUONTRA *p = head;
     while(p != nullptr) {
         if(p->data.NgayTra.day == 0 ){
@@ -85,13 +85,15 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     return nullptr;
 }
 
-bool CoTheMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
-    int sosach = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+
     DanhMucSach* cur = danhmucsach;
-    if (maSach == ""||doc_gia->thong_tin.TrangThai == Khoa ||
-        sosach >= 3 ||
-        KiemTraSachCoQuaHanKhong(doc_gia->thong_tin.head_lsms) ||
-        cur->trangthai == 1 || cur->trangthai == 2) return false;
+    if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
+        || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
+        || cur->trangthai != 0 ) { // Chỉnh sửa lại int theo tên hằng
+        return false;
+    }
     return true;
 }
 
@@ -106,10 +108,9 @@ void MuonSach( const int& maThe, const string& maSach) {
         return;
     }
 
-
     DanhMucSach *cur = TimDiaChiSachTrongDanhMucSach(maSach);
 
-    if ( !CoTheMuonSach(maSach, cur, doc_gia) ) {
+    if ( !CoTheMuonSach(cur, doc_gia) ) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách.");
         return;
     }
@@ -125,6 +126,7 @@ void MuonSach( const int& maThe, const string& maSach) {
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
+
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
         return;
@@ -134,6 +136,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
         QMessageBox::warning(nullptr, "Lỗi", "Độc giả này không có sách mượn.");
         return;
     }
+
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
         if (current->data.masach == ma_sach && current->data.trangthai != Da_Tra) {

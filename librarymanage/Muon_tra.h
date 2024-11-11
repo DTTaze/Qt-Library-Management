@@ -67,7 +67,9 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach) ;
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
-bool CoTheMuonSach(DanhSachMUONTRA *head);
+bool MuonSachQuaHan(DanhSachMUONTRA *head);
+
+bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);

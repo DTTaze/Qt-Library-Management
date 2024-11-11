@@ -29,6 +29,8 @@
 #include <QLocale>
 using namespace std;
 
+// Khai báo các biến hằng int có thể mượn, đang được mược, đã thanh lý ( tốt nhất là khai báo enum )
+
 struct DanhMucSach{
     string masach;
     int trangthai;
@@ -64,30 +66,32 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
+//*** Xóa comment thừa, đọc tên hàm là hiểu
 
-//Hàm in danh sách đầu sách mặc định
+
+//Hàm in danh sách đầu sách mặc định ( Xóa )
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
-//Hàm tìm kiếm vị trí của mã isbn trong danh sách
+//Hàm tìm kiếm vị trí của mã isbn trong danh sách ( Xóa )
 int TimKiemViTriDauSach(string ma);
 
-//Hàm xác định mã sách có tồn tại trong đầu sách
+//Hàm xác định mã sách có tồn tại trong đầu sách ( Xóa )
 bool TonTaiMaSach(string ma_sach);
 
-//Hàm chuyển từ mã sách thành tên sách
+//Hàm chuyển từ mã sách thành tên sách ( Xóa )
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
 
-//Hàm kiểm tra sách đã đầy
-bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach);
+//Hàm kiểm tra sách đã đầy ( Xóa )
+bool KiemTraDaySachKV(DanhSachDauSach &danh_sach_dau_sach); //*** Đổi tên hàm
 
 string ChuyenVeChuThuong(std::string str);
 
-//Hàm cập nhật trạng thái của sách
+//Hàm cập nhật trạng thái của sách ( Xóa )
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
-void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent);
-void InVaoTXT();
+void DocTuFile(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent); // Đổi tên hàm
+void InVaoTXT(); // Đổi tên hàm
 
 //Chức năng thêm sách
 void TaoMaSach(string& ma_sach,int demsosach);

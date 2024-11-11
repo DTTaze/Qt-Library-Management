@@ -11,21 +11,21 @@ Danhmucsach::Danhmucsach(int Vi_tri_DS,QWidget *parent)
 
     int row = 0;
     for(DanhMucSach* cur = danh_sach_dau_sach.node[Vitridausach]->dms; cur != nullptr; cur = cur->next){
-    row = ui->tableWidget_danhmucsach->rowCount(); // Lấy số hàng hiện tại
-    ui->tableWidget_danhmucsach->insertRow(row);       // Thêm một hàng mới
+        row = ui->tableWidget_danhmucsach->rowCount();
+        ui->tableWidget_danhmucsach->insertRow(row);
 
-    // Thêm dữ liệu vào các ô của hàng mới
-    ui->tableWidget_danhmucsach->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(cur->masach)));
-    ui->tableWidget_danhmucsach->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(cur->vitri)));
 
-    int trangthai = cur->trangthai;
-    QString trang_thai_qt;
-    switch(trangthai) {
-    case 0: trang_thai_qt = "Có thể mượn"; break;
-    case 1: trang_thai_qt = "Đã được mượn"; break;
-    case 2: trang_thai_qt = "Đã thanh lý"; break;
-    }
-    ui->tableWidget_danhmucsach->setItem(row, 2, new QTableWidgetItem(trang_thai_qt));
+        ui->tableWidget_danhmucsach->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(cur->masach)));
+        ui->tableWidget_danhmucsach->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(cur->vitri)));
+
+        int trangthai = cur->trangthai;
+        QString trang_thai_qt;
+        switch(trangthai) {
+            case 0: trang_thai_qt = "Có thể mượn"; break;
+            case 1: trang_thai_qt = "Đã được mượn"; break;
+            case 2: trang_thai_qt = "Đã thanh lý"; break;
+        }
+        ui->tableWidget_danhmucsach->setItem(row, 2, new QTableWidgetItem(trang_thai_qt));
     }
 
     ui->tableWidget_danhmucsach->resizeColumnsToContents();
