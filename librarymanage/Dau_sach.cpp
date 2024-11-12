@@ -108,6 +108,103 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
+void ThayDoiDuLieuDauSach(string type, int Index_DS, QTableWidgetItem* item, string ma_sach) {
+    DauSach* cur_dausach = danh_sach_dau_sach.node[Index_DS];
+
+    if(ma_sach == ""){
+        if (type == "TS") {
+            cur_dausach->tensach = item->text().toStdString();
+        } else if (type == "ST") {
+            cur_dausach->sotrang = item->text().toInt();
+        } else if (type == "TG") {
+            cur_dausach->tacgia = item->text().toStdString();
+        } else if (type == "NXB") {
+            cur_dausach->namsx = item->text().toInt();
+        } else if (type == "TL") {
+            cur_dausach->theloai = item->text().toStdString();
+        }else QMessageBox::critical(nullptr,"Thay đổi dữ liệu đầu sách","Lỗi không thấy dữ liệu thay đổi");
+    }else if(type == "VT"){
+        for (DanhMucSach* cur_dms = danh_sach_dau_sach.node[Index_DS]->dms; cur_dms != nullptr; cur_dms = cur_dms->next){
+            if (cur_dms->masach == ma_sach){
+                cur_dms->vitri = item->text().toStdString();
+                return;
+            }
+        }
+    }else QMessageBox::critical(nullptr,"Thay đổi dữ liệu đầu sách", "Lỗi không thấy dữ liệu thay đổi");
+}
+
+void PhanLoaiDuLieuDauSach(int column,QTableWidgetItem* item,int Index_DS) {
+    string type = "";
+    QString item_data = item->text();
+    switch (column) {
+    case 1:
+        if (!item_data.isEmpty()) {
+            type = "TS";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 2:
+        if (!item_data.isEmpty()) {
+            type = "ST";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 3:
+        if (!item_data.isEmpty()) {
+            type = "TG";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 4:
+        if (!item_data.isEmpty()) {
+            type = "NXB";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 5:
+        if (!item_data.isEmpty()) {
+            type = "TL";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    default:
+        return;
+    }
+}
+
+void PhanLoaiDuLieuDauSachKhiTiemKiem(int column,QTableWidgetItem* item,int Index_DS){
+    string type = "";
+    QString item_data = item->text();
+    switch (column) {
+    case 1:
+        if (!item_data.isEmpty()) {
+            type = "TS";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 2:
+        if (!item_data.isEmpty()) {
+            type = "TG";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 3:
+        if (!item_data.isEmpty()) {
+            type = "NXB";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    case 4:
+        if (!item_data.isEmpty()) {
+            type = "TL";
+            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }
+        break;
+    default:
+        return;
+    }
+}
+
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach) {
 
     // Xóa dữ liệu cũ trong QTableWidget
@@ -499,10 +596,10 @@ void GhiDauSachVaoFile() {
 
     file.close();
 }
-//*** Thông báo lỗi bằng dialog
+
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     int i = TimKiemViTriDauSach(ma_sach);
-    if (i == -1) {qDebug()<<"Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.";return ;}
+    if (i == -1) {QMessageBox::warning(nullptr, "Cảnh báo", "Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.");}
     for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
         if(cur->masach == ma_sach){
             cur->trangthai = trang_thai;

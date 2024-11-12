@@ -171,7 +171,6 @@ void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelI
 
         // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
         QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
-        qDebug()<<headerItem->text().toInt();
         if (headerItem) {
             int ViTriDauSach = headerItem->text().toInt();
             HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
@@ -196,7 +195,12 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
+    int current_Row = ui->tableWidget_dausach->currentRow();
+    if (current_Row == -1) {
+        qDebug() << "Không có hàng nào được chọn.";
+    } else {
 
+    }
 }
 
 void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
@@ -221,6 +225,7 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
     for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
         if(cur->trangthai == 0){
             allowed = true;
+            break;
         }
     }
     if(allowed != true){
@@ -241,6 +246,38 @@ void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
 {
 
 }
+
+void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetItem *item)
+{
+    // Kiểm tra nếu item là nullptr
+    if (item == nullptr) {
+        QMessageBox::critical(nullptr, "Lỗi", "Không có dữ liệu để thay đổi.");
+        return;
+    }
+
+    // Kiểm tra nếu sự thay đổi là từ người dùng
+    if (item->isSelected()) {
+        int row = item->row();
+        int column = item->column();
+
+        QTableWidgetItem* row_header = ui->tableWidget_dausach->verticalHeaderItem(row);
+
+        // Kiểm tra nếu row_header hợp lệ
+        if (row_header == nullptr) {
+            QMessageBox::warning(this,"Cảnh báo","Không xác định được index cột.");
+            return;
+        }
+
+        int Index_DS = row_header->text().toInt();
+
+        if(ui->lineEdit_timkiemds->text().isEmpty()){
+            PhanLoaiDuLieuDauSach(column,item,Index_DS);
+        }else{
+            PhanLoaiDuLieuDauSachKhiTiemKiem(column,item,Index_DS);
+        }
+    }
+}
+
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 bool LibraryManagementSystem::kiemTraChuoi(QString s) {
     if ( s.length() == 0 ) {
@@ -753,6 +790,9 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
+
+
+
 
 
 

@@ -110,6 +110,8 @@ private slots:
 
 
 
+    void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
+
 public slots:
 
 private:
