@@ -68,6 +68,8 @@ private slots:
 
     bool kiemTraChuoi(QString s);
 
+    QString xuLyChuoi(QString text);
+
     void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
     bool laISBN(string text );
@@ -93,7 +95,6 @@ private slots:
     void on_muonSach_pushButton_clicked();
 
     void on_MatSach_pushButton_2_clicked();
-
 
 public slots:
 

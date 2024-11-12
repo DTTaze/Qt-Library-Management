@@ -42,6 +42,7 @@ struct Danh_Sach_The_Doc_Gia {
 struct Danh_Sach_Theo_Ten
 {
     string ten;
+    string ho;
     Danh_Sach_The_Doc_Gia* PTR = nullptr;
     Danh_Sach_Theo_Ten* next = nullptr;
 };

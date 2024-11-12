@@ -8,7 +8,7 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
-void DatLaiSoLuotMuon() { // Hàm dư ???
+void DatLaiSoLuotMuon() {
     for(int i = 0; i < SoLuongSach; i++) {
         DanhSachSachMuon[i].demsoluotmuon = 0;
     }
@@ -31,7 +31,7 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     int dem = 0;
 
     while(temp!=nullptr) {
-        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) {
+        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) { // viết hàm bool
             dem++;
         }
         temp = temp->next;
@@ -42,12 +42,11 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
 bool MuonSachQuaHan(DanhSachMUONTRA *head) {
     DanhSachMUONTRA *p = head;
     while(p != nullptr) {
-        if(p->data.NgayTra.day == 0 ){ // Chỉnh sửa lại điều kiện kiểm tra
+        if(p->data.NgayTra.day == 0 ){ // if ( chuaTraSach và SoNgayQuaHan > 0 )
             if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
         }
-        p = p->next;
     }
-    return false;
+    return -1;
 }
 
 bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
@@ -56,7 +55,7 @@ bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
     DanhMucSach* cur = danhmucsach;
     if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
         || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
-        || cur->trangthai != co_the_muon ) { // Chỉnh sửa lại int theo tên hằng
+        || cur->trangthai != co_the_muon ) {
         return false;
     }
     return true;
@@ -85,7 +84,7 @@ int TimViTriMaSachTrongDanhSachSachMuon( string maSach) {
 }
 
 void CapNhatSoLuotMuon ( string ma_sach) {
-    int vitri = TimViTriMaSachTrongDanhSachSachMuon(ma_sach) ;
+    int vitri = TimViTriMaSachTrongDanhSachSachMuon(ma_sach);
     string ma_ISBN = ma_sach.substr(0, 17);
     if(vitri != -1) {
         DanhSachSachMuon[vitri].demsoluotmuon++;
@@ -143,7 +142,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
 
-                CapNhatTrangThaiSach(ma_sach, co_the_muon); // Cập nhật theo tên hằng
+                CapNhatTrangThaiSach(ma_sach, co_the_muon);
                 capNhatTrangThaiThe(doc_gia);
 
                 break;
@@ -367,7 +366,7 @@ void DaDenSach(int mathe, string masach) {
     while(sach_mat != nullptr) {
         if(sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra) {
             sach_mat->data.trangthai = Da_Tra;
-            CapNhatTrangThaiSach(masach, co_the_muon); // Điều chỉnh lại theo hằng
+            CapNhatTrangThaiSach(masach, co_the_muon);
             break;
         }
         sach_mat = sach_mat->next;

@@ -21,86 +21,6 @@ bool KiemTraNgayThangNam(Date NgayThangNam) {
         return true;
 }
 
-bool isNumber(const string &str) {
-    for (char const &c : str) {
-        if (isdigit(c) == 0) return false;
-    }
-    return true;
-}
-
-void NhapNgayThangNam(Date &nhap_ngay_thang_nam) {
-    string nhap_ngaythangnam, ngay, thang, nam;
-    cout << "Nhap ngay thang nam (DD/MM/YYYY): ";
-    getline(cin, nhap_ngaythangnam);
-
-    size_t vitri1 = nhap_ngaythangnam.find('/');
-    size_t vitri2 = nhap_ngaythangnam.find('/', vitri1 + 1);
-
-    if (vitri1 == string::npos || vitri2 == string::npos) {
-        cout << "Dinh dang ngay thang nam khong hop le!" << endl;
-        return;
-    }
-
-    ngay = nhap_ngaythangnam.substr(0, vitri1);
-    thang = nhap_ngaythangnam.substr(vitri1 + 1, vitri2 - vitri1 - 1);
-    nam = nhap_ngaythangnam.substr(vitri2 + 1);
-
-    if (!isNumber(ngay) || !isNumber(thang) || !isNumber(nam)) {
-        cout << "Loi: Ngay, thang, nam phai la so nguyen!" << endl;
-        return;
-    }
-
-    nhap_ngay_thang_nam.day = stoi(ngay);
-    nhap_ngay_thang_nam.month = stoi(thang);
-    nhap_ngay_thang_nam.year = stoi(nam);
-
-    if (!KiemTraNgayThangNam(nhap_ngay_thang_nam)) {
-        cout << "Loi: Ngay thang nam khong hop le!" << endl;
-    }
-}
-
-Date NhapChuoiNgayThangNam(string &nhap_ngaythangnam) {
-    string ngay, thang, nam;
-    // cout << "Nhap ngay thang nam (DD/MM/YYYY): ";
-    // getline(cin, nhap_ngaythangnam);
-    Date nhap_ngay_thang_nam = {0, 0, 0};
-    size_t vitri1 = nhap_ngaythangnam.find('/');
-    size_t vitri2 = nhap_ngaythangnam.find('/', vitri1 + 1);
-
-    if (vitri1 == string::npos || vitri2 == string::npos) {
-        cout << "Dinh dang ngay thang nam khong hop le!" << endl;
-        return nhap_ngay_thang_nam;
-    }
-
-    ngay = nhap_ngaythangnam.substr(0, vitri1);
-    thang = nhap_ngaythangnam.substr(vitri1 + 1, vitri2 - vitri1 - 1);
-    nam = nhap_ngaythangnam.substr(vitri2 + 1);
-
-    if (!isNumber(ngay) || !isNumber(thang) || !isNumber(nam)) {
-        cout << "Loi: Ngay, thang, nam phai la so nguyen!" << endl;
-        return nhap_ngay_thang_nam;
-    }
-
-    nhap_ngay_thang_nam.day = stoi(ngay);
-    nhap_ngay_thang_nam.month = stoi(thang);
-    nhap_ngay_thang_nam.year = stoi(nam);
-
-    if (!KiemTraNgayThangNam(nhap_ngay_thang_nam)) {
-        cout << "Loi: Ngay thang nam khong hop le!" << endl;
-        return {0, 0, 0};
-    }
-    return nhap_ngay_thang_nam;
-}
-
-void NgayTraDuKien(Date Ngay_muon) {
-    tm Ngay_du_kien;
-    Ngay_du_kien.tm_mday = Ngay_muon.day + 7;
-    Ngay_du_kien.tm_mon = Ngay_muon.month;
-    Ngay_du_kien.tm_year = Ngay_muon.year;
-    time_t time = mktime(&Ngay_du_kien);
-    cout<<Ngay_du_kien.tm_mday<<"/"<<Ngay_du_kien.tm_mon<<"/"<<Ngay_du_kien.tm_year<<endl;
-}
-
 Date NgayMuon() {
     Date ngay_muon;
     time_t now = time(0);
@@ -148,9 +68,6 @@ int SoNgayQuaHan(Date ngay_muon, Date ngay_tra) {
     return 0;
 }
 
-void InManHinhNgayThangNam(Date ngay_thang_nam) {
-    cout<<ngay_thang_nam.day<<"/"<<ngay_thang_nam.month<<"/"<<ngay_thang_nam.year<<endl;
-}
 string ChuyenDateSangString(Date Ngay) {
     if(Ngay.day == 0 || Ngay.month == 0 || Ngay.year == 0) return "";
     string ngay = to_string(Ngay.day)+'/'+to_string(Ngay.month)+'/'+to_string(Ngay.year);
@@ -164,7 +81,7 @@ Date ChuyenStringSangDate(string nhap_ngaythangnam) {
     size_t vitri2 = nhap_ngaythangnam.find('/', vitri1 + 1);
 
     if (vitri1 == string::npos || vitri2 == string::npos) {
-        cout << "Lỗi: Chuỗi ngày tháng không hợp lệ" << endl;
+        cout << "Lỗi: Chuỗi ngày tháng không hợp lệ" << endl; // thông báo lỗi bằng dialog
         return nhap_ngay_thang_nam;
     }
 
@@ -185,7 +102,7 @@ Date ChuyenStringSangDate(string nhap_ngaythangnam) {
         cout << "Lỗi: Tháng không hợp lệ" << endl;
         return Date();
     }
-    if (nhap_ngay_thang_nam.year < 1900 || nhap_ngay_thang_nam.year > 2100) {
+    if (nhap_ngay_thang_nam.year < 1900 || (nhap_ngay_thang_nam.year > 2100) ) {
         cout << "Lỗi: Năm không hợp lệ" << endl;
         return Date();
     }
@@ -193,38 +110,3 @@ Date ChuyenStringSangDate(string nhap_ngaythangnam) {
     return nhap_ngay_thang_nam;
 }
 
-// int main () {
-//     Date muonsach, trasach;
-//     int luachon = 1;
-//     while(luachon != 0) {
-//         cout<<"Nhap tuy chon: 1. muon sach          2. tra sach         3. da nhap xong, in ra thong tin        0. thoat chuong trinh"<<endl;
-//         cout<<"lua chon: ";
-//         cin>>luachon;
-
-//         if(luachon == 1) {
-//             muonsach = NgayMuon();
-//             cout<<"neu muon hom nay, ngay tra du kien cua ban la: ";
-//             NgayTraDuKien (muonsach);
-//         }
-//         else if(luachon == 2) {
-//             if(muonsach.day == 0) {
-//                 cout<<"Quyen sach nay chua muon, vui long chon tuy chon khac!"<<endl;
-//             }
-//             else trasach = NgayTraThucTe();
-//         }
-//         else if (luachon == 3) {
-//             if(muonsach.day == 0) {
-//                 cout<<"chua co thong tin!"<<endl;
-
-//             } else {
-//                 cout<<"Ngay muon: "; InManHinhNgayThangNam(muonsach);
-//                 cout<<"Ngay tra du kien: "; NgayTraDuKien(muonsach);
-//                 cout<<"Ngay tra thuc te: "; InManHinhNgayThangNam(trasach);
-//                 break;
-//             }
-//         }
-//         else if (luachon == 0) return 0;
-//         else {cout<<"khong hop le, vui long nhap lai"<<endl;}
-//     }
-//     return 0;
-// }

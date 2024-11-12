@@ -221,6 +221,9 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 bool LibraryManagementSystem::kiemTraChuoi(QString s) {
+    if ( s.length() == 0 ) {
+        return false;
+    }
     for ( int i = 0; i < s.length(); i++ ) {
         if ( !s[i].isLetter() && !s[i].isSpace() ) {
             return false;
@@ -287,7 +290,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
     }
 }
 
-void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc giả
+void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
 {
     int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
 
@@ -296,14 +299,23 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
         return;
     }
 
-    QTableWidgetItem* item = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
+    QTableWidgetItem* item = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
     if (item) {
         int MATHE = item->text().toInt();
         Danh_Sach_The_Doc_Gia* p = Tim_Kiem(MATHE);
         if ( p->thong_tin.head_lsms != nullptr || p->thong_tin.TrangThai == TrangThaiCuaThe::Khoa) {
             QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này.");
+            return;
         } else {
-            Xoa_Doc_Gia(root, MATHE);
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, "Thông báo",
+                                          "Bạn có chắc muốn xóa thẻ độc giả này?",
+                                          QMessageBox::Yes | QMessageBox::No);
+            if ( reply == QMessageBox::Yes ) {
+                Xoa_Doc_Gia(root, MATHE);
+            } else {
+                return;
+            }
 
             ui->danhSachTheDocGia_tableWidget->removeRow(currentRow); // Xóa hàng từ bảng
 
@@ -317,15 +329,41 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     Saved = false;
 }
 
-void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem* item) // Theo dõi thay đổi ở ô
+QString LibraryManagementSystem::xuLyChuoi(QString text) {
+    QString newText = text.trimmed();
+
+    QString result;
+    bool lastWasSpace = false;
+
+    for (int i = 0; i < newText.length(); ++i) {
+        QChar currentChar = newText[i];
+
+        if (currentChar != ' ' || !lastWasSpace) {
+            result.append(currentChar);
+            lastWasSpace = (currentChar == ' ');
+        }
+    }
+
+    result = result.toLower();
+
+    for (int i = 0; i < result.length(); i++) {
+        if (i == 0 || result[i - 1] == ' ') {
+            result[i] = result[i].toUpper();
+        }
+    }
+
+    return result;
+}
+
+void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem* item)
 {
     int row = item->row();
     int column = item->column();
 
+    QString newValue = xuLyChuoi(item->text());
+
     QTableWidgetItem* maTheItem = ui->danhSachTheDocGia_tableWidget->item(row, 0);
     int maThe = maTheItem->text().toInt();
-
-    QString newValue = item->text();
     Danh_Sach_The_Doc_Gia* p = Tim_Kiem(maThe);
 
     switch (column) {
@@ -377,7 +415,6 @@ void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_cellDoubleClicked
         }
     }
 }
-
 
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 
@@ -695,10 +732,5 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
-
-
-
-
-
 
 

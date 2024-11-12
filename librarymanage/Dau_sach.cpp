@@ -3,7 +3,7 @@
 DanhSachDauSach danh_sach_dau_sach;
 DanhMucSach* danh_muc_sach;
 
-int TimKiemViTriDauSach(string ma) {// Đổi tên biến sang tên cụ thể hơn, xóa comment thừa
+int TimKiemViTriDauSach(string ma) {
     if(ma.size() < 13) return -1;
 
     if(ma.size() > 17) {// ma sach cua ISBN-13
@@ -15,7 +15,7 @@ int TimKiemViTriDauSach(string ma) {// Đổi tên biến sang tên cụ thể h
             ma = ma.substr(0, 13);
         }
     }
-    // Tìm kiếm ISBN trong danh_sach_dau_sach
+
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
         if (danh_sach_dau_sach.node[i]->ISBN == ma) {
             return i;
@@ -42,49 +42,47 @@ void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_t
     if (ma_sach == "") {
         TaoMaSach(ma_sach, I_S_B_N,demsosach);
     }
-    // Tạo node mới với thông tin mã sách, trạng thái và vị trí
+
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
-    // Thêm node mới vào đầu danh sách
+
     new_dms->next = head_dms;
     head_dms = new_dms;
 }
 
-// Hàm chuyển đổi chuỗi sang chữ thường
-string ChuyenVeChuThuong(string str) { // Đổi tên biến cụ thể hơn
+
+string ChuyenVeChuThuong(string str) {
     for (size_t i = 0; i < str.size(); ++i) {
         str[i] = tolower(static_cast<unsigned char>(str[i]));
     }
     return str;
 }
 
-void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) { // Xóa comment thừa
-    // Mặc định chèn vào cuối
+void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
+
     int n = danh_sach_dau_sach.soluongdausach;
     int vi_tri_them = n;
 
-    // Chuyển tên sách mới sang QString
+
     QString ten_sach_qt = QString::fromStdString(ten_sach);
 
-    // Xác định vị trí chèn
+
     for (int i = 0; i < n; i++) {
-        // Chuyển tên sách hiện tại sang QString
+
         QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
 
-        // So sánh tên sách không phân biệt chữ hoa, chữ thường với locale tiếng Việt
+
         if (ten_sach_qt.localeAwareCompare(ten_sach_cur_qt) <= 0) {
             vi_tri_them = i;
             break;
         }
     }
 
-    // Dời các sách phía sau 1 vị trí
+
     for (int i = n; i > vi_tri_them; i--) {
         danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
     }
 
-    // Chèn sách vào vị trí tìm được
     danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
-    // Tăng số sách trong đầu sách lên 1
     danh_sach_dau_sach.node[vi_tri_them]->demsosach++;
 }
 
@@ -94,7 +92,7 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
     int index_isbn = TimKiemViTriDauSach(I_S_B_N);
 
-    if(index_isbn == -1){//Nếu không tồn tại thì thêm đầu sách mới
+    if(index_isbn == -1){
 
 
         DauSach* new_DauSach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
@@ -102,11 +100,9 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
         ThemDanhMucSach(new_DauSach->dms,trang_thai,vi_tri,I_S_B_N,new_DauSach->demsosach+1,ma_sach);
 
         ChenDauSachMoi(new_DauSach,ten_sach);
-
-        //tăng đầu sách và số sách trong đầu sách lên 1
         danh_sach_dau_sach.soluongdausach++;
 
-    }else {//Nếu tồn tại thì thêm vào đầu sách đã có với demsosach+1
+    }else {
         ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
         danh_sach_dau_sach.node[index_isbn]->demsosach++;
     }
@@ -378,9 +374,9 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
     delete[] copy;
 }
 
-// *** Đổi tên hàm
+
 bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
-    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){ // *** So sánh với
+    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
         return true;
     }else{
         return false;
@@ -439,7 +435,7 @@ void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
     file.close();
 }
 
-void GhiDauSachVaoFile() { // Đổi tên hàm
+void GhiDauSachVaoFile() {
     ofstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
         qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog
@@ -449,7 +445,6 @@ void GhiDauSachVaoFile() { // Đổi tên hàm
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
         for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
             DauSach* dau_sach = danh_sach_dau_sach.node[i];
-            // Ghi thông tin đầu sách vào tệp
             file << dau_sach->ISBN << '|'
                  << dau_sach->tensach << '|'
                  << dau_sach->sotrang << '|'

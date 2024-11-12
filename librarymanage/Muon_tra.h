@@ -63,7 +63,7 @@ bool KiemTraDieuKienMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_
 
 void MuonSach(const int &maThe, const string& maSach);
 
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach) ;
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 

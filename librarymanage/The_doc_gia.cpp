@@ -101,11 +101,12 @@ void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
     Danh_Sach_Theo_Ten* newNode = new Danh_Sach_Theo_Ten;
     newNode->PTR = docgia;
     newNode->ten = docgia->thong_tin.Ten;
+    newNode->ho = docgia->thong_tin.Ho;
 
     Danh_Sach_Theo_Ten* truoc = nullptr;
     Danh_Sach_Theo_Ten* sau = head;
 
-    while (sau != nullptr && newNode->ten > sau->ten) {
+    while (sau != nullptr && (newNode->ten > sau->ten || (newNode->ten == sau->ten && newNode->ho > sau->ho))) {
         truoc = sau;
         sau = sau->next;
     }
@@ -202,7 +203,7 @@ void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& ne
 void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     DanhSachMUONTRA* temp = docGia->thong_tin.head_lsms;
     while ( temp != nullptr ) {
-        if ( temp->data.trangthai == 2 ) { // Thẻ sẽ bị khóa nếu số ngày mượn quá 7 ngày hoặc làm mất sách
+        if ( temp->data.trangthai == 2 ) {
             docGia->thong_tin.TrangThai = Khoa;
             return;
         }
@@ -318,6 +319,7 @@ void themTheDocGiaVaoBang(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* docG
     tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(docGia->thong_tin.Ten)));
     tableWidget->setItem(row, 3, new QTableWidgetItem(docGia->thong_tin.phai == Nam ? "Nam" : "Nữ"));
     tableWidget->setItem(row, 4, new QTableWidgetItem(docGia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
+
 }
 
 void inDanhSachTheDocGiaTheoMaSo(QTableWidget* tableWidget, Danh_Sach_The_Doc_Gia* root ) {

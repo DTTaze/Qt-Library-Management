@@ -27,6 +27,7 @@
 #include <QCheckBox>
 #include <QHeaderView>
 #include <QLocale>
+#include <QComboBox>
 using namespace std;
 
 const int co_the_muon = 0;
@@ -49,7 +50,7 @@ struct DauSach {
     int sotrang;
     string tacgia;
     int namsx;
-    int demsosach =0; // Đổi tên biến
+    int demsosach =0; // đổi tên biến sang SoLuongSachTrongDanhMucSach
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
@@ -67,7 +68,6 @@ struct DanhSachDauSach{
 
 
 extern DanhSachDauSach danh_sach_dau_sach;
-
 
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
 
