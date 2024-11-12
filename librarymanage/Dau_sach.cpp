@@ -140,7 +140,7 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
         QTableWidgetItem* theLoaiItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai));
 
         // Đặt item cho từng ô
-        tableWidget_dausach->setItem(i, 0, isbnItem);  // Cột ISBN
+        tableWidget_dausach->setItem(i, 0, isbnItem);
         tableWidget_dausach->setItem(i, 1, tenSachItem);
         tableWidget_dausach->setItem(i, 2, soTrangItem);
         tableWidget_dausach->setItem(i, 3, tacGiaItem);

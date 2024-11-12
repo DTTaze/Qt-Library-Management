@@ -6,6 +6,15 @@ themdausach::themdausach( QWidget *parent)
     , ui(new Ui::themdausach)
 {
     ui->setupUi(this);
+    KhoaNhapDauSach();
+}
+
+themdausach::~themdausach()
+{
+    delete ui;
+}
+
+void themdausach::KhoaNhapDauSach(){
     ui->lineEdit_tacgia->setReadOnly(true);
     ui->lineEdit_tensach->setReadOnly(true);
     ui->lineEdit_theloai->setReadOnly(true);
@@ -14,10 +23,20 @@ themdausach::themdausach( QWidget *parent)
     ui->spinBox_sotrang->setReadOnly(true);
 }
 
-themdausach::~themdausach()
-{
-    delete ui;
+void themdausach::MoKhoaNhapDauSach(){
+    ui->lineEdit_tacgia->setReadOnly(false);
+    ui->lineEdit_tensach->setReadOnly(false);
+    ui->lineEdit_theloai->setReadOnly(false);
+    ui->comboBox_vitri->setEnabled(true);
+    ui->spinBox_namsb->setReadOnly(false);
+    ui->spinBox_sotrang->setReadOnly(false);
 }
+
+bool themdausach::ThemMaISBNQTHopLe(QString i_s_b_n){
+    int Dash_Count = i_s_b_n.count('-');
+    return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
+}
+
 QString themdausach::CapitalizeWords(const QString& text) {
     QString result;
     bool isNewWord = true;
@@ -62,65 +81,69 @@ QString themdausach::RemoveSpace(const QString &key) {
     return valid_key;
 }
 
-
 void themdausach::on_pushButton_clicked() {
-
     // Lấy dữ liệu từ các ô input và combobox
     QString ISBN = ui->lineEdit_ISBN->text().simplified();
     QString tensach = ui->lineEdit_tensach->text().simplified();
     QString tacgia = ui->lineEdit_tacgia->text().simplified();
     QString theloai = ui->lineEdit_theloai->text().simplified();
-    QString vitri = ui->comboBox_vitri->currentText().simplified(); // Dữ liệu từ QComboBox
+    QString vitri = ui->comboBox_vitri->currentText().simplified();
     int sotrang = ui->spinBox_sotrang->value();
     int namsx = ui->spinBox_namsb->value();
     int soluong = ui->spinBox_soluong->value();
 
     // Chuyển đổi sang string
     string isbnStd = ISBN.toStdString();
-    string tensachStd = tensach.toStdString(); // Chuyển đổi tên sách
+    string tensachStd = tensach.toStdString();
     string tacgiaStd = tacgia.toStdString();
     string theloaiStd = theloai.toStdString();
-    string vitriStd = vitri.toStdString(); // Chuyển đổi từ QComboBox
+    string vitriStd = vitri.toStdString();
 
-    // Mảng đầu vào và mảng thông báo lỗi
-    string inputs[] = {isbnStd, tensachStd, tacgiaStd, theloaiStd, vitriStd};
+    // Biến lưu trữ thông báo lỗi
+    QString errorMessage;
+
+    // Kiểm tra từng điều kiện và thêm lỗi vào errorMessage nếu có
+    if (ISBN.isEmpty()) {
+        errorMessage += "Bạn chưa điền ISBN.\n";
+    } else if (int i = TimKiemViTriDauSach(isbnStd) != -1) {
+        QMessageBox::warning(this,"Cảnh báo", "Mã đã tồn tại.");
+        return;
+    } else if (!ThemMaISBNQTHopLe(ISBN)) {
+        QMessageBox::warning(this,"Cảnh báo", "Mã không hợp lệ.");
+        return;
+    }
+
     QString messages[] = {
-        "Bạn chưa điền ISBN.",
-        "Bạn chưa điền tên sách.",
-        "Bạn chưa điền tên tác giả.",
-        "Bạn chưa điền thể loại.",
-        "Bạn chưa điền vị trí."
+        "Bạn chưa điền tên sách.\n",
+        "Bạn chưa điền tên tác giả.\n",
+        "Bạn chưa điền thể loại.\n",
+        "Bạn chưa điền vị trí.\n"
     };
+    string inputs[] = {tensachStd, tacgiaStd, theloaiStd, vitriStd};
 
-    // Kiểm tra các trường bắt buộc
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 4; ++i) {
         if (inputs[i].empty()) {
-            QMessageBox::warning(this, "Lỗi", messages[i]);
-            return;
+            errorMessage += messages[i];
         }
-
     }
 
-    // Kiểm tra số trang phải lớn hơn 0
     if (sotrang <= 0) {
-        QMessageBox::warning(this, "Lỗi", "Số trang phải lớn hơn 0.");
-        return;
+        errorMessage += "Số trang phải lớn hơn 0.\n";
     }
 
-    // Kiểm tra năm xuất bản phải lớn hơn 0
     if (namsx <= 0) {
-        QMessageBox::warning(this, "Lỗi", "Năm xuất bản không hợp lệ.");
+        errorMessage += "Năm xuất bản không hợp lệ.\n";
+    }
+
+    // Nếu có lỗi, hiển thị thông báo và thoát hàm
+    if (!errorMessage.isEmpty()) {
+        QMessageBox::warning(this, "Lỗi", errorMessage);
         return;
     }
-    // Kiểm tra điều kiện số lượng sách tối đa có thể thêm
 
-    for (int i =0; i < soluong;i++){
-        ThemDauSach(danh_sach_dau_sach,isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd,"");
+    for (int i = 0; i < soluong; i++) {
+        ThemDauSach(danh_sach_dau_sach, isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd, "");
     }
-
-    // Tìm mã sách từ danh mục sách
-    int index = 0;
-    for (; index < danh_sach_dau_sach.soluongdausach && danh_sach_dau_sach.node[index]->ISBN != isbnStd; index++);
 
     // Hiển thị thông tin đã nhập
     QString infoMessage = QString("Thông tin đã nhập:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được")
@@ -143,26 +166,6 @@ void themdausach::on_pushButton_2_clicked()
 {
     close();
 }
-
-
-void themdausach::on_spinBox_namsb_valueChanged(int arg1)
-{
-    if(arg1 != 0){
-        // Lay nam hien tai
-        std::time_t now = std::time(0);
-        std::tm *localTime = std::localtime(&now);
-        int currentYear = localTime->tm_year + 1900; // Nam hien tai
-        // Kiểm tra xem năm nhập vào có lớn hơn năm hiện tại không
-        if (arg1 > currentYear) {
-            // Nếu lớn hơn năm hiện tại, thông báo và đặt lại giá trị
-            QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
-
-            // Đặt lại giá trị cho QSpinBox về năm hiện tại
-            ui->spinBox_namsb->setValue(currentYear);
-        }
-    }
-}
-
 
 void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 {
@@ -188,41 +191,43 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 
         if (LocKiTu.length() == 0){
             ui->lineEdit_ISBN->setStyleSheet("");
-        }else if (LocKiTu.length() == 13 || LocKiTu.length() == 17) {
-            ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
+        }else if (ThemMaISBNQTHopLe(LocKiTu)) {
             string ma_isbn_hople = LocKiTu.toStdString();
             int index = TimKiemViTriDauSach(ma_isbn_hople);
-            if (index != -1){
-
-                ui->lineEdit_tacgia->setReadOnly(true);
-                ui->lineEdit_tensach->setReadOnly(true);
-                ui->lineEdit_theloai->setReadOnly(true);
-                ui->comboBox_vitri->setEnabled(false);
-                ui->spinBox_namsb->setReadOnly(true);
-                ui->spinBox_sotrang->setReadOnly(true);
-
-                ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tacgia));
-                ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->tensach));
-                ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[index]->theloai));
-                ui->comboBox_vitri->setCurrentText(QString::fromStdString(danh_sach_dau_sach.node[index]->dms->vitri));
-                ui->spinBox_namsb->setValue(danh_sach_dau_sach.node[index]->namsx);
-                ui->spinBox_sotrang->setValue(danh_sach_dau_sach.node[index]->sotrang);
-
+            if (index == -1){
+                ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
+                MoKhoaNhapDauSach();
             }else{
-                ui->lineEdit_tacgia->setReadOnly(false);
-                ui->lineEdit_tensach->setReadOnly(false);
-                ui->lineEdit_theloai->setReadOnly(false);
-                ui->comboBox_vitri->setEnabled(true);
-                ui->spinBox_namsb->setReadOnly(false);
-                ui->spinBox_sotrang->setReadOnly(false);
+                ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
+                KhoaNhapDauSach();
             }
         } else {
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
+            KhoaNhapDauSach();
         }
     }else{
         ui->lineEdit_ISBN->setStyleSheet("");
     }
 }
+
+void themdausach::on_spinBox_namsb_valueChanged(int arg1)
+{
+    if(arg1 != 0){
+        // Lay nam hien tai
+        std::time_t now = std::time(0);
+        std::tm *localTime = std::localtime(&now);
+        int currentYear = localTime->tm_year + 1900; // Nam hien tai
+        // Kiểm tra xem năm nhập vào có lớn hơn năm hiện tại không
+        if (arg1 > currentYear) {
+            // Nếu lớn hơn năm hiện tại, thông báo và đặt lại giá trị
+            QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
+
+            // Đặt lại giá trị cho QSpinBox về năm hiện tại
+            ui->spinBox_namsb->setValue(currentYear);
+        }
+    }
+}
+
 
 void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
     if(!text.isEmpty()){

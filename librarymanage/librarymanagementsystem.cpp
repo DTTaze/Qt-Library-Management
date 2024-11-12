@@ -194,6 +194,16 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
     }
 }
 
+void LibraryManagementSystem::on_editSach_pushButton_clicked()
+{
+
+}
+
+void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
+{
+
+}
+
 void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 {
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
@@ -227,6 +237,10 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 
 }
 
+void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
+{
+
+}
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 bool LibraryManagementSystem::kiemTraChuoi(QString s) {
     if ( s.length() == 0 ) {
@@ -739,6 +753,8 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
+
+
 
 
 
