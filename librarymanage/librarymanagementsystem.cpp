@@ -75,10 +75,13 @@ void LibraryManagementSystem::tabMuonTra()
 
 void LibraryManagementSystem::tabBaoCao()
 {
+    int SoLuongSach = 0;
     ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
-    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
-    DatLaiSoLuotMuon();
-    NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root);
+    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
+    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView,root);
+
 }
 
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
@@ -620,7 +623,6 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
         }
         ui->tableWidget_muonTra->setRowCount(0);
         inThongTin(getmaThe());
-        ui->lineEdit_maSach->clear();
         Saved = false;
     } else {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả để trả sách.");
@@ -654,13 +656,13 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
             MuonSach(getmaThe(), getmaSachCoTheMuon());
             ui->tableWidget_muonTra->setRowCount(0);
             inThongTin(getmaThe());
-            inThongTinmaSach(getmaSachCoTheMuon());
+            ui->lineEdit_maSach->clear();
         }
         else {
             MuonSach(getmaThe(), maSach);
             ui->tableWidget_muonTra->setRowCount(0);
             inThongTin(getmaThe());
-            inThongTinmaSach(maSach);
+            ui->lineEdit_maSach->clear();
         }
         Saved = false;
     } else {

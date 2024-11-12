@@ -59,7 +59,6 @@ struct danhSachDocGiaMuonQuaHan {
 
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra); // sửa lại thành ThemSachMUONTRA
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
-bool KiemTraDieuKienMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
 
 void MuonSach(const int &maThe, const string& maSach);
 
@@ -69,7 +68,7 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
 bool MuonSachQuaHan(DanhSachMUONTRA *head);
 
-bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
+bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
@@ -78,22 +77,26 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) ;
 
 void MergeSortSachMuon(SachMuon* arr, int left, int right);
 
-void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(DanhSachMUONTRA *danh_sach_muon_tra);
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra);
 
-void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
 
-int TimViTriMaSachTrongDanhSachSachMuon(string maSach);
+int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach);
 
-void CapNhatSoLuotMuon (string ma_sach) ;
+void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) ;
 
-void DatLaiSoLuotMuon();
+void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]);
 
-void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia * root);
+void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root);
 //----------------------------------------------------------------Bảng độc giả quá hạn--------------------------------------------------------------------------------------------------
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
 
+void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Doc_Gia* p) ;
+
 danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root);
+
+void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head);
 
 void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) ;
 

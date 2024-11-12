@@ -1,29 +1,31 @@
 #include "Muon_tra.h"
 using namespace std;
 
-SachMuon DanhSachSachMuon[MAXSACH]; // Chuyển thành cục bộ ( đang chuyển đến hàm đặt lại số lượt mượn)
-int SoLuongSach = 0;
 
 int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
-void DatLaiSoLuotMuon() {
-    for(int i = 0; i < SoLuongSach; i++) {
-        DanhSachSachMuon[i].demsoluotmuon = 0;
+int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach) {
+    string ma_ISBN = maSach.substr(0, 17);
+    for (int i = 0; i < SoLuongSach; i++) {
+        if (DanhSachSachMuon[i].masach == ma_ISBN) {
+            return i;
+        }
     }
+    return -1;
 }
 
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
-    string ma_isbn = maSach.substr(0, 17);
-    int vitri = TimKiemViTriDauSach(ma_isbn);
-    if (vitri == -1) {
-        return nullptr;
+void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) {
+    int vitri = TimViTriMaSachTrongDanhSachSachMuon(SoLuongSach, DanhSachSachMuon, ma_sach) ;
+    string ma_ISBN = ma_sach.substr(0, 17);
+    if(vitri != -1) {
+        DanhSachSachMuon[vitri].demsoluotmuon++;
+    } else {
+        DanhSachSachMuon[SoLuongSach].masach = ma_ISBN;
+        DanhSachSachMuon[SoLuongSach].demsoluotmuon = 1;
+        SoLuongSach++;
     }
-    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
-        if (current->masach == maSach) return current;
-    }
-    return nullptr;
 }
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
@@ -39,26 +41,10 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     return dem;
 }
 
-bool MuonSachQuaHan(DanhSachMUONTRA *head) {
-    DanhSachMUONTRA *p = head;
-    while(p != nullptr) {
-        if(p->data.NgayTra.day == 0 ){ // if ( chuaTraSach và SoNgayQuaHan > 0 )
-            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
-        }
+void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]) {
+    for(int i = 0; i < SoLuongSach; i++) {
+        DanhSachSachMuon[i].demsoluotmuon = 0;
     }
-    return -1;
-}
-
-bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
-    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
-
-    DanhMucSach* cur = danhmucsach;
-    if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
-        || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
-        || cur->trangthai != co_the_muon ) {
-        return false;
-    }
-    return true;
 }
 
 void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
@@ -73,26 +59,60 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
     }
 }
 
-int TimViTriMaSachTrongDanhSachSachMuon( string maSach) {
-    string ma_ISBN = maSach.substr(0, 17);
-    for (int i = 0; i < SoLuongSach; i++) {
-        if (DanhSachSachMuon[i].masach == ma_ISBN) {
-            return i;
+
+bool MuonSachQuaHan(DanhSachMUONTRA *head) {
+    DanhSachMUONTRA *p = head;
+    while(p != nullptr) {
+        if(p->data.NgayTra.day == 0 ){
+            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
         }
+        p = p->next;
     }
-    return -1;
+    return false;
 }
 
-void CapNhatSoLuotMuon ( string ma_sach) {
-    int vitri = TimViTriMaSachTrongDanhSachSachMuon(ma_sach);
-    string ma_ISBN = ma_sach.substr(0, 17);
-    if(vitri != -1) {
-        DanhSachSachMuon[vitri].demsoluotmuon++;
-    } else {
-        DanhSachSachMuon[SoLuongSach].masach = ma_ISBN;
-        DanhSachSachMuon[SoLuongSach].demsoluotmuon = 1;
-        SoLuongSach++;
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
+    string ma_isbn = maSach.substr(0, 17);
+    int vitri = TimKiemViTriDauSach(ma_isbn);
+    if (vitri == -1) {
+        return nullptr;
     }
+    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+        if (current->masach == maSach) return current;
+    }
+    return nullptr;
+}
+
+bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+    string ma_sach = maSach.substr(0, 17);
+    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
+    DanhMucSach* cur = danhmucsach;
+    if(doc_gia->thong_tin.TrangThai == Khoa) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không mượn được sách vì thẻ độc giả bị khóa.");
+        return false;
+    }
+    if(SoSachDangMuon >= 3) {
+        QMessageBox::warning(nullptr, "Lỗi", "đã mượn 3 quyển sách, trả sách để mượn thêm.");
+        return false;
+    }
+    if(MuonSachQuaHan(doc_gia->thong_tin.head_lsms)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không được mượn sách vì đã có sách mượn quá hạn.");
+        return false;
+    }
+    if(cur->trangthai != co_the_muon) {
+        QMessageBox::warning(nullptr, "Lỗi", "Sách đã được mượn hoặc thanh lý.");
+        return false;
+    }
+    while(current != nullptr) {
+        string ma_ISBN = current->data.masach.substr(0, 17);
+        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
+            QMessageBox::warning(nullptr, "Lỗi", "Bạn đã mượn sách này rồi, vui lòng chọn sách khác.");
+            return false;
+        }
+        current = current->next;
+    }
+    return true;
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
@@ -108,16 +128,13 @@ void MuonSach( const int& maThe, const string& maSach) {
 
     DanhMucSach *cur = TimDiaChiSachTrongDanhMucSach(maSach);
 
-    if ( !CoTheMuonSach(cur, doc_gia) ) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách.");
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maSach, cur, doc_gia) ) {
         return;
     }
 
     ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, da_duoc_muon); // Chỉnh sửa lại int theo tên hằng
-    CapNhatSoLuotMuon(maSach);
+    CapNhatTrangThaiSach(maSach, da_duoc_muon);
 
-    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
 }
 
 
@@ -210,17 +227,17 @@ void MergeSortSachMuon(SachMuon* arr, int left, int right) {
     }
 }
 
-void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (DanhSachMUONTRA *danh_sach_muon_tra) {
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
     DanhSachMUONTRA *current = danh_sach_muon_tra;
     while( current != nullptr ) {
-        CapNhatSoLuotMuon(current->data.masach);
+        CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
         current = current->next;
     }
 }
 
-void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) {
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) {
 
-    CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(danh_sach_muon_tra);
+    CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(SoLuongSach, DanhSachSachMuon,danh_sach_muon_tra);
     MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
     QStandardItemModel *model = new QStandardItemModel();
 
@@ -241,11 +258,11 @@ void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTabl
 }
 
 
-void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
+void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
     if (root == nullptr) return;
-    NhapThongTinVaoTop10(tableView, root->ptr_left);
-    Top10QuyenSachNhieuLuotMuonNhat(root->thong_tin.head_lsms, tableView);
-    NhapThongTinVaoTop10(tableView, root->ptr_right);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, tableView, root->ptr_left);
+    Top10QuyenSachNhieuLuotMuonNhat(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms, tableView);
+    NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
 }
 
 /*------------------------------------------------------------------------------------------------------------*/
@@ -273,41 +290,45 @@ void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* curre
     }
 }
 
-danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root) { // Chuyển thành đệ quy
-    Queue<Danh_Sach_The_Doc_Gia*> q;
-    danhSachDocGiaMuonQuaHan* head = nullptr;
-    if ( root == nullptr ) {
-        return head;
+void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Doc_Gia* p) {
+    if (p == nullptr) {
+        return;
     }
-    q.push(root);
-    while ( !q.empty() ) {
-        Danh_Sach_The_Doc_Gia* p = q.front();
-        q.pop();
 
-        if(p->thong_tin.head_lsms != nullptr) {
-            DanhSachMUONTRA* current = p->thong_tin.head_lsms;
-            while ( current != nullptr ) {
-
-                if ( current->data.trangthai == 0 && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > 0) {
-                    danhSachDocGiaMuonQuaHan* n = new danhSachDocGiaMuonQuaHan;
-                    n->value.first = p;
-                    n->value.second = current;
-                    InsertOder(head, n);
-                    break;
-                }
-                current = current->next;
+    // Kiểm tra thông tin mượn trả
+    if (p->thong_tin.head_lsms != nullptr) {
+        DanhSachMUONTRA* current = p->thong_tin.head_lsms;
+        while (current != nullptr) {
+            if (current->data.trangthai == 0 && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > 0) {
+                danhSachDocGiaMuonQuaHan* n = new danhSachDocGiaMuonQuaHan;
+                n->value.first = p;
+                n->value.second = current;
+                InsertOder(head, n);
+                break;
             }
-        }
-
-        if ( p->ptr_left != nullptr ) {
-            q.push(p->ptr_left);
-        }
-        if ( p->ptr_right != nullptr ) {
-            q.push(p->ptr_right);
+            current = current->next;
         }
     }
+
+    // Đệ quy qua cây trái và phải
+    DuyetCayDeLayDocGiaQuaHan(head, p->ptr_left);
+    DuyetCayDeLayDocGiaQuaHan(head, p->ptr_right);
+}
+
+danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan(Danh_Sach_The_Doc_Gia* root) {
+    danhSachDocGiaMuonQuaHan* head = nullptr;
+    DuyetCayDeLayDocGiaQuaHan(head, root);
     return head;
 }
+
+void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head) {
+    while (head != nullptr) {
+        danhSachDocGiaMuonQuaHan* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 
 
 void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
@@ -341,6 +362,8 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 
     tableView->setModel(model);
     tableView->resizeColumnsToContents();
+
+    GiaiPhongDanhSachDocGiaMuonQuaHan(current);
 
 }
 
