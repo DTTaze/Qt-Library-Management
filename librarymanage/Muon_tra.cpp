@@ -83,14 +83,34 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     return nullptr;
 }
 
-bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+    string ma_sach = maSach.substr(0, 17);
     int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
-
+    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
     DanhMucSach* cur = danhmucsach;
-    if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
-        || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
-        || cur->trangthai != 0 ) { // Chỉnh sửa lại int theo tên hằng
+    if(doc_gia->thong_tin.TrangThai == Khoa) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không mượn được sách vì thẻ độc giả bị khóa.");
         return false;
+    }
+    if(SoSachDangMuon >= 3) {
+        QMessageBox::warning(nullptr, "Lỗi", "đã mượn 3 quyển sách, trả sách để mượn thêm.");
+        return false;
+    }
+    if(MuonSachQuaHan(doc_gia->thong_tin.head_lsms)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không được mượn sách vì đã có sách mượn quá hạn.");
+        return false;
+    }
+    if(cur->trangthai != co_the_muon) {
+        QMessageBox::warning(nullptr, "Lỗi", "Sách đã được mượn hoặc thanh lý.");
+        return false;
+    }
+    while(current != nullptr) {
+        string ma_ISBN = current->data.masach.substr(0, 17);
+        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
+            QMessageBox::warning(nullptr, "Lỗi", "Bạn đã mượn sách này rồi, vui lòng chọn sách khác.");
+            return false;
+        }
+        current = current->next;
     }
     return true;
 }
@@ -108,15 +128,13 @@ void MuonSach( const int& maThe, const string& maSach) {
 
     DanhMucSach *cur = TimDiaChiSachTrongDanhMucSach(maSach);
 
-    if ( !CoTheMuonSach(cur, doc_gia) ) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể cho độc giả mượn sách.");
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maSach, cur, doc_gia) ) {
         return;
     }
 
     ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
     CapNhatTrangThaiSach(maSach, da_duoc_muon);
 
-    QMessageBox::information(nullptr, "Thông báo", "Mượn sách thành công.");
 }
 
 

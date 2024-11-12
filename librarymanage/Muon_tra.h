@@ -59,7 +59,6 @@ struct danhSachDocGiaMuonQuaHan {
 
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra); // sửa lại thành ThemSachMUONTRA
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
-bool KiemTraDieuKienMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
 
 void MuonSach(const int &maThe, const string& maSach);
 
@@ -69,7 +68,7 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
 bool MuonSachQuaHan(DanhSachMUONTRA *head);
 
-bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
+bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
