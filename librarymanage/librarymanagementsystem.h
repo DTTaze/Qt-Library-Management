@@ -54,7 +54,9 @@ private slots:
 
     void on_thanhly_pushButton_clicked();
 
-    void HienMaSach(const QModelIndex &index);
+    void HienMaSach(int ViTriDauSach);
+
+    void on_tableWidget_dausach_doubleClicked(const QModelIndex &index);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 
@@ -96,12 +98,13 @@ private slots:
 
     void on_MatSach_pushButton_2_clicked();
 
+
+
 public slots:
 
 private:
     Ui::LibraryManagementSystem *ui;
     bool Saved;
-    QStandardItemModel* model_Dausach;
 protected:
     void closeEvent(QCloseEvent *event) override; // Khai báo hàm closeEvent
 

@@ -69,7 +69,7 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
-void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);
+void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach);
 
 int TimKiemViTriDauSach(string ma);
 
@@ -102,7 +102,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView
 
 
 //Chức năng tìm tên sách
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model,string key);
-void InTheoTenTimKiem(string key, QTableView* tableView_dausach,QStandardItemModel*& model);
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableWidget* tableWidget_dausach, string key);
+void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
 
 #endif

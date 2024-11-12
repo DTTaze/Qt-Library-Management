@@ -108,20 +108,14 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
-void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model){
+void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach) {
 
-    if (model != nullptr ) {
-        // Xóa dữ liệu cũ
-        model->clear(); // Xóa tất cả các dòng và cột
-        delete model;   // Giải phóng bộ nhớ của model
-        model = nullptr; // Đặt model về nullptr
-    }
+    // Xóa dữ liệu cũ trong QTableWidget
+    tableWidget_dausach->clearContents(); // Xóa dữ liệu nhưng giữ lại các cài đặt
+    tableWidget_dausach->setRowCount(so_luong_sach);
+    tableWidget_dausach->setColumnCount(6);
 
-    const int row_count = so_luong_sach;
-
-    // Tạo model cho table
-    model = new QStandardItemModel(row_count, 6);
-
+    // Đặt tiêu đề cột
     QString headers[6] = {
         "ISBN",
         "Tên sách",
@@ -132,81 +126,110 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
     };
 
     for (int i = 0; i < 6; i++) {
-        model->setHeaderData(i, Qt::Horizontal, headers[i]);
+        tableWidget_dausach->setHorizontalHeaderItem(i, new QTableWidgetItem(headers[i]));
     }
 
-    for (int i = 0; i < row_count; i++) {
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
-        model->setItem(i, 2, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->sotrang)));
-        model->setItem(i, 3, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
-        model->setItem(i, 4, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
-        model->setItem(i, 5, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
+    // Điền dữ liệu vào các ô của QTableWidget
+    for (int i = 0; i < so_luong_sach; i++) {
+        // Tạo item cho mỗi ô
+        QTableWidgetItem* isbnItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN));
+        QTableWidgetItem* tenSachItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
+        QTableWidgetItem* soTrangItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->sotrang));
+        QTableWidgetItem* tacGiaItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
+        QTableWidgetItem* namSXItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namsx));
+        QTableWidgetItem* theLoaiItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai));
+
+        // Đặt item cho từng ô
+        tableWidget_dausach->setItem(i, 0, isbnItem);  // Cột ISBN
+        tableWidget_dausach->setItem(i, 1, tenSachItem);
+        tableWidget_dausach->setItem(i, 2, soTrangItem);
+        tableWidget_dausach->setItem(i, 3, tacGiaItem);
+        tableWidget_dausach->setItem(i, 4, namSXItem);
+        tableWidget_dausach->setItem(i, 5, theLoaiItem);
+
+        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
+        tableWidget_dausach->setVerticalHeaderItem(i, item);
+        // Tắt chế độ chỉnh sửa cho cột đầu tiên (ISBN)
+        isbnItem->setFlags(isbnItem->flags() & ~Qt::ItemIsEditable);  // Tắt khả năng chỉnh sửa
+
     }
 
-    // Gán model vào QTableView
-    tableView_dausach->setModel(model);
-    tableView_dausach->resizeColumnsToContents();
-    tableView_dausach->setColumnWidth(1,300);
-    tableView_dausach->verticalHeader()->hide();
-
+    // Điều chỉnh kích thước các cột
+    tableWidget_dausach->resizeColumnsToContents();
+    tableWidget_dausach->setColumnWidth(1, 300);
+    tableWidget_dausach->verticalHeader()->hide();
+    tableWidget_dausach->horizontalHeader()->setStretchLastSection(true);
 }
 
-// Xóa comment thừa
-void InTheoTenTimKiem(string key, QTableView* tableView_dausach, QStandardItemModel*& model) {
-    if (model != nullptr) {
-        // Xóa dữ liệu cũ
-        model->clear(); // Xóa tất cả các dòng và cột
-        delete model;   // Giải phóng bộ nhớ của model
-        model = nullptr; // Đặt model về nullptr
-    }
 
-    int row_count = 0;
-    model = new QStandardItemModel(0, 5);
+
+// Xóa comment thừa
+void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
+    // Xóa dữ liệu cũ trong QTableWidget
+    tableWidget_dausach->clearContents();
+    tableWidget_dausach->setRowCount(0); // Đặt số hàng ban đầu là 0
+    tableWidget_dausach->setColumnCount(5); // Đặt số cột là 5
 
     QString headers[5] = {
         "ISBN", "Tên sách", "Tác giả", "Năm xuất bản", "Thể loại",
     };
     for (int i = 0; i < 5; i++) {
-        model->setHeaderData(i, Qt::Horizontal, headers[i]);
+        tableWidget_dausach->setHorizontalHeaderItem(i, new QTableWidgetItem(headers[i]));
     }
 
     key = ChuyenVeChuThuong(key);
+    int row_count = 0;
+
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
         string ten_sach = danh_sach_dau_sach.node[i]->tensach;
         ten_sach = ChuyenVeChuThuong(ten_sach);
 
         if (ten_sach.find(key) != std::string::npos) {
-            model->insertRow(row_count);
-            model->setItem(row_count, 0, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN)));
-            model->setItem(row_count, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach)));
-            model->setItem(row_count, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia)));
-            model->setItem(row_count, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[i]->namsx)));
-            model->setItem(row_count, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai)));
+            tableWidget_dausach->insertRow(row_count); // Thêm một hàng mới
 
-            // Đặt tiêu đề dọc thành giá trị `i`
-            model->setHeaderData(row_count, Qt::Vertical, QString::number(i));
+            // Tạo các item cho các cột
+            QTableWidgetItem* isbnItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN));
+            QTableWidgetItem* tenSachItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
+            QTableWidgetItem* tacGiaItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
+            QTableWidgetItem* namSXItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namsx));
+            QTableWidgetItem* theLoaiItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai));
+
+            // Đặt item cho từng cột
+            tableWidget_dausach->setItem(row_count, 0, isbnItem);  // Cột ISBN
+            tableWidget_dausach->setItem(row_count, 1, tenSachItem);
+            tableWidget_dausach->setItem(row_count, 2, tacGiaItem);
+            tableWidget_dausach->setItem(row_count, 3, namSXItem);
+            tableWidget_dausach->setItem(row_count, 4, theLoaiItem);
+
+            // Đặt tiêu đề hàng (số thứ tự) cho hàng
+            QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
+            tableWidget_dausach->setVerticalHeaderItem(row_count, item);
+
+            // Tắt chỉnh sửa cho cột đầu tiên (ISBN)
+            isbnItem->setFlags(isbnItem->flags() & ~Qt::ItemIsEditable);
 
             row_count++;
         }
     }
 
-    if (row_count == 0)  {
-        model->clear();
+    if (row_count == 0) {
+        tableWidget_dausach->clearContents(); // Xóa nội dung nếu không có kết quả
+        tableWidget_dausach->setRowCount(0); // Đặt số hàng là 0
         return;
     }
 
-    tableView_dausach->setModel(model);
-    tableView_dausach->resizeColumnsToContents();
+    tableWidget_dausach->resizeColumnsToContents();
+    tableWidget_dausach->horizontalHeader()->setStretchLastSection(true);
 }
 
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_dausach,QStandardItemModel*& model, string key) {
+
+void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableWidget* tableWidget_dausach, string key) {
 
     // Neu nguoi dung nhap key
     if (!key.empty()) {
-        InTheoTenTimKiem(key,tableView_dausach,model);
+        InTheoTenTimKiem(key,tableWidget_dausach);
     } else {
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableView_dausach,model);
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableWidget_dausach);
     }
 }
 
@@ -342,7 +365,9 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
             font.setBold(true);   // In đậm
             font.setItalic(true); // Nghiêng
             Item_theloai->setFont(font);
-            Item_theloai->setTextAlignment(Qt::AlignCenter); // Căn giữa thể loại
+
+            // Đặt chế độ không chỉnh sửa
+            Item_theloai->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
             model->setItem(row_index, 0, Item_theloai); // Thêm thể loại cột đầu tiên
 
@@ -352,12 +377,26 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
             row_index++;
         }
 
-        // Thêm thông tin sách
-        model->setItem(row_index, 1, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tensach)));
-        model->setItem(row_index, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->ISBN)));
-        model->setItem(row_index, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->sotrang)));
-        model->setItem(row_index, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tacgia)));
-        model->setItem(row_index, 5, new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx)));
+        // Thêm thông tin sách và đặt chế độ không chỉnh sửa cho từng ô
+        QStandardItem* item_tensach = new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tensach));
+        item_tensach->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 1, item_tensach);
+
+        QStandardItem* item_isbn = new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->ISBN));
+        item_isbn->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 2, item_isbn);
+
+        QStandardItem* item_sotrang = new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->sotrang));
+        item_sotrang->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 3, item_sotrang);
+
+        QStandardItem* item_tacgia = new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[copy[i]]->tacgia));
+        item_tacgia->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 4, item_tacgia);
+
+        QStandardItem* item_namsx = new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx));
+        item_namsx->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 5, item_namsx);
 
         row_index++; // Tăng chỉ số hàng sau khi thêm sách
     }
@@ -373,6 +412,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
     // Giải phóng bộ nhớ
     delete[] copy;
 }
+
 
 
 bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){

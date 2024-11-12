@@ -15,7 +15,6 @@
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
-    ,model_Dausach(new QStandardItemModel(0, 7, this))
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
@@ -24,9 +23,8 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
 
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach); // In bảng đầu sách
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach); // In bảng đầu sách
 
-    connect(ui->tableView_dausach, &QTableView::doubleClicked, this, &LibraryManagementSystem::HienMaSach);
     Saved = true;
 }
 
@@ -59,7 +57,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableView_dausach,model_Dausach);
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
 }
 
 void LibraryManagementSystem::tabTheDocGia()
@@ -152,25 +150,32 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     }
 
     // Gọi hàm tìm kiếm với key đã được lọc
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableView_dausach,model_Dausach, valid_key);
-
-
+    TimKiemTenSach(danh_sach_dau_sach, ui->tableWidget_dausach, valid_key);
 }
 
-void LibraryManagementSystem::HienMaSach(const QModelIndex &index) {
-    // Kiểm tra nếu lineEdit_timkiemds rỗng
-    if (ui->lineEdit_timkiemds->text().isEmpty()) {
-        return; // Không thực hiện thao tác nào nếu lineEdit rỗng
-    }
+void LibraryManagementSystem::HienMaSach(int ViTriDauSach) {
 
-    if (index.isValid()) {
-        // Lấy số hàng từ index và dùng nó để lấy giá trị header dọc
+    // Chuyển ViTriDauSach thành kiểu cần thiết và thực hiện các thao tác
+    Danhmucsach dms(ViTriDauSach);
+    dms.setModal(true);
+    dms.exec();
+}
+
+
+void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelIndex &index)
+{
+    // Kiểm tra nếu người dùng nhấn vào cột đầu tiên
+    if (index.column() == 0) {
+        // Lấy chỉ số hàng từ index
         int row = index.row();
-        int ViTriDauSach = model_Dausach->headerData(row, Qt::Vertical).toInt();
 
-        Danhmucsach dms(ViTriDauSach);
-        dms.setModal(true);
-        dms.exec();
+        // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
+        QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+        qDebug()<<headerItem->text().toInt();
+        if (headerItem) {
+            int ViTriDauSach = headerItem->text().toInt();
+            HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
+        }
     }
 }
 
@@ -183,7 +188,7 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
         themdausach themds;
         themds.setModal(true);
         if (themds.exec() == QDialog::Accepted){
-            InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableView_dausach,model_Dausach);
+            InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableWidget_dausach);
             Saved = false;
         }
     }
@@ -191,7 +196,7 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 {
-    QModelIndex index = ui->tableView_dausach->currentIndex();
+    QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
     if (row == -1) {QMessageBox::information(this, "Thông báo", "Vui lòng chọn sách thanh lý.");return;}
 
@@ -734,5 +739,8 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
+
+
+
 
 
