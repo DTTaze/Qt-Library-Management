@@ -262,7 +262,7 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
         The_Doc_Gia docGia;
         int maThe = layMaThe();
         while ( true ) {
-            if ( Tim_Kiem(root, maThe ) == nullptr ) {
+            if ( Tim_Kiem(maThe) == nullptr ) {
                 break;
             }
             maThe = layMaThe();
@@ -299,7 +299,7 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked() // Xóa độc g
     QTableWidgetItem* item = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0); // Lấy thông tin từ cột đầu tiên
     if (item) {
         int MATHE = item->text().toInt();
-        Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, MATHE);
+        Danh_Sach_The_Doc_Gia* p = Tim_Kiem(MATHE);
         if ( p->thong_tin.head_lsms != nullptr || p->thong_tin.TrangThai == TrangThaiCuaThe::Khoa) {
             QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này.");
         } else {
@@ -326,7 +326,7 @@ void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_itemChanged(QTabl
     int maThe = maTheItem->text().toInt();
 
     QString newValue = item->text();
-    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, maThe);
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(maThe);
 
     switch (column) {
     case 1:
@@ -388,7 +388,7 @@ int LibraryManagementSystem::getmaThe() {
 
 void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
-    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, ma_the); // Đổi tên biến
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(ma_the); // Đổi tên biến
     ui->tableWidget_muonTra->setRowCount(0);
     string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
     DanhSachMUONTRA *current = p->thong_tin.head_lsms;
@@ -426,7 +426,7 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
         ui->lineEdit_trangThai->setText("");
         return;
     }
-    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(root, arg1.toInt());
+    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(arg1.toInt());
     if ( p != nullptr ) {
         inThongTin(p->thong_tin.MATHE);
         ui->lineEdit_maThe->setStyleSheet("background-color: lightgreen;");

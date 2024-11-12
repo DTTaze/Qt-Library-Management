@@ -172,7 +172,7 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
     }
 }
 
-Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) {
+Danh_Sach_The_Doc_Gia* Tim_Kiem(const int& mathe ) {
     Danh_Sach_The_Doc_Gia* current = root;
     while ( current != nullptr && current->thong_tin.MATHE != mathe ) {
         if ( current->thong_tin.MATHE < mathe ) {
@@ -185,7 +185,7 @@ Danh_Sach_The_Doc_Gia* Tim_Kiem(Danh_Sach_The_Doc_Gia* root, const int& mathe ) 
 }
 
 void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue) {
-    Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(root, maThe);
+    Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(maThe);
     if (docGia) {
         if (field == "Ho") {
             docGia->thong_tin.Ho = newValue;

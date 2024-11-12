@@ -29,7 +29,9 @@
 #include <QLocale>
 using namespace std;
 
-// Khai báo các biến hằng int có thể mượn, đang được mược, đã thanh lý ( tốt nhất là khai báo enum )
+const int co_the_muon = 0;
+const int da_duoc_muon = 1;
+const int da_thanh_ly = 2;
 
 struct DanhMucSach{
     string masach;
@@ -47,7 +49,7 @@ struct DauSach {
     int sotrang;
     string tacgia;
     int namsx;
-    int demsosach =0;
+    int demsosach =0; // Đổi tên biến
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
@@ -65,10 +67,6 @@ struct DanhSachDauSach{
 
 
 extern DanhSachDauSach danh_sach_dau_sach;
-
-const int co_the_muon = 0;
-const int da_duoc_muon = 1;
-const int da_thanh_ly = 2;
 
 
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableView* tableView_dausach,QStandardItemModel*& model);

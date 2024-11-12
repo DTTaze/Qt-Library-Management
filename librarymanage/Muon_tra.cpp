@@ -8,6 +8,72 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
+void DatLaiSoLuotMuon() { // Hàm dư ???
+    for(int i = 0; i < SoLuongSach; i++) {
+        DanhSachSachMuon[i].demsoluotmuon = 0;
+    }
+}
+
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
+    string ma_isbn = maSach.substr(0, 17);
+    int vitri = TimKiemViTriDauSach(ma_isbn);
+    if (vitri == -1) {
+        return nullptr;
+    }
+    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+        if (current->masach == maSach) return current;
+    }
+    return nullptr;
+}
+
+int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
+    DanhSachMUONTRA *temp = demsach;
+    int dem = 0;
+
+    while(temp!=nullptr) {
+        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) {
+            dem++;
+        }
+        temp = temp->next;
+    }
+    return dem;
+}
+
+bool MuonSachQuaHan(DanhSachMUONTRA *head) {
+    DanhSachMUONTRA *p = head;
+    while(p != nullptr) {
+        if(p->data.NgayTra.day == 0 ){ // Chỉnh sửa lại điều kiện kiểm tra
+            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
+        }
+        p = p->next;
+    }
+    return false;
+}
+
+bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
+    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+
+    DanhMucSach* cur = danhmucsach;
+    if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
+        || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
+        || cur->trangthai != co_the_muon ) { // Chỉnh sửa lại int theo tên hằng
+        return false;
+    }
+    return true;
+}
+
+void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
+    MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
+    DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
+
+    if (head == nullptr) {
+        head = newMUONTRA;
+    } else {
+        newMUONTRA->next = head;
+        head = newMUONTRA;
+    }
+}
+
 int TimViTriMaSachTrongDanhSachSachMuon( string maSach) {
     string ma_ISBN = maSach.substr(0, 17);
     for (int i = 0; i < SoLuongSach; i++) {
@@ -30,75 +96,8 @@ void CapNhatSoLuotMuon ( string ma_sach) {
     }
 }
 
-int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
-    DanhSachMUONTRA *temp = demsach;
-    int dem = 0;
-
-    while(temp!=nullptr) {
-        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) {
-            dem++;
-        }
-        temp = temp->next;
-    }
-    return dem;
-}
-
-void DatLaiSoLuotMuon() {
-    for(int i = 0; i < SoLuongSach; i++) {
-        DanhSachSachMuon[i].demsoluotmuon = 0;
-    }
-}
-
-void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
-    MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
-    DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
-
-    if (head == nullptr) {
-        head = newMUONTRA;
-    } else {
-        newMUONTRA->next = head;
-        head = newMUONTRA;
-    }
-}
-
-
-bool MuonSachQuaHan(DanhSachMUONTRA *head) {
-    DanhSachMUONTRA *p = head;
-    while(p != nullptr) {
-        if(p->data.NgayTra.day == 0 ){
-            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
-        }
-        p = p->next;
-    }
-    return false;
-}
-
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
-    string ma_isbn = maSach.substr(0, 17);
-    int vitri = TimKiemViTriDauSach(ma_isbn);
-    if (vitri == -1) {
-        return nullptr;
-    }
-    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
-        if (current->masach == maSach) return current;
-    }
-    return nullptr;
-}
-
-bool CoTheMuonSach(DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
-    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
-
-    DanhMucSach* cur = danhmucsach;
-    if (doc_gia->thong_tin.TrangThai == Khoa || SoSachDangMuon >= 3
-        || MuonSachQuaHan(doc_gia->thong_tin.head_lsms)
-        || cur->trangthai != 0 ) { // Chỉnh sửa lại int theo tên hằng
-        return false;
-    }
-    return true;
-}
-
 void MuonSach( const int& maThe, const string& maSach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, maThe);
+    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(maThe);
     Date ngaymuon = NgayHomNay();
 
     Date ngaytra; // ngaytra = {0/0/0}
@@ -125,7 +124,7 @@ void MuonSach( const int& maThe, const string& maSach) {
 
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(root, ma_the);
+    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(ma_the);
 
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
@@ -347,7 +346,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 }
 
 void ChuaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(root, mathe);
+    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(mathe);
     p->thong_tin.TrangThai = Khoa;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
 
@@ -362,7 +361,7 @@ void ChuaDenSach(int mathe, string masach) {
 }
 
 void DaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(root, mathe);
+    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(mathe);
     p->thong_tin.TrangThai = Dang_Hoat_Dong;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
     while(sach_mat != nullptr) {
