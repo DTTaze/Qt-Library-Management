@@ -73,12 +73,14 @@ void LibraryManagementSystem::tabMuonTra()
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 }
 
-void LibraryManagementSystem::tabBaoCao()
+void LibraryManagementSystem::tabBaoCao(int SoLuongSach)
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
+    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
     inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root); // In danh sách độc giả mượn quá hạn
-    DatLaiSoLuotMuon();
-    NhapThongTinVaoTop10(ui->topTenMuonNhieuNhat_tableView,root);
+    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView,root);
+
 }
 
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
@@ -101,7 +103,8 @@ void LibraryManagementSystem::on_muontra_pushButton_clicked()
 
 void LibraryManagementSystem::on_baocao_pushButton_clicked()
 {
-    tabBaoCao();
+    int SoLuongSach = 0;
+    tabBaoCao(SoLuongSach);
 }
 
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()

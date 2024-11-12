@@ -34,7 +34,7 @@ private slots:
 
     void tabMuonTra();
 
-    void tabBaoCao();
+    void tabBaoCao(int SoLuongSach);
 
     void on_luuFile_pushButton_clicked();
 

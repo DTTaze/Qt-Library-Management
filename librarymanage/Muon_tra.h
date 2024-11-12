@@ -78,22 +78,26 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) ;
 
 void MergeSortSachMuon(SachMuon* arr, int left, int right);
 
-void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(DanhSachMUONTRA *danh_sach_muon_tra);
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra);
 
-void Top10QuyenSachNhieuLuotMuonNhat(DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) ;
 
-int TimViTriMaSachTrongDanhSachSachMuon(string maSach);
+int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach);
 
-void CapNhatSoLuotMuon (string ma_sach) ;
+void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) ;
 
-void DatLaiSoLuotMuon();
+void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]);
 
-void NhapThongTinVaoTop10(QTableView *tableView, Danh_Sach_The_Doc_Gia * root);
+void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root);
 //----------------------------------------------------------------Bảng độc giả quá hạn--------------------------------------------------------------------------------------------------
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
 
+void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Doc_Gia* p) ;
+
 danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root);
+
+void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head);
 
 void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) ;
 
