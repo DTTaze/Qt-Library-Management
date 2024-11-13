@@ -66,21 +66,15 @@ private slots:
 
 
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
-    void on_themDocGia_pushButton_clicked();
+    void CapNhatBang();
 
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
 
+    void on_themDocGia_pushButton_clicked();
+
+    void on_hieuChinhDocGia_pushButton_clicked();
+
     void on_xoaDocGia_pushButton_clicked();
-
-    void on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem *item);
-
-    void CapNhatBang();
-
-    bool kiemTraChuoi(QString s);
-
-    QString xuLyChuoi(QString text);
-
-    void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
     bool laISBN(string text );
 

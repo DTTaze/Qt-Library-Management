@@ -185,18 +185,13 @@ Danh_Sach_The_Doc_Gia* Tim_Kiem(const int& mathe ) {
     return current;
 }
 
-void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue) {
+void hieuChinhThongTinTheDocGia(int maThe, The_Doc_Gia thongTinMoi) {
     Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(maThe);
-    if (docGia) {
-        if (field == "Ho") {
-            docGia->thong_tin.Ho = newValue;
-        } else if (field == "Ten") {
-            docGia->thong_tin.Ten = newValue;
-        } else if (field == "Phai") {
-            docGia->thong_tin.phai = (newValue == "Nam") ? Nam : Nu;
-        } else if (field == "TrangThai") {
-            docGia->thong_tin.TrangThai = (newValue == "Đang Hoạt Động") ? Dang_Hoat_Dong : Khoa;
-        }
+    if ( docGia ) {
+        docGia->thong_tin.Ho = thongTinMoi.Ho;
+        docGia->thong_tin.Ten = thongTinMoi.Ten;
+        docGia->thong_tin.phai = thongTinMoi.phai;
+        docGia->thong_tin.TrangThai = thongTinMoi.TrangThai;
     }
 }
 

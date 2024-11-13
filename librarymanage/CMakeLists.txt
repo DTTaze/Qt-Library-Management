@@ -36,7 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ngay.h
         ngay.cpp
         docgia_100.txt
-        themdocgia_dialog.h themdocgia_dialog.cpp themdocgia_dialog.ui
+        themDocGia_dialog.h themDocGia_dialog.cpp themDocGia_dialog.ui
         themdausach.h themdausach.cpp themdausach.ui
         queue.h
 
@@ -44,6 +44,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         thanh_ly.h thanh_ly.cpp thanh_ly.ui
         Ma_The.txt
         danhmucsach.h danhmucsach.cpp danhmucsach.ui
+        hieuChinhDocGia_dialog.h hieuChinhDocGia_dialog.cpp hieuChinhDocGia_dialog.ui
+
 
 
 
