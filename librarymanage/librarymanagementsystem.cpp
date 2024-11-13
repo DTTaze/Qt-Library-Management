@@ -25,6 +25,12 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach); // In bảng đầu sách
 
+    int SoLuongSach = 0;
+    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
+    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
+
     Saved = true;
 }
 
@@ -71,17 +77,6 @@ void LibraryManagementSystem::tabMuonTra()
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
 }
 
-void LibraryManagementSystem::tabBaoCao()
-{
-    int SoLuongSach = 0;
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_baoCao);
-    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
-    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
-    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView,root);
-
-}
-
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
 {
     tabDauSach();
@@ -99,18 +94,30 @@ void LibraryManagementSystem::on_muontra_pushButton_clicked()
     tabMuonTra();
 }
 
-
-void LibraryManagementSystem::on_baocao_pushButton_clicked()
-{
-    tabBaoCao();
-}
-
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 {
     ghiMaTheVaoFile();
     ghiThongTinTheDocGia();
     GhiDauSachVaoFile();
     Saved = true;
+}
+
+void LibraryManagementSystem::on_baocao_comboBox_currentTextChanged(const QString &arg1)
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_comboBox);
+    if(arg1 == "Top 10 Sách") {
+        ui->stackedWidget->setCurrentWidget(ui->page_Top10);
+        int SoLuongSach = 0;
+        SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
+        DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+        NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
+        return;
+
+    } else if (arg1 == "Mượn Sách Quá Hạn"){
+        ui->stackedWidget->setCurrentWidget(ui->page_MuonQuaHan);
+        inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
+        return;
+    }
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
@@ -435,6 +442,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
     Danh_Sach_The_Doc_Gia* p = Tim_Kiem(ma_the); // Đổi tên biến
     ui->tableWidget_muonTra->setRowCount(0);
+    ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
     DanhSachMUONTRA *current = p->thong_tin.head_lsms;
 
@@ -457,6 +465,9 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
         }
         current = current->next;
     }
+
+    ui->tableWidget_muonTra->resizeColumnsToContents();
+
 }
 
 void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
@@ -739,6 +750,9 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
+
+
+
 
 
 

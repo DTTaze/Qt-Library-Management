@@ -9,6 +9,7 @@
 #include <QTableWidgetItem>
 #include <QCloseEvent>
 #include <QCheckBox>
+#include <QComboBox>
 #include "Dau_sach.h"
 #include "queue.h"
 #include "The_doc_gia.h"
@@ -34,8 +35,6 @@ private slots:
 
     void tabMuonTra();
 
-    void tabBaoCao();
-
     void on_luuFile_pushButton_clicked();
 
     void on_dauSach_pushButton_clicked();
@@ -44,7 +43,8 @@ private slots:
 
     void on_muontra_pushButton_clicked();
 
-    void on_baocao_pushButton_clicked();
+    void on_baocao_comboBox_currentTextChanged(const QString &arg1);
+
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 
@@ -97,6 +97,8 @@ private slots:
     void on_muonSach_pushButton_clicked();
 
     void on_MatSach_pushButton_2_clicked();
+
+
 
 
 

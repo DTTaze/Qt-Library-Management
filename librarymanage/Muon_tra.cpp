@@ -335,12 +335,14 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
     danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
     QStandardItemModel* model = new QStandardItemModel();
     int row = 0;
-    model->setColumnCount(5);
+    model->setColumnCount(7);
     model->setHeaderData(0, Qt::Horizontal, "Mã Thẻ");
     model->setHeaderData(1, Qt::Horizontal, "Họ Và Tên");
     model->setHeaderData(2, Qt::Horizontal, "Giới Tính");
     model->setHeaderData(3, Qt::Horizontal, "Trạng Thái");
-    model->setHeaderData(4, Qt::Horizontal, "Ngày Quá Hạn");
+    model->setHeaderData(4, Qt::Horizontal, "Mã Sách");
+    model->setHeaderData(5, Qt::Horizontal, "Tên Sách");
+    model->setHeaderData(6, Qt::Horizontal, "Ngày Quá Hạn");
     while( current != nullptr) {
         Date ngay_hom_nay = NgayHomNay();
         int so_ngay_qua_han = SoNgayQuaHan(current->value.second->data.NgayMuon, ngay_hom_nay);
@@ -354,7 +356,9 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
         model->setItem(row, 1, new QStandardItem(QString::fromStdString(hovaten)));
         model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
         model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
-        model->setItem(row, 4, new QStandardItem(QString::number(so_ngay_qua_han)));
+        model->setItem(row, 4, new QStandardItem(QString::fromStdString(current->value.second->data.masach)));
+        model->setItem(row, 5, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->value.second->data.masach))));
+        model->setItem(row, 6, new QStandardItem(QString::number(so_ngay_qua_han)));
         current = current->next;
         row++;
     }
