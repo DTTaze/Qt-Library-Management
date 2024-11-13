@@ -60,7 +60,7 @@ void Them_Doc_Gia(Danh_Sach_The_Doc_Gia* &root, const The_Doc_Gia& thong_tin_the
 void Xoa_Truong_Hop_Co_Hai_Cay_Con(Danh_Sach_The_Doc_Gia*& r);
 void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia* &r, const int& ma_the_doc_gia);
 Danh_Sach_The_Doc_Gia* Tim_Kiem(const int& mathe);
-void Cap_Nhat_Thong_Tin_Doc_Gia(int maThe, const string& field, const string& newValue);
+void hieuChinhThongTinTheDocGia(int maThe, The_Doc_Gia thongTinMoi);
 void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia);
 
 // In danh sách độc giả theo tên

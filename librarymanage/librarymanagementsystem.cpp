@@ -6,12 +6,12 @@
 #include "thanh_ly.h"
 #include "themdausach.h"
 #include "queue.h"
-#include "The_doc_gia.h"
-#include "themdocgia_dialog.h"
 #include "Muon_tra.h"
 #include "dau_sach.h"
-#include "themdocgia_dialog.h"
 #include "danhmucsach.h"
+#include "The_doc_gia.h"
+#include "themDocGia_dialog.h"
+#include "hieuChinhDocGia_dialog.h"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
@@ -178,7 +178,6 @@ void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelI
 
         // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
         QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
-        qDebug()<<headerItem->text().toInt();
         if (headerItem) {
             int ViTriDauSach = headerItem->text().toInt();
             HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
@@ -201,6 +200,21 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
     }
 }
 
+void LibraryManagementSystem::on_editSach_pushButton_clicked()
+{
+    int current_Row = ui->tableWidget_dausach->currentRow();
+    if (current_Row == -1) {
+        qDebug() << "Không có hàng nào được chọn.";
+    } else {
+
+    }
+}
+
+void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
+{
+
+}
+
 void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 {
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
@@ -218,6 +232,7 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
     for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
         if(cur->trangthai == 0){
             allowed = true;
+            break;
         }
     }
     if(allowed != true){
@@ -234,19 +249,43 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 
 }
 
-//------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
-bool LibraryManagementSystem::kiemTraChuoi(QString s) {
-    if ( s.length() == 0 ) {
-        return false;
-    }
-    for ( int i = 0; i < s.length(); i++ ) {
-        if ( !s[i].isLetter() && !s[i].isSpace() ) {
-            return false;
-        }
-    }
-    return true;
+void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
+{
+
 }
 
+void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetItem *item)
+{
+    // Kiểm tra nếu item là nullptr
+    if (item == nullptr) {
+        QMessageBox::critical(nullptr, "Lỗi", "Không có dữ liệu để thay đổi.");
+        return;
+    }
+
+    // Kiểm tra nếu sự thay đổi là từ người dùng
+    if (item->isSelected()) {
+        int row = item->row();
+        int column = item->column();
+
+        QTableWidgetItem* row_header = ui->tableWidget_dausach->verticalHeaderItem(row);
+
+        // Kiểm tra nếu row_header hợp lệ
+        if (row_header == nullptr) {
+            QMessageBox::warning(this,"Cảnh báo","Không xác định được index cột.");
+            return;
+        }
+
+        int Index_DS = row_header->text().toInt();
+
+        if(ui->lineEdit_timkiemds->text().isEmpty()){
+            PhanLoaiDuLieuDauSach(column,item,Index_DS);
+        }else{
+            PhanLoaiDuLieuDauSachKhiTiemKiem(column,item,Index_DS);
+        }
+    }
+}
+
+//------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
 {
     ui->danhSachTheDocGia_tableWidget->setRowCount(0);
@@ -258,6 +297,8 @@ void LibraryManagementSystem::CapNhatBang()
         taoDanhSachTheoTen(root);
         inDanhSachTheDocGiaTheoTen(ui->danhSachTheDocGia_tableWidget);
     }
+    ui->danhSachTheDocGia_tableWidget->resizeColumnsToContents();
+    ui->danhSachTheDocGia_tableWidget->setColumnWidth(1, 400);
 }
 
 void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index) // Hàm sắp xếp theo mã hoặc tên
@@ -305,6 +346,49 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
     }
 }
 
+void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
+{
+    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
+
+    if (currentRow == -1) {
+        QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để xóa.");
+        return;
+    }
+
+    hieuChinhDocGia_dialog hieuChinhDocGia;
+
+    QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
+    QTableWidgetItem* itemHo = ui->danhSachTheDocGia_tableWidget->item(currentRow, 1);
+    QTableWidgetItem* itemTen = ui->danhSachTheDocGia_tableWidget->item(currentRow, 2);
+    QTableWidgetItem* itemGioiTinh = ui->danhSachTheDocGia_tableWidget->item(currentRow, 3);
+    QTableWidgetItem* itemTrangThaiThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 4);
+
+    hieuChinhDocGia.setMaThe(itemMaThe->text());
+    hieuChinhDocGia.setHoVaTen(itemHo->text(), itemTen->text());
+    hieuChinhDocGia.setGioiTinh(itemGioiTinh->text());
+    hieuChinhDocGia.setTrangThaiThe( itemTrangThaiThe->text());
+
+    hieuChinhDocGia.setModal(true);
+    if ( hieuChinhDocGia.exec() == QDialog::Accepted ) {
+
+        int maThe = itemMaThe->text().toInt();
+        The_Doc_Gia thongTinMoi;
+        QString hoVaTen = hieuChinhDocGia.getHoVaTen();
+        int viTriDeTachHoVaTen = hoVaTen.lastIndexOf(" ") + 1;
+
+        thongTinMoi.Ho = hoVaTen.mid(0, viTriDeTachHoVaTen).toStdString();
+        thongTinMoi.Ten = hoVaTen.mid(viTriDeTachHoVaTen).toStdString();
+        thongTinMoi.phai = hieuChinhDocGia.getGioiTinh();
+        thongTinMoi.TrangThai = hieuChinhDocGia.getTrangThaiThe();
+
+        hieuChinhThongTinTheDocGia(maThe, thongTinMoi);
+
+        QMessageBox::information(this, "Thông báo", "Đã cập nhật thông tin thành công");
+        CapNhatBang();
+        Saved = false;
+    }
+}
+
 void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
 {
     int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
@@ -343,94 +427,6 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
     }
     Saved = false;
 }
-
-QString LibraryManagementSystem::xuLyChuoi(QString text) {
-    QString newText = text.trimmed();
-
-    QString result;
-    bool lastWasSpace = false;
-
-    for (int i = 0; i < newText.length(); ++i) {
-        QChar currentChar = newText[i];
-
-        if (currentChar != ' ' || !lastWasSpace) {
-            result.append(currentChar);
-            lastWasSpace = (currentChar == ' ');
-        }
-    }
-
-    result = result.toLower();
-
-    for (int i = 0; i < result.length(); i++) {
-        if (i == 0 || result[i - 1] == ' ') {
-            result[i] = result[i].toUpper();
-        }
-    }
-
-    return result;
-}
-
-void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem* item)
-{
-    int row = item->row();
-    int column = item->column();
-
-    QString newValue = xuLyChuoi(item->text());
-
-    QTableWidgetItem* maTheItem = ui->danhSachTheDocGia_tableWidget->item(row, 0);
-    int maThe = maTheItem->text().toInt();
-    Danh_Sach_The_Doc_Gia* p = Tim_Kiem(maThe);
-
-    switch (column) {
-    case 1:
-        if (kiemTraChuoi(newValue) == false ) {
-            QMessageBox::warning(this, "Cảnh báo", "Giá trị họ không hợp lệ.");
-            item->setText(QString::fromStdString(p->thong_tin.Ho));
-            return;
-        }
-        Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ho", newValue.toStdString());
-        break;
-    case 2:
-        if (kiemTraChuoi(newValue) == false ) {
-            QMessageBox::warning(this, "Cảnh báo", "Giá trị tên không hợp lệ.");
-            item->setText(QString::fromStdString(p->thong_tin.Ten));
-            return;
-        }
-        Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Ten", newValue.toStdString());
-        break;
-    case 3:
-        if (newValue != "Nam" && newValue != "Nữ") {
-            QMessageBox::warning(this, "Cảnh báo", "Giá trị phái không hợp lệ. Vui lòng nhập 'Nam' hoặc 'Nữ'.");
-            item->setText(QString::fromStdString(p->thong_tin.phai == Nam ? "Nam":"Nữ"));
-            return;
-        }
-        Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "Phai", newValue.toStdString());
-        break;
-    case 4:
-        if (newValue != "Đang Hoạt Động" && newValue != "Khóa") {
-            QMessageBox::warning(this, "Cảnh báo", "Giá trị trạng thái không hợp lệ. Vui lòng nhập 'Đang Hoạt Động' hoặc 'Bị Khóa'.");
-            item->setText(QString::fromStdString(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang hoạt động":"Khóa"));
-            return;
-        }
-        Cap_Nhat_Thong_Tin_Doc_Gia(maThe, "TrangThai", newValue.toStdString());
-        break;
-    default:
-        break;
-        Saved = false;
-    }
-}
-
-void LibraryManagementSystem::on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column)
-{
-    if ( column == 0 ) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không thể thay đổi mã thẻ.");
-        QTableWidgetItem *item = ui->danhSachTheDocGia_tableWidget->item(row, 0);
-        if (item) {
-            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-        }
-    }
-}
-
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 
 
