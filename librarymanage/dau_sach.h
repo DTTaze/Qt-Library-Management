@@ -28,6 +28,7 @@
 #include <QHeaderView>
 #include <QLocale>
 #include <QComboBox>
+#include <QFrame>
 #include <QtCharts/QBarSet>
 #include <QtCharts/QtCharts>
 #include <QtCharts/QBarSeries>
