@@ -372,7 +372,7 @@ QComboBox:focus {
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">

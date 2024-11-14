@@ -13,6 +13,7 @@
 #include "The_doc_gia.h"
 #include "themDocGia_dialog.h"
 #include "hieuChinhDocGia_dialog.h"
+#include "edit_sach.h"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     : QMainWindow(parent)
@@ -203,7 +204,13 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
-
+    Edit_sach edit;
+    edit.setModal(true);
+    edit.setWindowTitle("Sửa sách");
+    if (edit.exec() ==  QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        Saved = false;
+    }
 }
 
 void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
@@ -212,6 +219,7 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     del_dausach.setModal(true);
     del_dausach.setWindowTitle("Xóa đầu sách");
     if (del_dausach.exec() == QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
         Saved = false;
     }
 }
@@ -257,12 +265,6 @@ void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetItem *item)
 {
-    // Kiểm tra nếu item là nullptr
-    if (item == nullptr) {
-        QMessageBox::critical(nullptr, "Lỗi", "Không có dữ liệu để thay đổi.");
-        return;
-    }
-
     // Kiểm tra nếu sự thay đổi là từ người dùng
     if (item->isSelected()) {
         int row = item->row();

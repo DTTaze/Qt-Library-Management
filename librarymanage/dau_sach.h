@@ -69,11 +69,23 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
+bool MaISBNQTHopLe(QString i_s_b_n);
+
+QString RemoveSpace(const QString &key);
+
+QString CapitalizeWords(const QString& text);
+
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
+
+void LocKiTuTensachHopLe(const QString& text,string& valid_key);
+
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach);
 
 int TimKiemViTriDauSach(string ma);
 
 bool TonTaiMaSach(string ma_sach);
+
+DanhMucSach* DanhMucSachTrongDauSach(string ma_sach);
 
 string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
 
