@@ -116,7 +116,7 @@ bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_S
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(maThe);
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
     Date ngaymuon = NgayHomNay();
 
     Date ngaytra; // ngaytra = {0/0/0}
@@ -140,7 +140,7 @@ void MuonSach( const int& maThe, const string& maSach) {
 
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = Tim_Kiem(ma_the);
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(ma_the);
 
     if (doc_gia == nullptr) {
         QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
@@ -265,6 +265,10 @@ void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableV
     NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
 }
 
+// void ChartTop10Sach() {
+//     QBarSet *set0 = new QBarSet()
+// }
+
 /*------------------------------------------------------------------------------------------------------------*/
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
@@ -372,7 +376,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
 }
 
 void ChuaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(mathe);
+    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
     p->thong_tin.TrangThai = Khoa;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
 
@@ -387,7 +391,7 @@ void ChuaDenSach(int mathe, string masach) {
 }
 
 void DaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = Tim_Kiem(mathe);
+    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
     p->thong_tin.TrangThai = Dang_Hoat_Dong;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
     while(sach_mat != nullptr) {

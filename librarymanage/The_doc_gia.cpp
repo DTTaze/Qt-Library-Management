@@ -173,7 +173,7 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
     }
 }
 
-Danh_Sach_The_Doc_Gia* Tim_Kiem(const int& mathe ) {
+Danh_Sach_The_Doc_Gia* timKiemTheDocGia(const int& mathe ) {
     Danh_Sach_The_Doc_Gia* current = root;
     while ( current != nullptr && current->thong_tin.MATHE != mathe ) {
         if ( current->thong_tin.MATHE < mathe ) {
@@ -186,7 +186,7 @@ Danh_Sach_The_Doc_Gia* Tim_Kiem(const int& mathe ) {
 }
 
 void hieuChinhThongTinTheDocGia(int maThe, The_Doc_Gia thongTinMoi) {
-    Danh_Sach_The_Doc_Gia* docGia = Tim_Kiem(maThe);
+    Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia(maThe);
     if ( docGia ) {
         docGia->thong_tin.Ho = thongTinMoi.Ho;
         docGia->thong_tin.Ten = thongTinMoi.Ten;
@@ -287,7 +287,7 @@ void ghiThongTinTheDocGia() {
         DanhSachMUONTRA* temp = current->thong_tin.head_lsms;
         while (temp != nullptr) {
             outFile << temp->data.masach << "|"
-                    << (temp->data.trangthai == Chua_Tra ? "0" : "1") << "|"
+                    << temp->data.trangthai << "|"
                     << ChuyenDateSangString(temp->data.NgayMuon) << "|"
                     << ChuyenDateSangString(temp->data.NgayTra) << "|";
             temp = temp->next;

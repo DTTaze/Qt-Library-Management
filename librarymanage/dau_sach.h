@@ -28,6 +28,10 @@
 #include <QHeaderView>
 #include <QLocale>
 #include <QComboBox>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QtCharts>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QChartView>
 using namespace std;
 
 const int co_the_muon = 0;
