@@ -45,6 +45,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Ma_The.txt
         danhmucsach.h danhmucsach.cpp danhmucsach.ui
         hieuChinhDocGia_dialog.h hieuChinhDocGia_dialog.cpp hieuChinhDocGia_dialog.ui
+        xoaDocGia_dialog.h xoaDocGia_dialog.cpp xoaDocGia_dialog.ui
 
 
 

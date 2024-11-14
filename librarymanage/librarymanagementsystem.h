@@ -64,7 +64,7 @@ private slots:
 
     void on_nhapSach_pushButton_clicked();
 
-
+    void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void CapNhatBang();
 
