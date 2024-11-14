@@ -29,9 +29,11 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     int SoLuongSach = 0;
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
-    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
     DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView,root);
+
+    setupbaocao_pushButton();
 
     Saved = true;
 }
@@ -104,22 +106,72 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Saved = true;
 }
 
-void LibraryManagementSystem::on_baocao_comboBox_currentTextChanged(const QString &arg1)
+void LibraryManagementSystem::showTop10SachPage()
 {
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_comboBox);
-    if(arg1 == "Top 10 Sách") {
-        ui->stackedWidget->setCurrentWidget(ui->page_Top10);
-        int SoLuongSach = 0;
-        SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
-        DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-        NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
-        return;
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baocao);
+    ui->stackedWidget->setCurrentWidget(ui->page_Top10);
+    int SoLuongSach = 0;
+    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
 
-    } else if (arg1 == "Mượn Sách Quá Hạn"){
-        ui->stackedWidget->setCurrentWidget(ui->page_MuonQuaHan);
-        inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
-        return;
-    }
+    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView, root);
+}
+
+void LibraryManagementSystem::showMuonQuaHanPage()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baocao);
+    ui->stackedWidget->setCurrentWidget(ui->page_MuonQuaHan);
+
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
+}
+
+void LibraryManagementSystem::setupbaocao_pushButton() {
+    QMenu *menu = new QMenu(this);
+
+    QAction *top10SachAction = new QAction("Top 10 Sách", this);
+    QAction *muonSachQuaHanAction = new QAction("Mượn Sách Quá Hạn", this);
+
+    menu->addAction(top10SachAction);
+    menu->addAction(muonSachQuaHanAction);
+
+    menu->setStyleSheet(
+        "QMenu {"
+        "   background-color: #ffffff;"
+        "   border: none;"
+        "   padding: 5px 0;"
+        "   width: 225px;"
+        "}"
+        "QMenu::item {"
+        "   padding: 13px 16px;"
+        "   font-family: 'Roboto Mono', sans-serif;"
+        "   font-size: 18px;"
+        "   letter-spacing: 0.8px;"
+        "   color: black;"
+        "   font-weight: bold;"
+        "}"
+        "QMenu::item:selected {"
+        "   background-color: #C4C4C4;"
+        "}"
+        "QMenu::item:pressed {"
+        "   background-color: #C4C4C4;"
+        "   border-top: 4px solid;"
+        "}"
+        "QMenu::item:disabled {"
+        "   background-color: #D6D6D6;"
+        "   color: #7F7F7F;"
+        "}"
+    );
+
+    ui->baocao_pushButton->setMenu(menu);
+
+    connect(top10SachAction, &QAction::triggered, this, &LibraryManagementSystem::showTop10SachPage);
+    connect(muonSachQuaHanAction, &QAction::triggered, this, &LibraryManagementSystem::showMuonQuaHanPage);
+}
+
+
+void LibraryManagementSystem::on_baocao_pushButton_clicked()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baocao);
 }
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
@@ -751,11 +803,5 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
-
-
-
-
-
-
 
 

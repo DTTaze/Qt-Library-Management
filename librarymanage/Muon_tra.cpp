@@ -265,6 +265,10 @@ void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableV
     NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
 }
 
+// void ChartTop10Sach() {
+//     QBarSet *set0 = new QBarSet()
+// }
+
 /*------------------------------------------------------------------------------------------------------------*/
 
 void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
