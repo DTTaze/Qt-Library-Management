@@ -108,6 +108,12 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
+bool SoTrangDauSachHopLe(QString so_trang_dausach){
+    bool ChuyenDuocSangInt = false;
+    int so_trang = so_trang_dausach.toInt(&ChuyenDuocSangInt);
+    return (ChuyenDuocSangInt && so_trang > 0);
+}
+
 void ThayDoiDuLieuDauSach(string type, int Index_DS, QTableWidgetItem* item, string ma_sach) {
     DauSach* cur_dausach = danh_sach_dau_sach.node[Index_DS];
 
@@ -136,17 +142,23 @@ void ThayDoiDuLieuDauSach(string type, int Index_DS, QTableWidgetItem* item, str
 void PhanLoaiDuLieuDauSach(int column,QTableWidgetItem* item,int Index_DS) {
     string type = "";
     QString item_data = item->text();
+
     switch (column) {
     case 1:
         if (!item_data.isEmpty()) {
             type = "TS";
             ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        }else{
+            QString ten_sach = QString::fromStdString(danh_sach_dau_sach.node[Index_DS]->tensach);
+            item->setText(ten_sach);
         }
         break;
     case 2:
-        if (!item_data.isEmpty()) {
+        if (SoTrangDauSachHopLe(item_data)) {
             type = "ST";
             ThayDoiDuLieuDauSach(type, Index_DS, item, "");
+        } else {
+            item->setText(QString::number(danh_sach_dau_sach.node[Index_DS]->sotrang));
         }
         break;
     case 3:

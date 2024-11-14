@@ -44,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         thanh_ly.h thanh_ly.cpp thanh_ly.ui
         Ma_The.txt
         danhmucsach.h danhmucsach.cpp danhmucsach.ui
+        xoa_dau_sach.h xoa_dau_sach.cpp xoa_dau_sach.ui
         hieuChinhDocGia_dialog.h hieuChinhDocGia_dialog.cpp hieuChinhDocGia_dialog.ui
         xoaDocGia_dialog.h xoaDocGia_dialog.cpp xoaDocGia_dialog.ui
 

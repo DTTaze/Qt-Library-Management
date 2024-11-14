@@ -9,6 +9,7 @@
 #include "Muon_tra.h"
 #include "dau_sach.h"
 #include "danhmucsach.h"
+#include "xoa_dau_sach.h"
 #include "The_doc_gia.h"
 #include "themDocGia_dialog.h"
 #include "hieuChinhDocGia_dialog.h"
@@ -203,17 +204,17 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
-    int current_Row = ui->tableWidget_dausach->currentRow();
-    if (current_Row == -1) {
-        qDebug() << "Không có hàng nào được chọn.";
-    } else {
 
-    }
 }
 
 void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
 {
-
+    Xoa_dau_sach del_dausach;
+    del_dausach.setModal(true);
+    del_dausach.setWindowTitle("Xóa đầu sách");
+    if (del_dausach.exec() == QDialog::Accepted){
+        Saved = false;
+    }
 }
 
 void LibraryManagementSystem::on_thanhly_pushButton_clicked()
@@ -279,12 +280,15 @@ void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetIte
         int Index_DS = row_header->text().toInt();
 
         if(ui->lineEdit_timkiemds->text().isEmpty()){
-            PhanLoaiDuLieuDauSach(column,item,Index_DS);
-        }else{
-            PhanLoaiDuLieuDauSachKhiTiemKiem(column,item,Index_DS);
+            PhanLoaiDuLieuDauSach(column, item, Index_DS);
+        } else {
+            PhanLoaiDuLieuDauSachKhiTiemKiem(column, item, Index_DS);
         }
+        Saved = false;
+
     }
 }
+
 
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
 void LibraryManagementSystem::CapNhatBang()
