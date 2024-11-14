@@ -1,5 +1,5 @@
-#include "themdocgia_dialog.h"
-#include "ui_themdocgia_dialog.h"
+#include "themDocGia_dialog.h"
+#include "ui_themDocGia_dialog.h"
 
 themDocGia_Dialog::themDocGia_Dialog(QWidget *parent)
     : QDialog(parent)

@@ -9,6 +9,7 @@
 #include <QTableWidgetItem>
 #include <QCloseEvent>
 #include <QCheckBox>
+#include <QComboBox>
 #include "Dau_sach.h"
 #include "queue.h"
 #include "The_doc_gia.h"
@@ -34,8 +35,6 @@ private slots:
 
     void tabMuonTra();
 
-    void tabBaoCao();
-
     void on_luuFile_pushButton_clicked();
 
     void on_dauSach_pushButton_clicked();
@@ -44,7 +43,8 @@ private slots:
 
     void on_muontra_pushButton_clicked();
 
-    void on_baocao_pushButton_clicked();
+    void on_baocao_comboBox_currentTextChanged(const QString &arg1);
+
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 
@@ -66,21 +66,15 @@ private slots:
 
     void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
-    void on_themDocGia_pushButton_clicked();
+    void CapNhatBang();
 
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
 
+    void on_themDocGia_pushButton_clicked();
+
+    void on_hieuChinhDocGia_pushButton_clicked();
+
     void on_xoaDocGia_pushButton_clicked();
-
-    void on_danhSachTheDocGia_tableWidget_itemChanged(QTableWidgetItem *item);
-
-    void CapNhatBang();
-
-    bool kiemTraChuoi(QString s);
-
-    QString xuLyChuoi(QString text);
-
-    void on_danhSachTheDocGia_tableWidget_cellDoubleClicked(int row, int column);
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
     bool laISBN(string text );
 
