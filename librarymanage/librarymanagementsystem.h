@@ -64,7 +64,7 @@ private slots:
 
     void on_nhapSach_pushButton_clicked();
 
-
+    void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void on_themDocGia_pushButton_clicked();
 
@@ -110,7 +110,7 @@ private slots:
 
 
 
-    void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
+
 
 public slots:
 

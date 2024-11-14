@@ -93,6 +93,9 @@ void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tr
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                  int trang_thai,string &vi_tri,string ma_sach);
+
+//Chức năng chỉnh sửa đầu sách
+bool SoTrangDauSachHopLe(QString so_trang_dausach);
 void PhanLoaiDuLieuDauSach(int column,QTableWidgetItem* item,int Index_DS);
 void PhanLoaiDuLieuDauSachKhiTiemKiem(int column,QTableWidgetItem* item,int Index_DS);
 void ThayDoiDuLieuDauSach(string type, int Index_DS,QTableWidgetItem* item,string ma_sach);
