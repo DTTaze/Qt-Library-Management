@@ -33,7 +33,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
     inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
     DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->horizontalFrame, root);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->Top10Sach_tableView, root);
 
     setupbaocao_pushButton();
 
@@ -116,7 +116,7 @@ void LibraryManagementSystem::showTop10SachPage()
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
 
     DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->horizontalFrame, root);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->Top10Sach_tableView, root);
 }
 
 void LibraryManagementSystem::showMuonQuaHanPage()
