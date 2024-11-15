@@ -15,20 +15,24 @@ class hieuChinhDocGia_dialog : public QDialog
 public:
     explicit hieuChinhDocGia_dialog(QWidget *parent = nullptr);
     ~hieuChinhDocGia_dialog();
-    void setMaThe( QString maThe );
-    void setHoVaTen( QString ho, QString ten);
-    void setGioiTinh( QString gioitinh );
-    void setTrangThaiThe( QString trangthai );
+    void setMaThe( int maThe );
+    void setHoVaTen( string ho, string ten);
+    void setGioiTinh( Phai gioitinh );
+    void setTrangThaiThe( TrangThaiCuaThe trangthai );
 
+    int getMaThe();
     QString getHoVaTen();
     Phai getGioiTinh();
     TrangThaiCuaThe getTrangThaiThe();
 
     void xuLyChuoi(const QString &s, QLineEdit* lineEdit);
+    void xuLySo(const QString &arg1, QLineEdit* lineEdit);
 
 
 private slots:
     void on_hoVaTen_lineEdit_textChanged(const QString &arg1);
+
+    void on_maThe_lineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::hieuChinhDocGia_dialog *ui;

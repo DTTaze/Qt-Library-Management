@@ -13,25 +13,29 @@ hieuChinhDocGia_dialog::~hieuChinhDocGia_dialog()
     delete ui;
 }
 
-void hieuChinhDocGia_dialog::setMaThe( QString maThe ) {
-    ui->maThe_lineEdit->setText(maThe);
+void hieuChinhDocGia_dialog::setMaThe( int maThe ) {
+    ui->maThe_lineEdit->setText(QString::number(maThe) );
 }
-void hieuChinhDocGia_dialog::setHoVaTen(QString ho, QString ten) {
-    ui->hoVaTen_lineEdit->setText(ho + ten);
+void hieuChinhDocGia_dialog::setHoVaTen(string ho, string ten) {
+    ui->hoVaTen_lineEdit->setText(QString::fromStdString(ho) + " " + QString::fromStdString(ten));
 }
-void hieuChinhDocGia_dialog::setGioiTinh(QString gioitinh) {
-    if ( gioitinh == "Nam") {
+void hieuChinhDocGia_dialog::setGioiTinh(Phai gioitinh) {
+    if ( gioitinh == Nam) {
         ui->gioiTinh_comboBox->setCurrentIndex(0);
     } else {
         ui->gioiTinh_comboBox->setCurrentIndex(1);
     }
 }
-void hieuChinhDocGia_dialog::setTrangThaiThe(QString trangthai) {
-    if ( trangthai == "Đang Hoạt Động") {
+void hieuChinhDocGia_dialog::setTrangThaiThe(TrangThaiCuaThe trangthai) {
+    if ( trangthai == Dang_Hoat_Dong) {
         ui->trangThaiThe_comboBox->setCurrentIndex(0);
     } else {
         ui->trangThaiThe_comboBox->setCurrentIndex(1);
     }
+}
+
+int hieuChinhDocGia_dialog::getMaThe() {
+    return ui->maThe_lineEdit->text().toInt();
 }
 
 QString hieuChinhDocGia_dialog::getHoVaTen() {
@@ -42,6 +46,41 @@ Phai hieuChinhDocGia_dialog::getGioiTinh() {
 }
 TrangThaiCuaThe hieuChinhDocGia_dialog::getTrangThaiThe() {
     return ( ui->trangThaiThe_comboBox->currentIndex() == 0 ) ? Dang_Hoat_Dong : Khoa;
+}
+
+void hieuChinhDocGia_dialog::xuLySo(const QString &arg1, QLineEdit* lineEdit) {
+    QString newText = arg1;
+
+    if (newText.contains(" ")) {
+        newText.replace(" ", "");
+    }
+
+    if (!newText.isEmpty() && !newText[newText.length() - 1].isDigit() ) {
+        newText = newText.mid(0, newText.length() - 1);
+    }
+
+    if (newText != arg1) {
+        lineEdit->setText(newText);
+    }
+}
+
+bool timThayTheDocGia(Danh_Sach_The_Doc_Gia* docGia) {
+    return docGia != nullptr;
+}
+
+void hieuChinhDocGia_dialog::on_maThe_lineEdit_textChanged(const QString &arg1)
+{
+    xuLySo(arg1, ui->maThe_lineEdit);
+    int maThe = getMaThe();
+    Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia(maThe);
+    if ( timThayTheDocGia(docGia) ) {
+        ui->maThe_lineEdit->setStyleSheet("background-color: lightgreen");
+        setHoVaTen(docGia->thong_tin.Ho, docGia->thong_tin.Ten);
+        setGioiTinh(docGia->thong_tin.phai);
+        setTrangThaiThe(docGia->thong_tin.TrangThai);
+    } else {
+        ui->maThe_lineEdit->setStyleSheet("background-color: lightcoral");
+    }
 }
 
 void hieuChinhDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {

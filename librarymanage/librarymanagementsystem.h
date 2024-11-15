@@ -68,7 +68,13 @@ private slots:
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void CapNhatBang();
 
+    void datBatDauHangVeKhong();
+
+    bool laSapXepDanhSachTheoMaSo();
+
     void on_sapXepDocGia_ComboBox_currentIndexChanged(int index);
+
+    bool hetMaThe();
 
     void on_themDocGia_pushButton_clicked();
 

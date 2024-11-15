@@ -71,9 +71,16 @@ int layMaThe() {
         return -1;
     }
 
-    int maThe = danhSachMaThe.front();
-    danhSachMaThe.pop();
-    danhSachMaThe.push(maThe);
+    int maThe;
+    while ( true ) {
+        maThe = danhSachMaThe.front();
+        danhSachMaThe.pop();
+        danhSachMaThe.push(maThe);
+        if ( timKiemTheDocGia(maThe) == nullptr ) {
+            break;
+        }
+    }
+
     return maThe;
 }
 //---------------------------------------------------Hàm liên quan đến tạo bảng theo tên------------------------------------------------------------------------------------
@@ -218,7 +225,6 @@ void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
     while (getline(inFile, line)) {
         QString strLine = QString::fromStdString(line).trimmed();
         QStringList fields = strLine.split("|");
-
 
         if (fields.size() < 5) {
             continue;

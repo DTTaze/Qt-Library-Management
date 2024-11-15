@@ -22,10 +22,11 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     ui->setupUi(this);
     DocTuFileDauSach(danh_sach_dau_sach,this);
 
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
-
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach); // In bảng đầu sách
+    ui->danhSachTheDocGia_tableWidget->setColumnWidth(1, 400);
 
     int SoLuongSach = 0;
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
@@ -291,48 +292,54 @@ void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetIte
 
 
 //------------------------------------Hàm sử dụng ở Tab Độc Giả-----------------------------------------------------------------------
+void LibraryManagementSystem::datBatDauHangVeKhong() {
+    ui->danhSachTheDocGia_tableWidget->setRowCount(0);
+}
+
+bool LibraryManagementSystem::laSapXepDanhSachTheoMaSo() {
+    return ui->sapXepDocGia_ComboBox->currentIndex() == 0;
+}
+
 void LibraryManagementSystem::CapNhatBang()
 {
-    ui->danhSachTheDocGia_tableWidget->setRowCount(0);
+    datBatDauHangVeKhong();
 
-    if ( ui->sapXepDocGia_ComboBox->currentIndex() == 0 ) {
+    if ( laSapXepDanhSachTheoMaSo() ) {
         inDanhSachTheDocGiaTheoMaSo(ui->danhSachTheDocGia_tableWidget, root);
     } else {
         xoaDanhSachTheoTen();
         taoDanhSachTheoTen(root);
         inDanhSachTheDocGiaTheoTen(ui->danhSachTheDocGia_tableWidget);
     }
+
     ui->danhSachTheDocGia_tableWidget->resizeColumnsToContents();
-    ui->danhSachTheDocGia_tableWidget->setColumnWidth(1, 400);
 }
 
-void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index) // Hàm sắp xếp theo mã hoặc tên
+void LibraryManagementSystem::on_sapXepDocGia_ComboBox_currentIndexChanged(int index)
 {
     CapNhatBang();
+}
+
+bool LibraryManagementSystem::hetMaThe() {
+    return ui->danhSachTheDocGia_tableWidget->rowCount() == SOLUONGMATHETOIDA;
 }
 
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 {
     themDocGia_Dialog themDocGia;
 
-    if ( ui->danhSachTheDocGia_tableWidget->rowCount() == SOLUONGMATHETOIDA ) {
+    if ( hetMaThe() ) {
         QMessageBox::warning(nullptr, "Thông báo", "Đã hết mã thẻ");
         themDocGia.close();
         return;
     }
+
     themDocGia.setModal(true);
     if (themDocGia.exec() == QDialog::Accepted) {
 
         The_Doc_Gia docGia;
-        int maThe = layMaThe();
-        while ( true ) {
-            if ( timKiemTheDocGia(maThe) == nullptr ) {
-                break;
-            }
-            maThe = layMaThe();
-        }
 
-        docGia.MATHE = maThe;
+        docGia.MATHE = layMaThe();
         QString hoVaTen = themDocGia.getHoVaTen();
         int viTriDeTachHoVaTen = hoVaTen.lastIndexOf(" ") + 1;
 
@@ -355,28 +362,22 @@ void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 {
     int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
 
-    if (currentRow == -1) {
-        QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn một độc giả để hiệu chỉnh.");
-        return;
+    hieuChinhDocGia_dialog hieuChinhDocGia;
+    hieuChinhDocGia.setModal(true);
+
+    if (currentRow != -1) {
+        QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
+        Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia( itemMaThe->text().toInt() );
+
+        hieuChinhDocGia.setMaThe( docGia->thong_tin.MATHE );
+        hieuChinhDocGia.setHoVaTen(docGia->thong_tin.Ho, docGia->thong_tin.Ten);
+        hieuChinhDocGia.setGioiTinh(docGia->thong_tin.phai);
+        hieuChinhDocGia.setTrangThaiThe( docGia->thong_tin.TrangThai );
     }
 
-    hieuChinhDocGia_dialog hieuChinhDocGia;
-
-    QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
-    QTableWidgetItem* itemHo = ui->danhSachTheDocGia_tableWidget->item(currentRow, 1);
-    QTableWidgetItem* itemTen = ui->danhSachTheDocGia_tableWidget->item(currentRow, 2);
-    QTableWidgetItem* itemGioiTinh = ui->danhSachTheDocGia_tableWidget->item(currentRow, 3);
-    QTableWidgetItem* itemTrangThaiThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 4);
-
-    hieuChinhDocGia.setMaThe(itemMaThe->text());
-    hieuChinhDocGia.setHoVaTen(itemHo->text(), itemTen->text());
-    hieuChinhDocGia.setGioiTinh(itemGioiTinh->text());
-    hieuChinhDocGia.setTrangThaiThe( itemTrangThaiThe->text());
-
-    hieuChinhDocGia.setModal(true);
     if ( hieuChinhDocGia.exec() == QDialog::Accepted ) {
 
-        int maThe = itemMaThe->text().toInt();
+        int maThe = hieuChinhDocGia.getMaThe();
         The_Doc_Gia thongTinMoi;
         QString hoVaTen = hieuChinhDocGia.getHoVaTen();
         int viTriDeTachHoVaTen = hoVaTen.lastIndexOf(" ") + 1;
@@ -396,41 +397,14 @@ void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 
 void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
 {
-    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
-
-    if (currentRow == -1) {
-        xoaDocGia_dialog xoaDocGia;
-        xoaDocGia.setModal(true);
-        if ( xoaDocGia.exec() == QDialog::Accepted ) {
-            Saved = false;
-            CapNhatBang();
-            QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
-        }
-    } else {
-        QTableWidgetItem* item = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
-        if (item) {
-            int MATHE = item->text().toInt();
-            Danh_Sach_The_Doc_Gia* p = timKiemTheDocGia(MATHE);
-            if ( p->thong_tin.head_lsms != nullptr || p->thong_tin.TrangThai == TrangThaiCuaThe::Khoa) {
-                QMessageBox::warning(this, "Cảnh báo", "Không thể xóa thẻ độc giả này.");
-                return;
-            } else {
-                QMessageBox::StandardButton reply;
-                reply = QMessageBox::question(this, "Thông báo",
-                                              "Bạn có chắc muốn xóa thẻ độc giả này?",
-                                              QMessageBox::Yes | QMessageBox::No);
-                if ( reply == QMessageBox::Yes ) {
-                    Xoa_Doc_Gia(root, MATHE);
-                } else {
-                    return;
-                }
-
-                Saved = false;
-                CapNhatBang();
-                QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
-            }
-        }
+    xoaDocGia_dialog xoaDocGia;
+    xoaDocGia.setModal(true);
+    if ( xoaDocGia.exec() == QDialog::Accepted ) {
+        Saved = false;
+        CapNhatBang();
+        QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
     }
+
 }
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 
