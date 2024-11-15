@@ -30,11 +30,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
     ui->danhSachTheDocGia_tableWidget->setColumnWidth(1, 400);
 
-    int SoLuongSach = 0;
-    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
     inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
-    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->Top10Sach_tableView, root);
 
     setupbaocao_pushButton();
 

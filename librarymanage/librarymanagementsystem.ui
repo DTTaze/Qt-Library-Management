@@ -1454,12 +1454,12 @@ QPushButton:focus {
              </rect>
             </property>
             <widget class="QWidget" name="page_Top10">
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>170</x>
+                <x>60</x>
                 <y>30</y>
-                <width>781</width>
+                <width>971</width>
                 <height>631</height>
                </rect>
               </property>
@@ -1470,36 +1470,19 @@ QPushButton:focus {
                   <string notr="true">font: 900 14pt &quot;Segoe UI&quot;;</string>
                  </property>
                  <property name="text">
-                  <string>TOP 10 SÁCH MƯỢN QUÁ HẠN</string>
+                  <string>TOP 10 SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT </string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QTableView" name="Top10Sach_tableView">
                  <property name="styleSheet">
-                  <string notr="true">QTableView {
-    background-color: #F0F0F0;      
-    gridline-color: #A0A0A0; 
- 	border:  1px solid black;                  
-}
-
-QHeaderView::section {
+                  <string notr="true">QHeaderView::section {
     background-color: #D3D3D3;  
     color: black;                  
     padding: 8px;                  
     font-weight: bold;           
     border-bottom: 1px solid #A0A0A0; 
-}
-
-QTableView::item {
-	 padding: 8px;                
-    color: black;               
-    border: none; 
-}
-
-QTableView::item:selected {
-    background-color: #C0C0C0;     
-    color: black; 
 }
 </string>
                  </property>

@@ -241,19 +241,49 @@ void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon
     MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
     QStandardItemModel *model = new QStandardItemModel();
 
-    model->setColumnCount(2);
-    model->setHeaderData(0, Qt::Horizontal, "Tên sách"); // Tiêu đề cột 1
-    model->setHeaderData(1, Qt::Horizontal, "Số lượt mượn"); // Tiêu đề cột 2
+    model->setColumnCount(6);
+    model->setHeaderData(0, Qt::Horizontal, "ISBN");
+    model->setHeaderData(1, Qt::Horizontal, "Tên sách");
+    model->setHeaderData(2, Qt::Horizontal, "Tác Giả");
+    model->setHeaderData(3, Qt::Horizontal, "Năm Sản Xuất");
+    model->setHeaderData(4, Qt::Horizontal, "Thể Loại");
+    model->setHeaderData(5, Qt::Horizontal, "Số lượt mượn");
 
 
-    for (int i = 0; i < SoLuongSach && i<10; i++) {
+    for (int i = 0; i < SoLuongSach && i < 10; i++) {
+        int vitridausach = TimKiemViTriDauSach(DanhSachSachMuon[i].masach);
         model->insertRow(i);
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach)))); // Họ
-        model->setItem(i, 1, new QStandardItem(QString::number(DanhSachSachMuon[i].demsoluotmuon))); // Mã thẻ
 
+        model->setItem(i, 0, new QStandardItem(QString::fromStdString(DanhSachSachMuon[i].masach)));
+        model->setItem(i, 1, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach))));
+        model->setItem(i, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->tacgia)));
+        model->setItem(i, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[vitridausach]->namsx)));
+        model->setItem(i, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->theloai)));
+        model->setItem(i, 5, new QStandardItem(QString::number(DanhSachSachMuon[i].demsoluotmuon)));
+
+        // Thay đổi màu cho toàn hàng
+        if (i == 0) { // Top 1
+            for (int col = 0; col < 6; ++col) {
+                model->setData(model->index(i, col), QBrush(Qt::yellow), Qt::BackgroundRole);
+            }
+        } else if (i == 1) { // Top 2
+            for (int col = 0; col < 6; ++col) {
+                model->setData(model->index(i, col), QBrush(Qt::lightGray), Qt::BackgroundRole);
+            }
+        } else if (i == 2) { // Top 3
+            for (int col = 0; col < 6; ++col) {
+                model->setData(model->index(i, col), QBrush(Qt::cyan), Qt::BackgroundRole);
+            }
+        }
     }
     tableView->setModel(model);
-    tableView->setColumnWidth(0, 300);
+    tableView->viewport()->update();
+
+    tableView->horizontalHeader()->setSectionResizeMode(4, QHeaderView::Stretch);
+    tableView->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+    tableView->setColumnWidth(0, 150);
+    tableView->setColumnWidth(1, 300);
+
 }
 
 
