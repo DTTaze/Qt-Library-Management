@@ -74,7 +74,7 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
-
+bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 
 QString RemoveSpace(const QString &key);
 

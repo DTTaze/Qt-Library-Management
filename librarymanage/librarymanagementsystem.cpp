@@ -21,6 +21,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     , ui(new Ui::LibraryManagementSystem)
 {
     ui->setupUi(this);
+    QLocale::setDefault(QLocale(QLocale::Vietnamese, QLocale::Vietnam));
     DocTuFileDauSach(danh_sach_dau_sach,this);
 
     InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
@@ -106,6 +107,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     ghiThongTinTheDocGia();
     GhiDauSachVaoFile();
     Saved = true;
+    QMessageBox::information(this,"Thông báo","Lưu thành công.");
 }
 
 void LibraryManagementSystem::showTop10SachPage()
@@ -272,14 +274,29 @@ void LibraryManagementSystem::on_editSach_pushButton_clicked()
     }
 }
 
-void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
-{
-    Xoa_dau_sach del_dausach;
+void LibraryManagementSystem::MoCuaSoXoaSach(int i_ds){
+    Xoa_dau_sach del_dausach(i_ds);
     del_dausach.setModal(true);
     del_dausach.setWindowTitle("Xóa đầu sách");
     if (del_dausach.exec() == QDialog::Accepted){
         InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
         Saved = false;
+    }
+}
+
+void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
+{
+    if (danh_sach_dau_sach.soluongdausach <= 0){QMessageBox::critical(nullptr,"Lỗi","Không có đầu sách để xóa."); return;}
+    QModelIndex index = ui->tableWidget_dausach->currentIndex();
+    int row = index.row();
+    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
+    QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+    if (headerItem){
+        int index_dausach = headerItem->text().toInt();
+        if (TonTaiMaSachDaDuocMuonTrongDauSach(index_dausach)){QMessageBox::critical(nullptr,"Lỗi","Tồn tại mã sách đang được mượn\nKhông thể xóa đầu sách."); return;};
+        MoCuaSoXoaSach(index_dausach);
+    }else{
+        MoCuaSoXoaSach(-1);
     }
 }
 

@@ -62,22 +62,17 @@ void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
     int n = danh_sach_dau_sach.soluongdausach;
     int vi_tri_them = n;
 
-
     QString ten_sach_qt = QString::fromStdString(ten_sach);
-
 
     for (int i = 0; i < n; i++) {
 
         QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
-
 
         if (ten_sach_qt.localeAwareCompare(ten_sach_cur_qt) <= 0) {
             vi_tri_them = i;
             break;
         }
     }
-
-
     for (int i = n; i > vi_tri_them; i--) {
         danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
     }
@@ -108,6 +103,14 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
+bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[index]->dms;cur!=nullptr;cur=cur->next){
+        if(cur->trangthai == da_duoc_muon){
+            return true;
+        }
+    }
+    return false;
+}
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach) {
 
     // Xóa dữ liệu cũ trong QTableWidget

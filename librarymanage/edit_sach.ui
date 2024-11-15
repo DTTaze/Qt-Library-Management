@@ -67,6 +67,9 @@
      <height>24</height>
     </rect>
    </property>
+   <property name="maxLength">
+    <number>17</number>
+   </property>
    <property name="placeholderText">
     <string>ISBN-10 / ISBN-13</string>
    </property>
@@ -213,12 +216,12 @@
     <string>Science,realistic,...</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>440</x>
      <y>380</y>
-     <width>168</width>
+     <width>170</width>
      <height>26</height>
     </rect>
    </property>
@@ -233,7 +236,7 @@
     <item>
      <widget class="QPushButton" name="pushButton_cancel">
       <property name="text">
-       <string>Cancel</string>
+       <string>cancel</string>
       </property>
      </widget>
     </item>

@@ -1,456 +1,456 @@
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-7
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-6
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-5
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-4
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-3
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-2
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-1
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-1
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-2
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-3
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-4
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-5
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-6
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-2
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-3
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-4
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-5
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-6
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-7
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-7
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-1
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-2
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-3
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-4
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-5
-978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-6
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-6
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-5
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-4
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-3
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-2
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-1
 978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-7
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|1|978-0-14-312418-0-1
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-2
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-3
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-4
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-5
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-6
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-7
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-8
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-9
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-6
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-5
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-4
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-3
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-2
+978-0-12-374950-3|Artificial Intelligence: A Modern Approach|1152|Stuart Russell|2020|AI|C|0|978-0-12-374950-3-1
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-10
-978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-1
-978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-2
-978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-3
-978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-4
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-9
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-8
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-7
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-6
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-5
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-4
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-3
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-2
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|1|978-0-14-312418-0-1
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-5
-978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-1
-978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-2
-978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-3
-978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-4
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-4
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-3
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-2
+978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-1
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-5
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-1
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-2
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-3
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|2|978-0-321-88483-4-4
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-4
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-3
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-2
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-1
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|1|978-0-321-88483-4-5
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-1
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-2
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-3
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-4
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|2|978-0-321-88483-4-4
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-3
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-2
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-1
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-5
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-1
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-2
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-3
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-4
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-5
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-6
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-7
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-8
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-4
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-3
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-2
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-1
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|1|978-1-84176-852-5-9
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-1
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-2
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-3
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-4
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-5
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-6
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-7
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-8
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-8
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-7
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-6
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-5
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-4
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-3
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-2
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-1
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|1|978-0-13-419191-1-9
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-1
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-2
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-3
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-4
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-5
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-6
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-7
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-8
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-8
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-7
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-6
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-5
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-4
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-3
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-2
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-1
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-9
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-1
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-2
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-3
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-4
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-5
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-6
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-7
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-8
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-8
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-7
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-6
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-5
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|2|978-1-59327-737-2-4
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-3
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-2
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-1
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-9
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-1
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-2
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-3
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-4
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-5
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-6
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-7
-978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-8
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-8
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-7
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-6
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-5
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-4
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-3
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-2
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-1
 978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-9
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-1
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-2
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-3
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-4
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-5
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-6
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-7
-978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-8
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-8
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-7
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-6
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-5
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-4
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-3
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-2
+978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-1
 978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-9
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-1
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-2
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-3
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-4
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-5
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-6
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-7
-978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-8
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-8
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-7
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-6
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-5
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-4
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-3
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-2
+978-0-385-53941-9|Creativity in Business|290|Peter Thiel|2021|Business|J|0|978-0-385-53941-9-1
 978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-9
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-1
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-2
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-3
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-4
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-5
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-6
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-7
-978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-8
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-8
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-7
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-6
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-5
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-4
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-3
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-2
+978-0-262-03488-6|Critical Thinking|275|Daniel Kahneman|2020|Life Skills|F|0|978-0-262-03488-6-1
 978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-9
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-1
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-2
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-3
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-4
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-5
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-6
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-7
-978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-8
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-8
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-7
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-6
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-5
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-4
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-3
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-2
+978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-1
 978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-9
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-1
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-2
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-3
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-4
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-5
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-6
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-7
-978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-8
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-8
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-7
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-6
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-5
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-4
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-3
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-2
+978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-1
 978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-9
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-1
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-2
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-3
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-4
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-5
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-6
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-7
-978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-8
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-8
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-7
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-6
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-5
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-4
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-3
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-2
+978-1-4919-3136-7|Data Science for Business|368|Foster Provost|2020|Data Science|G|0|978-1-4919-3136-7-1
 978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-9
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-1
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-2
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-3
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-4
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-5
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-6
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-7
-978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-8
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-8
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-7
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-6
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-5
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-4
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-3
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-2
+978-1-59327-970-9|Data Science from Scratch|384|Joel Grus|2020|Data Science|C|0|978-1-59327-970-9-1
 978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-9
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-1
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-2
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-3
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-4
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-5
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-6
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-7
-978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-8
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-8
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-7
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-6
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-5
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-4
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-3
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-2
+978-1-891830-75-6|Decoding Body Language|290|Allan Pease|2020|Psychology|B|0|978-1-891830-75-6-1
 978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-9
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-1
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-2
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-3
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-4
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-5
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-6
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-7
-978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-8
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-8
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-7
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-6
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-5
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-4
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-3
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-2
+978-1-4919-9615-3|Deep Learning for Computer Vision with Python|498|Adrian Rosebrock|2021|Computer Vision|B|0|978-1-4919-9615-3-1
 978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-9
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-1
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-2
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-3
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-4
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-5
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-6
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-7
-978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-8
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-8
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-7
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-6
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-5
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-4
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-3
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-2
+978-0-201-70353-1|Design Patterns: Elements of Reusable Object-Oriented Software|395|Erich Gamma|2018|Software Engineering|E|0|978-0-201-70353-1-1
 978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-9
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-1
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-2
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-3
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-4
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-5
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-6
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-7
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-8
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-8
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-7
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-6
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-5
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-4
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-3
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-2
+978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-1
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|1|978-0-321-88222-9-9
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-1
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-2
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-3
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-4
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-5
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-6
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-7
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-8
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-8
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-7
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-6
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-5
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-4
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-3
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-2
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-1
 978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|1|978-1-56619-909-4-9
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-1
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-2
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-3
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-4
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-5
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-6
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-7
-978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-8
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-8
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-7
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-6
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-5
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-4
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-3
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-2
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-1
 978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-9
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-1
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-2
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-3
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-4
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-5
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-6
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-7
-978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-8
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-8
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-7
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-6
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-5
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-4
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-3
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-2
+978-0-12-374713-5|Foundations of Machine Learning|593|Mohammed A. K. Al-Battah|2021|Machine Learning|J|0|978-0-12-374713-5-1
 978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-9
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-1
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-2
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-3
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-4
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-5
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-6
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-7
-978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-8
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-8
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-7
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-6
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-5
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-4
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-3
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-2
+978-1-4919-5614-0|Functional Programming in Scala|576|Paul Chiusano|2023|Functional Programming|J|0|978-1-4919-5614-0-1
 978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-9
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-1
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-2
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-3
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-4
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-5
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-6
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-7
-978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-8
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-8
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-7
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-6
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-5
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-4
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-3
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-2
+978-0-201-63012-2|Getting Started with Python|320|Eric Matthes|2019|Information Technology|I|0|978-0-201-63012-2-1
 978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-9
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-1
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-2
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-3
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-4
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-5
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-6
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-7
-978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-8
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-8
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-7
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-6
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-5
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-4
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-3
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-2
+978-0-12-374949-0|Graph Algorithms in Modern Applications|500|Zvi Galil|2023|Algorithms|H|0|978-0-12-374949-0-1
 978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-9
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-1
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-2
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-3
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-4
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-5
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-6
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-7
-978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-8
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-8
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-7
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-6
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-5
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-4
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-3
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-2
+978-1-4919-1261-5|Hands-On Machine Learning with Scikit-Learn and TensorFlow|576|Aurélien Géron|2020|Machine Learning|A|0|978-1-4919-1261-5-1
 978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-9
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-1
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-2
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-3
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-4
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-5
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-6
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-7
-978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-8
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-8
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-7
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-6
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-5
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-4
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-3
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-2
+978-1-4919-1900-7|Head First Design Patterns|656|Eric Freeman|2021|Software Engineering|F|0|978-1-4919-1900-7-1
 978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-9
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-1
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-2
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-3
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-4
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-5
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-6
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-7
-978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-8
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-8
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-7
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-6
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-5
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-4
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-3
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-2
+978-0-452-29560-5|History of Art|500|Ernst Gombrich|2018|Art|G|0|978-0-452-29560-5-1
 978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-9
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-1
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-2
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-3
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-4
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-5
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-6
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-7
-978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-8
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-8
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-7
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-6
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-5
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-4
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-3
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-2
+978-0-262-03384-1|Introduction to Algorithms|1312|Thomas H. Cormen|2021|Algorithms|I|0|978-0-262-03384-1-1
 978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-9
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-1
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-2
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-3
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-4
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-5
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-6
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-7
-978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-8
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-8
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-7
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-6
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-5
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-4
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-3
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-2
+978-1-4919-4954-3|Introduction to Game Development|512|Garry Kitchen|2023|Game Development|F|0|978-1-4919-4954-3-1
 978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-9
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-1
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-2
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-3
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-4
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-5
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-6
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-7
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-8
-978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-9
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-1
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-2
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-3
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-4
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-5
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-6
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-7
-978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-8
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-8
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-7
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-6
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-5
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-4
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-3
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-2
+978-0-321-77870-2|Introduction to Information Retrieval|464|Christopher D. Manning|2022|Information Retrieval|C|0|978-0-321-77870-2-1
 978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-9
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-1
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-2
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-3
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-4
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-5
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-6
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-7
-978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-8
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-8
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-7
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-6
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-5
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-4
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-3
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-2
+978-0-13-469334-5|Introduction to the Theory of Computation|384|Michael Sipser|2018|Computer Science|A|0|978-0-13-469334-5-1
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-9
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-8
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-7
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-6
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-5
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-4
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-3
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-2
+978-3-16-148410-1|Introduction to the Theory of Computation|328|Michael Sipser|2022|Computer Science|D|0|978-3-16-148410-1-1
 978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-9
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-1
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-2
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-3
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-4
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-5
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-6
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-7
-978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-8
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-8
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-7
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-6
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-5
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-4
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-3
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-2
+978-1-4919-6338-0|JavaScript: The Good Parts|176|Douglas Crockford|2022|JavaScript|A|0|978-1-4919-6338-0-1
 978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-9
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-1
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-2
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-3
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-4
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-5
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-6
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-7
-978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-8
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-8
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-7
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-6
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-5
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-4
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-3
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-2
+978-1-59327-828-2|Learning Python|564|Mark Lutz|2020|Programming|G|0|978-1-59327-828-2-1
 978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-9
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-1
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-2
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-3
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-4
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-5
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-6
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-7
-978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-8
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-8
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-7
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-6
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-5
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-4
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-3
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-2
+978-1-4919-0626-0|Learning SQL|300|Alan Beaulieu|2020|Databases|E|0|978-1-4919-0626-0-1
 978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-9
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-1
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-2
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-3
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-4
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-5
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-6
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-7
-978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-8
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-8
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-7
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-6
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-5
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-4
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-3
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-2
+978-1-59327-928-8|Machine Learning Yearning|197|Andrew Ng|2022|Machine Learning|E|0|978-1-59327-928-8-1
 978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-9
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-1
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-2
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-3
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-4
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-5
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-6
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-7
-978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-8
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-8
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-7
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-6
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-5
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-4
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-3
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-2
+978-0-262-53325-2|Machine Learning: A Probabilistic Perspective|1024|Kevin P. Murphy|2019|Machine Learning|D|0|978-0-262-53325-2-1
 978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-9
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-1
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-2
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-3
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-4
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-5
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-6
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-7
-978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-8
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-8
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-7
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-6
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-5
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-4
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-3
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-2
+978-0-13-468609-3|Modern Operating Systems|1024|Andrew S. Tanenbaum|2019|Operating Systems|H|0|978-0-13-468609-3-1
 978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-9
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-1
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-2
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-3
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-4
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-5
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-6
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-7
-978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-8
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-8
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-7
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-6
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-5
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-4
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-3
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-2
+978-1-4919-7712-1|Natural Language Processing with Python|464|Steven Bird|2020|Natural Language Processing|E|0|978-1-4919-7712-1-1
 978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-9
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-1
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-2
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-3
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-4
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-5
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-6
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-7
-978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-8
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-8
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-7
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-6
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-5
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-4
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-3
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-2
+978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-1
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-9
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-1
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-2
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-3
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-4
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-5
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-6
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-7
-978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-8
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-8
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-7
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-6
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-5
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-4
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-3
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-2
+978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-1
 978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-9
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-1
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-2
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-3
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-4
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-5
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-6
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-7
-978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-8
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-8
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-7
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-6
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-5
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-4
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-3
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-2
+978-1-234-56789-7|Programming in C++|300|Jane Smith|2021|Information Technology|B|0|978-1-234-56789-7-1
 978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-9
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-1
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-2
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-3
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-4
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-5
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-6
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-7
-978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-8
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-8
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-7
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-6
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-5
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-4
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-3
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-2
+978-1-4919-5878-2|Programming in Haskell|392|Bryan O'Sullivan|2020|Programming|I|0|978-1-4919-5878-2-1
 978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-9
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-1
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-2
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-3
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-4
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-5
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-6
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-7
-978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-8
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-8
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-7
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-6
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-5
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-4
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-3
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-2
+978-1-4919-1143-3|Programming Language Pragmatics|798|Michael L. Scott|2020|Programming Languages|C|0|978-1-4919-1143-3-1
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-9
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-1
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-2
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-3
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-4
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-5
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-6
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-7
-978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-8
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-8
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-7
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-6
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-5
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-4
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-3
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-2
+978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-1
 978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-9
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-1
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-2
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-3
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-4
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-5
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-6
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-7
-978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-8
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-8
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-7
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-6
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-5
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-4
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-3
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-2
+978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-1
 978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-9
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-8
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-7
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-6
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-5
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-4
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-3
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-2
+978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-1
 978-0-321-65536-1|The Art of Computer Programming|3168|Donald Knuth|2023|Computer Science|F|0|978-0-321-65536-1-1
-978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-5
-978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-4
-978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-3
-978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-2
 978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|1|978-0-12-345678-9-1
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-2
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-3
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-4
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-5
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-11
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-10
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-9
@@ -472,168 +472,168 @@
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-9
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-10
 978-0-735-60015-9|The Art of Leadership|320|John C. Maxwell|2017|Business|A|0|978-0-735-60015-9-11
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-1
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-2
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-3
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-4
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-5
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-6
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-7
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-8
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-9
-978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-10
 978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-11
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-1
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-2
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-3
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-4
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-5
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-6
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-7
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-8
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-9
-978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-10
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-10
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-9
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-8
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-7
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-6
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-5
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-4
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-3
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-2
+978-1-4088-4046-4|The Art of Slowing Down|280|Carl Honoré|2021|Healthy Living|I|0|978-1-4088-4046-4-1
 978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-11
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-1
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-2
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-3
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-4
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-5
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-6
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-7
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-8
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-9
-978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-10
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-10
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-9
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-8
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-7
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-6
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-5
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-4
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-3
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-2
+978-1-4919-9190-0|The Art of SQL|400|Stephane Faroult|2019|Databases|B|0|978-1-4919-9190-0-1
 978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-11
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-1
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-2
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-3
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-4
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-5
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-6
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-7
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-8
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-9
-978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-10
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-10
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-9
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-8
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-7
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-6
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-5
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-4
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-3
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-2
+978-0-13-475759-9|The Complete Reference Java|1312|Herbert Schildt|2021|Programming|G|0|978-0-13-475759-9-1
 978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-11
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-1
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-2
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-3
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-4
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-5
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-6
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-7
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-8
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-9
-978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-10
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-10
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-9
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-8
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-7
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-6
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-5
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-4
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-3
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-2
+978-1-4919-5708-6|The Data Warehouse Toolkit|864|Ralph Kimball|2020|Data Warehousing|B|0|978-1-4919-5708-6-1
 978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-11
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-1
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-2
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-3
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-4
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-5
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-6
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-7
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-8
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-9
-978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-10
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-10
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-9
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-8
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-7
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-6
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-5
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-4
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-3
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-2
+978-1-4919-5471-9|The Deep Learning Book|775|Ian Goodfellow|2022|Deep Learning|D|0|978-1-4919-5471-9-1
 978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-11
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-1
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-2
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-3
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-4
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-5
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-6
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-7
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-8
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-9
-978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-10
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-10
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-9
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-8
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-7
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-6
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-5
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-4
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-3
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-2
+978-1-60273-196-0|The Environment and Development|400|Jared Diamond|2022|Science|J|0|978-1-60273-196-0-1
 978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-11
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-1
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-2
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-3
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-4
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-5
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-6
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-7
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-8
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-9
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-10
-978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-11
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-1
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-2
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-3
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-4
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-5
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-6
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-7
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-8
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-9
-978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-10
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-10
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-9
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-8
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-7
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-6
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-5
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-4
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-3
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-2
+978-0-131-23457-2|The Mythical Man-Month|352|Frederick P. Brooks Jr.|2018|Software Engineering|A|0|978-0-131-23457-2-1
 978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-11
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-1
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-2
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-3
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-4
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-5
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-6
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-7
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-8
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-9
-978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-10
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-10
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-9
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-8
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-7
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-6
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-5
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-4
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-3
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-2
+978-1-59327-991-2|The Pragmatic Programmer|352|Andrew Hunt|2023|Programming|G|0|978-1-59327-991-2-1
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-11
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-10
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-9
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-8
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-7
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-6
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-5
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-4
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-3
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-2
+978-0-13-468599-7|The Pragmatic Programmer|352|Andrew Hunt|2019|Programming|A|0|978-0-13-468599-7-1
 978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-11
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-8
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-7
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-6
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-5
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-4
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-3
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-2
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-10
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-9
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-8
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-7
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-6
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-5
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-4
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-3
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-2
+978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-1
 0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-1
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-1
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-2
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-3
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-4
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-5
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-6
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-7
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-8
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-9
-978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-10
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-2
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-3
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-4
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-5
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-6
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-7
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-8
 978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-11
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-1
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-2
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-3
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-4
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-5
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-6
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-7
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-8
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-9
-978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-10
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-10
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-9
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-8
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-7
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-6
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-5
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-4
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-3
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-2
+978-0-12-374857-8|Understanding Cryptography|312|Christof Paar|2022|Cryptography|G|0|978-0-12-374857-8-1
 978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-11
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-1
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-2
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-3
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-4
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-5
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-10
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-9
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-8
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-7
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-6
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-5
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-4
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-3
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-2
+978-0-201-37937-1|Understanding Machine Learning|338|Shai Shalev-Shwartz|2021|Machine Learning|C|0|978-0-201-37937-1-1
 978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-6
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|1|978-1-86197-877-9-1
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-2
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-3
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-4
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-5
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-6
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-7
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-5
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-4
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-3
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-2
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-1
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-8
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-1
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-2
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-3
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-4
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-5
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-6
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-7
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-8
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-9
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-10
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-7
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-6
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-5
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-4
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-3
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-2
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|1|978-1-86197-877-9-1
 978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|1|978-1-4919-4000-5-11
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-10
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-9
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-8
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-7
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-6
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-5
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-4
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-3
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-2
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-1

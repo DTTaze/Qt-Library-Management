@@ -149,7 +149,6 @@ void Edit_sach::HienThiThongTinSachTrongEditSach(int index_dausach){
     ui->spinBox_namsb_1->setValue(danh_sach_dau_sach.node[index_dausach]->namsx);
     ui->spinBox_sotrang_1->setValue(danh_sach_dau_sach.node[index_dausach]->sotrang);
     HienThiDanhMucSachTrongEditSach(index_dausach);
-
 }
 
 void Edit_sach::XoaThongTinTrongEditSach(){

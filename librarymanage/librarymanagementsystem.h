@@ -65,13 +65,13 @@ private slots:
 
     void on_editSach_pushButton_clicked();
 
+    void MoCuaSoXoaSach(int i_ds);
+
     void on_xoaSach_pushButton_clicked();
 
     void on_thanhly_pushButton_clicked();
 
     void on_nhapSach_pushButton_clicked();
-
-    void on_tableWidget_dausach_itemChanged(QTableWidgetItem *item);
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------
     void CapNhatBang();
 
