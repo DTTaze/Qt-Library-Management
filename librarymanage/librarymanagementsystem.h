@@ -61,6 +61,8 @@ private slots:
 
     void on_themSach_pushButton_clicked();
 
+    void MoCuaSoEditSach(int i_ds);
+
     void on_editSach_pushButton_clicked();
 
     void on_xoaSach_pushButton_clicked();

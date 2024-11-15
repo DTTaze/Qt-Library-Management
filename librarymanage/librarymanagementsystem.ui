@@ -411,7 +411,7 @@ QTableView::item:selected {
              <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>false</bool>

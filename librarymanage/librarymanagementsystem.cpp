@@ -224,17 +224,12 @@ void LibraryManagementSystem::HienMaSach(int ViTriDauSach) {
 
 void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelIndex &index)
 {
-    // Kiểm tra nếu người dùng nhấn vào cột đầu tiên
-    if (index.column() == 0) {
-        // Lấy chỉ số hàng từ index
-        int row = index.row();
-
-        // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
-        QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
-        if (headerItem) {
-            int ViTriDauSach = headerItem->text().toInt();
-            HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
-        }
+    int row = index.row();
+    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
+    QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+    if (headerItem) {
+        int ViTriDauSach = headerItem->text().toInt();
+        HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
     }
 }
 
@@ -253,14 +248,27 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
     }
 }
 
-void LibraryManagementSystem::on_editSach_pushButton_clicked()
-{
-    Edit_sach edit;
+void LibraryManagementSystem::MoCuaSoEditSach(int i_ds){
+    Edit_sach edit(i_ds);
     edit.setModal(true);
     edit.setWindowTitle("Sửa sách");
     if (edit.exec() ==  QDialog::Accepted){
         InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
         Saved = false;
+    }
+}
+
+void LibraryManagementSystem::on_editSach_pushButton_clicked()
+{
+    QModelIndex index = ui->tableWidget_dausach->currentIndex();
+    int row = index.row();
+    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
+    QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+    if (headerItem){
+        int index_dausach = headerItem->text().toInt();
+        MoCuaSoEditSach(index_dausach);
+    }else{
+        MoCuaSoEditSach(-1);
     }
 }
 
@@ -312,33 +320,6 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
 {
 
-}
-
-void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetItem *item)
-{
-    // Kiểm tra nếu sự thay đổi là từ người dùng
-    if (item->isSelected()) {
-        int row = item->row();
-        int column = item->column();
-
-        QTableWidgetItem* row_header = ui->tableWidget_dausach->verticalHeaderItem(row);
-
-        // Kiểm tra nếu row_header hợp lệ
-        if (row_header == nullptr) {
-            QMessageBox::warning(this,"Cảnh báo","Không xác định được index cột.");
-            return;
-        }
-
-        int Index_DS = row_header->text().toInt();
-
-        if(ui->lineEdit_timkiemds->text().isEmpty()){
-            PhanLoaiDuLieuDauSach(column, item, Index_DS);
-        } else {
-            PhanLoaiDuLieuDauSachKhiTiemKiem(column, item, Index_DS);
-        }
-        Saved = false;
-
-    }
 }
 
 

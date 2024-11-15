@@ -74,15 +74,11 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
-bool MaISBNQTHopLe(QString i_s_b_n);
+
 
 QString RemoveSpace(const QString &key);
 
 QString CapitalizeWords(const QString& text);
-
-void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
-
-void LocKiTuTensachHopLe(const QString& text,string& valid_key);
 
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach);
 
@@ -96,8 +92,6 @@ string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string
 
 bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach);
 
-string ChuyenVeChuThuong(std::string str);
-
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
@@ -105,6 +99,7 @@ void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent);
 void GhiDauSachVaoFile();
 
 //Chức năng thêm sách
+bool MaISBNQTHopLe(QString i_s_b_n);
 void TaoMaSach(string& ma_sach,int demsosach);
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
@@ -112,13 +107,12 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
                  int trang_thai,string &vi_tri,string ma_sach);
 
 //Chức năng chỉnh sửa đầu sách
-bool SoTrangDauSachHopLe(QString so_trang_dausach);
-void PhanLoaiDuLieuDauSach(int column,QTableWidgetItem* item,int Index_DS);
-void PhanLoaiDuLieuDauSachKhiTiemKiem(int column,QTableWidgetItem* item,int Index_DS);
-void ThayDoiDuLieuDauSach(string type, int Index_DS,QTableWidgetItem* item,string ma_sach);
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
+void LocKiTuTensachHopLe(const QString& text,string& valid_key);
 
 //Chức năng in đầu sách theo thể loại
 void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
+string ChuyenVeChuThuong(std::string str);
 void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc);
 void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc);
 void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai);

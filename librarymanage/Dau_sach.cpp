@@ -108,115 +108,6 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
     }
 }
 
-bool SoTrangDauSachHopLe(QString so_trang_dausach){
-    bool ChuyenDuocSangInt = false;
-    int so_trang = so_trang_dausach.toInt(&ChuyenDuocSangInt);
-    return (ChuyenDuocSangInt && so_trang > 0);
-}
-
-void ThayDoiDuLieuDauSach(string type, int Index_DS, QTableWidgetItem* item, string ma_sach) {
-    DauSach* cur_dausach = danh_sach_dau_sach.node[Index_DS];
-
-    if(ma_sach == ""){
-        if (type == "TS") {
-            cur_dausach->tensach = item->text().toStdString();
-        } else if (type == "ST") {
-            cur_dausach->sotrang = item->text().toInt();
-        } else if (type == "TG") {
-            cur_dausach->tacgia = item->text().toStdString();
-        } else if (type == "NXB") {
-            cur_dausach->namsx = item->text().toInt();
-        } else if (type == "TL") {
-            cur_dausach->theloai = item->text().toStdString();
-        }else QMessageBox::critical(nullptr,"Thay đổi dữ liệu đầu sách","Lỗi không thấy dữ liệu thay đổi");
-    }else if(type == "VT"){
-        for (DanhMucSach* cur_dms = danh_sach_dau_sach.node[Index_DS]->dms; cur_dms != nullptr; cur_dms = cur_dms->next){
-            if (cur_dms->masach == ma_sach){
-                cur_dms->vitri = item->text().toStdString();
-                return;
-            }
-        }
-    }else QMessageBox::critical(nullptr,"Thay đổi dữ liệu đầu sách", "Lỗi không thấy dữ liệu thay đổi");
-}
-
-void PhanLoaiDuLieuDauSach(int column,QTableWidgetItem* item,int Index_DS) {
-    string type = "";
-    QString item_data = item->text();
-
-    switch (column) {
-    case 1:
-        if (!item_data.isEmpty()) {
-            type = "TS";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }else{
-            QString ten_sach = QString::fromStdString(danh_sach_dau_sach.node[Index_DS]->tensach);
-            item->setText(ten_sach);
-        }
-        break;
-    case 2:
-        if (SoTrangDauSachHopLe(item_data)) {
-            type = "ST";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        } else {
-            item->setText(QString::number(danh_sach_dau_sach.node[Index_DS]->sotrang));
-        }
-        break;
-    case 3:
-        if (!item_data.isEmpty()) {
-            type = "TG";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    case 4:
-        if (!item_data.isEmpty()) {
-            type = "NXB";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    case 5:
-        if (!item_data.isEmpty()) {
-            type = "TL";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    default:
-        return;
-    }
-}
-
-void PhanLoaiDuLieuDauSachKhiTiemKiem(int column,QTableWidgetItem* item,int Index_DS){
-    string type = "";
-    QString item_data = item->text();
-    switch (column) {
-    case 1:
-        if (!item_data.isEmpty()) {
-            type = "TS";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    case 2:
-        if (!item_data.isEmpty()) {
-            type = "TG";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    case 3:
-        if (!item_data.isEmpty()) {
-            type = "NXB";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    case 4:
-        if (!item_data.isEmpty()) {
-            type = "TL";
-            ThayDoiDuLieuDauSach(type, Index_DS, item, "");
-        }
-        break;
-    default:
-        return;
-    }
-}
-
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach) {
 
     // Xóa dữ liệu cũ trong QTableWidget
@@ -258,8 +149,6 @@ void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTa
 
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
         tableWidget_dausach->setVerticalHeaderItem(i, item);
-        // Tắt chế độ chỉnh sửa cho cột đầu tiên (ISBN)
-        isbnItem->setFlags(isbnItem->flags() & ~Qt::ItemIsEditable);  // Tắt khả năng chỉnh sửa
 
     }
 

@@ -13,7 +13,7 @@ class Edit_sach : public QDialog
     Q_OBJECT
 
 public:
-    explicit Edit_sach(QWidget *parent = nullptr);
+    explicit Edit_sach(int index,QWidget *parent = nullptr);
     ~Edit_sach();
     void KhoaNhapDauSach();
     void MoKhoaNhapDauSach();
@@ -39,6 +39,7 @@ private slots:
 
 private:
     Ui::Edit_sach *ui;
+    int index_dausach;
 };
 
 #endif // EDIT_SACH_H
