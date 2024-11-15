@@ -13,6 +13,7 @@
 #include "The_doc_gia.h"
 #include "themDocGia_dialog.h"
 #include "hieuChinhDocGia_dialog.h"
+#include "edit_sach.h"
 #include "xoaDocGia_dialog.h"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
@@ -30,9 +31,11 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 
     int SoLuongSach = 0;
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
-    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
     DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->horizontalFrame, root);
+
+    setupbaocao_pushButton();
 
     Saved = true;
 }
@@ -105,23 +108,70 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     Saved = true;
 }
 
-void LibraryManagementSystem::on_baocao_comboBox_currentTextChanged(const QString &arg1)
+void LibraryManagementSystem::showTop10SachPage()
 {
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_comboBox);
-    if(arg1 == "Top 10 Sách") {
-        ui->stackedWidget->setCurrentWidget(ui->page_Top10);
-        int SoLuongSach = 0;
-        SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
-        DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
-        NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, ui->topTenMuonNhieuNhat_tableView_2,root);
-        return;
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baocao);
+    ui->stackedWidget->setCurrentWidget(ui->page_Top10);
+    int SoLuongSach = 0;
+    SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
 
-    } else if (arg1 == "Mượn Sách Quá Hạn"){
-        ui->stackedWidget->setCurrentWidget(ui->page_MuonQuaHan);
-        inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView_2, root);
-        return;
-    }
+    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,ui->horizontalFrame, root);
 }
+
+void LibraryManagementSystem::showMuonQuaHanPage()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_baocao);
+    ui->stackedWidget->setCurrentWidget(ui->page_MuonQuaHan);
+
+    inDanhSachDocGiaMuonQuaHan(ui->danhSachQuaHan_tableView, root);
+}
+
+void LibraryManagementSystem::setupbaocao_pushButton() {
+    QMenu *menu = new QMenu(this);
+
+    QAction *top10SachAction = new QAction("Top 10 Sách", this);
+    QAction *muonSachQuaHanAction = new QAction("Mượn Sách Quá Hạn", this);
+
+    menu->addAction(top10SachAction);
+    menu->addAction(muonSachQuaHanAction);
+
+    menu->setStyleSheet(
+        "QMenu {"
+        "   background-color: #ffffff;"
+        "   border: none;"
+        "   padding: 5px 0;"
+        "   width: 225px;"
+        "}"
+        "QMenu::item {"
+        "   padding: 13px 16px;"
+        "   font-family: 'Roboto Mono', sans-serif;"
+        "   font-size: 18px;"
+        "   letter-spacing: 0.8px;"
+        "   color: black;"
+        "   font-weight: bold;"
+        "}"
+        "QMenu::item:selected {"
+        "   background-color: #C4C4C4;"
+        "}"
+        "QMenu::item:pressed {"
+        "   background-color: #C4C4C4;"
+        "   border-top: 4px solid;"
+        "}"
+        "QMenu::item:disabled {"
+        "   background-color: #D6D6D6;"
+        "   color: #7F7F7F;"
+        "}"
+    );
+
+    ui->baocao_pushButton->setMenu(menu);
+
+    connect(top10SachAction, &QAction::triggered, this, &LibraryManagementSystem::showTop10SachPage);
+    connect(muonSachQuaHanAction, &QAction::triggered, this, &LibraryManagementSystem::showMuonQuaHanPage);
+}
+
+
+
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
@@ -205,7 +255,13 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
-
+    Edit_sach edit;
+    edit.setModal(true);
+    edit.setWindowTitle("Sửa sách");
+    if (edit.exec() ==  QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        Saved = false;
+    }
 }
 
 void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
@@ -214,6 +270,7 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     del_dausach.setModal(true);
     del_dausach.setWindowTitle("Xóa đầu sách");
     if (del_dausach.exec() == QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
         Saved = false;
     }
 }
@@ -259,12 +316,6 @@ void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
 
 void LibraryManagementSystem::on_tableWidget_dausach_itemChanged(QTableWidgetItem *item)
 {
-    // Kiểm tra nếu item là nullptr
-    if (item == nullptr) {
-        QMessageBox::critical(nullptr, "Lỗi", "Không có dữ liệu để thay đổi.");
-        return;
-    }
-
     // Kiểm tra nếu sự thay đổi là từ người dùng
     if (item->isSelected()) {
         int row = item->row();
@@ -725,11 +776,5 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả. ");
     }
 }
-
-
-
-
-
-
 
 

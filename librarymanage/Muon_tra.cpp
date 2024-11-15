@@ -235,34 +235,67 @@ void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSa
     }
 }
 
-void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QTableView* tableView) {
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QFrame *frame) {
 
     CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(SoLuongSach, DanhSachSachMuon,danh_sach_muon_tra);
     MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
-    QStandardItemModel *model = new QStandardItemModel();
+    // QStandardItemModel *model = new QStandardItemModel();
 
-    model->setColumnCount(2);
-    model->setHeaderData(0, Qt::Horizontal, "Tên sách"); // Tiêu đề cột 1
-    model->setHeaderData(1, Qt::Horizontal, "Số lượt mượn"); // Tiêu đề cột 2
+    // model->setColumnCount(2);
+    // model->setHeaderData(0, Qt::Horizontal, "Tên sách"); // Tiêu đề cột 1
+    // model->setHeaderData(1, Qt::Horizontal, "Số lượt mượn"); // Tiêu đề cột 2
 
 
-    for (int i = 0; i < SoLuongSach && i<10; i++) {
-        model->insertRow(i);
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach)))); // Họ
-        model->setItem(i, 1, new QStandardItem(QString::number(DanhSachSachMuon[i].demsoluotmuon))); // Mã thẻ
+    // for (int i = 0; i < SoLuongSach && i<10; i++) {
+    //     model->insertRow(i);
+    //     model->setItem(i, 0, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach)))); // Họ
+    //     model->setItem(i, 1, new QStandardItem(QString::number(DanhSachSachMuon[i].demsoluotmuon))); // Mã thẻ
 
+    // }
+    // tableView->setModel(model);
+    // tableView->setColumnWidth(0, 300);
+    QStringList categories;
+    QBarSet *set = new QBarSet("Top Borrowed Books");
+
+    // Thêm tất cả dữ liệu vào một QBarSet duy nhất
+    for(int i = 0; i < SoLuongSach && i < 10; i++) {
+        *set << DanhSachSachMuon[i].demsoluotmuon;  // Thêm lượt mượn vào cột
+        categories.append(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach)));
     }
-    tableView->setModel(model);
-    tableView->setColumnWidth(0, 300);
+
+    QBarSeries *series = new QBarSeries();
+    series->append(set);
+
+    auto chart = new QChart;
+    chart->addSeries(series);
+    chart->setTitle("TOP 10 QUYỂN SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    auto axisX = new QBarCategoryAxis();
+    axisX->append(categories);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    auto axisY = new QValueAxis;
+    axisY->setRange(0, 10);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setParent(frame);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setFixedSize(1000, 661);
+
+
 
 }
 
 
-void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
+void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QFrame *frame, Danh_Sach_The_Doc_Gia *root) {
     if (root == nullptr) return;
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, tableView, root->ptr_left);
-    Top10QuyenSachNhieuLuotMuonNhat(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms, tableView);
-    NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, frame, root->ptr_left);
+    Top10QuyenSachNhieuLuotMuonNhat(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms, frame);
+    NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, frame, root->ptr_right);
 }
 
 /*------------------------------------------------------------------------------------------------------------*/

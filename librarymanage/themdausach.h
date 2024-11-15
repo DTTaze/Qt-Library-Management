@@ -16,10 +16,6 @@ public:
     ~themdausach();
     void KhoaNhapDauSach();
     void MoKhoaNhapDauSach();
-    bool ThemMaISBNQTHopLe(QString i_s_b_n);
-    QString CapitalizeWords(const QString& text);
-    QString RemoveSpace(const QString &key) ;
-
 private slots:
 
 

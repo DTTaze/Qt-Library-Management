@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Charts)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Charts)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         danhmucsach.h danhmucsach.cpp danhmucsach.ui
         xoa_dau_sach.h xoa_dau_sach.cpp xoa_dau_sach.ui
         hieuChinhDocGia_dialog.h hieuChinhDocGia_dialog.cpp hieuChinhDocGia_dialog.ui
+        edit_sach.h edit_sach.cpp edit_sach.ui
         xoaDocGia_dialog.h xoaDocGia_dialog.cpp xoaDocGia_dialog.ui
 
 
@@ -70,7 +71,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(librarymanage PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(librarymanage PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Charts)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

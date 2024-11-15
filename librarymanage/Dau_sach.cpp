@@ -630,3 +630,92 @@ bool TonTaiMaSach(string ma_sach){
     }
     return false;
 }
+
+
+DanhMucSach* DanhMucSachTrongDauSach(string ma_sach){
+    int i = TimKiemViTriDauSach(ma_sach);
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
+        if(cur->masach == ma_sach){
+            return cur;
+        }
+    }
+}
+
+bool MaISBNQTHopLe(QString i_s_b_n){
+    int Dash_Count = i_s_b_n.count('-');
+    return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
+}
+
+QString RemoveSpace(const QString &key) {
+    QString valid_key;
+    bool lastWasSpace = false;
+
+    for (QChar c : key) {
+        if (c.isLetter() ) {
+            valid_key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào valid_key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                valid_key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+            }
+        }
+        // Nếu là ký tự đặc biệt, không thêm vào valid_key, tức là xóa ký tự đặc biệt
+    }
+
+    return valid_key;
+}
+
+QString CapitalizeWords(const QString& text) {
+    QString result;
+    bool isNewWord = true;
+
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
+
+        if (c.isLetter()) {
+            if (isNewWord) {
+                c = c.toUpper();  // Chuyển thành chữ in hoa
+                isNewWord = false;
+            }
+        } else {
+            isNewWord = true; // Đánh dấu bắt đầu từ mới khi gặp ký tự không phải chữ cái
+        }
+
+        result += c; // Thêm ký tự vào chuỗi kết quả
+    }
+
+    return result;
+}
+
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu){
+    // Lọc ra các ký tự là chữ số
+    for (int i = 0; i < text.length(); ++i) {
+        if (text[i].isDigit() || text[i] == '-') {
+            LocKiTu.append(text[i]); // Thêm ký tự hợp lệ vào LocKiTu
+        }
+    }
+}
+
+void LocKiTuTensachHopLe(const QString& text,string& valid_key){
+    QString key;
+    bool lastWasSpace = false; // Kiểm tra xem ký tự trước có phải là khoảng trắng không
+
+    for (QChar c : text) {
+        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
+            key += c; // Thêm ký tự hợp lệ vào key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+            }
+        }
+    }
+
+    // Xóa khoảng trắng ở đầu
+    valid_key = key.toStdString();
+    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+
+
+}

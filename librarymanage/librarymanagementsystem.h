@@ -10,6 +10,7 @@
 #include <QCloseEvent>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QMenu>
 #include "Dau_sach.h"
 #include "queue.h"
 #include "The_doc_gia.h"
@@ -43,7 +44,11 @@ private slots:
 
     void on_muontra_pushButton_clicked();
 
-    void on_baocao_comboBox_currentTextChanged(const QString &arg1);
+    void setupbaocao_pushButton();
+
+    void showTop10SachPage();
+
+    void showMuonQuaHanPage();
 
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
