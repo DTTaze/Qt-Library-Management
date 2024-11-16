@@ -113,12 +113,6 @@ private slots:
 
     void on_MatSach_pushButton_2_clicked();
 
-
-
-
-
-
-
 public slots:
 
 private:

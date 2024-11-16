@@ -1,4 +1,4 @@
-    #include "librarymanagementsystem.h"
+#include "librarymanagementsystem.h"
 #include "./ui_librarymanagementsystem.h"
 #include "muonsach.h"
 #include "trasach.h"
@@ -63,39 +63,6 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
         event->accept();
     }
 }
-void LibraryManagementSystem::tabDauSach() // Chuyển đổi giữa các tab Đầu Sách, Độc Giả, và Mượn Sách
-{
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
-}
-
-void LibraryManagementSystem::tabTheDocGia()
-{
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_docgia);
-    CapNhatBang();
-}
-
-void LibraryManagementSystem::tabMuonTra()
-{
-    ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
-}
-
-void LibraryManagementSystem::on_dauSach_pushButton_clicked()
-{
-    tabDauSach();
-}
-
-
-void LibraryManagementSystem::on_thedocgia_pushButton_clicked()
-{
-    tabTheDocGia();
-}
-
-
-void LibraryManagementSystem::on_muontra_pushButton_clicked()
-{
-    tabMuonTra();
-}
 
 void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 {
@@ -104,6 +71,38 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
     GhiDauSachVaoFile();
     Saved = true;
     QMessageBox::information(this,"Thông báo","Lưu thành công.");
+}
+
+void LibraryManagementSystem::tabDauSach()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
+    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+}
+
+void LibraryManagementSystem::on_dauSach_pushButton_clicked()
+{
+    tabDauSach();
+}
+
+void LibraryManagementSystem::tabTheDocGia()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_docgia);
+    CapNhatBang();
+}
+
+void LibraryManagementSystem::on_thedocgia_pushButton_clicked()
+{
+    tabTheDocGia();
+}
+
+void LibraryManagementSystem::tabMuonTra()
+{
+    ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
+}
+
+void LibraryManagementSystem::on_muontra_pushButton_clicked()
+{
+    tabMuonTra();
 }
 
 void LibraryManagementSystem::showTop10SachPage()
@@ -168,8 +167,6 @@ void LibraryManagementSystem::setupbaocao_pushButton() {
     connect(muonSachQuaHanAction, &QAction::triggered, this, &LibraryManagementSystem::showMuonQuaHanPage);
 }
 
-
-
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
@@ -182,52 +179,45 @@ void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
 
 void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
     QString key ;
-    bool lastWasSpace = false; // Để kiểm tra ký tự trước đó có phải là dấu cách không
+    bool lastWasSpace = false;
 
     for (QChar c : text) {
         if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
-            key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào key
-            lastWasSpace = false; // Reset trạng thái lastWasSpace
+            key += c;
+            lastWasSpace = false;
         } else if (c.isSpace()) {
             if (!lastWasSpace) {
-                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
-                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+                key += ' ';
+                lastWasSpace = true;
             }
         }
     }
 
     string valid_key = key.toStdString();
-    // Xóa khoảng trắng ở đầu
     valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
     ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
 
-    // Kiểm tra nếu key rỗng, không cần tìm kiếm
     if (valid_key.empty()) {
-        valid_key=""; // Không gọi hàm tìm kiếm
+        valid_key="";
     }
 
-    // Gọi hàm tìm kiếm với key đã được lọc
     TimKiemTenSach(danh_sach_dau_sach, ui->tableWidget_dausach, valid_key);
 }
 
 void LibraryManagementSystem::HienMaSach(int ViTriDauSach) {
-
-    // Chuyển ViTriDauSach thành kiểu cần thiết và thực hiện các thao tác
     Danhmucsach dms(ViTriDauSach);
     dms.setModal(true);
     dms.exec();
 }
 
-
 void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelIndex &index)
 {
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem) {
         int ViTriDauSach = headerItem->text().toInt();
-        HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
+        HienMaSach(ViTriDauSach);
     }
 }
 
@@ -260,7 +250,6 @@ void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem){
         int index_dausach = headerItem->text().toInt();
@@ -285,7 +274,6 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     if (danh_sach_dau_sach.soluongdausach <= 0){QMessageBox::critical(nullptr,"Lỗi","Không có đầu sách để xóa."); return;}
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem){
         int index_dausach = headerItem->text().toInt();
@@ -597,7 +585,6 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
     QString filteredText;
     bool lastWasSpace = false;
 
-    // Lọc chuỗi để loại bỏ các ký tự không cần thiết
     for (QChar c : arg1) {
         if (c.isDigit() || c.isPunct()) {
             filteredText += c;
@@ -608,15 +595,12 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
         }
     }
 
-    // Xóa khoảng trắng đầu và cuối của chuỗi
     filteredText = filteredText.trimmed();
 
-    // Cập nhật lại chuỗi đã lọc nếu có thay đổi
     if (filteredText != arg1) {
         ui->lineEdit_maSach->setText(filteredText);
     }
 
-    // Nếu chuỗi tìm kiếm không rỗng, thực hiện tìm kiếm
     if (!filteredText.isEmpty()) {
         if(filteredText.length() == 13 || filteredText.length() >= 17) {
             inThongTinmaSach(filteredText.toStdString());
@@ -628,7 +612,6 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
             ui->lineEdit_trangThaiSach->clear();
         }
     } else {
-        // Nếu ô tìm kiếm rỗng, xóa các trường hiển thị thông tin
         ui->lineEdit_maSach->setStyleSheet("background-color: white");
         ui->lineEdit_tenSach->clear();
         ui->lineEdit_tacGia->clear();
@@ -704,10 +687,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
     } else {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
     }
-
 }
-
-
 
 void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
 {

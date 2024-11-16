@@ -2,9 +2,6 @@
 #define DAUSACH_H
 #define MAXSACH 10000
 
-#include <QObject>
-#include <QString>
-#include <QTextEdit>
 #include <iostream>
 #include <cstring>
 #include <cctype>
@@ -13,6 +10,9 @@
 #include <locale>
 #include <codecvt>
 
+#include <QString>
+#include <QTextEdit>
+#include <QObject>
 #include <QMessageBox>
 #include <QTableView>
 #include <QStandardItemModel>
@@ -29,10 +29,6 @@
 #include <QLocale>
 #include <QComboBox>
 #include <QFrame>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QtCharts>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QChartView>
 using namespace std;
 
 const int co_the_muon = 0;
