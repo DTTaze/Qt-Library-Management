@@ -34,6 +34,10 @@ private slots:
 
     void on_maThe_lineEdit_textChanged(const QString &arg1);
 
+    void on_Ok_pushButton_clicked();
+
+    void on_Cancel_pushButton_clicked();
+
 private:
     Ui::hieuChinhDocGia_dialog *ui;
 };

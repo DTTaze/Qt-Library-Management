@@ -9,13 +9,6 @@ struct Danh_Sach_The_Doc_Gia;
 using namespace std;
 enum DenSach {daden, chuaden};
 
-/*f. Mượn sách : nhập vào mã thẻ độc giả, chương trình sẽ liệt kê các sách mà độc giả đang mượn. Mỗi độc giả chỉ được mượn tối đa 3 cuốn,
-không cho mượn khi giữ 1 sách quá hạn (7 ngày)
-g. Trả sách
-h. Liệt kê danh sách các mã sách, tên sách mà 1 độc giả có số thẻ X đang mượn
-i. In danh sách độc giả mượn sách quá hạn theo thứ tự thời gian quá hạn giảm dần
-j. In 10 sách có số lượt mượn nhiều nhất.*/
-
 const int Chua_Tra = 0;
 const int Da_Tra = 1;
 const int Mat_Sach = 2;
@@ -38,7 +31,7 @@ struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
     }
 };
 
-struct DanhSachMUONTRA { // danh sach cac quyen sach da hoac dang muon
+struct DanhSachMUONTRA {
     MUONTRA data;
     DanhSachMUONTRA *next = nullptr;
     DanhSachMUONTRA(const MUONTRA &muontra) : data(muontra), next(nullptr) {}
@@ -55,14 +48,12 @@ struct danhSachDocGiaMuonQuaHan {
     danhSachDocGiaMuonQuaHan* next = nullptr;
 };
 
+bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp);
 
-
-void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra); // sửa lại thành ThemSachMUONTRA
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
+void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 
 void MuonSach(const int &maThe, const string& maSach);
-
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
@@ -88,9 +79,9 @@ void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachM
 void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]);
 
 void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root);
-//----------------------------------------------------------------Bảng độc giả quá hạn--------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------Bảng danh sách độc giả mượn quá hạn--------------------------------------------------------------------------------------------------
 
-void InsertOder(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
+void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
 
 void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Doc_Gia* p) ;
 

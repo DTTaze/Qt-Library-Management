@@ -12,7 +12,6 @@ enum Phai{Nam,Nu};
 
 enum TrangThaiCuaThe{Dang_Hoat_Dong,Khoa};
 
-
 struct The_Doc_Gia {
     unsigned int MATHE;
     string Ho;
@@ -21,7 +20,6 @@ struct The_Doc_Gia {
     Phai phai;
     DanhSachMUONTRA* head_lsms = nullptr;
 };
-
 
 struct Danh_Sach_The_Doc_Gia {
     The_Doc_Gia thong_tin;

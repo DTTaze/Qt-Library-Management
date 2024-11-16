@@ -117,3 +117,17 @@ void hieuChinhDocGia_dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1
     xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
 }
 
+void hieuChinhDocGia_dialog::on_Ok_pushButton_clicked()
+{
+    if ( getHoVaTen().isEmpty() ) {
+        QMessageBox::warning(this, "Lỗi", "Bạn chưa điền tên");
+        return;
+    }
+}
+
+
+void hieuChinhDocGia_dialog::on_Cancel_pushButton_clicked()
+{
+    close();
+}
+

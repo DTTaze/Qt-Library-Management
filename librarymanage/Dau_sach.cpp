@@ -24,6 +24,18 @@ int TimKiemViTriDauSach(string ma) {
     return -1;
 }
 
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
+    string ma_isbn = maSach.substr(0, 17);
+    int vitri = TimKiemViTriDauSach(ma_isbn);
+    if (vitri == -1) {
+        return nullptr;
+    }
+    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+        if (current->masach == maSach) return current;
+    }
+    return nullptr;
+}
+
 
 void TaoMaSach(string& ma_sach, const string& I_S_B_N, int SoLuongSachTrongDausach) {
     string isbn_full = I_S_B_N;
@@ -413,7 +425,6 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
     // Giải phóng bộ nhớ
     delete[] copy;
 }
-
 
 
 bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
