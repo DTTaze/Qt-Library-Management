@@ -427,7 +427,6 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
 }
 
 
-
 bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
     if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
         return true;
