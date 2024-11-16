@@ -27,12 +27,7 @@
 #include <QCheckBox>
 #include <QHeaderView>
 #include <QLocale>
-#include <QComboBox>
-#include <QFrame>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QtCharts>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QChartView>
+
 using namespace std;
 
 const int co_the_muon = 0;
@@ -83,6 +78,8 @@ QString CapitalizeWords(const QString& text);
 void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach);
 
 int TimKiemViTriDauSach(string ma);
+
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 bool TonTaiMaSach(string ma_sach);
 

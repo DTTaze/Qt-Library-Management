@@ -48,12 +48,12 @@ struct danhSachDocGiaMuonQuaHan {
     danhSachDocGiaMuonQuaHan* next = nullptr;
 };
 
+bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp);
+
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 
 void MuonSach(const int &maThe, const string& maSach);
-
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 

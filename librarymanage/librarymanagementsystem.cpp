@@ -460,15 +460,15 @@ int LibraryManagementSystem::getmaThe() {
 
 void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
-    Danh_Sach_The_Doc_Gia* p = timKiemTheDocGia(ma_the); // Đổi tên biến
+    Danh_Sach_The_Doc_Gia* doc_gia = timKiemTheDocGia(ma_the);
     ui->tableWidget_muonTra->setRowCount(0);
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    string hovaten = p->thong_tin.Ho + " " + p->thong_tin.Ten;
-    DanhSachMUONTRA *current = p->thong_tin.head_lsms;
+    string hovaten = doc_gia->thong_tin.Ho + " " + doc_gia->thong_tin.Ten;
+    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
 
     ui->lineEdit_hoTen->setText(QString::fromStdString(hovaten));
-    ui->lineEdit_Phai->setText(p->thong_tin.phai == Nam ? "Nam" : "Nữ");
-    ui->lineEdit_trangThai->setText(p->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động": "Khóa");
+    ui->lineEdit_Phai->setText(doc_gia->thong_tin.phai == Nam ? "Nam" : "Nữ");
+    ui->lineEdit_trangThai->setText(doc_gia->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động": "Khóa");
 
     while ( current != nullptr ) {
         if ( current->data.trangthai != Da_Tra) {

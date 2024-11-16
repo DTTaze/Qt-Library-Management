@@ -5,12 +5,16 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
+bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp){
+    return temp->data.trangthai == 1 ? true : false;
+}
+
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
     DanhSachMUONTRA *temp = demsach;
     int dem = 0;
 
     while(temp!=nullptr) {
-        if(temp->data.trangthai == 0 || temp->data.trangthai == 2) { // viết hàm bool
+        if(!TrangThaiMUONTRADaTraChua(temp)) { // viết hàm bool
             dem++;
         }
         temp = temp->next;
@@ -45,18 +49,6 @@ bool MuonSachQuaHan(DanhSachMUONTRA *head) {
         p = p->next;
     }
     return false;
-}
-
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) { // Đổi qua bên Dau_sach
-    string ma_isbn = maSach.substr(0, 17);
-    int vitri = TimKiemViTriDauSach(ma_isbn);
-    if (vitri == -1) {
-        return nullptr;
-    }
-    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
-        if (current->masach == maSach) return current;
-    }
-    return nullptr;
 }
 
 bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
