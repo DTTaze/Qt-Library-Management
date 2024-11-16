@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
@@ -1454,7 +1454,7 @@ QPushButton:focus {
              </rect>
             </property>
             <widget class="QWidget" name="page_Top10">
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>170</x>

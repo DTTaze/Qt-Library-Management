@@ -7,8 +7,11 @@ Thanh_ly::Thanh_ly(int DS_vitri,QWidget *parent)
     , vi_tri_DS(DS_vitri)
 {
     ui->setupUi(this);
-
-    HienThongtin(vi_tri_DS);
+    if(vi_tri_DS != -1){
+        HienThongtinSachTonTai(vi_tri_DS);
+    }else{
+        XoaThongTinTrongThanhLySach();
+    }
 }
 
 Thanh_ly::~Thanh_ly()
@@ -17,15 +20,28 @@ Thanh_ly::~Thanh_ly()
 
 }
 
-void Thanh_ly::HienThongtin(int vi_tri){
-
-    // Thiết lập các QLineEdit chỉ đọc
-    ui->lineEdit_ISBN->setReadOnly(true);
+void Thanh_ly::KhoaThanhLyDauSach(){
     ui->lineEdit_tensach->setReadOnly(true);
     ui->lineEdit_sotrang->setReadOnly(true);
     ui->lineEdit_tacgia->setReadOnly(true);
     ui->lineEdit_namsb->setReadOnly(true);
     ui->lineEdit_theloai->setReadOnly(true);
+}
+
+void Thanh_ly::XoaThongTinTrongThanhLySach(){
+    ui->lineEdit_tacgia->setText("");
+    ui->lineEdit_tensach->setText("");
+    ui->lineEdit_theloai->setText("");
+    ui->lineEdit_namsb->setText("0");
+    ui->lineEdit_sotrang->setText("0");
+    ui->tableWidget_thanhly->clearContents();
+    ui->tableWidget_thanhly->setRowCount(0);
+}
+
+void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
+
+    // Thiết lập các QLineEdit chỉ đọc
+    KhoaThanhLyDauSach();
 
     ui->lineEdit_ISBN->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->ISBN));
     ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tensach));
@@ -35,7 +51,7 @@ void Thanh_ly::HienThongtin(int vi_tri){
     ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->theloai));
 
     int row_count = 0;
-    for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->demsosach;cur = cur->next , row_count++){
+    for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->SoLuongSachTrongDausach;cur = cur->next , row_count++){
         ui->tableWidget_thanhly->insertRow(row_count);
 
         // Kiểm tra trạng thái
@@ -66,10 +82,48 @@ void Thanh_ly::HienThongtin(int vi_tri){
     ui->tableWidget_thanhly->setColumnWidth(1,160);
 }
 
+
+void Thanh_ly::on_lineEdit_ISBN_textChanged(const QString &text)
+{
+    if (text.isEmpty()) {
+        ui->lineEdit_ISBN->setStyleSheet("");
+        XoaThongTinTrongThanhLySach();
+        return;
+    }
+
+    QString LocKiTu;
+    int cursorPosition = ui->lineEdit_ISBN->cursorPosition();
+
+    LocKiTuISBNHopLe(text, LocKiTu);
+
+    ui->lineEdit_ISBN->setText(LocKiTu);
+
+    ui->lineEdit_ISBN->setCursorPosition(qMin(cursorPosition, LocKiTu.length()));
+
+    string ma_isbn_hople = LocKiTu.toStdString();
+    int index = TimKiemViTriDauSach(ma_isbn_hople);
+
+    // Kiểm tra và đặt màu nền cho lineEdit dựa vào điều kiện
+    if (LocKiTu.length() == 0) {
+        // Nếu ISBN rỗng sau khi lọc, đặt màu nền về mặc định và xóa nội dung của tableWidget
+        ui->lineEdit_ISBN->setStyleSheet("");
+        XoaThongTinTrongThanhLySach();
+    } else if (index != -1) {
+        ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
+        HienThongtinSachTonTai(index);;
+    } else {
+        // ISBN đã tồn tại, đặt nền đỏ và khóa nhập đầu sách
+        ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
+        XoaThongTinTrongThanhLySach();
+    }
+}
+
 void Thanh_ly::on_pushButton_thanhly_clicked()
 {
     int sach_thanh_ly = 0;
     int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
+
+    if (rowCount == 0) {QMessageBox::warning(this, "Cảnh báo", "Không có sách để thanh lý");return;}
 
     for (int row = 0; row < rowCount; ++row) {
         QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
@@ -96,7 +150,7 @@ void Thanh_ly::on_pushButton_thanhly_clicked()
         QMessageBox::information(this, "Thông báo", message);
 
         accept();
-    }else QMessageBox::information(this, "Thông báo", "Vui lòng chọn sách thanh lý ");return;
+    }else QMessageBox::warning(this, "Cảnh báo", "Vui lòng chọn sách thanh lý ");return;
 }
 
 
@@ -109,7 +163,7 @@ void Thanh_ly::on_pushButton_cancel_clicked()
 void Thanh_ly::on_pushButton_chontatca_clicked()
 {
     int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
-
+    if (rowCount == 0) {QMessageBox::warning(this, "Cảnh báo", "Không có sách để chọn");return;}
     for (int row = 0; row < rowCount; ++row) {
         QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
 
@@ -124,7 +178,7 @@ void Thanh_ly::on_pushButton_chontatca_clicked()
 void Thanh_ly::on_pushButton_bochon_clicked()
 {
     int rowCount = ui->tableWidget_thanhly->rowCount(); // Lấy số hàng trong bảng
-
+    if (rowCount == 0) {QMessageBox::warning(this, "Cảnh báo", "Không có sách để xóa");return;}
     for (int row = 0; row < rowCount; ++row) {
         QWidget *widget = ui->tableWidget_thanhly->cellWidget(row, 0); // Lấy widget trong ô này
 
@@ -133,4 +187,6 @@ void Thanh_ly::on_pushButton_bochon_clicked()
         }
     }
 }
+
+
 

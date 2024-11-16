@@ -48,6 +48,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         hieuChinhDocGia_dialog.h hieuChinhDocGia_dialog.cpp hieuChinhDocGia_dialog.ui
         edit_sach.h edit_sach.cpp edit_sach.ui
         xoaDocGia_dialog.h xoaDocGia_dialog.cpp xoaDocGia_dialog.ui
+        nhap_dausach.h nhap_dausach.cpp nhap_dausach.ui
 
 
 

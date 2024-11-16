@@ -14,8 +14,8 @@ class themdausach : public QDialog
 public:
     explicit themdausach(QWidget *parent = nullptr);
     ~themdausach();
-    void KhoaNhapDauSach();
-    void MoKhoaNhapDauSach();
+    void KhoaThemDauSach();
+    void MoKhoaThemDauSach();
 private slots:
 
 

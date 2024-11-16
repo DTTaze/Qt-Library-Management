@@ -55,7 +55,7 @@ struct DauSach {
     int sotrang;
     string tacgia;
     int namsx;
-    int demsosach =0; // đổi tên biến sang SoLuongSachTrongDanhMucSach
+    int SoLuongSachTrongDausach =0;
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
@@ -100,8 +100,8 @@ void GhiDauSachVaoFile();
 
 //Chức năng thêm sách
 bool MaISBNQTHopLe(QString i_s_b_n);
-void TaoMaSach(string& ma_sach,int demsosach);
-void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach);
+void TaoMaSach(string& ma_sach,int SoLuongSachTrongDausach);
+void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
 void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                  int trang_thai,string &vi_tri,string ma_sach);

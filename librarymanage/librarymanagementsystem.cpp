@@ -14,6 +14,7 @@
 #include "themDocGia_dialog.h"
 #include "hieuChinhDocGia_dialog.h"
 #include "edit_sach.h"
+#include "nhap_dausach.h"
 #include "xoaDocGia_dialog.h"
 
 LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
@@ -215,8 +216,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     TimKiemTenSach(danh_sach_dau_sach, ui->tableWidget_dausach, valid_key);
 }
 
-void LibraryManagementSystem::HienMaSach(int ViTriDauSach) {
-
+void LibraryManagementSystem::MoCuaSoDanhMucSach(int ViTriDauSach) {
     // Chuyển ViTriDauSach thành kiểu cần thiết và thực hiện các thao tác
     Danhmucsach dms(ViTriDauSach);
     dms.setModal(true);
@@ -227,26 +227,29 @@ void LibraryManagementSystem::HienMaSach(int ViTriDauSach) {
 void LibraryManagementSystem::on_tableWidget_dausach_doubleClicked(const QModelIndex &index)
 {
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem) {
         int ViTriDauSach = headerItem->text().toInt();
-        HienMaSach(ViTriDauSach); // Gọi hàm với tham số ViTriDauSach
+        MoCuaSoDanhMucSach(ViTriDauSach);
     }
 }
 
+void LibraryManagementSystem::MoCuaSoThemSach(){
+    themdausach themds;
+    themds.setModal(true);
+    themds.setWindowTitle("Thêm sách");
+    if (themds.exec() == QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableWidget_dausach);
+        Saved = false;
+    }
+}
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
     if (DayDauSach(danh_sach_dau_sach)){
         QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
     }else{
-        themdausach themds;
-        themds.setModal(true);
-        if (themds.exec() == QDialog::Accepted){
-            InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableWidget_dausach);
-            Saved = false;
-        }
+        MoCuaSoThemSach();
     }
 }
 
@@ -264,7 +267,6 @@ void LibraryManagementSystem::on_editSach_pushButton_clicked()
 {
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem){
         int index_dausach = headerItem->text().toInt();
@@ -289,7 +291,6 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     if (danh_sach_dau_sach.soluongdausach <= 0){QMessageBox::critical(nullptr,"Lỗi","Không có đầu sách để xóa."); return;}
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
-    // Lấy giá trị ViTriDauSach từ cột đầu tiên (hoặc cột bạn cần)
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem){
         int index_dausach = headerItem->text().toInt();
@@ -300,43 +301,61 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     }
 }
 
+void LibraryManagementSystem::MoCuaSoThanhLySach(int i_ds){
+    Thanh_ly thanhly(i_ds);
+    thanhly.setModal(true);
+    thanhly.setWindowTitle("Thanh lý sách");
+    if (thanhly.exec() == QDialog::Accepted){
+        Saved = false;
+    }
+}
+
 void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 {
     QModelIndex index = ui->tableWidget_dausach->currentIndex();
     int row = index.row();
-    if (row == -1) {QMessageBox::information(this, "Thông báo", "Vui lòng chọn sách thanh lý.");return;}
-
-    int column = 0;
-
-    QVariant data = index.sibling(row, column).data();
-    if (data.isValid() == false) {QMessageBox::warning(this,"Cảnh báo","Vui lòng chọn đầu sách chứa ISBN");return;}
-    string ma_ISBN = data.toString().toStdString();
-
-    int DS_index = TimKiemViTriDauSach(ma_ISBN);
-    bool allowed = false;
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->trangthai == 0){
-            allowed = true;
-            break;
+    QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+    if(headerItem){
+        int DS_index = headerItem->text().toInt();
+        bool allowed = false;
+        for (DanhMucSach* cur = danh_sach_dau_sach.node[DS_index]->dms;cur!=nullptr;cur=cur->next){
+            if(cur->trangthai == 0){
+                allowed = true;
+                break;
+            }
         }
-    }
-    if(allowed != true){
-        QMessageBox::warning(this,"Cảnh báo","Không có sách có thể thanh lý");
-        return;
+        if(allowed != true){
+            QMessageBox::warning(this,"Cảnh báo","Không có sách có thể thanh lý");
+            return;
+        }else{
+            MoCuaSoThanhLySach(DS_index);
+        }
     }else{
-        Thanh_ly thanhly(DS_index);
-        thanhly.setModal(true);
-        thanhly.setWindowTitle("In danh sách theo thể loại");
-        if (thanhly.exec() == QDialog::Accepted){
-            Saved = false;
-        }
+        MoCuaSoThanhLySach(-1);
     }
+}
 
+void LibraryManagementSystem::MoCuaSoNhapDauSach(int i_ds){
+    nhap_dausach nhap_dausach(i_ds);
+    nhap_dausach.setModal(true);
+    nhap_dausach.setWindowTitle("Xóa đầu sách");
+    if (nhap_dausach.exec() == QDialog::Accepted){
+        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        Saved = false;
+    }
 }
 
 void LibraryManagementSystem::on_nhapSach_pushButton_clicked()
 {
-
+    QModelIndex index = ui->tableWidget_dausach->currentIndex();
+    int row = index.row();
+    QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
+    if (headerItem){
+        int index_dausach = headerItem->text().toInt();
+        MoCuaSoNhapDauSach(index_dausach);
+    }else{
+        MoCuaSoNhapDauSach(-1);
+    }
 }
 
 

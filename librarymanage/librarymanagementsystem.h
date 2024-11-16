@@ -55,9 +55,11 @@ private slots:
 
     void on_inTheLoai_pushButton_clicked();
 
-    void HienMaSach(int ViTriDauSach);
+    void MoCuaSoDanhMucSach(int ViTriDauSach);
 
     void on_tableWidget_dausach_doubleClicked(const QModelIndex &index);
+
+    void MoCuaSoThemSach();
 
     void on_themSach_pushButton_clicked();
 
@@ -69,7 +71,11 @@ private slots:
 
     void on_xoaSach_pushButton_clicked();
 
+    void MoCuaSoThanhLySach(int i_ds);
+
     void on_thanhly_pushButton_clicked();
+
+    void MoCuaSoNhapDauSach(int i_ds);
 
     void on_nhapSach_pushButton_clicked();
 //--------------------------------------------------------------Hàm Thẻ Độc Giả -----------------------------------------------------------------------------------------------------------

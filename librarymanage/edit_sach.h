@@ -15,8 +15,8 @@ class Edit_sach : public QDialog
 public:
     explicit Edit_sach(int index,QWidget *parent = nullptr);
     ~Edit_sach();
-    void KhoaNhapDauSach();
-    void MoKhoaNhapDauSach();
+    void KhoaEditDauSach();
+    void MoKhoaEditDauSach();
     void HienThiThongTinSachTrongEditSach(int index_dausach);
     void HienThiDanhMucSachTrongEditSach(int index_dausach);
     void XoaThongTinTrongEditSach();

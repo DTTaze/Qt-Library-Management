@@ -25,7 +25,7 @@ int TimKiemViTriDauSach(string ma) {
 }
 
 
-void TaoMaSach(string& ma_sach, const string& I_S_B_N, int demsosach) {
+void TaoMaSach(string& ma_sach, const string& I_S_B_N, int SoLuongSachTrongDausach) {
     string isbn_full = I_S_B_N;
 
     // Kiểm tra nếu ISBN là loại 10 số
@@ -34,13 +34,13 @@ void TaoMaSach(string& ma_sach, const string& I_S_B_N, int demsosach) {
     }
 
     // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
-    ma_sach = isbn_full + "-" + to_string(demsosach);
+    ma_sach = isbn_full + "-" + to_string(SoLuongSachTrongDausach);
 }
 
-void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_tri, const string &I_S_B_N,int demsosach,string ma_sach) {
+void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach) {
     // Tạo mã sách mới
     if (ma_sach == "") {
-        TaoMaSach(ma_sach, I_S_B_N,demsosach);
+        TaoMaSach(ma_sach, I_S_B_N,SoLuongSachTrongDausach);
     }
 
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
@@ -78,7 +78,7 @@ void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
     }
 
     danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
-    danh_sach_dau_sach.node[vi_tri_them]->demsosach++;
+    danh_sach_dau_sach.node[vi_tri_them]->SoLuongSachTrongDausach++;
 }
 
 
@@ -92,14 +92,14 @@ void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const
 
         DauSach* new_DauSach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
 
-        ThemDanhMucSach(new_DauSach->dms,trang_thai,vi_tri,I_S_B_N,new_DauSach->demsosach+1,ma_sach);
+        ThemDanhMucSach(new_DauSach->dms,trang_thai,vi_tri,I_S_B_N,new_DauSach->SoLuongSachTrongDausach+1,ma_sach);
 
         ChenDauSachMoi(new_DauSach,ten_sach);
         danh_sach_dau_sach.soluongdausach++;
 
     }else {
-        ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->demsosach+1,ma_sach);
-        danh_sach_dau_sach.node[index_isbn]->demsosach++;
+        ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->SoLuongSachTrongDausach+1,ma_sach);
+        danh_sach_dau_sach.node[index_isbn]->SoLuongSachTrongDausach++;
     }
 }
 

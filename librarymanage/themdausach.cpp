@@ -6,7 +6,7 @@ themdausach::themdausach( QWidget *parent)
     , ui(new Ui::themdausach)
 {
     ui->setupUi(this);
-    KhoaNhapDauSach();
+    KhoaThemDauSach();
 }
 
 themdausach::~themdausach()
@@ -14,7 +14,7 @@ themdausach::~themdausach()
     delete ui;
 }
 
-void themdausach::KhoaNhapDauSach(){
+void themdausach::KhoaThemDauSach(){
     ui->lineEdit_tacgia->setReadOnly(true);
     ui->lineEdit_tensach->setReadOnly(true);
     ui->lineEdit_theloai->setReadOnly(true);
@@ -23,7 +23,7 @@ void themdausach::KhoaNhapDauSach(){
     ui->spinBox_sotrang->setReadOnly(true);
 }
 
-void themdausach::MoKhoaNhapDauSach(){
+void themdausach::MoKhoaThemDauSach(){
     ui->lineEdit_tacgia->setReadOnly(false);
     ui->lineEdit_tensach->setReadOnly(false);
     ui->lineEdit_theloai->setReadOnly(false);
@@ -97,7 +97,7 @@ void themdausach::on_pushButton_clicked() {
     }
 
     // Hiển thị thông tin đã nhập
-    QString infoMessage = QString("Thông tin đã nhập:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được")
+    QString infoMessage = QString("Thông tin đã thêm:\nISBN: %1\nTên sách: %2\nTác giả: %3\nThể loại: %4\nSố trang: %5\nNăm xuất bản: %6\nVị trí: %7\nTrạng Thái: Cho mượn được")
                               .arg(QString::fromStdString(isbnStd))
                               .arg(QString::fromStdString(tensachStd))
                               .arg(QString::fromStdString(tacgiaStd))
@@ -106,7 +106,7 @@ void themdausach::on_pushButton_clicked() {
                               .arg(namsx)
                               .arg(QString::fromStdString(vitriStd));
 
-    QMessageBox::information(this, "Thông tin đã nhập", infoMessage);
+    QMessageBox::information(this, "Đầu sách đã thêm", infoMessage);
 
     // Đóng hộp thoại sau khi thêm thành công
     accept();
@@ -144,14 +144,14 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
             int index = TimKiemViTriDauSach(ma_isbn_hople);
             if (index == -1){
                 ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
-                MoKhoaNhapDauSach();
+                MoKhoaThemDauSach();
             }else{
                 ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
-                KhoaNhapDauSach();
+                KhoaThemDauSach();
             }
         } else {
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
-            KhoaNhapDauSach();
+            KhoaThemDauSach();
         }
     }else{
         ui->lineEdit_ISBN->setStyleSheet("");

@@ -19,7 +19,7 @@ Edit_sach::~Edit_sach()
     delete ui;
 }
 
-void Edit_sach::KhoaNhapDauSach(){
+void Edit_sach::KhoaEditDauSach(){
     ui->lineEdit_tacgia_1->setReadOnly(true);
     ui->lineEdit_tensach_1->setReadOnly(true);
     ui->lineEdit_theloai_1->setReadOnly(true);
@@ -27,7 +27,7 @@ void Edit_sach::KhoaNhapDauSach(){
     ui->spinBox_sotrang_1->setReadOnly(true);
 }
 
-void Edit_sach::MoKhoaNhapDauSach(){
+void Edit_sach::MoKhoaEditDauSach(){
     ui->lineEdit_tacgia_1->setReadOnly(false);
     ui->lineEdit_tensach_1->setReadOnly(false);
     ui->lineEdit_theloai_1->setReadOnly(false);
@@ -181,7 +181,7 @@ void Edit_sach::on_lineEdit_ISBN_1_textChanged(const QString &text)
     // Thiết lập lại vị trí con trỏ
     ui->lineEdit_ISBN_1->setCursorPosition(qMin(cursorPosition, LocKiTu.length()));
 
-    std::string ma_isbn_hople = LocKiTu.toStdString();
+    string ma_isbn_hople = LocKiTu.toStdString();
     int index = TimKiemViTriDauSach(ma_isbn_hople);
 
     // Kiểm tra và đặt màu nền cho lineEdit dựa vào điều kiện
@@ -193,11 +193,11 @@ void Edit_sach::on_lineEdit_ISBN_1_textChanged(const QString &text)
 
         ui->lineEdit_ISBN_1->setStyleSheet("background-color: lightgreen;");
         HienThiThongTinSachTrongEditSach(index);
-        MoKhoaNhapDauSach();
+        MoKhoaEditDauSach();
     } else {
         // ISBN đã tồn tại, đặt nền đỏ và khóa nhập đầu sách
         ui->lineEdit_ISBN_1->setStyleSheet("background-color: lightcoral;");
-        KhoaNhapDauSach();
+        KhoaEditDauSach();
         XoaThongTinTrongEditSach();
     }
 }
