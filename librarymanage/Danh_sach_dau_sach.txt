@@ -1,4 +1,4 @@
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-1
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-1
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-2
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-3
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-4
@@ -28,7 +28,7 @@
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-4
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-3
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-2
-978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|1|978-0-14-312418-0-1
+978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-1
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-5
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-4
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-3
@@ -39,7 +39,7 @@
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-3
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-2
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-1
-978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|1|978-0-321-88483-4-5
+978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-5
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|2|978-0-321-88483-4-4
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-3
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-2
@@ -49,7 +49,7 @@
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-3
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-2
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-1
-978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|1|978-1-84176-852-5-9
+978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-9
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-8
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-7
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-6
@@ -58,7 +58,7 @@
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-3
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-2
 978-1-84176-852-5|Communication Skills in the Workplace|230|Dale Carnegie|2021|Life Skills|E|0|978-1-84176-852-5-1
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|1|978-0-13-419191-1-9
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-9
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-8
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-7
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-6
@@ -184,7 +184,7 @@
 978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-3
 978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-2
 978-0-201-63462-2|Distributed Systems: Principles and Paradigms|560|Andrew S. Tanenbaum|2019|Distributed Systems|H|0|978-0-201-63462-2-1
-978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|1|978-0-321-88222-9-9
+978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-9
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-8
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-7
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-6
@@ -193,7 +193,7 @@
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-3
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-2
 978-0-321-88222-9|Effective Java|416|Joshua Bloch|2020|Programming|F|0|978-0-321-88222-9-1
-978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|1|978-1-56619-909-4-9
+978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-9
 978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-8
 978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-7
 978-1-56619-909-4|Exploring the Universe|400|Neil deGrasse Tyson|2023|Science|C|0|978-1-56619-909-4-6
@@ -446,7 +446,7 @@
 978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-2
 978-1-61067-123-4|Secrets of Investing|300|Benjamin Graham|2020|Business|H|0|978-1-61067-123-4-1
 978-0-321-65536-1|The Art of Computer Programming|3168|Donald Knuth|2023|Computer Science|F|0|978-0-321-65536-1-1
-978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|1|978-0-12-345678-9-1
+978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-1
 978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-2
 978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-3
 978-0-12-345678-9|The Art of Cooking|400|Gordon Ramsay|2019|Culinary|C|0|978-0-12-345678-9-4
@@ -616,8 +616,8 @@
 978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-5
 978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-4
 978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-3
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-2
-978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|1|978-0-12-345678-0-1
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-2
+978-0-12-345678-0|Wonderful Things About Mathematics|350|Ian Stewart|2019|Science|F|0|978-0-12-345678-0-1
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-8
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-7
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-6
@@ -625,8 +625,8 @@
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-4
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-3
 978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-2
-978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|1|978-1-86197-877-9-1
-978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|1|978-1-4919-4000-5-11
+978-1-86197-877-9|World History|500|Winston Churchill|2022|History|E|0|978-1-86197-877-9-1
+978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-11
 978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-10
 978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-9
 978-1-4919-4000-5|You Don’t Know JS|278|Kyle Simpson|2019|JavaScript|H|0|978-1-4919-4000-5-8
