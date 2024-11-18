@@ -1117,6 +1117,9 @@ QTableWidget::item:selected {
     color: black;                  
 }</string>
             </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+            </property>
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>true</bool>
             </attribute>
@@ -1457,10 +1460,10 @@ QPushButton:focus {
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>60</x>
-                <y>30</y>
+                <x>50</x>
+                <y>120</y>
                 <width>971</width>
-                <height>631</height>
+                <height>451</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1475,7 +1478,7 @@ QPushButton:focus {
                 </widget>
                </item>
                <item>
-                <widget class="QTableView" name="Top10Sach_tableView">
+                <widget class="QTableWidget" name="Top10Sach_tableWidget">
                  <property name="styleSheet">
                   <string notr="true">QHeaderView::section {
     background-color: #D3D3D3;  
@@ -1486,6 +1489,44 @@ QPushButton:focus {
 }
 </string>
                  </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                 </property>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <column>
+                  <property name="text">
+                   <string>Mã ISBN</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Tên Sách</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Tác Giả</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Năm Xuất Bản</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Số Lượt Mượn</string>
+                  </property>
+                 </column>
                 </widget>
                </item>
               </layout>
@@ -1497,7 +1538,7 @@ QPushButton:focus {
                <rect>
                 <x>37</x>
                 <y>50</y>
-                <width>861</width>
+                <width>991</width>
                 <height>621</height>
                </rect>
               </property>
@@ -1513,7 +1554,7 @@ QPushButton:focus {
                 </widget>
                </item>
                <item>
-                <widget class="QTableView" name="danhSachQuaHan_tableView">
+                <widget class="QTableWidget" name="danhSachQuaHan_tableWidget">
                  <property name="styleSheet">
                   <string notr="true">QTableView {
     background-color: #F0F0F0;      
@@ -1541,6 +1582,44 @@ QTableView::item:selected {
 }
 </string>
                  </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                 </property>
+                 <column>
+                  <property name="text">
+                   <string>Mã Thẻ</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Họ Và Tên</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Giới Tính</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Trạng Thái</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Mã Sách</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Tên Sách</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Quá Hạn</string>
+                  </property>
+                 </column>
                 </widget>
                </item>
               </layout>

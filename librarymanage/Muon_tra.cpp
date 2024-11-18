@@ -216,63 +216,31 @@ void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSa
     }
 }
 
-void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], DanhSachMUONTRA * danh_sach_muon_tra, QTableView *tableView) {
-
-    CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(SoLuongSach, DanhSachSachMuon,danh_sach_muon_tra);
-    MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
-    QStandardItemModel *model = new QStandardItemModel();
-
-    model->setColumnCount(6);
-    model->setHeaderData(0, Qt::Horizontal, "ISBN");
-    model->setHeaderData(1, Qt::Horizontal, "Tên sách");
-    model->setHeaderData(2, Qt::Horizontal, "Tác Giả");
-    model->setHeaderData(3, Qt::Horizontal, "Năm Sản Xuất");
-    model->setHeaderData(4, Qt::Horizontal, "Thể Loại");
-    model->setHeaderData(5, Qt::Horizontal, "Số lượt mượn");
-
-
-    for (int i = 0; i < SoLuongSach && i < 10; i++) {
-        int vitridausach = TimKiemViTriDauSach(DanhSachSachMuon[i].masach);
-        model->insertRow(i);
-
-        model->setItem(i, 0, new QStandardItem(QString::fromStdString(DanhSachSachMuon[i].masach)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(DanhSachSachMuon[i].masach))));
-        model->setItem(i, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->tacgia)));
-        model->setItem(i, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[vitridausach]->namsx)));
-        model->setItem(i, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->theloai)));
-        model->setItem(i, 5, new QStandardItem(QString::number(DanhSachSachMuon[i].demsoluotmuon)));
-
-        if (i == 0) { // Top 1
-            for (int col = 0; col < 6; ++col) {
-                model->setData(model->index(i, col), QBrush(Qt::yellow), Qt::BackgroundRole);
-            }
-        } else if (i == 1) {
-            for (int col = 0; col < 6; ++col) {
-                model->setData(model->index(i, col), QBrush(Qt::lightGray), Qt::BackgroundRole);
-            }
-        } else if (i == 2) {
-            for (int col = 0; col < 6; ++col) {
-                model->setData(model->index(i, col), QBrush(Qt::cyan), Qt::BackgroundRole);
-            }
-        }
-    }
-    tableView->setModel(model);
-    tableView->viewport()->update();
-
-    tableView->horizontalHeader()->setSectionResizeMode(4, QHeaderView::Stretch);
-    tableView->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
-    tableView->setColumnWidth(0, 150);
-    tableView->setColumnWidth(1, 300);
-}
-
-void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
+void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], Danh_Sach_The_Doc_Gia *root) {
     if (root == nullptr) return;
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, tableView, root->ptr_left);
-    Top10QuyenSachNhieuLuotMuonNhat(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms, tableView);
-    NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, root->ptr_left);
+    CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms);
+    NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, root->ptr_right);
 }
 
-void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current) {
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) {
+
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,root);
+    MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
+
+    for(int row = 0; row < SoLuongSach && row < 10; row++) {
+        int vitri = TimKiemViTriDauSach(DanhSachSachMuon[row].masach);
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(DanhSachSachMuon[row].masach)));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[row].masach))));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia)));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namsx)));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(DanhSachSachMuon[row].demsoluotmuon)));
+    }
+    tableWidget->resizeColumnsToContents();
+}
+
+
+void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
     if (current == nullptr) {
         return;
     }
@@ -283,7 +251,7 @@ void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, dan
         danhSachDocGiaMuonQuaHan* s = head;
         danhSachDocGiaMuonQuaHan* t = nullptr;
 
-        while (s != nullptr && s->value.second->data.NgayMuon < current->value.second->data.NgayMuon) {
+        while (s != nullptr && s->value.second->data.NgayMuon <= current->value.second->data.NgayMuon) {
             t = s;
             s = s->next;
         }
@@ -308,7 +276,6 @@ void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Do
                 n->value.first = p;
                 n->value.second = current;
                 chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(head, n);
-                break;
             }
             current = current->next;
         }
@@ -332,40 +299,23 @@ void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head) {
     }
 }
 
-void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *root) {
+void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) {
     danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
-    QStandardItemModel* model = new QStandardItemModel();
     int row = 0;
-    model->setColumnCount(7);
-    model->setHeaderData(0, Qt::Horizontal, "Mã Thẻ");
-    model->setHeaderData(1, Qt::Horizontal, "Họ Và Tên");
-    model->setHeaderData(2, Qt::Horizontal, "Giới Tính");
-    model->setHeaderData(3, Qt::Horizontal, "Trạng Thái");
-    model->setHeaderData(4, Qt::Horizontal, "Mã Sách");
-    model->setHeaderData(5, Qt::Horizontal, "Tên Sách");
-    model->setHeaderData(6, Qt::Horizontal, "Ngày Quá Hạn");
     while( current != nullptr) {
-        Date ngay_hom_nay = NgayHomNay();
-        int so_ngay_qua_han = SoNgayQuaHan(current->value.second->data.NgayMuon, ngay_hom_nay);
-        if ( so_ngay_qua_han <= 7) {
-            current = current->next;
-            continue;
-        }
         string hovaten = current->value.first->thong_tin.Ho + " " + current->value.first->thong_tin.Ten;
-        model->insertRow(row);
-        model->setItem(row, 0, new QStandardItem(QString::number(current->value.first->thong_tin.MATHE)));
-        model->setItem(row, 1, new QStandardItem(QString::fromStdString(hovaten)));
-        model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
-        model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
-        model->setItem(row, 4, new QStandardItem(QString::fromStdString(current->value.second->data.masach)));
-        model->setItem(row, 5, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->value.second->data.masach))));
-        model->setItem(row, 6, new QStandardItem(QString::number(so_ngay_qua_han)));
+        tableWidget->insertRow(row);
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(current->value.first->thong_tin.MATHE)));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(hovaten)));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(current->value.second->data.masach)));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->value.second->data.masach))));
+        tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(SoNgayQuaHan(current->value.second->data.NgayMuon, NgayHomNay()))));
         current = current->next;
         row++;
     }
-
-    tableView->setModel(model);
-    tableView->resizeColumnsToContents();
+    tableWidget->resizeColumnsToContents();
 
     GiaiPhongDanhSachDocGiaMuonQuaHan(current);
 }
