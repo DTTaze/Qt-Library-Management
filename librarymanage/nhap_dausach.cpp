@@ -11,7 +11,6 @@ nhap_dausach::nhap_dausach(int index,QWidget *parent)
 
     if(index_dausach != -1){
         ui->lineEdit_ISBN_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->ISBN));
-        HienThiThongTinSachTrongNhapDauSach(index_dausach);
     }else{
         XoaThongTinTrongNhapDauSach();
     }

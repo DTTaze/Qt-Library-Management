@@ -9,8 +9,6 @@ Edit_sach::Edit_sach(int index,QWidget *parent)
     ui->setupUi(this);
     if(index_dausach != -1){
         ui->lineEdit_ISBN_1->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->ISBN));
-        HienThiThongTinSachTrongEditSach(index_dausach);
-        HienThiDanhMucSachTrongEditSach(index_dausach);
     }
 }
 

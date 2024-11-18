@@ -8,7 +8,7 @@ Thanh_ly::Thanh_ly(int DS_vitri,QWidget *parent)
 {
     ui->setupUi(this);
     if(vi_tri_DS != -1){
-        HienThongtinSachTonTai(vi_tri_DS);
+        ui->lineEdit_ISBN->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri_DS]->ISBN));
     }else{
         XoaThongTinTrongThanhLySach();
     }
@@ -39,11 +39,8 @@ void Thanh_ly::XoaThongTinTrongThanhLySach(){
 }
 
 void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
-
     // Thiết lập các QLineEdit chỉ đọc
     KhoaThanhLyDauSach();
-
-    ui->lineEdit_ISBN->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->ISBN));
     ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tensach));
     ui->lineEdit_sotrang->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->sotrang));
     ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tacgia));
@@ -53,7 +50,6 @@ void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
     int row_count = 0;
     for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->SoLuongSachTrongDausach;cur = cur->next , row_count++){
         ui->tableWidget_thanhly->insertRow(row_count);
-
         // Kiểm tra trạng thái
         if (cur->trangthai == 0) {
             // Tạo một checkbox chỉ khi trạng thái là 0

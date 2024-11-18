@@ -16,7 +16,6 @@ Xoa_dau_sach::Xoa_dau_sach(int index,QWidget *parent)
 
     if(index_dausach != -1){
         ui->lineEdit_ISBN_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->ISBN));
-        HienThiThongTinSachTrongXoatSach(index_dausach);
     }
 }
 
