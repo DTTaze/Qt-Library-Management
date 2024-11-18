@@ -6,7 +6,7 @@ InTheoTheLoai::InTheoTheLoai(QWidget *parent)
     , ui(new Ui::InTheoTheLoai)
 {
     ui->setupUi(this);
-    InTheoTungTheLoai(danh_sach_dau_sach,ui->tableView_intheloai);
+    InTheoTungTheLoai(ui->tableView_intheloai);
 }
 
 InTheoTheLoai::~InTheoTheLoai()

@@ -5,23 +5,6 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
-bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp){
-    return temp->data.trangthai == 1 ? true : false;
-}
-
-int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
-    DanhSachMUONTRA *temp = demsach;
-    int dem = 0;
-
-    while(temp!=nullptr) {
-        if(!TrangThaiMUONTRADaTraChua(temp)) { // viết hàm bool
-            dem++;
-        }
-        temp = temp->next;
-    }
-    return dem;
-}
-
 void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]) {
     for(int i = 0; i < SoLuongSach; i++) {
         DanhSachSachMuon[i].demsoluotmuon = 0;
@@ -49,6 +32,23 @@ bool MuonSachQuaHan(DanhSachMUONTRA *head) {
         p = p->next;
     }
     return false;
+}
+
+bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp){
+    return temp->data.trangthai == Da_Tra ? true : false;
+}
+
+int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
+    DanhSachMUONTRA *temp = demsach;
+    int dem = 0;
+
+    while(temp!=nullptr) {
+        if(!TrangThaiMUONTRADaTraChua(temp)) {
+            dem++;
+        }
+        temp = temp->next;
+    }
+    return dem;
 }
 
 bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
@@ -236,7 +236,7 @@ void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon
         model->insertRow(i);
 
         model->setItem(i, 0, new QStandardItem(QString::fromStdString(DanhSachSachMuon[i].masach)));
-        model->setItem(i, 1, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[i].masach))));
+        model->setItem(i, 1, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(DanhSachSachMuon[i].masach))));
         model->setItem(i, 2, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->tacgia)));
         model->setItem(i, 3, new QStandardItem(QString::number(danh_sach_dau_sach.node[vitridausach]->namsx)));
         model->setItem(i, 4, new QStandardItem(QString::fromStdString(danh_sach_dau_sach.node[vitridausach]->theloai)));
@@ -272,7 +272,7 @@ void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableV
     NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, tableView, root->ptr_right);
 }
 
-void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
+void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current) {
     if (current == nullptr) {
         return;
     }
@@ -358,7 +358,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableView *tableView, Danh_Sach_The_Doc_Gia *ro
         model->setItem(row, 2, new QStandardItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
         model->setItem(row, 3, new QStandardItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
         model->setItem(row, 4, new QStandardItem(QString::fromStdString(current->value.second->data.masach)));
-        model->setItem(row, 5, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->value.second->data.masach))));
+        model->setItem(row, 5, new QStandardItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->value.second->data.masach))));
         model->setItem(row, 6, new QStandardItem(QString::number(so_ngay_qua_han)));
         current = current->next;
         row++;

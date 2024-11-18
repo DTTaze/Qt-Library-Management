@@ -74,7 +74,7 @@ QString RemoveSpace(const QString &key);
 
 QString CapitalizeWords(const QString& text);
 
-void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach);
+void InToanBoDauSach(QTableWidget* tableWidget_dausach);
 
 int TimKiemViTriDauSach(string ma);
 
@@ -84,14 +84,14 @@ bool TonTaiMaSach(string ma_sach);
 
 DanhMucSach* DanhMucSachTrongDauSach(string ma_sach);
 
-string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string&  ma_sach);
+string ChuyenMaSachThanhTenSach(const string&  ma_sach);
 
-bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach);
+bool DayDauSach();
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
 //Hàm đọc và ghi file txt
-void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent);
+void DocTuFileDauSach(QWidget* parent);
 void GhiDauSachVaoFile();
 
 //Chức năng thêm sách
@@ -99,23 +99,23 @@ bool MaISBNQTHopLe(QString i_s_b_n);
 void TaoMaSach(string& ma_sach,int SoLuongSachTrongDausach);
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
-void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                 int trang_thai,string &vi_tri,string ma_sach);
+void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
+                int trang_thai,string &vi_tri,string ma_sach);
 
 //Chức năng chỉnh sửa đầu sách
 void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
 void LocKiTuTensachHopLe(const QString& text,string& valid_key);
 
 //Chức năng in đầu sách theo thể loại
-void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy);
-string ChuyenVeChuThuong(std::string str);
-void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc);
-void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc);
-void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach,QTableView* tableView_intheloai);
+void SaoChepDanhSach( int* copy);
+string ChuyenVeChuThuong(string str);
+void Merge(int* arr, int left, int mid, int right);
+void MergeSort(int* arr, int left, int right);
+void InTheoTungTheLoai(QTableView* tableView_intheloai);
 
 
 //Chức năng tìm tên sách
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableWidget* tableWidget_dausach, string key);
+void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
 
 #endif

@@ -23,9 +23,9 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 {
     ui->setupUi(this);
     QLocale::setDefault(QLocale(QLocale::Vietnamese, QLocale::Vietnam));
-    DocTuFileDauSach(danh_sach_dau_sach,this);
+    DocTuFileDauSach(this);
 
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+    InToanBoDauSach(ui->tableWidget_dausach);
 
     docFileMaThe();
     docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
@@ -77,7 +77,7 @@ void LibraryManagementSystem::on_luuFile_pushButton_clicked()
 void LibraryManagementSystem::tabDauSach()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+    InToanBoDauSach(ui->tableWidget_dausach);
 }
 
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
@@ -203,7 +203,7 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
         valid_key="";
     }
 
-    TimKiemTenSach(danh_sach_dau_sach, ui->tableWidget_dausach, valid_key);
+    TimKiemTenSach(ui->tableWidget_dausach, valid_key);
 }
 
 void LibraryManagementSystem::MoCuaSoDanhMucSach(int ViTriDauSach) {
@@ -228,14 +228,14 @@ void LibraryManagementSystem::MoCuaSoThemSach(){
     themds.setModal(true);
     themds.setWindowTitle("Thêm sách");
     if (themds.exec() == QDialog::Accepted){
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,ui->tableWidget_dausach);
+        InToanBoDauSach(ui->tableWidget_dausach);
         Saved = false;
     }
 }
 
 void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
-    if (DayDauSach(danh_sach_dau_sach)){
+    if (DayDauSach()){
         QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
     }else{
         MoCuaSoThemSach();
@@ -247,7 +247,7 @@ void LibraryManagementSystem::MoCuaSoEditSach(int i_ds){
     edit.setModal(true);
     edit.setWindowTitle("Sửa sách");
     if (edit.exec() ==  QDialog::Accepted){
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        InToanBoDauSach(ui->tableWidget_dausach);
         Saved = false;
     }
 }
@@ -270,7 +270,7 @@ void LibraryManagementSystem::MoCuaSoXoaSach(int i_ds){
     del_dausach.setModal(true);
     del_dausach.setWindowTitle("Xóa đầu sách");
     if (del_dausach.exec() == QDialog::Accepted){
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        InToanBoDauSach(ui->tableWidget_dausach);
         Saved = false;
     }
 }
@@ -329,7 +329,7 @@ void LibraryManagementSystem::MoCuaSoNhapDauSach(int i_ds){
     nhap_dausach.setModal(true);
     nhap_dausach.setWindowTitle("Xóa đầu sách");
     if (nhap_dausach.exec() == QDialog::Accepted){
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach, ui->tableWidget_dausach);
+        InToanBoDauSach(ui->tableWidget_dausach);
         Saved = false;
     }
 }
@@ -489,7 +489,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
             ui->tableWidget_muonTra->insertRow(indexRow);
             ui->tableWidget_muonTra->setCellWidget(indexRow, 0, checkBox);
             ui->tableWidget_muonTra->setItem(indexRow, 1, new QTableWidgetItem(QString::fromStdString(current->data.masach)));
-            ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->data.masach))));
+            ui->tableWidget_muonTra->setItem(indexRow, 2, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->data.masach))));
             ui->tableWidget_muonTra->setItem(indexRow, 3, new QTableWidgetItem(QString::fromStdString(ChuyenDateSangString(current->data.NgayMuon))));
             ui->tableWidget_muonTra->setItem(indexRow, 4, new QTableWidgetItem(QString::number(DemSoNgay(current->data.NgayMuon, NgayHomNay()))));
             ui->tableWidget_muonTra->setItem(indexRow, 5, new QTableWidgetItem(current->data.trangthai == Mat_Sach ? "Mất Sách" : "Chưa Trả"));

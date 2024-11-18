@@ -205,7 +205,7 @@ void hieuChinhThongTinTheDocGia(int maThe, The_Doc_Gia thongTinMoi) {
 void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     DanhSachMUONTRA* temp = docGia->thong_tin.head_lsms;
     while ( temp != nullptr ) {
-        if ( temp->data.trangthai == 2 ) {
+        if ( temp->data.trangthai == Mat_Sach ) {
             docGia->thong_tin.TrangThai = Khoa;
             return;
         }

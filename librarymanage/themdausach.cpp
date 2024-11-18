@@ -93,7 +93,7 @@ void themdausach::on_pushButton_clicked() {
     }
 
     for (int i = 0; i < soluong; i++) {
-        ThemDauSach(danh_sach_dau_sach, isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd, "");
+        ThemDauSach(isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd, "");
     }
 
     // Hiển thị thông tin đã nhập

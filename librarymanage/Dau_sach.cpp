@@ -1,7 +1,6 @@
 #include "Dau_sach.h"
 
 DanhSachDauSach danh_sach_dau_sach;
-DanhMucSach* danh_muc_sach;
 
 int TimKiemViTriDauSach(string ma) {
     if(ma.size() < 13) return -1;
@@ -94,7 +93,7 @@ void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
 }
 
 
-void ThemDauSach(DanhSachDauSach &danh_sach_dau_sach,const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
+void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                   int trang_thai,string &vi_tri,string ma_sach){
 
     int index_isbn = TimKiemViTriDauSach(I_S_B_N);
@@ -123,7 +122,8 @@ bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
     }
     return false;
 }
-void InToanBoDauSach(DanhSachDauSach &danh_sach_dau_sach, int so_luong_sach, QTableWidget* tableWidget_dausach) {
+void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
+    int so_luong_sach = danh_sach_dau_sach.soluongdausach;
 
     // Xóa dữ liệu cũ trong QTableWidget
     tableWidget_dausach->clearContents(); // Xóa dữ liệu nhưng giữ lại các cài đặt
@@ -236,17 +236,17 @@ void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
 }
 
 
-void TimKiemTenSach(DanhSachDauSach &danh_sach_dau_sach, QTableWidget* tableWidget_dausach, string key) {
+void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key) {
 
     // Neu nguoi dung nhap key
     if (!key.empty()) {
         InTheoTenTimKiem(key,tableWidget_dausach);
     } else {
-        InToanBoDauSach(danh_sach_dau_sach,danh_sach_dau_sach.soluongdausach,tableWidget_dausach);
+        InToanBoDauSach(tableWidget_dausach);
     }
 }
 
-string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string& ma_sach){
+string ChuyenMaSachThanhTenSach(const string&  ma_sach){
     int i = TimKiemViTriDauSach(ma_sach);
     if (i != -1){
         return danh_sach_dau_sach.node[i]->tensach;
@@ -255,7 +255,7 @@ string ChuyenMaSachThanhTenSach(DanhSachDauSach &danh_sach_dau_sach,const string
     }
 }
 
-void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc) {
+void Merge(int* arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -275,10 +275,10 @@ void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc)
     int i = 0, j = 0, k = left;
     while (i < n1 && j < n2) {
         // So sanh the loai truoc
-        string Left_theloai = Dau_sach_goc.node[L[i]]->theloai;
-        string Right_theloai = Dau_sach_goc.node[R[j]]->theloai;
-        string Left_tensach = ChuyenVeChuThuong(Dau_sach_goc.node[L[i]]->tensach);
-        string Right_tensach = ChuyenVeChuThuong(Dau_sach_goc.node[R[j]]->tensach);
+        string Left_theloai = danh_sach_dau_sach.node[L[i]]->theloai;
+        string Right_theloai = danh_sach_dau_sach.node[R[j]]->theloai;
+        string Left_tensach = ChuyenVeChuThuong(danh_sach_dau_sach.node[L[i]]->tensach);
+        string Right_tensach = ChuyenVeChuThuong(danh_sach_dau_sach.node[R[j]]->tensach);
 
         QString Left_theloai_qt = QString::fromStdString(Left_theloai);
         QString Right_theloai_qt = QString::fromStdString(Right_theloai);
@@ -322,33 +322,33 @@ void Merge(int* arr, int left, int mid, int right,DanhSachDauSach &Dau_sach_goc)
     delete[] R;
 }
 
-void MergeSort(int* arr, int left, int right,DanhSachDauSach &Dau_sach_goc) {
+void MergeSort(int* arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
 
-        MergeSort(arr, left, mid, Dau_sach_goc);
-        MergeSort(arr, mid + 1, right, Dau_sach_goc);
+        MergeSort(arr, left, mid);
+        MergeSort(arr, mid + 1, right);
 
 
-        Merge(arr, left, mid, right,Dau_sach_goc);
+        Merge(arr, left, mid, right);
     }
 }
 
-void SaoChepDanhSach(DanhSachDauSach &Dau_sach_goc, int* copy) {
-    int n = Dau_sach_goc.soluongdausach;
+void SaoChepDanhSach( int* copy) {
+    int n = danh_sach_dau_sach.soluongdausach;
     for (int i = 0; i < n;i++){
         copy[i]=i;
     }
 }
 
-void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableView_intheloai) {
+void InTheoTungTheLoai(QTableView* tableView_intheloai) {
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
     int* copy = new int[so_luong_sach](); // Cấp phát động mảng, mặc định phần tử = 0
 
     // Sao chép và sắp xếp danh sách đầu sách
-    SaoChepDanhSach(danh_sach_dau_sach, copy);
-    MergeSort(copy, 0, so_luong_sach - 1, danh_sach_dau_sach);
+    SaoChepDanhSach(copy);
+    MergeSort(copy, 0, so_luong_sach - 1);
 
     // Tạo model cho table
     QStandardItemModel* model = new QStandardItemModel(so_luong_sach, 6);
@@ -427,7 +427,7 @@ void InTheoTungTheLoai(DanhSachDauSach &danh_sach_dau_sach, QTableView* tableVie
 }
 
 
-bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
+bool DayDauSach(){
     if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
         return true;
     }else{
@@ -436,7 +436,7 @@ bool DayDauSach(DanhSachDauSach &danh_sach_dau_sach){
 }
 
 
-void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
+void DocTuFileDauSach(QWidget* parent) {
 
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
@@ -482,7 +482,7 @@ void DocTuFileDauSach(DanhSachDauSach &danh_sach_dau_sach,QWidget* parent) {
             continue;
         }
 
-        ThemDauSach(danh_sach_dau_sach, ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
+        ThemDauSach(ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
     }
     file.close();
 }
@@ -542,6 +542,8 @@ DanhMucSach* DanhMucSachTrongDauSach(string ma_sach){
             return cur;
         }
     }
+    QMessageBox::warning(nullptr,"Cảnh báo","Không Kiếm thấy danh mục sách");
+    return nullptr;
 }
 
 bool MaISBNQTHopLe(QString i_s_b_n){
