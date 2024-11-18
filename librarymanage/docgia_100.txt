@@ -1,10 +1,10 @@
 5000|Nguyễn Văn|Quang|Nam|1|
-2500|Lý Văn|Biển|Nam|1|
+2500|Lý Văn|Biển|Nam|1|978-1-59327-145-4-7|0|18/11/2024||
 7500|Ngô Thị|Lan|Nữ|1|
 1250|Lê Trung|Quốc|Nam|1|
 3750|Phan Tuấn Quốc|Anh|Nam|1|
 6250|Vũ Thị|Hạnh|Nữ|1|
-8750|Hoàng Thiên|Bảo|Nam|1|
+8750|Hoàng Thiên|Bảo|Nam|0|978-1-59327-950-9-1|2|18/11/2024||
 625|Lương Chí|Vinh|Nam|1|
 1875|Đặng Thành|Tài|Nam|1|
 3125|Dư Hoàng|Phi|Nam|1|
@@ -31,7 +31,7 @@
 9688|Phạm Tường Lan|Hương|Nữ|1|
 156|Nguyễn Ngọc Thanh|Ngân|Nữ|1|
 468|Trần Thị Huyền|Nhung|Nữ|1|
-781|Nguyễn Trần Thùy|Dung|Nữ|1|
+781|Nguyễn Trần Thùy|Dung|Nữ|1|978-0-7432-7354-5-1|1|18/11/2024|18/11/2024|
 1093|Nguyễn Võ Lệ|Huyền|Nữ|1|
 1406|Nguyễn Thị Cẩm|Tú|Nữ|1|
 1718|Sa Ri|Ah|Nữ|1|

@@ -231,7 +231,7 @@ void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon
     for(int row = 0; row < SoLuongSach && row < 10; row++) {
         int vitri = TimKiemViTriDauSach(DanhSachSachMuon[row].masach);
         tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(DanhSachSachMuon[row].masach)));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, DanhSachSachMuon[row].masach))));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach( DanhSachSachMuon[row].masach))));
         tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia)));
         tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namsx)));
         tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(DanhSachSachMuon[row].demsoluotmuon)));
@@ -310,7 +310,7 @@ void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia
         tableWidget->setItem(row, 2, new QTableWidgetItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
         tableWidget->setItem(row, 3, new QTableWidgetItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
         tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(current->value.second->data.masach)));
-        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(danh_sach_dau_sach, current->value.second->data.masach))));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->value.second->data.masach))));
         tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(SoNgayQuaHan(current->value.second->data.NgayMuon, NgayHomNay()))));
         current = current->next;
         row++;
