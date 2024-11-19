@@ -2,7 +2,7 @@
 
 DanhSachDauSach danh_sach_dau_sach;
 
-int TimKiemViTriDauSach(string ma) {
+int TimKiemViTriDauSach(string ma) { // viết hàm chuyển từ mã sách sang ISBN
     if(ma.size() < 13) return -1;
 
     if(ma.size() > 17) {// ma sach cua ISBN-13
@@ -29,8 +29,10 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     if (vitri == -1) {
         return nullptr;
     }
-    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+    DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms;
+    while ( current != nullptr ) {
         if (current->masach == maSach) return current;
+        current = current->next;
     }
     return nullptr;
 }
@@ -49,7 +51,6 @@ void TaoMaSach(string& ma_sach, const string& I_S_B_N, int SoLuongSachTrongDausa
 }
 
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach) {
-    // Tạo mã sách mới
     if (ma_sach == "") {
         TaoMaSach(ma_sach, I_S_B_N,SoLuongSachTrongDausach);
     }

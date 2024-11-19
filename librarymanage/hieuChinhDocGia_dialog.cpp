@@ -123,6 +123,7 @@ void hieuChinhDocGia_dialog::on_Ok_pushButton_clicked()
         QMessageBox::warning(this, "Lỗi", "Bạn chưa điền tên");
         return;
     }
+    accept();
 }
 
 

@@ -281,7 +281,10 @@ void LibraryManagementSystem::on_xoaSach_pushButton_clicked()
     QTableWidgetItem *headerItem = ui->tableWidget_dausach->verticalHeaderItem(row);
     if (headerItem){
         int index_dausach = headerItem->text().toInt();
-        if (TonTaiMaSachDaDuocMuonTrongDauSach(index_dausach)){QMessageBox::critical(nullptr,"Lỗi","Tồn tại mã sách đang được mượn\nKhông thể xóa đầu sách."); return;};
+        if (TonTaiMaSachDaDuocMuonTrongDauSach(index_dausach)){
+            QMessageBox::critical(nullptr,"Lỗi","Tồn tại mã sách đang được mượn\nKhông thể xóa đầu sách.");
+            return;
+        }
         MoCuaSoXoaSach(index_dausach);
     }else{
         MoCuaSoXoaSach(-1);
@@ -391,13 +394,10 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 
     themDocGia.setModal(true);
     if (themDocGia.exec() == QDialog::Accepted) {
-
         The_Doc_Gia docGia;
-
         docGia.MATHE = layMaThe();
         QString hoVaTen = themDocGia.getHoVaTen();
         int viTriDeTachHoVaTen = hoVaTen.lastIndexOf(" ") + 1;
-
         docGia.Ho = hoVaTen.mid(0, viTriDeTachHoVaTen).toStdString();
         docGia.Ten = hoVaTen.mid(viTriDeTachHoVaTen).toStdString();
         if ( themDocGia.getPhai() == "Nam") {
@@ -406,7 +406,6 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
             docGia.phai = Phai::Nu;
         }
         docGia.TrangThai = Dang_Hoat_Dong;
-
         Them_Doc_Gia(root, docGia);
         CapNhatBang();
         Saved = false;
@@ -415,23 +414,9 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 
 void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 {
-    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
-
     hieuChinhDocGia_dialog hieuChinhDocGia;
     hieuChinhDocGia.setModal(true);
-
-    if (currentRow != -1) {
-        QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
-        Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia( itemMaThe->text().toInt() );
-
-        hieuChinhDocGia.setMaThe( docGia->thong_tin.MATHE );
-        hieuChinhDocGia.setHoVaTen(docGia->thong_tin.Ho, docGia->thong_tin.Ten);
-        hieuChinhDocGia.setGioiTinh(docGia->thong_tin.phai);
-        hieuChinhDocGia.setTrangThaiThe( docGia->thong_tin.TrangThai );
-    }
-
     if ( hieuChinhDocGia.exec() == QDialog::Accepted ) {
-
         int maThe = hieuChinhDocGia.getMaThe();
         The_Doc_Gia thongTinMoi;
         QString hoVaTen = hieuChinhDocGia.getHoVaTen();
@@ -537,7 +522,6 @@ bool LibraryManagementSystem::laMaSach( string text ) {
 }
 
 void LibraryManagementSystem::clearBookInformation() {
-
     ui->lineEdit_tacGia->clear();
     ui->lineEdit_trangThaiSach->clear();
 }
@@ -643,38 +627,19 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
 
 
 //--------------------------------------
+bool LibraryManagementSystem::MaTheHoacMaSachRong() {
+    return ui->lineEdit_maSach->text().isEmpty() || ui->lineEdit_maThe->text().isEmpty();
+}
 
-void LibraryManagementSystem::on_traSach_pushButton_clicked()
-{
-    if(!ui->lineEdit_maThe->text().isEmpty()) {
-        int row = 0;
-        bool thongbao = 0;
-        for (; row < ui->tableWidget_muonTra->rowCount(); row++) {
-            QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
-            QCheckBox *traSach_checkBox = qobject_cast<QCheckBox *>(traSach_widget);
-            if ( traSach_checkBox->isChecked() ) {
-                QString ma_sach =ui->tableWidget_muonTra->item(row, 1)->text();
-                string maSach = ma_sach.toStdString();
-                TraSach(getmaThe(), maSach);
-                if(thongbao == 0) {
-                    QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
-                    thongbao = 1;
-                }
-            }
-        }
-        ui->tableWidget_muonTra->setRowCount(0);
-        inThongTin(getmaThe());
-        Saved = false;
-    } else {
-        QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả để trả sách.");
-    }
+string LibraryManagementSystem::getMaSach(){
+    return ui->lineEdit_maSach->text().toStdString();
 }
 
 string LibraryManagementSystem::getmaSachCoTheMuon() {
-    string ma_ISBN =  ui->lineEdit_maSach->text().toStdString();
+    string ma_ISBN = getMaSach();
     int vitri = TimKiemViTriDauSach(ma_ISBN);
     if (vitri != -1) {
-        DanhMucSach *danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
+        DanhMucSach* danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
         while (danh_muc_sach != nullptr) {
             if(danh_muc_sach->trangthai == 0) {
                 return danh_muc_sach->masach;
@@ -687,29 +652,62 @@ string LibraryManagementSystem::getmaSachCoTheMuon() {
 
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
-    if(!ui->lineEdit_maSach->text().isEmpty() && !ui->lineEdit_maThe->text().isEmpty()) {
-        string maSach = ui->lineEdit_maSach->text().toStdString();
-        if(maSach.size() == 13 || maSach.size() == 17) {
-            if(getmaSachCoTheMuon() == "") {
-                QMessageBox::information(nullptr, "Thông báo", "Không thể mượn sách.");
-                return;
-            }
-            MuonSach(getmaThe(), getmaSachCoTheMuon());
-            ui->tableWidget_muonTra->setRowCount(0);
-            inThongTin(getmaThe());
-            ui->lineEdit_maSach->clear();
-        }
-        else {
-            MuonSach(getmaThe(), maSach);
-            ui->tableWidget_muonTra->setRowCount(0);
-            inThongTin(getmaThe());
-            ui->lineEdit_maSach->clear();
-        }
-        Saved = false;
-    } else {
+    if(MaTheHoacMaSachRong()) {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
+        return;
     }
+
+    string maSach = getMaSach();
+
+    if(laISBN(maSach)) {
+        if(getmaSachCoTheMuon() == "") {
+            QMessageBox::information(nullptr, "Thông báo", "Không thể mượn sách.");
+            return;
+        }
+        MuonSach(getmaThe(), getmaSachCoTheMuon());
+    } else if (laMaSach(maSach)){
+        MuonSach(getmaThe(), maSach);
+    } else {
+        return;
+    }
+
+    ui->tableWidget_muonTra->setRowCount(0);
+    inThongTin(getmaThe());
+    ui->lineEdit_maSach->clear();
+
+    Saved = false;
+
 }
+
+void LibraryManagementSystem::on_traSach_pushButton_clicked()
+{
+    if(ui->lineEdit_maThe->text().isEmpty()) {
+        QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã thẻ độc giả để trả sách.");
+        return;
+    }
+
+    bool coTraSach = false;
+    for (int row = 0; row < ui->tableWidget_muonTra->rowCount(); row++) {
+        QWidget *traSach_widget = ui->tableWidget_muonTra->cellWidget(row, 0);
+        QCheckBox *traSach_checkBox = qobject_cast<QCheckBox *>(traSach_widget);
+        if ( traSach_checkBox->isChecked() ) {
+            coTraSach = true;
+            QString ma_sach = ui->tableWidget_muonTra->item(row, 1)->text();
+            string maSach = ma_sach.toStdString();
+            TraSach(getmaThe(), maSach);
+        }
+    }
+
+    if( coTraSach ) {
+        QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
+    } else {
+        QMessageBox::information(nullptr, "Thông báo", "Bạn chưa chọn sách để trả.");
+    }
+
+    inThongTin(getmaThe());
+    Saved = false;
+}
+
 
 void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
 {

@@ -103,6 +103,8 @@ private slots:
 
     int getmaThe() ;
 
+    string getMaSach();
+
     void inThongTin(const int& ma_the) ;
 
     void on_lineEdit_maThe_textChanged(const QString &arg1);
@@ -112,6 +114,8 @@ private slots:
     void inThongTinmaSach( string key_ma_sach);
 
     void on_lineEdit_maSach_textChanged(const QString &arg1);
+
+    bool MaTheHoacMaSachRong();
 
     void on_traSach_pushButton_clicked();
 

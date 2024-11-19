@@ -7,14 +7,13 @@
 struct The_Doc_Gia;
 struct Danh_Sach_The_Doc_Gia;
 using namespace std;
-enum DenSach {daden, chuaden};
 
 const int Chua_Tra = 0;
 const int Da_Tra = 1;
 const int Mat_Sach = 2;
 int TrangThai(Date ngay_muon, Date ngay_tra) ;
 
-struct MUONTRA { // thong tin quyen sach doc gia da va dang muon
+struct MUONTRA {
     string masach;
     Date NgayMuon;
     Date NgayTra;
@@ -48,18 +47,22 @@ struct danhSachDocGiaMuonQuaHan {
     danhSachDocGiaMuonQuaHan* next = nullptr;
 };
 
-bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp);
+bool chuaTraSach(DanhSachMUONTRA *temp);
 
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 
 void MuonSach(const int &maThe, const string& maSach);
 
+bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) ;
+
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
 bool MuonSachQuaHan(DanhSachMUONTRA *head);
 
-bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia);
+bool KhongTonTaiMaSach(string ma_sach);
+
+bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);

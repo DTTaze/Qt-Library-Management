@@ -24,82 +24,111 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
 }
 
 bool MuonSachQuaHan(DanhSachMUONTRA *head) {
-    DanhSachMUONTRA *p = head;
-    while(p != nullptr) {
-        if(p->data.NgayTra.day == 0 ){
-            if(SoNgayQuaHan(p->data.NgayMuon, NgayHomNay()) > 0) return true;
+    DanhSachMUONTRA* current = head;
+    while( current != nullptr ) {
+        if( current->data.NgayTra.day == 0 ){
+            if( SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) > 0 ) {
+                return true;
+            }
         }
-        p = p->next;
+        current = current->next;
     }
     return false;
 }
 
-bool TrangThaiMUONTRADaTraChua(DanhSachMUONTRA *temp){
-    return temp->data.trangthai == Da_Tra ? true : false;
+bool chuaTraSach(DanhSachMUONTRA *current){
+    return current->data.trangthai == Chua_Tra ? true : false;
 }
 
-int DemSoSachDangMuon(DanhSachMUONTRA *demsach) {
-    DanhSachMUONTRA *temp = demsach;
-    int dem = 0;
+int DemSoSachDangMuon(DanhSachMUONTRA* head) {
+    DanhSachMUONTRA *current = head;
+    int soSachDangMuon = 0;
 
-    while(temp!=nullptr) {
-        if(!TrangThaiMUONTRADaTraChua(temp)) {
-            dem++;
+    while( current != nullptr) {
+        if( chuaTraSach(current) ) {
+            soSachDangMuon++;
         }
-        temp = temp->next;
+        current = current->next;
     }
-    return dem;
+    return soSachDangMuon;
 }
 
-bool KiemTraVaInRaLoiKhiMuonSach(string maSach, DanhMucSach* danhmucsach, Danh_Sach_The_Doc_Gia *doc_gia) {
-    string ma_sach = maSach.substr(0, 17);
-    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
+
+
+bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    DanhMucSach* cur = danhmucsach;
+    string ma_sach = maSach.substr(0, 17);
+    while(current != nullptr) {
+        string ma_ISBN = current->data.masach.substr(0, 17);
+        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool KhongTonTaiMaSach(string ma_sach) {
+    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? false : true;
+}
+
+bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
+    Danh_Sach_The_Doc_Gia* doc_gia= timKiemTheDocGia(maThe);
+    if(doc_gia == nullptr) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không tìm thấy độc giả. ");
+        return false;
+    }
+
     if(doc_gia->thong_tin.TrangThai == Khoa) {
         QMessageBox::warning(nullptr, "Lỗi", "Không mượn được sách vì thẻ độc giả bị khóa.");
         return false;
     }
+
+    int SoSachDangMuon = DemSoSachDangMuon(doc_gia->thong_tin.head_lsms);
     if(SoSachDangMuon >= 3) {
         QMessageBox::warning(nullptr, "Lỗi", "đã mượn 3 quyển sách, trả sách để mượn thêm.");
         return false;
     }
+
     if(MuonSachQuaHan(doc_gia->thong_tin.head_lsms)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không được mượn sách vì đã có sách mượn quá hạn.");
         return false;
     }
+
+    if(DocGiaDangMuonSachNay(doc_gia, maSach)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Bạn đã mượn sách này rồi, vui lòng chọn sách khác.");
+        return false;
+    }
+
+    int vitridausach = TimKiemViTriDauSach(maSach); // Sách đã được mượn mà vẫn cho mượn
+    if(vitridausach == -1) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không tìm thấy đầu sách.");
+        return false;
+    }
+
+    DanhMucSach* cur = danh_sach_dau_sach.node[vitridausach]->dms;
     if(cur->trangthai != co_the_muon) {
         QMessageBox::warning(nullptr, "Lỗi", "Sách đã được mượn hoặc thanh lý.");
         return false;
     }
-    while(current != nullptr) {
-        string ma_ISBN = current->data.masach.substr(0, 17);
-        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
-            QMessageBox::warning(nullptr, "Lỗi", "Bạn đã mượn sách này rồi, vui lòng chọn sách khác.");
-            return false;
-        }
-        current = current->next;
+
+    if(KhongTonTaiMaSach(maSach)) {
+        QMessageBox::warning(nullptr, "Lỗi", "Không tồn tại mã sách.");
+        return false;
     }
+
     return true;
 }
 
 void MuonSach( const int& maThe, const string& maSach) {
     Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
-    Date ngaymuon = NgayHomNay();
 
     Date ngaytra; // ngaytra = {0/0/0}
 
-    if (doc_gia == nullptr) {
-        QMessageBox::warning(nullptr, "Lỗi", "Thẻ độc giả không tồn tại.");
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
         return;
     }
 
-    DanhMucSach *cur = TimDiaChiSachTrongDanhMucSach(maSach);
-
-    if ( !KiemTraVaInRaLoiKhiMuonSach(maSach, cur, doc_gia) ) {
-        return;
-    }
-
+    Date ngaymuon = NgayHomNay();
     ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
     CapNhatTrangThaiSach(maSach, da_duoc_muon);
 }
