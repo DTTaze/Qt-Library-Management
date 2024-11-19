@@ -120,13 +120,6 @@ void Xoa_dau_sach::on_pushButton_cancel_2_clicked()
     close();
 }
 
-void Xoa_dau_sach::XoaDauSach(int index){
-    for (int i = index; i < danh_sach_dau_sach.soluongdausach - 1; i++) {
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i + 1];
-    }
-    danh_sach_dau_sach.soluongdausach--;
-}
-
 void Xoa_dau_sach::on_pushButton_XoaDauSacg_clicked()
 {
     QMessageBox::StandardButton reply;

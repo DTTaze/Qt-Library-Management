@@ -53,10 +53,11 @@ void Edit_sach::on_pushButton_ok_clicked()
     QString errorMessage;
 
     // Kiểm tra từng điều kiện và thêm lỗi vào errorMessage nếu có
+    int index_dausach = TimKiemViTriDauSach(isbnStd);
     if (ISBN.isEmpty()) {
         QMessageBox::warning(this,"Cảnh báo", "Bạn chưa điền ISBN.\n");
         return;
-    } else if (int i = TimKiemViTriDauSach(isbnStd) == -1) {
+    } else if ( index_dausach == -1) {
         QMessageBox::warning(this,"Cảnh báo", "Mã đầu sách không tồn tại.");
         return;
     } else if (!MaISBNQTHopLe(ISBN)) {
@@ -91,9 +92,11 @@ void Edit_sach::on_pushButton_ok_clicked()
         return;
     }
 
-    string ma_isbn = ui->lineEdit_ISBN_1->text().toStdString();
-    int index_dausach = TimKiemViTriDauSach(ma_isbn);
-    danh_sach_dau_sach.node[index_dausach]->tensach = tensachStd;
+    if(danh_sach_dau_sach.node[index_dausach]->tensach != tensachStd){
+        SapXepDauSachTheoTenSach(tensachStd,index_dausach);
+        qDebug()<<index_dausach;
+        danh_sach_dau_sach.node[index_dausach]->tensach = tensachStd;
+    }
     danh_sach_dau_sach.node[index_dausach]->tacgia = tacgiaStd;
     danh_sach_dau_sach.node[index_dausach]->theloai = theloaiStd;
     danh_sach_dau_sach.node[index_dausach]->sotrang = sotrang;

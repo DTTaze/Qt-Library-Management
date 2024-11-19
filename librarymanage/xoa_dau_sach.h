@@ -17,7 +17,6 @@ public:
     void HienThiDanhMucSachTrongXoaSach(int index_dausach);
     void HienThiThongTinSachTrongXoatSach(int index_dausach);
     void XoaThongTinTrongXoaSach();
-    void XoaDauSach(int index);
 
 private slots:
     void on_lineEdit_ISBN_2_textChanged(const QString &arg1);

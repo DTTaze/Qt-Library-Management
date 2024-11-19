@@ -235,9 +235,9 @@ void LibraryManagementSystem::on_themSach_pushButton_clicked()
 {
     if (DayDauSach()){
         QMessageBox::information(this, "Thông báo", "Số sách đẫ đầy");
-    }else{
-        MoCuaSoThemSach();
+        return;
     }
+    MoCuaSoThemSach();
 }
 
 void LibraryManagementSystem::MoCuaSoEditSach(int i_ds){

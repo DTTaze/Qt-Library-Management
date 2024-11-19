@@ -68,6 +68,12 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
+void DoiViTriDauSachXoa(int index);
+
+void XoaDauSach(int index);
+
+void SapXepDauSachTheoTenSach(string ten_sach,int &index_hien_tai);
+
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 
 QString RemoveSpace(const QString &key);
@@ -75,6 +81,8 @@ QString RemoveSpace(const QString &key);
 QString CapitalizeWords(const QString& text);
 
 void InToanBoDauSach(QTableWidget* tableWidget_dausach);
+
+void ChuyenThanhISBN(string& ma);
 
 int TimKiemViTriDauSach(string ma);
 
@@ -99,6 +107,7 @@ bool MaISBNQTHopLe(QString i_s_b_n);
 void TaoMaSach(string& ma_sach,int SoLuongSachTrongDausach);
 void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
+void ChenDauSach(DauSach*& Dau_Sach_moi, const string& ten_sach,int &vi_tri_them);
 void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
                 int trang_thai,string &vi_tri,string ma_sach);
 

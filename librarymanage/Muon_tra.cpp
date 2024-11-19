@@ -67,10 +67,6 @@ bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
     return false;
 }
 
-bool KhongTonTaiMaSach(string ma_sach) {
-    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? false : true;
-}
-
 bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
     Danh_Sach_The_Doc_Gia* doc_gia= timKiemTheDocGia(maThe);
     if(doc_gia == nullptr) {
@@ -111,7 +107,7 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
         return false;
     }
 
-    if(KhongTonTaiMaSach(maSach)) {
+    if(!TonTaiMaSach(maSach)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không tồn tại mã sách.");
         return false;
     }
