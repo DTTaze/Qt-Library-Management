@@ -274,7 +274,7 @@ void Edit_sach::on_tableWidget_danhmucsach_1_itemChanged(QTableWidgetItem *item)
     if(item->isSelected()){
         QString text = item->text();
         string ma_sach = ui->tableWidget_danhmucsach_1->item(item->row(),0)->text().toStdString();
-        DanhMucSach* danh_muc_sach = DanhMucSachTrongDauSach(ma_sach);
+        DanhMucSach* danh_muc_sach = TimDiaChiSachTrongDanhMucSach(ma_sach);
         if(!text.isEmpty()){
             string key = text.toStdString();
 

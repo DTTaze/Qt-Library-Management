@@ -90,8 +90,6 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 bool TonTaiMaSach(string ma_sach);
 
-DanhMucSach* DanhMucSachTrongDauSach(string ma_sach);
-
 string ChuyenMaSachThanhTenSach(const string&  ma_sach);
 
 bool DayDauSach();

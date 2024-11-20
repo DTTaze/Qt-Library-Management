@@ -109,7 +109,7 @@ void ChenDauSach(DauSach*& Dau_Sach_moi, const string& ten_sach,int &vi_tri_them
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
     int vi_tri_them ;
     ChenDauSach(Dau_Sach_moi,ten_sach,vi_tri_them);
-    danh_sach_dau_sach.node[vi_tri_them]->SoLuongSachTrongDausach++;
+
 }
 
 
@@ -124,7 +124,7 @@ void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const
         DauSach* new_DauSach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
 
         ThemDanhMucSach(new_DauSach->dms,trang_thai,vi_tri,I_S_B_N,new_DauSach->SoLuongSachTrongDausach+1,ma_sach);
-
+        new_DauSach->SoLuongSachTrongDausach++;
         ChenDauSachMoi(new_DauSach,ten_sach);
         danh_sach_dau_sach.soluongdausach++;
 
@@ -552,17 +552,6 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
 
 bool TonTaiMaSach(string ma_sach){
     return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
-}
-
-DanhMucSach* DanhMucSachTrongDauSach(string ma_sach){
-    int i = TimKiemViTriDauSach(ma_sach);
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->masach == ma_sach){
-            return cur;
-        }
-    }
-    QMessageBox::warning(nullptr,"Cảnh báo","Không Kiếm thấy danh mục sách");
-    return nullptr;
 }
 
 bool MaISBNQTHopLe(QString i_s_b_n){
