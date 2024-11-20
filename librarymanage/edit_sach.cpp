@@ -93,8 +93,7 @@ void Edit_sach::on_pushButton_ok_clicked()
     }
 
     if(danh_sach_dau_sach.node[index_dausach]->tensach != tensachStd){
-        SapXepDauSachTheoTenSach(tensachStd,index_dausach);
-        qDebug()<<index_dausach;
+        ChenDauSachSauKhiThayDoi(tensachStd,index_dausach);
         danh_sach_dau_sach.node[index_dausach]->tensach = tensachStd;
     }
     danh_sach_dau_sach.node[index_dausach]->tacgia = tacgiaStd;
