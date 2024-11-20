@@ -50,39 +50,38 @@ struct danhSachDocGiaMuonQuaHan {
 bool chuaTraSach(DanhSachMUONTRA *temp);
 
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
-void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
-
 void MuonSach(const int &maThe, const string& maSach);
+
+void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 
 bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) ;
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
-bool MuonSachQuaHan(DanhSachMUONTRA *head);
+bool CoSachMuonQuaHan(DanhSachMUONTRA *head);
 
-bool KhongTonTaiMaSach(string ma_sach);
+bool SachDaDuocMuonHoacThanhLy(string ma_sach) ;
 
 bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
 //----------------------------------------------------------------Bảng top 10 sách được mượn nhiều nhất--------------------------------------------------------------------------------
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) ;
+
 void MergeSachMuon(SachMuon* arr, int left, int mid, int right) ;
 
 void MergeSortSachMuon(SachMuon* arr, int left, int right);
 
 void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra);
 
-void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) ;
-
 int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach);
 
 void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) ;
 
-void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]);
-
 void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], Danh_Sach_The_Doc_Gia *root);
 //----------------------------------------------------------------Bảng danh sách độc giả mượn quá hạn--------------------------------------------------------------------------------------------------
+void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) ;
 
 void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current);
 
@@ -91,10 +90,10 @@ void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Do
 danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root);
 
 void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head);
-
-void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) ;
-
 //-----------------------------------------------------------------Mất Sách-----------------------------------------------
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach);
+
+bool SachChuaTraHoacMatSach(DanhSachMUONTRA *sach_mat, string masach);
 
 void ChuaDenSach(int mathe, string masach);
 

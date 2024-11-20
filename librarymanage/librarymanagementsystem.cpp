@@ -111,7 +111,6 @@ void LibraryManagementSystem::showTop10SachPage()
     int SoLuongSach = 0;
     SachMuon DanhSachSachMuon[danh_sach_dau_sach.soluongdausach];
 
-    DatLaiSoLuotMuon(SoLuongSach, DanhSachSachMuon);
     Top10QuyenSachNhieuLuotMuonNhat(SoLuongSach, DanhSachSachMuon,ui->Top10Sach_tableWidget);
 }
 
@@ -457,7 +456,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
     Danh_Sach_The_Doc_Gia* doc_gia = timKiemTheDocGia(ma_the);
     ui->tableWidget_muonTra->setRowCount(0);
-    ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    // ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     string hovaten = doc_gia->thong_tin.Ho + " " + doc_gia->thong_tin.Ten;
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
 
@@ -482,6 +481,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     }
 
     ui->tableWidget_muonTra->resizeColumnsToContents();
+    ui->tableWidget_muonTra->setColumnWidth(2, 250);
 
 }
 
@@ -656,7 +656,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
         return;
     }
-
+    qDebug()<<"ma thẻ khong rõng";
     string maSach = getMaSach();
 
     if(laISBN(maSach)) {
@@ -697,10 +697,7 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
             TraSach(getmaThe(), maSach);
         }
     }
-
-    if( coTraSach ) {
-        QMessageBox::information(nullptr, "Thông báo", "Trả sách thành công.");
-    } else {
+    if( !coTraSach )  {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa chọn sách để trả.");
     }
 
@@ -763,6 +760,10 @@ void LibraryManagementSystem::on_MatSach_pushButton_2_clicked()
                     }
                 }
             }
+        }
+        if(thongbao[0] == 0 && thongbao[1] == 0 && thongbao[2] == 0) {
+            QMessageBox::information(nullptr, "Thông báo", "Bạn chưa chọn sách để báo mất/đền sách.");
+            return;
         }
         inThongTin(getmaThe());
         Saved = false;

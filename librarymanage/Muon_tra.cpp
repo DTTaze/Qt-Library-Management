@@ -5,12 +5,6 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 
-void DatLaiSoLuotMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[]) {
-    for(int i = 0; i < SoLuongSach; i++) {
-        DanhSachSachMuon[i].demsoluotmuon = 0;
-    }
-}
-
 void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
     DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
@@ -23,13 +17,11 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
     }
 }
 
-bool MuonSachQuaHan(DanhSachMUONTRA *head) {
+bool CoSachMuonQuaHan(DanhSachMUONTRA *head) {
     DanhSachMUONTRA* current = head;
     while( current != nullptr ) {
-        if( current->data.NgayTra.day == 0 ){
-            if( SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) > 0 ) {
-                return true;
-            }
+        if( current->data.trangthai == Chua_Tra && SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) > 0){
+            return true;
         }
         current = current->next;
     }
@@ -63,7 +55,21 @@ bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
         if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
             return true;
         }
+        current=current->next;
     }
+    return false;
+}
+
+bool SachDaDuocMuonHoacThanhLy(string ma_sach) {
+    int vitridausach = TimKiemViTriDauSach(ma_sach) ;
+    DanhMucSach *cur = danh_sach_dau_sach.node[vitridausach]->dms;
+    while(cur != nullptr) {
+        if(cur->masach == ma_sach && cur->trangthai != co_the_muon) {
+            return true;
+        }
+        cur = cur->next;
+    }
+
     return false;
 }
 
@@ -85,7 +91,7 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
         return false;
     }
 
-    if(MuonSachQuaHan(doc_gia->thong_tin.head_lsms)) {
+    if(CoSachMuonQuaHan(doc_gia->thong_tin.head_lsms)) {
         QMessageBox::warning(nullptr, "Lỗi", "Không được mượn sách vì đã có sách mượn quá hạn.");
         return false;
     }
@@ -95,14 +101,13 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
         return false;
     }
 
-    int vitridausach = TimKiemViTriDauSach(maSach); // Sách đã được mượn mà vẫn cho mượn
+    int vitridausach = TimKiemViTriDauSach(maSach);
     if(vitridausach == -1) {
         QMessageBox::warning(nullptr, "Lỗi", "Không tìm thấy đầu sách.");
         return false;
     }
 
-    DanhMucSach* cur = danh_sach_dau_sach.node[vitridausach]->dms;
-    if(cur->trangthai != co_the_muon) {
+    if( SachDaDuocMuonHoacThanhLy(maSach)) {
         QMessageBox::warning(nullptr, "Lỗi", "Sách đã được mượn hoặc thanh lý.");
         return false;
     }
@@ -148,10 +153,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
 
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
-
                 CapNhatTrangThaiSach(ma_sach, co_the_muon);
-                capNhatTrangThaiThe(doc_gia);
-
                 break;
         }
         current = current->next;
@@ -345,13 +347,21 @@ void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia
     GiaiPhongDanhSachDocGiaMuonQuaHan(current);
 }
 
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
+}
+
+bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
+}
+
 void ChuaDenSach(int mathe, string masach) {
     Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
     p->thong_tin.TrangThai = Khoa;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
 
     while(sach_mat != nullptr) {
-        if(sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra) {
+        if(SachChuaTra(sach_mat, masach)) {
             sach_mat->data.trangthai = Mat_Sach;
             break;
         }
@@ -365,7 +375,7 @@ void DaDenSach(int mathe, string masach) {
     p->thong_tin.TrangThai = Dang_Hoat_Dong;
     DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
     while(sach_mat != nullptr) {
-        if(sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra) {
+        if(SachChuaTraHoacMatSach(sach_mat, masach)) {
             sach_mat->data.trangthai = Da_Tra;
             CapNhatTrangThaiSach(masach, co_the_muon);
             break;

@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
@@ -1074,9 +1074,9 @@ QPushButton:focus {
            <widget class="QTableWidget" name="tableWidget_muonTra">
             <property name="geometry">
              <rect>
-              <x>119</x>
+              <x>89</x>
               <y>310</y>
-              <width>901</width>
+              <width>931</width>
               <height>231</height>
              </rect>
             </property>
@@ -1103,7 +1103,7 @@ QHeaderView::section {
     background-color: #D3D3D3;  
     color: black;                  
     padding: 8px;                  
-    font-weight: bold;           
+    font-weight: bold;       
     border-bottom: 1px solid #A0A0A0; 
 }
 
@@ -1217,6 +1217,9 @@ QPushButton:focus {
              </item>
              <item>
               <widget class="QPushButton" name="traSach_pushButton">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
     background-color: #28C3E5;
@@ -1298,9 +1301,9 @@ QPushButton:focus {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>120</x>
+              <x>90</x>
               <y>30</y>
-              <width>901</width>
+              <width>931</width>
               <height>241</height>
              </rect>
             </property>
