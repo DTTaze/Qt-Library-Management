@@ -113,7 +113,12 @@ void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
     Danh_Sach_Theo_Ten* truoc = nullptr;
     Danh_Sach_Theo_Ten* sau = head;
 
-    while (sau != nullptr && (newNode->ten > sau->ten || (newNode->ten == sau->ten && newNode->ho > sau->ho))) {
+    QString tenNode = QString::fromStdString(newNode->ten);
+    QString hoNode = QString::fromStdString(newNode->ho);
+
+    while (sau != nullptr &&
+           (QString::fromStdString(sau->ten).localeAwareCompare(tenNode) < 0 ||
+            (QString::fromStdString(sau->ten) == tenNode && QString::fromStdString(sau->ho).localeAwareCompare(hoNode) < 0))) {
         truoc = sau;
         sau = sau->next;
     }
@@ -125,6 +130,8 @@ void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
         truoc->next = newNode;
     }
 }
+
+
 
 void inDanhSachTheDocGiaTheoTen(QTableWidget* tableWidget) {
     Danh_Sach_Theo_Ten* temp = head;

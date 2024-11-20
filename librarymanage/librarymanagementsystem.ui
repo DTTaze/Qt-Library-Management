@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
