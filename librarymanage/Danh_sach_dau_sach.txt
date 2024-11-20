@@ -29,25 +29,25 @@
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-3
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-2
 978-0-14-312418-0|Beginner's Guide to Yoga|230|Tara Stiles|2020|Sports|H|0|978-0-14-312418-0-1
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-7
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-6
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-5
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-4
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-3
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-2
-978-604-22-8163-2|Biên Niên Sử Narnia|1214|C.S. Lewis|2021|Văn học giả tưởng|Q|0|978-604-22-8163-2-1
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-7
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-6
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-5
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-4
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-3
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-2
+978-604-22-8163-2|Biên Niên Sử Narnia|1214|CS Lewis|2021|Văn Học Giả Tưởng|Q|0|978-604-22-8163-2-1
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-5
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-4
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-3
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-2
 978-1-4919-1903-1|C# in Depth|504|Jon Skeet|2022|Programming|E|0|978-1-4919-1903-1-1
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-7
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-6
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-5
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-4
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-3
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-2
-978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn học|T|0|978-604-11-3158-6-1
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-7
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-6
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-5
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-4
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-3
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-2
+978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-1
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-5
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-4
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-3
@@ -135,13 +135,13 @@
 978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-3
 978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-2
 978-0-321-56384-2|Cryptography and Network Security|912|William Stallings|2021|Security|D|0|978-0-321-56384-2-1
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-7
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-6
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-5
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-4
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-3
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-2
-978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ năng sống|R|0|978-604-11-2970-1-1
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-7
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-6
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-5
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-4
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-3
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-2
+978-604-11-2970-1|Đắc Nhân Tâm|320|Dale Carnegie|2019|Kỹ Năng Sống|R|0|978-604-11-2970-1-1
 978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-9
 978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-8
 978-1-59327-590-7|Data Mining: Concepts and Techniques|744|Jiawei Han|2021|Data Mining|I|0|978-1-59327-590-7-7
@@ -424,11 +424,11 @@
 978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-3
 978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-2
 978-3-16-148411-7|Natural Science|350|Albert Einstein|2018|Science|D|0|978-3-16-148411-7-1
-978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn học|X|0|978-604-11-2556-7-5
-978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn học|X|0|978-604-11-2556-7-4
-978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn học|X|0|978-604-11-2556-7-3
-978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn học|X|0|978-604-11-2556-7-2
-978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn học|X|0|978-604-11-2556-7-1
+978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn Học|X|0|978-604-11-2556-7-5
+978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn Học|X|0|978-604-11-2556-7-4
+978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn Học|X|0|978-604-11-2556-7-3
+978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn Học|X|0|978-604-11-2556-7-2
+978-604-11-2556-7|Nhà Giả Kim|228|Paulo Coelho|2018|Văn Học|X|0|978-604-11-2556-7-1
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-9
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-8
 978-0-7432-7354-5|Positive Thinking|250|Norman Vincent Peale|2022|Psychology|D|0|978-0-7432-7354-5-7
@@ -474,10 +474,10 @@
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-3
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-2
 978-1-4919-1902-1|Python for Data Analysis|472|Wes McKinney|2021|Data Science|D|0|978-1-4919-1902-1-1
-978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch sử|Z|0|978-604-56-7864-9-4
-978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch sử|Z|0|978-604-56-7864-9-3
-978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch sử|Z|0|978-604-56-7864-9-2
-978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch sử|Z|0|978-604-56-7864-9-1
+978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch Sử|Z|0|978-604-56-7864-9-4
+978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch Sử|Z|0|978-604-56-7864-9-3
+978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch Sử|Z|0|978-604-56-7864-9-2
+978-604-56-7864-9|Sapiens: Lược Sử Loài Người|543|Yuval Noah Harari|2021|Lịch Sử|Z|0|978-604-56-7864-9-1
 978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-9
 978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-8
 978-1-4919-7777-5|Scala for the Impatient|304|Cay S. Horstmann|2022|Programming|I|0|978-1-4919-7777-5-7
@@ -633,14 +633,14 @@
 978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-3
 978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-2
 978-3-16-148410-0|The Psychology of Communication|250|John Doe|2020|Psychology|A|0|978-3-16-148410-0-1
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-1
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-2
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-3
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-4
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-5
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-6
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-7
-0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Hoc|A|0|0-446-31078-60000-8
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-1
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-2
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-3
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-4
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-5
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-6
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-7
+0-446-31078-6|To Kill a Mockingbird|584|Harper Lee|1995|Văn Học|A|0|0-446-31078-60000-8
 978-604-22-4012-6|Totto-Chan Bên Cửa Sổ|284|Tetsuko Kuroyanagi|2020|Thiếu nhi|K|0|978-604-22-4012-6-8
 978-604-22-4012-6|Totto-Chan Bên Cửa Sổ|284|Tetsuko Kuroyanagi|2020|Thiếu nhi|K|0|978-604-22-4012-6-7
 978-604-22-4012-6|Totto-Chan Bên Cửa Sổ|284|Tetsuko Kuroyanagi|2020|Thiếu nhi|K|0|978-604-22-4012-6-6

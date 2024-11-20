@@ -51,23 +51,10 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     return nullptr;
 }
 
-
-void TaoMaSach(string& ma_sach, const string& I_S_B_N, int Ma_cuoi_dms) {
-    string isbn_full = I_S_B_N;
-
-    // Kiểm tra nếu ISBN là loại 10 số
-    if (isbn_full.size() == 13) {
-        isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
-    }
-
-    // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
-    ma_sach = isbn_full + "-" + to_string(Ma_cuoi_dms);
-}
-
 void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach) {
     // Tạo mã sách mới
     if (ma_sach == "") {
-        TaoMaSach(ma_sach, ds->ISBN,ds->SoLuongDanhMucSachTrongDausach+1);
+        TaoMaSach(ma_sach,ds);
     }
 
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
@@ -76,6 +63,17 @@ void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string m
     ds->dms = new_dms;
 }
 
+void TaoMaSach(string& ma_sach, DauSach* ds) {
+    string isbn_full = ds->ISBN;
+
+    // Kiểm tra nếu ISBN là loại 10 số
+    if (isbn_full.size() == 13) {
+        isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
+    }
+
+    // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
+    ma_sach = isbn_full + "-" + to_string(ds->SoLuongDanhMucSachTrongDausach+1);
+}
 
 string ChuyenVeChuThuong(string str) {
     for (size_t i = 0; i < str.size(); ++i) {
@@ -105,11 +103,11 @@ void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them){
     }
 }
 
-void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,int &vi_tri_them){
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them){
     int n = danh_sach_dau_sach.soluongdausach;
     vi_tri_them = n ;
 
-    XacDinhViTriThem(Dau_Sach_moi->tensach,vi_tri_them);
+    XacDinhViTriThem(ten_sach,vi_tri_them);
 
     DoiViTriDauSachThem(vi_tri_them);
 
@@ -125,7 +123,7 @@ void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
     ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
     new_DauSach->SoLuongDanhMucSachTrongDausach++;
     int vi_tri_them;
-    ChenDauSachTheoThuTu(new_DauSach,vi_tri_them);
+    ChenDauSachTheoThuTu(new_DauSach,new_DauSach->tensach,vi_tri_them);
 }
 
 void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach){
@@ -147,7 +145,8 @@ void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach)
 void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai){
     DauSach* temp_ds = danh_sach_dau_sach.node[index_hien_tai];
     DoiViTriDauSachXoa(index_hien_tai);
-    ChenDauSachTheoThuTu(temp_ds,index_hien_tai);
+    ChenDauSachTheoThuTu(temp_ds,ten_sach,index_hien_tai);
+
 }
 
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){

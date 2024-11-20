@@ -53,9 +53,6 @@ struct DauSach {
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
-    DauSach(const string& I_S_B_N, const string& ten_sach, int so_trang,const string& tac_gia,int nam_sx, const string& the_loai)
-        : ISBN(I_S_B_N), tensach(ten_sach), sotrang(so_trang), tacgia(tac_gia),namsx(nam_sx), theloai(the_loai) {
-    }
     DauSach(const DauSach& ds)
         : ISBN(ds.ISBN), tensach(ds.tensach), sotrang(ds.sotrang), tacgia(ds.tacgia),
         namsx(ds.namsx), SoLuongDanhMucSachTrongDausach(ds.SoLuongDanhMucSachTrongDausach),
@@ -113,32 +110,31 @@ bool DayDauSach();
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
 
-//Hàm đọc và ghi file txt
+
 void DocTuFileDauSach(QWidget* parent);
 void GhiDauSachVaoFile();
 
-//Chức năng thêm sách
+
 bool MaISBNQTHopLe(QString i_s_b_n);
-void TaoMaSach(string& ma_sach,int SoLuongSachTrongDausach);
+void TaoMaSach(string& ma_sach,DauSach* ds);
 void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
-void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,int &vi_tri_them);
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them);
 void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach);
 
-//Chức năng chỉnh sửa đầu sách
+
 void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
 void LocKiTuTensachHopLe(const QString& text,string& valid_key);
 
-//Chức năng in đầu sách theo thể loại
 void SaoChepDanhSach( int* copy);
 string ChuyenVeChuThuong(string str);
 void Merge(int* arr, int left, int mid, int right);
 void MergeSort(int* arr, int left, int right);
 void InTheoTungTheLoai(QTableView* tableView_intheloai);
 
-
-//Chức năng tìm tên sách
 void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
+
+//Thêm sách
 
 #endif

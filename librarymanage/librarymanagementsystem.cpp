@@ -244,7 +244,12 @@ void LibraryManagementSystem::MoCuaSoEditSach(int i_ds){
     edit.setModal(true);
     edit.setWindowTitle("Sửa sách");
     if (edit.exec() ==  QDialog::Accepted){
-        InToanBoDauSach(ui->tableWidget_dausach);
+        if (ui->lineEdit_timkiemds->text().isEmpty()){
+            InToanBoDauSach(ui->tableWidget_dausach);
+        }else{
+            string key = ui->lineEdit_timkiemds->text().toStdString();
+            InTheoTenTimKiem(key,ui->tableWidget_dausach);
+        }
         Saved = false;
     }
 }
