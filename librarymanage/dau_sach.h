@@ -49,12 +49,20 @@ struct DauSach {
     int sotrang;
     string tacgia;
     int namsx;
-    int SoLuongSachTrongDausach =0;
+    int SoLuongDanhMucSachTrongDausach = 0;
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
     DauSach(const string& I_S_B_N, const string& ten_sach, int so_trang,const string& tac_gia,int nam_sx, const string& the_loai)
         : ISBN(I_S_B_N), tensach(ten_sach), sotrang(so_trang), tacgia(tac_gia),namsx(nam_sx), theloai(the_loai) {
+    }
+    DauSach(const DauSach& ds)
+        : ISBN(ds.ISBN), tensach(ds.tensach), sotrang(ds.sotrang), tacgia(ds.tacgia),
+        namsx(ds.namsx), SoLuongDanhMucSachTrongDausach(ds.SoLuongDanhMucSachTrongDausach),
+        theloai(ds.theloai) {
+        if (ds.dms != nullptr) {
+            dms = new DanhMucSach(*ds.dms); // Sao chép DanhMucSach nếu cần
+        }
     }
 };
 
@@ -70,9 +78,18 @@ extern DanhSachDauSach danh_sach_dau_sach;
 
 void DoiViTriDauSachXoa(int index);
 
+
+bool TonTaiDauSach(int index);
+
+void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach);
+
+void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach);
+
 void XoaDauSach(int index);
 
-void SapXepDauSachTheoTenSach(string ten_sach,int &index_hien_tai);
+void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai);
+
+void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them);
 
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 
@@ -90,8 +107,6 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 
 bool TonTaiMaSach(string ma_sach);
 
-DanhMucSach* DanhMucSachTrongDauSach(string ma_sach);
-
 string ChuyenMaSachThanhTenSach(const string&  ma_sach);
 
 bool DayDauSach();
@@ -105,11 +120,10 @@ void GhiDauSachVaoFile();
 //Chức năng thêm sách
 bool MaISBNQTHopLe(QString i_s_b_n);
 void TaoMaSach(string& ma_sach,int SoLuongSachTrongDausach);
-void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai, const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach);
+void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach);
 void ChenDauSachMoi(DauSach*& Dau_Sach_moi,string& ten_sach);
-void ChenDauSach(DauSach*& Dau_Sach_moi, const string& ten_sach,int &vi_tri_them);
-void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                int trang_thai,string &vi_tri,string ma_sach);
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,int &vi_tri_them);
+void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach);
 
 //Chức năng chỉnh sửa đầu sách
 void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);

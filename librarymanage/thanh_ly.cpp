@@ -48,7 +48,7 @@ void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
     ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->theloai));
 
     int row_count = 0;
-    for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->SoLuongSachTrongDausach;cur = cur->next , row_count++){
+    for(DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri]->dms; cur != nullptr && row_count < danh_sach_dau_sach.node[vi_tri]->SoLuongDanhMucSachTrongDausach;cur = cur->next , row_count++){
         ui->tableWidget_thanhly->insertRow(row_count);
         // Kiểm tra trạng thái
         if (cur->trangthai == 0) {

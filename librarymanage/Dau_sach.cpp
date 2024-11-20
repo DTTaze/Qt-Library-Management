@@ -13,6 +13,7 @@ void DoiViTriDauSachXoa(int index){
 void XoaDauSach(int index){
     delete danh_sach_dau_sach.node[index];
     DoiViTriDauSachXoa(index);
+
 }
 
 void ChuyenThanhISBN(string& ma){
@@ -41,11 +42,9 @@ int TimKiemViTriDauSach(string ma) {
 }
 
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
-    string ma_isbn = maSach.substr(0, 17);
-    int vitri = TimKiemViTriDauSach(ma_isbn);
-    if (vitri == -1) {
-        return nullptr;
-    }
+    int vitri = TimKiemViTriDauSach(maSach);
+    if (!TonTaiDauSach) return nullptr;
+
     for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
         if (current->masach == maSach) return current;
     }
@@ -53,7 +52,7 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
 }
 
 
-void TaoMaSach(string& ma_sach, const string& I_S_B_N, int SoLuongSachTrongDausach) {
+void TaoMaSach(string& ma_sach, const string& I_S_B_N, int Ma_cuoi_dms) {
     string isbn_full = I_S_B_N;
 
     // Kiểm tra nếu ISBN là loại 10 số
@@ -62,19 +61,19 @@ void TaoMaSach(string& ma_sach, const string& I_S_B_N, int SoLuongSachTrongDausa
     }
 
     // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
-    ma_sach = isbn_full + "-" + to_string(SoLuongSachTrongDausach);
+    ma_sach = isbn_full + "-" + to_string(Ma_cuoi_dms);
 }
 
-void ThemDanhMucSach(DanhMucSach* &head_dms, int trang_thai,  const string& vi_tri, const string &I_S_B_N,int SoLuongSachTrongDausach,string ma_sach) {
+void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach) {
     // Tạo mã sách mới
     if (ma_sach == "") {
-        TaoMaSach(ma_sach, I_S_B_N,SoLuongSachTrongDausach);
+        TaoMaSach(ma_sach, ds->ISBN,ds->SoLuongDanhMucSachTrongDausach+1);
     }
 
     DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
 
-    new_dms->next = head_dms;
-    head_dms = new_dms;
+    new_dms->next = ds->dms;
+    ds->dms = new_dms;
 }
 
 
@@ -85,12 +84,17 @@ string ChuyenVeChuThuong(string str) {
     return str;
 }
 
-void ChenDauSach(DauSach*& Dau_Sach_moi, const string& ten_sach,int &vi_tri_them){
-    int n = danh_sach_dau_sach.soluongdausach;
-    vi_tri_them = n ;
+void DoiViTriDauSachThem(int vi_tri_them){
+    for (int i = danh_sach_dau_sach.soluongdausach; i > vi_tri_them; i--) {
+        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
+    }
+    danh_sach_dau_sach.soluongdausach++;
+}
+
+void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them){
     QString ten_sach_qt = QString::fromStdString(ten_sach);
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
 
         QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
 
@@ -99,45 +103,51 @@ void ChenDauSach(DauSach*& Dau_Sach_moi, const string& ten_sach,int &vi_tri_them
             break;
         }
     }
-    for (int i = n; i > vi_tri_them; i--) {
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
-    }
+}
+
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,int &vi_tri_them){
+    int n = danh_sach_dau_sach.soluongdausach;
+    vi_tri_them = n ;
+
+    XacDinhViTriThem(Dau_Sach_moi->tensach,vi_tri_them);
+
+    DoiViTriDauSachThem(vi_tri_them);
 
     danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
 }
 
-void ChenDauSachMoi(DauSach*& Dau_Sach_moi, const string& ten_sach) {
-    int vi_tri_them ;
-    ChenDauSach(Dau_Sach_moi,ten_sach,vi_tri_them);
-    danh_sach_dau_sach.node[vi_tri_them]->SoLuongSachTrongDausach++;
+bool TonTaiDauSach(int index){
+    return ( index == -1 ) ? false:true;
 }
 
+void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
+    DauSach* new_DauSach = new DauSach(ds);
+    ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
+    new_DauSach->SoLuongDanhMucSachTrongDausach++;
+    int vi_tri_them;
+    ChenDauSachTheoThuTu(new_DauSach,vi_tri_them);
+}
 
-void ThemDauSach(const string& I_S_B_N,const string& ten_sach,int so_trang,const string& tac_gia,int nam_sx,const string& the_loai,
-                  int trang_thai,string &vi_tri,string ma_sach){
+void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach){
+    ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn],trang_thai,vi_tri,ma_sach);
+    danh_sach_dau_sach.node[index_isbn]->SoLuongDanhMucSachTrongDausach++;
+}
 
-    int index_isbn = TimKiemViTriDauSach(I_S_B_N);
+void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach){
 
-    if(index_isbn == -1){
+    int index_isbn = TimKiemViTriDauSach(ds.ISBN);
 
-
-        DauSach* new_DauSach = new DauSach(I_S_B_N,ten_sach,so_trang,tac_gia,nam_sx,the_loai);
-
-        ThemDanhMucSach(new_DauSach->dms,trang_thai,vi_tri,I_S_B_N,new_DauSach->SoLuongSachTrongDausach+1,ma_sach);
-
-        ChenDauSachMoi(new_DauSach,ten_sach);
-        danh_sach_dau_sach.soluongdausach++;
-
+    if(!TonTaiDauSach(index_isbn)){
+        ThemDauSach(ds,trang_thai,vi_tri,ma_sach);
     }else {
-        ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn]->dms,trang_thai,vi_tri,I_S_B_N,danh_sach_dau_sach.node[index_isbn]->SoLuongSachTrongDausach+1,ma_sach);
-        danh_sach_dau_sach.node[index_isbn]->SoLuongSachTrongDausach++;
+        NhapDauSach(index_isbn,trang_thai,vi_tri,ma_sach);
     }
 }
 
-void SapXepDauSachTheoTenSach(string ten_sach,int &index_hien_tai){
+void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai){
     DauSach* temp_ds = danh_sach_dau_sach.node[index_hien_tai];
     DoiViTriDauSachXoa(index_hien_tai);
-    ChenDauSach(temp_ds,ten_sach,index_hien_tai);
+    ChenDauSachTheoThuTu(temp_ds,index_hien_tai);
 }
 
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
@@ -274,7 +284,7 @@ void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key) {
 
 string ChuyenMaSachThanhTenSach(const string&  ma_sach){
     int i = TimKiemViTriDauSach(ma_sach);
-    if (i != -1){
+    if (TonTaiDauSach(i)){
         return danh_sach_dau_sach.node[i]->tensach;
     }else{
         return "";
@@ -509,7 +519,14 @@ void DocTuFileDauSach(QWidget* parent) {
             continue;
         }
 
-        ThemDauSach(ISBN, tensach, sotrang, tacgia, namsx, theloai,trangthai, vitri,masach);
+        DauSach ds;
+        ds.ISBN = ISBN;
+        ds.tensach = tensach;
+        ds.sotrang = sotrang;
+        ds.tacgia = tacgia;
+        ds.namsx = namsx;
+        ds.theloai = theloai;
+        ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
     }
     file.close();
 }
@@ -541,7 +558,7 @@ void GhiDauSachVaoFile() {
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     int i = TimKiemViTriDauSach(ma_sach);
-    if (i == -1) {QMessageBox::warning(nullptr, "Cảnh báo", "Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.");}
+    if (!TonTaiDauSach(i)) {QMessageBox::warning(nullptr, "Cảnh báo", "Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.");}
     for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
         if(cur->masach == ma_sach){
             cur->trangthai = trang_thai;
@@ -552,17 +569,6 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
 
 bool TonTaiMaSach(string ma_sach){
     return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
-}
-
-DanhMucSach* DanhMucSachTrongDauSach(string ma_sach){
-    int i = TimKiemViTriDauSach(ma_sach);
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->masach == ma_sach){
-            return cur;
-        }
-    }
-    QMessageBox::warning(nullptr,"Cảnh báo","Không Kiếm thấy danh mục sách");
-    return nullptr;
 }
 
 bool MaISBNQTHopLe(QString i_s_b_n){

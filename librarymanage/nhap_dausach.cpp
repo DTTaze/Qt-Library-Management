@@ -142,7 +142,14 @@ void nhap_dausach::on_pushButton_nhap_clicked()
     }
 
     for (int i = 0; i < soluong; i++) {
-        ThemDauSach(isbnStd, tensachStd, sotrang, tacgiaStd, namsx, theloaiStd, co_the_muon, vitriStd, "");
+        DauSach ds;
+        ds.ISBN = isbnStd;
+        ds.tensach = tensachStd;
+        ds.sotrang = sotrang;
+        ds.tacgia = tacgiaStd;
+        ds.namsx = namsx;
+        ds.theloai = theloaiStd;
+        ThemHoacNhapDauSach(ds, co_the_muon, vitriStd, "");
     }
 
     // Hiển thị thông tin đã nhập
