@@ -43,7 +43,11 @@ int TimKiemViTriDauSach(string ma) {
 
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     int vitri = TimKiemViTriDauSach(maSach);
-    if (!TonTaiDauSach) return nullptr;
+    if (!TonTaiDauSach) {
+        QString mes; mes+="Không tồn tại đầu sách có mã"+QString::fromStdString(maSach);
+        QMessageBox::critical(nullptr,"Lỗi",mes);
+        return nullptr;
+    }
 
     for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
         if (current->masach == maSach) return current;
@@ -472,7 +476,6 @@ bool DayDauSach(){
 
 
 void DocTuFileDauSach(QWidget* parent) {
-
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
         QMessageBox::warning(parent, "Lỗi", "Không thể mở file Danh_sach_dau_sach.txt");
@@ -556,14 +559,8 @@ void GhiDauSachVaoFile() {
 }
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
-    int i = TimKiemViTriDauSach(ma_sach);
-    if (!TonTaiDauSach(i)) {QMessageBox::warning(nullptr, "Cảnh báo", "Không thể cập nhật trạng thái sách vì mã sách không hợp lệ.");}
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->masach == ma_sach){
-            cur->trangthai = trang_thai;
-            return;
-        }
-    }
+    DanhMucSach* dms = TimDiaChiSachTrongDanhMucSach(ma_sach);
+    dms->trangthai = trang_thai;
 }
 
 bool TonTaiMaSach(string ma_sach){

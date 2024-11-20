@@ -130,11 +130,7 @@ void Thanh_ly::on_pushButton_thanhly_clicked()
                 QString ma_sach = ui->tableWidget_thanhly->item(row,1)->text();
                 string ma_sachstd = ma_sach.toStdString();
 
-                for (DanhMucSach* cur = danh_sach_dau_sach.node[vi_tri_DS]->dms;cur!=nullptr;cur=cur->next){
-                    if(cur->masach == ma_sachstd){
-                        cur->trangthai = 2;
-                    }
-                }
+                CapNhatTrangThaiSach(ma_sachstd,da_thanh_ly);
 
                 sach_thanh_ly++;
             }
