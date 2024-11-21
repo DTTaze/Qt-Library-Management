@@ -119,8 +119,16 @@ void hieuChinhDocGia_dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1
 
 void hieuChinhDocGia_dialog::on_Ok_pushButton_clicked()
 {
-    if ( getHoVaTen().isEmpty() ) {
-        QMessageBox::warning(this, "Lỗi", "Bạn chưa điền tên");
+    int maThe = getMaThe();
+    Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia(maThe);
+    if ( docGia == nullptr ) {
+        QMessageBox::warning(this, "Lỗi", "Thẻ độc giả không tồn tại.");
+        return;
+    }
+
+    QString hoVaTen = getHoVaTen();
+    if ( hoVaTen.isEmpty() ) {
+        QMessageBox::warning(this, "Lỗi", "Bạn chưa điền tên.");
         return;
     }
     accept();

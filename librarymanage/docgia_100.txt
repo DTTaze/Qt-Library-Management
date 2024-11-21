@@ -29,7 +29,7 @@
 8437|Phạm Tường|Vy|Nữ|1|
 9062|Lê Chí|Trung|Nam|1|
 9688|Phạm Tường Lan|Hương|Nữ|1|
-156|Nguyễn Ngọc Thanh|Ngân|Nữ|1|
+156|Nguyễn Ngọc Thanh|Ngân|Nữ|0|978-0-321-64280-5-1|0|21/11/2024||978-1-59327-950-9-2|2|21/11/2024||978-1-59327-145-4-5|1|21/11/2024||
 468|Trần Thị Huyền|Nhung|Nữ|1|
 781|Nguyễn Trần Thùy|Dung|Nữ|1|978-0-7432-7354-5-1|1|18/11/2024|18/11/2024|
 1093|Nguyễn Võ Lệ|Huyền|Nữ|1|
@@ -61,7 +61,7 @@
 9218|Tôn Nữ Tường |Vy|Nữ|1|
 9531|Nguyễn Diệu |Linh|Nữ|1|
 9844|Lê Thị Hồng |Nga|Nữ|1|
-78|Cao Hồ Hoài |Phong|Nam|1|
+78|Cao Hồ Hoài |Phong|Nam|0|978-1-59327-145-4-6|2|21/11/2024||
 234|Ngô Quốc |Ấn|Nam|1|
 390|Bùi Nguyễn Quang |Thương|Nam|1|
 546|Nguyễn Chí |Phú|Nam|1|

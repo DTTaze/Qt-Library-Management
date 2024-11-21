@@ -68,7 +68,7 @@ void xoaDanhSachTheoTen();
 void inDanhSachTheDocGiaTheoTen(QTableWidget* tableWidget);
 
 // Hàm đọc và ghi thông tin
-void docFileThongTinTheDocGia(QTableWidget* tableWidget);
+void docFileThongTinTheDocGia();
 void ghiThongTinTheDocGia();
 
 // Hàm chèn thông tin vào table

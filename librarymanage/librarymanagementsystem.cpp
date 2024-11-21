@@ -28,8 +28,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     InToanBoDauSach(ui->tableWidget_dausach);
 
     docFileMaThe();
-    docFileThongTinTheDocGia(ui->danhSachTheDocGia_tableWidget);
-    ui->danhSachTheDocGia_tableWidget->setColumnWidth(1, 400);
+    docFileThongTinTheDocGia();
 
     setupbaocao_pushButton();
 
@@ -373,7 +372,7 @@ void LibraryManagementSystem::CapNhatBang()
         taoDanhSachTheoTen(root);
         inDanhSachTheDocGiaTheoTen(ui->danhSachTheDocGia_tableWidget);
     }
-
+    ui->danhSachTheDocGia_tableWidget->horizontalHeader()->setStretchLastSection(true);
     ui->danhSachTheDocGia_tableWidget->resizeColumnsToContents();
 }
 
@@ -418,8 +417,21 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 
 void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 {
+    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
+
     hieuChinhDocGia_dialog hieuChinhDocGia;
     hieuChinhDocGia.setModal(true);
+
+    if (currentRow != -1) {
+        QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
+        Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia( itemMaThe->text().toInt() );
+
+        hieuChinhDocGia.setMaThe( docGia->thong_tin.MATHE );
+        hieuChinhDocGia.setHoVaTen(docGia->thong_tin.Ho, docGia->thong_tin.Ten);
+        hieuChinhDocGia.setGioiTinh(docGia->thong_tin.phai);
+        hieuChinhDocGia.setTrangThaiThe( docGia->thong_tin.TrangThai );
+    }
+
     if ( hieuChinhDocGia.exec() == QDialog::Accepted ) {
         int maThe = hieuChinhDocGia.getMaThe();
         The_Doc_Gia thongTinMoi;
@@ -434,9 +446,10 @@ void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
         hieuChinhThongTinTheDocGia(maThe, thongTinMoi);
 
         QMessageBox::information(this, "Thông báo", "Đã cập nhật thông tin thành công");
-        CapNhatBang();
         Saved = false;
     }
+
+    CapNhatBang();
 }
 
 void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()

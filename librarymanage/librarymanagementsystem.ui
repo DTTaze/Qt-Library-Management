@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
@@ -746,9 +746,9 @@ QPushButton:focus {
            <widget class="QTableWidget" name="danhSachTheDocGia_tableWidget">
             <property name="geometry">
              <rect>
-              <x>170</x>
-              <y>100</y>
-              <width>781</width>
+              <x>310</x>
+              <y>90</y>
+              <width>461</width>
               <height>461</height>
              </rect>
             </property>
@@ -802,6 +802,12 @@ QTableWidget::item:selected {
              <bool>false</bool>
             </attribute>
             <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderMinimumSectionSize">
+             <number>30</number>
+            </attribute>
+            <attribute name="verticalHeaderHighlightSections">
              <bool>true</bool>
             </attribute>
             <column>

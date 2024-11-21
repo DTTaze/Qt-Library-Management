@@ -221,7 +221,7 @@ void capNhatTrangThaiThe(Danh_Sach_The_Doc_Gia* docGia) {
     docGia->thong_tin.TrangThai = Dang_Hoat_Dong;
 }
 
-void docFileThongTinTheDocGia( QTableWidget* tableWidget) {
+void docFileThongTinTheDocGia() {
     ifstream inFile("docgia_100.txt");
     if (!inFile) {
         QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file docgia_100.txt");
