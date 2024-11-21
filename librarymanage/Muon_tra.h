@@ -47,7 +47,6 @@ struct danhSachDocGiaMuonQuaHan {
     danhSachDocGiaMuonQuaHan* next = nullptr;
 };
 
-bool chuaTraSach(DanhSachMUONTRA *temp);
 
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
 void MuonSach(const int &maThe, const string& maSach);
@@ -55,6 +54,8 @@ void MuonSach(const int &maThe, const string& maSach);
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
 
 bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) ;
+
+bool chuaTraSach(DanhSachMUONTRA *temp);
 
 int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
@@ -91,11 +92,11 @@ danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* ro
 
 void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head);
 //-----------------------------------------------------------------Mất Sách-----------------------------------------------
-bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach);
-
-bool SachChuaTraHoacMatSach(DanhSachMUONTRA *sach_mat, string masach);
-
 void ChuaDenSach(int mathe, string masach);
 
 void DaDenSach(int mathe, string masach);
+
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach);
+
+bool SachChuaTraHoacMatSach(DanhSachMUONTRA *sach_mat, string masach);
 #endif

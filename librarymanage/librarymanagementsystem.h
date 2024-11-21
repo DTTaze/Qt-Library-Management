@@ -117,6 +117,8 @@ private slots:
 
     bool MaTheHoacMaSachRong();
 
+    bool MaTheHoacMaSachKhongTonTai() ;
+
     void on_traSach_pushButton_clicked();
 
     void on_muonSach_pushButton_clicked();

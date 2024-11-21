@@ -4,6 +4,20 @@ using namespace std;
 int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
+//-------------------------------------------------------------Mượn Sách------------------------------------------------------------
+void MuonSach( const int& maThe, const string& maSach) {
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
+
+    Date ngaytra; // ngaytra = {0/0/0}
+
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
+        return;
+    }
+
+    Date ngaymuon = NgayHomNay();
+    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
+    CapNhatTrangThaiSach(maSach, da_duoc_muon);
+}
 
 void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
@@ -17,13 +31,15 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
     }
 }
 
-bool CoSachMuonQuaHan(DanhSachMUONTRA *head) {
-    DanhSachMUONTRA* current = head;
-    while( current != nullptr ) {
-        if( current->data.trangthai == Chua_Tra && SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) > 0){
+bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
+    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
+    string ma_sach = maSach.substr(0, 17);
+    while(current != nullptr) {
+        string ma_ISBN = current->data.masach.substr(0, 17);
+        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
             return true;
         }
-        current = current->next;
+        current=current->next;
     }
     return false;
 }
@@ -45,17 +61,13 @@ int DemSoSachDangMuon(DanhSachMUONTRA* head) {
     return soSachDangMuon;
 }
 
-
-
-bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
-    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    string ma_sach = maSach.substr(0, 17);
-    while(current != nullptr) {
-        string ma_ISBN = current->data.masach.substr(0, 17);
-        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
+bool CoSachMuonQuaHan(DanhSachMUONTRA *head) {
+    DanhSachMUONTRA* current = head;
+    while( current != nullptr ) {
+        if( current->data.trangthai == Chua_Tra && SoNgayQuaHan(current->data.NgayMuon, NgayHomNay()) > 0){
             return true;
         }
-        current=current->next;
+        current = current->next;
     }
     return false;
 }
@@ -119,20 +131,7 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
 
     return true;
 }
-
-void MuonSach( const int& maThe, const string& maSach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
-
-    Date ngaytra; // ngaytra = {0/0/0}
-
-    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
-        return;
-    }
-
-    Date ngaymuon = NgayHomNay();
-    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, da_duoc_muon);
-}
+//-------------------------------------------------------------------------Trả Sách---------------------------------------------------------------------------
 
 void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(ma_the);
@@ -158,6 +157,23 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
         }
         current = current->next;
     }
+}
+//---------------------------------------------------------------------Top 10 Sách được mượn nhiều nhất--------------------------------
+
+void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) {
+
+    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,root);
+    MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
+
+    for(int row = 0; row < SoLuongSach && row < 10; row++) {
+        int vitri = TimKiemViTriDauSach(DanhSachSachMuon[row].masach);
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(DanhSachSachMuon[row].masach)));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach( DanhSachSachMuon[row].masach))));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia)));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namsx)));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(DanhSachSachMuon[row].demsoluotmuon)));
+    }
+    tableWidget->resizeColumnsToContents();
 }
 
 void MergeSachMuon(SachMuon* arr, int left, int mid, int right) {
@@ -213,6 +229,14 @@ void MergeSortSachMuon(SachMuon* arr, int left, int right) {
     }
 }
 
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
+    DanhSachMUONTRA *current = danh_sach_muon_tra;
+    while( current != nullptr ) {
+        CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
+        current = current->next;
+    }
+}
+
 int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach) {
     string ma_ISBN = maSach.substr(0, 17);
     for (int i = 0; i < SoLuongSach; i++) {
@@ -235,37 +259,34 @@ void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachM
     }
 }
 
-void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
-    DanhSachMUONTRA *current = danh_sach_muon_tra;
-    while( current != nullptr ) {
-        CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
-        current = current->next;
-    }
-}
-
 void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], Danh_Sach_The_Doc_Gia *root) {
     if (root == nullptr) return;
     NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon, root->ptr_left);
     CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(SoLuongSach, DanhSachSachMuon, root->thong_tin.head_lsms);
     NhapThongTinVaoTop10(SoLuongSach,DanhSachSachMuon, root->ptr_right);
 }
+//-----------------------------------------------------------------Danh Sách Độc Giả Mượn Sách Quá Hạn------------------------------
 
-void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) {
-
-    NhapThongTinVaoTop10(SoLuongSach, DanhSachSachMuon,root);
-    MergeSortSachMuon(DanhSachSachMuon, 0, SoLuongSach-1);
-
-    for(int row = 0; row < SoLuongSach && row < 10; row++) {
-        int vitri = TimKiemViTriDauSach(DanhSachSachMuon[row].masach);
-        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(DanhSachSachMuon[row].masach)));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach( DanhSachSachMuon[row].masach))));
-        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia)));
-        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namsx)));
-        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(DanhSachSachMuon[row].demsoluotmuon)));
+void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) {
+    danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
+    int row = 0;
+    while( current != nullptr) {
+        string hovaten = current->value.first->thong_tin.Ho + " " + current->value.first->thong_tin.Ten;
+        tableWidget->insertRow(row);
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(current->value.first->thong_tin.MATHE)));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(hovaten)));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(current->value.second->data.masach)));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->value.second->data.masach))));
+        tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(SoNgayQuaHan(current->value.second->data.NgayMuon, NgayHomNay()))));
+        current = current->next;
+        row++;
     }
     tableWidget->resizeColumnsToContents();
-}
 
+    GiaiPhongDanhSachDocGiaMuonQuaHan(current);
+}
 
 void chenCoThuTuVaoDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan*& head, danhSachDocGiaMuonQuaHan* current){
     if (current == nullptr) {
@@ -325,35 +346,7 @@ void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head) {
         delete temp;
     }
 }
-
-void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) {
-    danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
-    int row = 0;
-    while( current != nullptr) {
-        string hovaten = current->value.first->thong_tin.Ho + " " + current->value.first->thong_tin.Ten;
-        tableWidget->insertRow(row);
-        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(current->value.first->thong_tin.MATHE)));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(hovaten)));
-        tableWidget->setItem(row, 2, new QTableWidgetItem(current->value.first->thong_tin.phai == Nam ? "Nam" : "Nữ"));
-        tableWidget->setItem(row, 3, new QTableWidgetItem(current->value.first->thong_tin.TrangThai == Dang_Hoat_Dong ? "Đang Hoạt Động" : "Khóa"));
-        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(current->value.second->data.masach)));
-        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach(current->value.second->data.masach))));
-        tableWidget->setItem(row, 6, new QTableWidgetItem(QString::number(SoNgayQuaHan(current->value.second->data.NgayMuon, NgayHomNay()))));
-        current = current->next;
-        row++;
-    }
-    tableWidget->resizeColumnsToContents();
-
-    GiaiPhongDanhSachDocGiaMuonQuaHan(current);
-}
-
-bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
-}
-
-bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
-}
+//-----------------------------------------------------Chức Năng Báo Mất Sách Và Đền Sách--------------------------------------------
 
 void ChuaDenSach(int mathe, string masach) {
     Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
@@ -383,5 +376,14 @@ void DaDenSach(int mathe, string masach) {
         sach_mat = sach_mat->next;
     }
 }
+
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
+}
+
+bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
+}
+
 
 

@@ -502,7 +502,27 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
         ui->lineEdit_trangThai->setText("");
         return;
     }
-    Danh_Sach_The_Doc_Gia* p = timKiemTheDocGia(arg1.toInt());
+
+    QString filteredText;
+    bool lastWasSpace = false;
+
+    for (QChar c : arg1) {
+        if (c.isDigit()) {
+            filteredText += c;
+            lastWasSpace = false;
+        } else if (c.isSpace() && !lastWasSpace) {
+            filteredText += ' ';
+            lastWasSpace = true;
+        }
+    }
+
+    filteredText = filteredText.trimmed();
+
+    if (filteredText != arg1) {
+        ui->lineEdit_maThe->setText(filteredText);
+    }
+
+    Danh_Sach_The_Doc_Gia* p = timKiemTheDocGia(filteredText.toInt());
     if ( p != nullptr ) {
         inThongTin(p->thong_tin.MATHE);
         ui->lineEdit_maThe->setStyleSheet("background-color: lightgreen;");
@@ -597,7 +617,7 @@ void LibraryManagementSystem::on_lineEdit_maSach_textChanged(const QString &arg1
     bool lastWasSpace = false;
 
     for (QChar c : arg1) {
-        if (c.isDigit() || c.isPunct()) {
+        if (c.isDigit() || c == '-') {
             filteredText += c;
             lastWasSpace = false;
         } else if (c.isSpace() && !lastWasSpace) {
@@ -655,13 +675,27 @@ string LibraryManagementSystem::getmaSachCoTheMuon() {
     return "";
 }
 
+bool LibraryManagementSystem::MaTheHoacMaSachKhongTonTai() {
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(getmaThe());
+    if(doc_gia == nullptr) return true;
+    int vitridausach = TimKiemViTriDauSach(getMaSach());
+    if(vitridausach == -1) return true;
+
+    return false;
+}
+
 void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 {
     if(MaTheHoacMaSachRong()) {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa nhập mã ISBN hoặc mã thẻ độc giả để mượn sách.");
         return;
     }
-    qDebug()<<"ma thẻ khong rõng";
+
+    if(MaTheHoacMaSachKhongTonTai()) {
+        QMessageBox::information(nullptr, "Thông báo", "Mã thẻ hoặc mã sách không tồn tại.");
+        return;
+    }
+
     string maSach = getMaSach();
 
     if(laISBN(maSach)) {
@@ -704,6 +738,7 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
     }
     if( !coTraSach )  {
         QMessageBox::information(nullptr, "Thông báo", "Bạn chưa chọn sách để trả.");
+        return;
     }
 
     inThongTin(getmaThe());
