@@ -2,6 +2,35 @@
 
 DanhSachDauSach danh_sach_dau_sach;
 
+int SoSanhTiengViet(const QString &s1, const QString &s2) {
+    // Định nghĩa thứ tự các ký tự trong tiếng Việt (bao gồm chữ hoa và chữ thường)
+    QString alphabet = "aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬbBcCdDđĐeéèẻẽẹêếềểễệEÉÈẺẼẸÊẾỀỂỄỆfFgGhHiíìỉĩịIÍÌỈĨỊjJkKlLmMnNoóòỏõọôốồổỗộơờớởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỜỚỞỠỢpPqQrRsStTuúùủũụưứừửữựUÚÙỦŨỤƯỨỪỬỮỰvVwWxXyýỳỷỹỵYYỲỶỸỴzZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+    // Duyệt qua các ký tự trong cả hai chuỗi
+    int len = (s1.length() < s2.length()) ? s1.length() : s2.length();
+
+    for (int i = 0; i < len; ++i) {
+        QChar c1 = s1[i];  // Không chuyển thành chữ thường nữa
+        QChar c2 = s2[i];  // Không chuyển thành chữ thường nữa
+
+        int rank1 = alphabet.indexOf(c1);  // Lấy vị trí của ký tự trong bảng chữ cái
+        int rank2 = alphabet.indexOf(c2);  // Lấy vị trí của ký tự trong bảng chữ cái
+
+        if (rank1 != rank2) {
+            return (rank1 < rank2) ? -1 : 1; // So sánh các ký tự theo thứ tự tiếng Việt
+        }
+    }
+
+    // Nếu các ký tự giống nhau, chuỗi ngắn hơn đứng trước
+    if (s1.length() < s2.length()) {
+        return -1;
+    } else if (s1.length() > s2.length()) {
+        return 1;
+    } else {
+        return 0;  // Nếu cả hai chuỗi đều có độ dài bằng nhau
+    }
+}
+
 bool TonTaiDauSach(int index){
     return ( index == -1 ) ? false:true;
 }
@@ -264,19 +293,20 @@ void DoiViTriDauSachThem(int vi_tri_them){
     danh_sach_dau_sach.soluongdausach++;
 }
 
-void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them){
+void XacDinhViTriThem(const string &ten_sach, int &vi_tri_them) {
     QString ten_sach_qt = QString::fromStdString(ten_sach);
 
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-
         QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
 
-        if (ten_sach_qt.localeAwareCompare(ten_sach_cur_qt) <= 0) {
+        // So sánh bằng QString::compare
+        if (SoSanhTiengViet(ten_sach_qt,ten_sach_cur_qt) < 0) {
             vi_tri_them = i;
             break;
         }
     }
 }
+
 
 void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them){
     int n = danh_sach_dau_sach.soluongdausach;
@@ -455,13 +485,13 @@ void Merge(int* arr, int left, int mid, int right) {
         QString Left_tensach_qt = QString::fromStdString(Left_tensach);
         QString Right_tensach_qt = QString::fromStdString(Right_tensach);
 
-        if (Left_theloai_qt.localeAwareCompare(Right_theloai_qt) < 0) {
+        if (SoSanhTiengViet(Left_theloai_qt,Right_theloai_qt) < 0) {
             //node nao co the loai nho hon thi them vi tri index vao mang
             arr[k] = L[i];
             i++;
         }
         // Neu the loai giong nhau thi so sanh ten
-        else if (Left_theloai_qt.localeAwareCompare(Right_theloai_qt) == 0 && Left_tensach_qt.localeAwareCompare(Right_tensach_qt) <= 0) {
+        else if (SoSanhTiengViet(Left_theloai_qt,Right_theloai_qt) == 0 && SoSanhTiengViet(Left_tensach_qt,Right_tensach_qt) <= 0) {
             //node nao co ten sach nho hon thi them vi tri index vao mang
             arr[k] = L[i];
             i++;

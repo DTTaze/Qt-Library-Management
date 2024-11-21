@@ -73,6 +73,8 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
+int SoSanhTiengViet(const QString& str1, const QString& str2);
+
 bool TonTaiDauSach(int index);
 
 bool TonTaiMaSach(string ma_sach);

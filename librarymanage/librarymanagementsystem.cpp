@@ -206,6 +206,7 @@ void LibraryManagementSystem::MoCuaSoDanhMucSach(int ViTriDauSach) {
     // Chuyển ViTriDauSach thành kiểu cần thiết và thực hiện các thao tác
     Danhmucsach dms(ViTriDauSach);
     dms.setModal(true);
+    dms.setWindowTitle("Danh mục sách");
     dms.exec();
 }
 
@@ -331,7 +332,7 @@ void LibraryManagementSystem::on_thanhly_pushButton_clicked()
 void LibraryManagementSystem::MoCuaSoNhapDauSach(int i_ds){
     nhap_dausach nhap_dausach(i_ds);
     nhap_dausach.setModal(true);
-    nhap_dausach.setWindowTitle("Xóa đầu sách");
+    nhap_dausach.setWindowTitle("Nhập đầu sách");
     if (nhap_dausach.exec() == QDialog::Accepted){
         InToanBoDauSach(ui->tableWidget_dausach);
         Saved = false;
