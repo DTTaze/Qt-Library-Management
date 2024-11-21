@@ -75,6 +75,8 @@ extern DanhSachDauSach danh_sach_dau_sach;
 
 bool TonTaiDauSach(int index);
 
+bool TonTaiMaSach(string ma_sach);
+
 QString RemoveSpace(const QString &key);
 
 QString CapitalizeWords(const QString& text);
@@ -83,9 +85,6 @@ void InToanBoDauSach(QTableWidget* tableWidget_dausach);
 
 void ChuyenThanhISBN(string& ma);
 int TimKiemViTriDauSach(string ma);
-
-
-bool TonTaiMaSach(string ma_sach);
 
 string ChuyenMaSachThanhTenSach(const string&  ma_sach);
 
@@ -105,7 +104,6 @@ void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string m
 void DoiViTriDauSachThem(int vi_tri_them);
 void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them);
 void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them);
-
 void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach);
 void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach);
 void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach);
@@ -114,8 +112,8 @@ void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
 void LocKiTuTensachHopLe(const QString& text,string& valid_key);
 
 //Chức năng tìm kiếm
-void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
+void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
 
 //In theo thể loại,tên sách
 void SaoChepDanhSach( int* copy);

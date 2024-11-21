@@ -2,165 +2,56 @@
 
 DanhSachDauSach danh_sach_dau_sach;
 
-
-void DoiViTriDauSachXoa(int index){
-    for (int i = index; i < danh_sach_dau_sach.soluongdausach - 1; i++) {
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i + 1];
-    }
-    danh_sach_dau_sach.soluongdausach--;
-}
-
-void XoaDauSach(int index){
-    delete danh_sach_dau_sach.node[index];
-    DoiViTriDauSachXoa(index);
-
-}
-
-void ChuyenThanhISBN(string& ma){
-    if(ma.size() > 17) {// ma sach cua ISBN-13
-        ma = ma.substr(0,17);
-    }
-
-    if (ma.size() == 17){
-        if (ma.substr(13) == "0000") {// ma sach cua ISBN-10
-            ma = ma.substr(0, 13);
-        }
-    }
-}
-
-int TimKiemViTriDauSach(string ma) {
-    if(ma.size() < 13) return -1;
-
-    ChuyenThanhISBN(ma);
-
-    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-        if (danh_sach_dau_sach.node[i]->ISBN == ma) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
-    int vitri = TimKiemViTriDauSach(maSach);
-    if (!TonTaiDauSach) {
-        QString mes; mes+="Không tồn tại đầu sách có mã"+QString::fromStdString(maSach);
-        QMessageBox::critical(nullptr,"Lỗi",mes);
-        return nullptr;
-    }
-
-    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
-        if (current->masach == maSach) return current;
-    }
-    return nullptr;
-}
-
-void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach) {
-    // Tạo mã sách mới
-    if (ma_sach == "") {
-        TaoMaSach(ma_sach,ds);
-    }
-
-    DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
-
-    new_dms->next = ds->dms;
-    ds->dms = new_dms;
-}
-
-void TaoMaSach(string& ma_sach, DauSach* ds) {
-    string isbn_full = ds->ISBN;
-
-    // Kiểm tra nếu ISBN là loại 10 số
-    if (isbn_full.size() == 13) {
-        isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
-    }
-
-    // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
-    ma_sach = isbn_full + "-" + to_string(ds->SoLuongDanhMucSachTrongDausach+1);
-}
-
-string ChuyenVeChuThuong(string str) {
-    for (size_t i = 0; i < str.size(); ++i) {
-        str[i] = tolower(static_cast<unsigned char>(str[i]));
-    }
-    return str;
-}
-
-void DoiViTriDauSachThem(int vi_tri_them){
-    for (int i = danh_sach_dau_sach.soluongdausach; i > vi_tri_them; i--) {
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
-    }
-    danh_sach_dau_sach.soluongdausach++;
-}
-
-void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them){
-    QString ten_sach_qt = QString::fromStdString(ten_sach);
-
-    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
-
-        QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
-
-        if (ten_sach_qt.localeAwareCompare(ten_sach_cur_qt) <= 0) {
-            vi_tri_them = i;
-            break;
-        }
-    }
-}
-
-void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them){
-    int n = danh_sach_dau_sach.soluongdausach;
-    vi_tri_them = n ;
-
-    XacDinhViTriThem(ten_sach,vi_tri_them);
-
-    DoiViTriDauSachThem(vi_tri_them);
-
-    danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
-}
-
 bool TonTaiDauSach(int index){
     return ( index == -1 ) ? false:true;
 }
 
-void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
-    DauSach* new_DauSach = new DauSach(ds);
-    ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
-    new_DauSach->SoLuongDanhMucSachTrongDausach++;
-    int vi_tri_them;
-    ChenDauSachTheoThuTu(new_DauSach,new_DauSach->tensach,vi_tri_them);
+bool TonTaiMaSach(string ma_sach){
+    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
 }
 
-void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach){
-    ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn],trang_thai,vi_tri,ma_sach);
-    danh_sach_dau_sach.node[index_isbn]->SoLuongDanhMucSachTrongDausach++;
-}
+QString RemoveSpace(const QString &key) {
+    QString valid_key;
+    bool lastWasSpace = false;
 
-void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach){
-
-    int index_isbn = TimKiemViTriDauSach(ds.ISBN);
-
-    if(!TonTaiDauSach(index_isbn)){
-        ThemDauSach(ds,trang_thai,vi_tri,ma_sach);
-    }else {
-        NhapDauSach(index_isbn,trang_thai,vi_tri,ma_sach);
-    }
-}
-
-void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai){
-    DauSach* temp_ds = danh_sach_dau_sach.node[index_hien_tai];
-    DoiViTriDauSachXoa(index_hien_tai);
-    ChenDauSachTheoThuTu(temp_ds,ten_sach,index_hien_tai);
-
-}
-
-bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[index]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->trangthai == da_duoc_muon){
-            return true;
+    for (QChar c : key) {
+        if (c.isLetter() ) {
+            valid_key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào valid_key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                valid_key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+            }
         }
+        // Nếu là ký tự đặc biệt, không thêm vào valid_key, tức là xóa ký tự đặc biệt
     }
-    return false;
+
+    return valid_key;
 }
+
+QString CapitalizeWords(const QString& text) {
+    QString result;
+    bool isNewWord = true;
+
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
+
+        if (c.isLetter()) {
+            if (isNewWord) {
+                c = c.toUpper();  // Chuyển thành chữ in hoa
+                isNewWord = false;
+            }
+        } else {
+            isNewWord = true; // Đánh dấu bắt đầu từ mới khi gặp ký tự không phải chữ cái
+        }
+
+        result += c; // Thêm ký tự vào chuỗi kết quả
+    }
+
+    return result;
+}
+
 void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
 
@@ -213,14 +104,250 @@ void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
     tableWidget_dausach->horizontalHeader()->setStretchLastSection(true);
 }
 
+void ChuyenThanhISBN(string& ma){
+    if(ma.size() > 17) {// ma sach cua ISBN-13
+        ma = ma.substr(0,17);
+    }
 
+    if (ma.size() == 17){
+        if (ma.substr(13) == "0000") {// ma sach cua ISBN-10
+            ma = ma.substr(0, 13);
+        }
+    }
+}
 
-// Xóa comment thừa
+int TimKiemViTriDauSach(string ma) {
+    if(ma.size() < 13) return -1;
+
+    ChuyenThanhISBN(ma);
+
+    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
+        if (danh_sach_dau_sach.node[i]->ISBN == ma) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+string ChuyenMaSachThanhTenSach(const string&  ma_sach){
+    int i = TimKiemViTriDauSach(ma_sach);
+    if (TonTaiDauSach(i)){
+        return danh_sach_dau_sach.node[i]->tensach;
+    }else{
+        return "";
+    }
+}
+
+void DocTuFileDauSach(QWidget* parent) {
+    ifstream file("Danh_sach_dau_sach.txt");
+    if (!file.is_open()) {
+        QMessageBox::warning(parent, "Lỗi", "Không thể mở file Danh_sach_dau_sach.txt");
+        return;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        string ISBN, tensach, tacgia, theloai, vitri, masach;
+        int sotrang = 0, namsx = 0,trangthai= -1;
+
+        size_t pos = 0;
+
+        pos = line.find('|');
+        ISBN = line.substr(0, pos); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        tensach = line.substr(0, pos); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        sotrang = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        tacgia = line.substr(0, pos); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        theloai = line.substr(0, pos); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        vitri = line.substr(0, pos); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        trangthai = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+
+        pos = line.find('|');
+        masach = line.substr(0, pos); line.erase(0, pos + 1);
+        if (masach.empty()) masach = "";
+
+        if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
+            continue;
+        }
+
+        DauSach ds;
+        ds.ISBN = ISBN;
+        ds.tensach = tensach;
+        ds.sotrang = sotrang;
+        ds.tacgia = tacgia;
+        ds.namsx = namsx;
+        ds.theloai = theloai;
+        ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
+    }
+    file.close();
+}
+
+void GhiDauSachVaoFile() {
+    ofstream file("Danh_sach_dau_sach.txt");
+    if (!file.is_open()) {
+        qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog
+        return;
+    }
+
+    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
+        for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
+            DauSach* dau_sach = danh_sach_dau_sach.node[i];
+            file << dau_sach->ISBN << '|'
+                 << dau_sach->tensach << '|'
+                 << dau_sach->sotrang << '|'
+                 << dau_sach->tacgia << '|'
+                 << dau_sach->namsx << '|'
+                 << dau_sach->theloai << '|'
+                 << cur->vitri << '|'
+                 << cur->trangthai << '|'
+                 << cur->masach << endl;
+        }
+    }
+
+    file.close();
+}
+
+bool DayDauSach(){
+    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
+        return true;
+    }else{
+        return false;
+    };
+}
+
+bool MaISBNQTHopLe(QString i_s_b_n){
+    int Dash_Count = i_s_b_n.count('-');
+    return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
+}
+
+void TaoMaSach(string& ma_sach, DauSach* ds) {
+    string isbn_full = ds->ISBN;
+
+    // Kiểm tra nếu ISBN là loại 10 số
+    if (isbn_full.size() == 13) {
+        isbn_full += "0000"; // Thêm 4 số '0' vào cuối ISBN
+    }
+
+    // Gán mã sách bao gồm ISBN và số sách dưới dạng chuỗi
+    ma_sach = isbn_full + "-" + to_string(ds->SoLuongDanhMucSachTrongDausach+1);
+}
+void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach) {
+    // Tạo mã sách mới
+    if (ma_sach == "") {
+        TaoMaSach(ma_sach,ds);
+    }
+
+    DanhMucSach* new_dms = new DanhMucSach(ma_sach, trang_thai, vi_tri);
+
+    new_dms->next = ds->dms;
+    ds->dms = new_dms;
+}
+
+void DoiViTriDauSachThem(int vi_tri_them){
+    for (int i = danh_sach_dau_sach.soluongdausach; i > vi_tri_them; i--) {
+        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i - 1];
+    }
+    danh_sach_dau_sach.soluongdausach++;
+}
+
+void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them){
+    QString ten_sach_qt = QString::fromStdString(ten_sach);
+
+    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; i++) {
+
+        QString ten_sach_cur_qt = QString::fromStdString(danh_sach_dau_sach.node[i]->tensach);
+
+        if (ten_sach_qt.localeAwareCompare(ten_sach_cur_qt) <= 0) {
+            vi_tri_them = i;
+            break;
+        }
+    }
+}
+
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them){
+    int n = danh_sach_dau_sach.soluongdausach;
+    vi_tri_them = n ;
+
+    XacDinhViTriThem(ten_sach,vi_tri_them);
+
+    DoiViTriDauSachThem(vi_tri_them);
+
+    danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
+}
+
+void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
+    DauSach* new_DauSach = new DauSach(ds);
+    ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
+    new_DauSach->SoLuongDanhMucSachTrongDausach++;
+    int vi_tri_them;
+    ChenDauSachTheoThuTu(new_DauSach,new_DauSach->tensach,vi_tri_them);
+}
+
+void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach){
+    ThemDanhMucSach(danh_sach_dau_sach.node[index_isbn],trang_thai,vi_tri,ma_sach);
+    danh_sach_dau_sach.node[index_isbn]->SoLuongDanhMucSachTrongDausach++;
+}
+
+void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach){
+
+    int index_isbn = TimKiemViTriDauSach(ds.ISBN);
+
+    if(!TonTaiDauSach(index_isbn)){
+        ThemDauSach(ds,trang_thai,vi_tri,ma_sach);
+    }else {
+        NhapDauSach(index_isbn,trang_thai,vi_tri,ma_sach);
+    }
+}
+
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu){
+    // Lọc ra các ký tự là chữ số
+    for (int i = 0; i < text.length(); ++i) {
+        if (text[i].isDigit() || text[i] == '-') {
+            LocKiTu.append(text[i]); // Thêm ký tự hợp lệ vào LocKiTu
+        }
+    }
+}
+
+void LocKiTuTensachHopLe(const QString& text,string& valid_key){
+    QString key;
+    bool lastWasSpace = false; // Kiểm tra xem ký tự trước có phải là khoảng trắng không
+
+    for (QChar c : text) {
+        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
+            key += c; // Thêm ký tự hợp lệ vào key
+            lastWasSpace = false; // Reset trạng thái lastWasSpace
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
+                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
+            }
+        }
+    }
+
+    // Xóa khoảng trắng ở đầu
+    valid_key = key.toStdString();
+    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+}
+
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
-    // Xóa dữ liệu cũ trong QTableWidget
+
     tableWidget_dausach->clearContents();
-    tableWidget_dausach->setRowCount(0); // Đặt số hàng ban đầu là 0
-    tableWidget_dausach->setColumnCount(5); // Đặt số cột là 5
+    tableWidget_dausach->setRowCount(0);
+    tableWidget_dausach->setColumnCount(5);
 
     QString headers[5] = {
         "ISBN", "Tên sách", "Tác giả", "Năm xuất bản", "Thể loại",
@@ -274,7 +401,6 @@ void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
     tableWidget_dausach->horizontalHeader()->setStretchLastSection(true);
 }
 
-
 void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key) {
 
     // Neu nguoi dung nhap key
@@ -285,13 +411,18 @@ void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key) {
     }
 }
 
-string ChuyenMaSachThanhTenSach(const string&  ma_sach){
-    int i = TimKiemViTriDauSach(ma_sach);
-    if (TonTaiDauSach(i)){
-        return danh_sach_dau_sach.node[i]->tensach;
-    }else{
-        return "";
+void SaoChepDanhSach( int* copy) {
+    int n = danh_sach_dau_sach.soluongdausach;
+    for (int i = 0; i < n;i++){
+        copy[i]=i;
     }
+}
+
+string ChuyenVeChuThuong(string str) {
+    for (size_t i = 0; i < str.size(); ++i) {
+        str[i] = tolower(static_cast<unsigned char>(str[i]));
+    }
+    return str;
 }
 
 void Merge(int* arr, int left, int mid, int right) {
@@ -323,7 +454,7 @@ void Merge(int* arr, int left, int mid, int right) {
         QString Right_theloai_qt = QString::fromStdString(Right_theloai);
         QString Left_tensach_qt = QString::fromStdString(Left_tensach);
         QString Right_tensach_qt = QString::fromStdString(Right_tensach);
-        
+
         if (Left_theloai_qt.localeAwareCompare(Right_theloai_qt) < 0) {
             //node nao co the loai nho hon thi them vi tri index vao mang
             arr[k] = L[i];
@@ -374,12 +505,7 @@ void MergeSort(int* arr, int left, int right) {
     }
 }
 
-void SaoChepDanhSach( int* copy) {
-    int n = danh_sach_dau_sach.soluongdausach;
-    for (int i = 0; i < n;i++){
-        copy[i]=i;
-    }
-}
+
 
 void InTheoTungTheLoai(QTableView* tableView_intheloai) {
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
@@ -465,97 +591,46 @@ void InTheoTungTheLoai(QTableView* tableView_intheloai) {
     delete[] copy;
 }
 
+void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai){
+    DauSach* temp_ds = danh_sach_dau_sach.node[index_hien_tai];
+    DoiViTriDauSachXoa(index_hien_tai);
+    ChenDauSachTheoThuTu(temp_ds,ten_sach,index_hien_tai);
 
-bool DayDauSach(){
-    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
-        return true;
-    }else{
-        return false;
-    };
 }
 
-
-void DocTuFileDauSach(QWidget* parent) {
-    ifstream file("Danh_sach_dau_sach.txt");
-    if (!file.is_open()) {
-        QMessageBox::warning(parent, "Lỗi", "Không thể mở file Danh_sach_dau_sach.txt");
-        return;
+void DoiViTriDauSachXoa(int index){
+    for (int i = index; i < danh_sach_dau_sach.soluongdausach - 1; i++) {
+        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i + 1];
     }
-
-    string line;
-    while (getline(file, line)) {
-        string ISBN, tensach, tacgia, theloai, vitri, masach;
-        int sotrang = 0, namsx = 0,trangthai= -1;
-
-        size_t pos = 0;
-
-        pos = line.find('|');
-        ISBN = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        tensach = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        sotrang = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        tacgia = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        theloai = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        vitri = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        trangthai = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        masach = line.substr(0, pos); line.erase(0, pos + 1);
-        if (masach.empty()) masach = "";
-
-        if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
-            continue;
-        }
-
-        DauSach ds;
-        ds.ISBN = ISBN;
-        ds.tensach = tensach;
-        ds.sotrang = sotrang;
-        ds.tacgia = tacgia;
-        ds.namsx = namsx;
-        ds.theloai = theloai;
-        ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
-    }
-    file.close();
+    danh_sach_dau_sach.soluongdausach--;
 }
 
-void GhiDauSachVaoFile() {
-    ofstream file("Danh_sach_dau_sach.txt");
-    if (!file.is_open()) {
-        qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog
-        return;
-    }
+void XoaDauSach(int index){
+    delete danh_sach_dau_sach.node[index];
+    DoiViTriDauSachXoa(index);
+}
 
-    for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
-        for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
-            DauSach* dau_sach = danh_sach_dau_sach.node[i];
-            file << dau_sach->ISBN << '|'
-                 << dau_sach->tensach << '|'
-                 << dau_sach->sotrang << '|'
-                 << dau_sach->tacgia << '|'
-                 << dau_sach->namsx << '|'
-                 << dau_sach->theloai << '|'
-                 << cur->vitri << '|'
-                 << cur->trangthai << '|'
-                 << cur->masach << endl;
+bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
+    for (DanhMucSach* cur = danh_sach_dau_sach.node[index]->dms;cur!=nullptr;cur=cur->next){
+        if(cur->trangthai == da_duoc_muon){
+            return true;
         }
     }
+    return false;
+}
 
-    file.close();
+DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
+    int vitri = TimKiemViTriDauSach(maSach);
+    if (!TonTaiDauSach) {
+        QString mes; mes+="Không tồn tại đầu sách có mã"+QString::fromStdString(maSach);
+        QMessageBox::critical(nullptr,"Lỗi",mes);
+        return nullptr;
+    }
+
+    for (DanhMucSach* current = danh_sach_dau_sach.node[vitri]->dms ; current != nullptr; current = current->next) {
+        if (current->masach == maSach) return current;
+    }
+    return nullptr;
 }
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
@@ -563,85 +638,22 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     dms->trangthai = trang_thai;
 }
 
-bool TonTaiMaSach(string ma_sach){
-    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
-}
-
-bool MaISBNQTHopLe(QString i_s_b_n){
-    int Dash_Count = i_s_b_n.count('-');
-    return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
-}
-
-QString RemoveSpace(const QString &key) {
-    QString valid_key;
-    bool lastWasSpace = false;
-
-    for (QChar c : key) {
-        if (c.isLetter() ) {
-            valid_key += c; // Thêm ký tự hợp lệ (chữ hoặc số) vào valid_key
-            lastWasSpace = false; // Reset trạng thái lastWasSpace
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                valid_key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
-                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
-            }
-        }
-        // Nếu là ký tự đặc biệt, không thêm vào valid_key, tức là xóa ký tự đặc biệt
-    }
-
-    return valid_key;
-}
-
-QString CapitalizeWords(const QString& text) {
-    QString result;
-    bool isNewWord = true;
-
-    for (int i = 0; i < text.length(); ++i) {
-        QChar c = text[i];
-
-        if (c.isLetter()) {
-            if (isNewWord) {
-                c = c.toUpper();  // Chuyển thành chữ in hoa
-                isNewWord = false;
-            }
-        } else {
-            isNewWord = true; // Đánh dấu bắt đầu từ mới khi gặp ký tự không phải chữ cái
-        }
-
-        result += c; // Thêm ký tự vào chuỗi kết quả
-    }
-
-    return result;
-}
-
-void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu){
-    // Lọc ra các ký tự là chữ số
-    for (int i = 0; i < text.length(); ++i) {
-        if (text[i].isDigit() || text[i] == '-') {
-            LocKiTu.append(text[i]); // Thêm ký tự hợp lệ vào LocKiTu
-        }
-    }
-}
-
-void LocKiTuTensachHopLe(const QString& text,string& valid_key){
-    QString key;
-    bool lastWasSpace = false; // Kiểm tra xem ký tự trước có phải là khoảng trắng không
-
-    for (QChar c : text) {
-        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
-            key += c; // Thêm ký tự hợp lệ vào key
-            lastWasSpace = false; // Reset trạng thái lastWasSpace
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                key += ' '; // Thêm một dấu cách nếu không phải là dấu cách trước đó
-                lastWasSpace = true; // Đánh dấu rằng dấu cách đã được thêm
-            }
-        }
-    }
-
-    // Xóa khoảng trắng ở đầu
-    valid_key = key.toStdString();
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
