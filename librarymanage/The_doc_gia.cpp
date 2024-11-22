@@ -113,12 +113,20 @@ void themVaoCoThuTuDanhSachTheDocGiaTheoTen(Danh_Sach_The_Doc_Gia* docgia) {
     Danh_Sach_Theo_Ten* truoc = nullptr;
     Danh_Sach_Theo_Ten* sau = head;
 
-    QString tenNode = QString::fromStdString(newNode->ten);
-    QString hoNode = QString::fromStdString(newNode->ho);
+    QString tenMoi = QString::fromStdString(docgia->thong_tin.Ten);
+    QString hoMoi = QString::fromStdString(docgia->thong_tin.Ho);
 
-    while (sau != nullptr &&
-           (QString::fromStdString(sau->ten).localeAwareCompare(tenNode) < 0 ||
-            (QString::fromStdString(sau->ten) == tenNode && QString::fromStdString(sau->ho).localeAwareCompare(hoNode) < 0))) {
+    while (sau != nullptr) {
+        QString tenHienTai = QString::fromStdString(sau->ten);
+        QString hoHienTai = QString::fromStdString(sau->ho);
+
+        int soSanhTen = SoSanhTiengViet(tenMoi, tenHienTai);
+        int soSanhHo = SoSanhTiengViet(hoMoi, hoHienTai);
+
+        if (soSanhTen < 0 || (soSanhTen == 0 && soSanhHo < 0)) {
+            break;
+        }
+
         truoc = sau;
         sau = sau->next;
     }
