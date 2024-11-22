@@ -5,20 +5,6 @@ int TrangThai(Date ngay_muon, Date ngay_tra) {
     return ngay_tra.day == 0 ? Chua_Tra : Da_Tra;
 }
 //-------------------------------------------------------------Mượn Sách------------------------------------------------------------
-void MuonSach( const int& maThe, const string& maSach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
-
-    Date ngaytra; // ngaytra = {0/0/0}
-
-    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
-        return;
-    }
-
-    Date ngaymuon = NgayHomNay();
-    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, da_duoc_muon);
-}
-
 void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra) {
     MUONTRA data(ma, ngayMuon, ngayTra, trangthai);
     DanhSachMUONTRA* newMUONTRA = new DanhSachMUONTRA(data);
@@ -31,17 +17,15 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
     }
 }
 
-bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
-    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
-    string ma_sach = maSach.substr(0, 17);
-    while(current != nullptr) {
-        string ma_ISBN = current->data.masach.substr(0, 17);
-        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
-            return true;
-        }
-        current=current->next;
+void MuonSach( const int& maThe, const string& maSach) {
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
+    Date ngaytra; // ngaytra = {0/0/0}
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
+        return;
     }
-    return false;
+    Date ngaymuon = NgayHomNay();
+    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
+    CapNhatTrangThaiSach(maSach, da_duoc_muon);
 }
 
 bool chuaTraSach(DanhSachMUONTRA *current){
@@ -72,6 +56,19 @@ bool CoSachMuonQuaHan(DanhSachMUONTRA *head) {
     return false;
 }
 
+bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) {
+    DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
+    string ma_sach = maSach.substr(0, 17);
+    while(current != nullptr) {
+        string ma_ISBN = current->data.masach.substr(0, 17);
+        if(ma_sach == ma_ISBN && current->data.trangthai == Chua_Tra) {
+            return true;
+        }
+        current=current->next;
+    }
+    return false;
+}
+
 bool SachDaDuocMuonHoacThanhLy(string ma_sach) {
     int vitridausach = TimKiemViTriDauSach(ma_sach) ;
     DanhMucSach *cur = danh_sach_dau_sach.node[vitridausach]->dms;
@@ -81,7 +78,6 @@ bool SachDaDuocMuonHoacThanhLy(string ma_sach) {
         }
         cur = cur->next;
     }
-
     return false;
 }
 
@@ -149,7 +145,6 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     DanhSachMUONTRA* current = doc_gia->thong_tin.head_lsms;
     while (current != nullptr) {
         if (current->data.masach == ma_sach && current->data.trangthai != Da_Tra) {
-
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
                 CapNhatTrangThaiSach(ma_sach, co_the_muon);
@@ -157,6 +152,43 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
         }
         current = current->next;
     }
+}
+//-----------------------------------------------------Mất Sách Và Đền Sách--------------------------------------------------------------
+void ChuaDenSach(int mathe, string masach) {
+    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
+    p->thong_tin.TrangThai = Khoa;
+    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
+
+    while(sach_mat != nullptr) {
+        if(SachChuaTra(sach_mat, masach)) {
+            sach_mat->data.trangthai = Mat_Sach;
+            break;
+        }
+        sach_mat = sach_mat->next;
+    }
+
+}
+
+void DaDenSach(int mathe, string masach) {
+    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
+    p->thong_tin.TrangThai = Dang_Hoat_Dong;
+    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
+    while(sach_mat != nullptr) {
+        if(SachChuaTraHoacMatSach(sach_mat, masach)) {
+            sach_mat->data.trangthai = Da_Tra;
+            CapNhatTrangThaiSach(masach, co_the_muon);
+            break;
+        }
+        sach_mat = sach_mat->next;
+    }
+}
+
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
+}
+
+bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
 }
 //---------------------------------------------------------------------Top 10 Sách được mượn nhiều nhất--------------------------------
 
@@ -346,44 +378,7 @@ void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head) {
         delete temp;
     }
 }
-//-----------------------------------------------------Chức Năng Báo Mất Sách Và Đền Sách--------------------------------------------
 
-void ChuaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
-    p->thong_tin.TrangThai = Khoa;
-    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
-
-    while(sach_mat != nullptr) {
-        if(SachChuaTra(sach_mat, masach)) {
-            sach_mat->data.trangthai = Mat_Sach;
-            break;
-        }
-        sach_mat = sach_mat->next;
-    }
-
-}
-
-void DaDenSach(int mathe, string masach) {
-    Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
-    p->thong_tin.TrangThai = Dang_Hoat_Dong;
-    DanhSachMUONTRA *sach_mat = p->thong_tin.head_lsms;
-    while(sach_mat != nullptr) {
-        if(SachChuaTraHoacMatSach(sach_mat, masach)) {
-            sach_mat->data.trangthai = Da_Tra;
-            CapNhatTrangThaiSach(masach, co_the_muon);
-            break;
-        }
-        sach_mat = sach_mat->next;
-    }
-}
-
-bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
-}
-
-bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
-}
 
 
 
