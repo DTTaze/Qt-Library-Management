@@ -165,15 +165,6 @@ void LibraryManagementSystem::setupbaocao_pushButton() {
 }
 
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
-
-void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
-{
-    InTheoTheLoai intheloai;
-    intheloai.setModal(true);
-    intheloai.setWindowTitle("In danh sách theo thể loại");
-    intheloai.exec();
-}
-
 void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
     QString key ;
     bool lastWasSpace = false;
@@ -202,8 +193,15 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     TimKiemTenSach(ui->tableWidget_dausach, valid_key);
 }
 
+void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
+{
+    InTheoTheLoai intheloai;
+    intheloai.setModal(true);
+    intheloai.setWindowTitle("In danh sách theo thể loại");
+    intheloai.exec();
+}
+
 void LibraryManagementSystem::MoCuaSoDanhMucSach(int ViTriDauSach) {
-    // Chuyển ViTriDauSach thành kiểu cần thiết và thực hiện các thao tác
     Danhmucsach dms(ViTriDauSach);
     dms.setModal(true);
     dms.setWindowTitle("Danh mục sách");

@@ -36,8 +36,6 @@ private slots:
 
     void tabMuonTra();
 
-    void on_luuFile_pushButton_clicked();
-
     void on_dauSach_pushButton_clicked();
 
     void on_thedocgia_pushButton_clicked();
@@ -50,6 +48,7 @@ private slots:
 
     void showMuonQuaHanPage();
 
+    void on_luuFile_pushButton_clicked();
 //---------------------------------------------------------------Hàm Đầu Sách-----------------------------------------------------------------------------------------------------------
     void on_lineEdit_timkiemds_textChanged(const QString text);
 

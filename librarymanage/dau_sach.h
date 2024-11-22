@@ -73,68 +73,46 @@ struct DanhSachDauSach{
 
 extern DanhSachDauSach danh_sach_dau_sach;
 
-int SoSanhTiengViet(const QString& str1, const QString& str2);
-
-bool TonTaiDauSach(int index);
-
+QString RemoveSpace(const QString &key);
+QString CapitalizeWords(const QString& text);
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
+bool MaISBNQTHopLe(QString i_s_b_n);
+void LocKiTuTensachHopLe(const QString& text,string& valid_key);
+bool DayDauSach();
+bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 bool TonTaiMaSach(string ma_sach);
 
-QString RemoveSpace(const QString &key);
-
-QString CapitalizeWords(const QString& text);
-
 void InToanBoDauSach(QTableWidget* tableWidget_dausach);
-
-void ChuyenThanhISBN(string& ma);
-int TimKiemViTriDauSach(string ma);
-
-string ChuyenMaSachThanhTenSach(const string&  ma_sach);
-
-//Đọc file
-void DocTuFileDauSach(QWidget* parent);
-//Ghi file
-void GhiDauSachVaoFile();
-
-//Thêm và nhập sách
-bool DayDauSach();
-
-bool MaISBNQTHopLe(QString i_s_b_n);
-
-void TaoMaSach(string& ma_sach,DauSach* ds);
-void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach);
-
-void DoiViTriDauSachThem(int vi_tri_them);
-void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them);
-void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them);
-void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach);
-void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach);
-void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach);
-
-void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
-void LocKiTuTensachHopLe(const QString& text,string& valid_key);
-
-//Chức năng tìm kiếm
+string ChuyenVeChuThuong(string str);
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
 void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
-
-//In theo thể loại,tên sách
 void SaoChepDanhSach( int* copy);
-string ChuyenVeChuThuong(string str);
 void Merge(int* arr, int left, int mid, int right);
 void MergeSort(int* arr, int left, int right);
 void InTheoTungTheLoai(QTableView* tableView_intheloai);
 
-//Sửa sách
-void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai);
+void ChuyenThanhISBN(string& ma);
+int TimKiemViTriDauSach(string ma);
+bool TonTaiDauSach(int index);
+string ChuyenMaSachThanhTenSach(const string&  ma_sach);
+void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach);
+void TaoMaSach(string& ma_sach,DauSach* ds);
+void ThemDanhMucSach(DauSach*& ds, int trang_thai, const string& vi_tri,string ma_sach);
+void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach);
+void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach);
 
-//Xóa sách
+int SoSanhTiengViet(const QString& str1, const QString& str2);
+void XacDinhViTriThem(const string &ten_sach,int &vi_tri_them);
+void DoiViTriDauSachThem(int vi_tri_them);
 void DoiViTriDauSachXoa(int index);
+void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them);
+void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai);
 void XoaDauSach(int index);
-
-//Thanh lý sách
-bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
+
+void DocTuFileDauSach(QWidget* parent);
+void GhiDauSachVaoFile();
 
 #endif
