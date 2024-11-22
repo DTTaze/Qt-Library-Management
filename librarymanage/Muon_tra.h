@@ -67,6 +67,14 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach);
 
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
+//-----------------------------------------------------------------Mất Sách--------------------------------------------------------------
+void ChuaDenSach(int mathe, string masach);
+
+void DaDenSach(int mathe, string masach);
+
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach);
+
+bool SachChuaTraHoacMatSach(DanhSachMUONTRA *sach_mat, string masach);
 //----------------------------------------------------------------Bảng top 10 sách được mượn nhiều nhất--------------------------------------------------------------------------------
 void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon[], QTableWidget *tableWidget) ;
 
@@ -91,12 +99,4 @@ void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Do
 danhSachDocGiaMuonQuaHan* layDanhSachDocGiaMuonQuaHan (Danh_Sach_The_Doc_Gia* root);
 
 void GiaiPhongDanhSachDocGiaMuonQuaHan(danhSachDocGiaMuonQuaHan* head);
-//-----------------------------------------------------------------Mất Sách-----------------------------------------------
-void ChuaDenSach(int mathe, string masach);
-
-void DaDenSach(int mathe, string masach);
-
-bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach);
-
-bool SachChuaTraHoacMatSach(DanhSachMUONTRA *sach_mat, string masach);
 #endif
