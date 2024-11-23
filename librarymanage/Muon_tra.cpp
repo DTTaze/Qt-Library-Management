@@ -17,17 +17,6 @@ void ThemSachVaoLichSuMuonSach (DanhSachMUONTRA*& head, string ma,int trangthai,
     }
 }
 
-void MuonSach( const int& maThe, const string& maSach) {
-    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
-    Date ngaytra; // ngaytra = {0/0/0}
-    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
-        return;
-    }
-    Date ngaymuon = NgayHomNay();
-    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
-    CapNhatTrangThaiSach(maSach, da_duoc_muon);
-}
-
 bool chuaTraSach(DanhSachMUONTRA *current){
     return current->data.trangthai == Chua_Tra ? true : false;
 }
@@ -126,6 +115,17 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
     }
 
     return true;
+}
+
+void MuonSach( const int& maThe, const string& maSach) {
+    Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(maThe);
+    Date ngaytra; // ngaytra = {0/0/0}
+    if ( !KiemTraVaInRaLoiKhiMuonSach(maThe, maSach) ) {
+        return;
+    }
+    Date ngaymuon = NgayHomNay();
+    ThemSachVaoLichSuMuonSach(doc_gia->thong_tin.head_lsms, maSach,Chua_Tra, ngaymuon, ngaytra);
+    CapNhatTrangThaiSach(maSach, da_duoc_muon);
 }
 //-------------------------------------------------------------------------Trả Sách---------------------------------------------------------------------------
 
@@ -261,14 +261,6 @@ void MergeSortSachMuon(SachMuon* arr, int left, int right) {
     }
 }
 
-void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
-    DanhSachMUONTRA *current = danh_sach_muon_tra;
-    while( current != nullptr ) {
-        CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
-        current = current->next;
-    }
-}
-
 int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach) {
     string ma_ISBN = maSach.substr(0, 17);
     for (int i = 0; i < SoLuongSach; i++) {
@@ -288,6 +280,14 @@ void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachM
         DanhSachSachMuon[SoLuongSach].masach = ma_ISBN;
         DanhSachSachMuon[SoLuongSach].demsoluotmuon = 1;
         SoLuongSach++;
+    }
+}
+
+void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
+    DanhSachMUONTRA *current = danh_sach_muon_tra;
+    while( current != nullptr ) {
+        CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
+        current = current->next;
     }
 }
 

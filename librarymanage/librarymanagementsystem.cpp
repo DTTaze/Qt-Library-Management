@@ -40,37 +40,6 @@ LibraryManagementSystem::~LibraryManagementSystem()
     delete ui;
 }
 
-void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
-    if (!Saved) {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Chưa lưu",
-                                      "Bạn có muốn lưu trước khi thoát không?",
-                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-
-        if (reply == QMessageBox::Yes) {
-            ghiMaTheVaoFile();
-            ghiThongTinTheDocGia();
-            GhiDauSachVaoFile();
-            event->accept();
-        } else if (reply == QMessageBox::No) {
-            event->accept();
-        } else {
-            event->ignore();
-        }
-    } else {
-        event->accept();
-    }
-}
-
-void LibraryManagementSystem::on_luuFile_pushButton_clicked()
-{
-    ghiMaTheVaoFile();
-    ghiThongTinTheDocGia();
-    GhiDauSachVaoFile();
-    Saved = true;
-    QMessageBox::information(this,"Thông báo","Lưu thành công.");
-}
-
 void LibraryManagementSystem::tabDauSach()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
@@ -162,6 +131,37 @@ void LibraryManagementSystem::setupbaocao_pushButton() {
 
     connect(top10SachAction, &QAction::triggered, this, &LibraryManagementSystem::showTop10SachPage);
     connect(muonSachQuaHanAction, &QAction::triggered, this, &LibraryManagementSystem::showMuonQuaHanPage);
+}
+
+void LibraryManagementSystem::on_luuFile_pushButton_clicked()
+{
+    ghiMaTheVaoFile();
+    ghiThongTinTheDocGia();
+    GhiDauSachVaoFile();
+    Saved = true;
+    QMessageBox::information(this,"Thông báo","Lưu thành công.");
+}
+
+void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
+    if (!Saved) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Chưa lưu",
+                                      "Bạn có muốn lưu trước khi thoát không?",
+                                      QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+
+        if (reply == QMessageBox::Yes) {
+            ghiMaTheVaoFile();
+            ghiThongTinTheDocGia();
+            GhiDauSachVaoFile();
+            event->accept();
+        } else if (reply == QMessageBox::No) {
+            event->accept();
+        } else {
+            event->ignore();
+        }
+    } else {
+        event->accept();
+    }
 }
 
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
