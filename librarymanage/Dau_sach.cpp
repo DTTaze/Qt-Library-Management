@@ -97,6 +97,10 @@ bool TonTaiMaSach(string ma_sach){
     return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
 }
 
+bool TonTaiDauSach(int index){
+    return ( index == -1 ) ? false:true;
+}
+
 void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
     int so_luong_sach = danh_sach_dau_sach.soluongdausach;
 
@@ -143,9 +147,19 @@ void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
     tableWidget_dausach->horizontalHeader()->setStretchLastSection(true);
 }
 
-string ChuyenVeChuThuong(string str) {
+string ChuyenVeChuThuong(std::string str) {
+    // Chuỗi ký tự in hoa
+    string upper = "ÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬĐÉÈẺẼẸÊẾỀỂỄỆÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÍÌỈĨỊÝỲỶỸỴ";
+    // Chuỗi ký tự thường tương ứng
+    string lower = "áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựíìỉĩịýỳỷỹỵ";
+
     for (size_t i = 0; i < str.size(); ++i) {
-        str[i] = tolower(static_cast<unsigned char>(str[i]));
+        size_t pos = upper.find(str[i]);
+        if (pos != std::string::npos) {
+            str[i] = lower[pos];
+        } else {
+            str[i] = tolower(static_cast<unsigned char>(str[i]));
+        }
     }
     return str;
 }
@@ -385,8 +399,30 @@ int TimKiemViTriDauSach(string ma) {
     return -1;
 }
 
-bool TonTaiDauSach(int index){
-    return ( index == -1 ) ? false:true;
+int SoSanhTiengViet(const QString &s1, const QString &s2) {
+    QString alphabet = "aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬbBcCdđDĐeéèẻẽẹêếềểễệEÉÈẺẼẸÊẾỀỂỄỆfFgGhHiíìỉĩịIÍÌỈĨỊjJkKlLmMnNoóòỏõọôốồổỗộơờớởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỜỚỞỠỢpPqQrRsStTuúùủũụưứừửữựUÚÙỦŨỤƯỨỪỬỮỰvVwWxXyýỳỷỹỵYYỲỶỸỴzZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+    int len = (s1.length() < s2.length()) ? s1.length() : s2.length();
+
+    for (int i = 0; i < len; ++i) {
+        QChar c1 = s1[i];
+        QChar c2 = s2[i];
+
+        int rank1 = alphabet.indexOf(c1);
+        int rank2 = alphabet.indexOf(c2);
+
+        if (rank1 != rank2) {
+            return (rank1 < rank2) ? -1 : 1;
+        }
+    }
+
+    if (s1.length() < s2.length()) {
+        return -1;
+    } else if (s1.length() > s2.length()) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 string ChuyenMaSachThanhTenSach(const string&  ma_sach){
@@ -396,14 +432,6 @@ string ChuyenMaSachThanhTenSach(const string&  ma_sach){
     }else{
         return "";
     }
-}
-
-void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
-    DauSach* new_DauSach = new DauSach(ds);
-    ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
-    new_DauSach->SoLuongDanhMucSachTrongDausach++;
-    int vi_tri_them;
-    ChenDauSachTheoThuTu(new_DauSach,new_DauSach->tensach,vi_tri_them);
 }
 
 void TaoMaSach(string& ma_sach, DauSach* ds) {
@@ -431,42 +459,6 @@ void NhapDauSach(int index_isbn,int trang_thai,string vi_tri,string ma_sach){
     danh_sach_dau_sach.node[index_isbn]->SoLuongDanhMucSachTrongDausach++;
 }
 
-void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach){
-    int index_isbn = TimKiemViTriDauSach(ds.ISBN);
-
-    if(!TonTaiDauSach(index_isbn)){
-        ThemDauSach(ds,trang_thai,vi_tri,ma_sach);
-    }else {
-        NhapDauSach(index_isbn,trang_thai,vi_tri,ma_sach);
-    }
-}
-
-int SoSanhTiengViet(const QString &s1, const QString &s2) {
-    QString alphabet = "aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬbBcCdDđĐeéèẻẽẹêếềểễệEÉÈẺẼẸÊẾỀỂỄỆfFgGhHiíìỉĩịIÍÌỈĨỊjJkKlLmMnNoóòỏõọôốồổỗộơờớởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỜỚỞỠỢpPqQrRsStTuúùủũụưứừửữựUÚÙỦŨỤƯỨỪỬỮỰvVwWxXyýỳỷỹỵYYỲỶỸỴzZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-
-    int len = (s1.length() < s2.length()) ? s1.length() : s2.length();
-
-    for (int i = 0; i < len; ++i) {
-        QChar c1 = s1[i];
-        QChar c2 = s2[i];
-
-        int rank1 = alphabet.indexOf(c1);
-        int rank2 = alphabet.indexOf(c2);
-
-        if (rank1 != rank2) {
-            return (rank1 < rank2) ? -1 : 1;
-        }
-    }
-
-    if (s1.length() < s2.length()) {
-        return -1;
-    } else if (s1.length() > s2.length()) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
 void XacDinhViTriThem(const string &ten_sach, int &vi_tri_them) {
     QString ten_sach_qt = QString::fromStdString(ten_sach);
 
@@ -487,13 +479,6 @@ void DoiViTriDauSachThem(int vi_tri_them){
     danh_sach_dau_sach.soluongdausach++;
 }
 
-void DoiViTriDauSachXoa(int index){
-    for (int i = index; i < danh_sach_dau_sach.soluongdausach - 1; i++) {
-        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i + 1];
-    }
-    danh_sach_dau_sach.soluongdausach--;
-}
-
 void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_them){
     int n = danh_sach_dau_sach.soluongdausach;
     vi_tri_them = n ;
@@ -502,11 +487,36 @@ void ChenDauSachTheoThuTu(DauSach*& Dau_Sach_moi,string ten_sach,int &vi_tri_the
     danh_sach_dau_sach.node[vi_tri_them] = Dau_Sach_moi;
 }
 
+void ThemDauSach(DauSach& ds,int trang_thai,string vi_tri,string ma_sach){
+    DauSach* new_DauSach = new DauSach(ds);
+    ThemDanhMucSach(new_DauSach,trang_thai,vi_tri,ma_sach);
+    new_DauSach->SoLuongDanhMucSachTrongDausach++;
+    int vi_tri_them;
+    ChenDauSachTheoThuTu(new_DauSach,new_DauSach->tensach,vi_tri_them);
+}
+
+void ThemHoacNhapDauSach(DauSach ds,int trang_thai,string vi_tri,string ma_sach){
+    int index_isbn = TimKiemViTriDauSach(ds.ISBN);
+
+    if(!TonTaiDauSach(index_isbn)){
+        ThemDauSach(ds,trang_thai,vi_tri,ma_sach);
+    }else {
+        NhapDauSach(index_isbn,trang_thai,vi_tri,ma_sach);
+    }
+}
+
 void ChenDauSachSauKhiThayDoi(string ten_sach,int &index_hien_tai){
     DauSach* temp_ds = danh_sach_dau_sach.node[index_hien_tai];
     DoiViTriDauSachXoa(index_hien_tai);
     ChenDauSachTheoThuTu(temp_ds,ten_sach,index_hien_tai);
 
+}
+
+void DoiViTriDauSachXoa(int index){
+    for (int i = index; i < danh_sach_dau_sach.soluongdausach - 1; i++) {
+        danh_sach_dau_sach.node[i] = danh_sach_dau_sach.node[i + 1];
+    }
+    danh_sach_dau_sach.soluongdausach--;
 }
 
 void XoaDauSach(int index){
@@ -533,10 +543,10 @@ void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
     dms->trangthai = trang_thai;
 }
 
-void DocTuFileDauSach(QWidget* parent) {
+void DocTuFileDauSach() {
     ifstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
-        QMessageBox::warning(parent, "Lỗi", "Không thể mở file Danh_sach_dau_sach.txt");
+        QMessageBox::warning(nullptr, "Lỗi", "Không thể mở file Danh_sach_dau_sach.txt");
         return;
     }
 
@@ -594,7 +604,7 @@ void DocTuFileDauSach(QWidget* parent) {
 void GhiDauSachVaoFile() {
     ofstream file("Danh_sach_dau_sach.txt");
     if (!file.is_open()) {
-        qDebug() << "Không thể mở tệp Danh_sach_dau_sach.txt để ghi."; // Báo lỗi bằng dialog
+        QMessageBox::critical(nullptr,"Lỗi","Không thể mở tệp Danh_sach_dau_sach.txt để ghi.");
         return;
     }
 

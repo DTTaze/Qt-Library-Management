@@ -23,7 +23,7 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
 {
     ui->setupUi(this);
     QLocale::setDefault(QLocale(QLocale::Vietnamese, QLocale::Vietnam));
-    DocTuFileDauSach(this);
+    DocTuFileDauSach();
 
     InToanBoDauSach(ui->tableWidget_dausach);
 
