@@ -50,7 +50,7 @@
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="2" column="1">
-     <widget class="QSpinBox" name="spinBox_namsb">
+     <widget class="QSpinBox" name="spinBox_namxb">
       <property name="maximum">
        <number>10000</number>
       </property>
@@ -295,7 +295,7 @@
        <string notr="true">font-size: 15px;color:black;font-weight:700;</string>
       </property>
       <property name="text">
-       <string>năm suất bản</string>
+       <string>Năm xuất bản</string>
       </property>
      </widget>
     </item>
@@ -331,7 +331,7 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>spinBox_namsb</tabstop>
+  <tabstop>spinBox_namxb</tabstop>
   <tabstop>lineEdit_tensach</tabstop>
   <tabstop>lineEdit_theloai</tabstop>
   <tabstop>spinBox_sotrang</tabstop>

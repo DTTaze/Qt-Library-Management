@@ -126,14 +126,14 @@ void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
         QTableWidgetItem* tenSachItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
         QTableWidgetItem* soTrangItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->sotrang));
         QTableWidgetItem* tacGiaItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
-        QTableWidgetItem* namSXItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namsx));
+        QTableWidgetItem* namXBItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namxb));
         QTableWidgetItem* theLoaiItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai));
 
         tableWidget_dausach->setItem(i, 0, isbnItem);
         tableWidget_dausach->setItem(i, 1, tenSachItem);
         tableWidget_dausach->setItem(i, 2, soTrangItem);
         tableWidget_dausach->setItem(i, 3, tacGiaItem);
-        tableWidget_dausach->setItem(i, 4, namSXItem);
+        tableWidget_dausach->setItem(i, 4, namXBItem);
         tableWidget_dausach->setItem(i, 5, theLoaiItem);
 
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
@@ -189,13 +189,13 @@ void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
             QTableWidgetItem* isbnItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->ISBN));
             QTableWidgetItem* tenSachItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tensach));
             QTableWidgetItem* tacGiaItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->tacgia));
-            QTableWidgetItem* namSXItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namsx));
+            QTableWidgetItem* namXBItem = new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[i]->namxb));
             QTableWidgetItem* theLoaiItem = new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[i]->theloai));
 
             tableWidget_dausach->setItem(row_count, 0, isbnItem);
             tableWidget_dausach->setItem(row_count, 1, tenSachItem);
             tableWidget_dausach->setItem(row_count, 2, tacGiaItem);
-            tableWidget_dausach->setItem(row_count, 3, namSXItem);
+            tableWidget_dausach->setItem(row_count, 3, namXBItem);
             tableWidget_dausach->setItem(row_count, 4, theLoaiItem);
 
             QTableWidgetItem *item = new QTableWidgetItem(QString::number(i));
@@ -358,9 +358,9 @@ void InTheoTungTheLoai(QTableView* tableView_intheloai) {
         item_tacgia->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         model->setItem(row_index, 4, item_tacgia);
 
-        QStandardItem* item_namsx = new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namsx));
-        item_namsx->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-        model->setItem(row_index, 5, item_namsx);
+        QStandardItem* item_namxb = new QStandardItem(QString::number(danh_sach_dau_sach.node[copy[i]]->namxb));
+        item_namxb->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        model->setItem(row_index, 5, item_namxb);
 
         row_index++;
     }
@@ -400,7 +400,7 @@ int TimKiemViTriDauSach(string ma) {
 }
 
 int SoSanhTiengViet(const QString &s1, const QString &s2) {
-    QString alphabet = "aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬbBcCdđDĐeéèẻẽẹêếềểễệEÉÈẺẼẸÊẾỀỂỄỆfFgGhHiíìỉĩịIÍÌỈĨỊjJkKlLmMnNoóòỏõọôốồổỗộơờớởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỜỚỞỠỢpPqQrRsStTuúùủũụưứừửữựUÚÙỦŨỤƯỨỪỬỮỰvVwWxXyýỳỷỹỵYYỲỶỸỴzZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    QString alphabet = "0123456789aáàảãạăắằẳẵặâấầẩẫậAÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬbBcCdđDĐeéèẻẽẹêếềểễệEÉÈẺẼẸÊẾỀỂỄỆfFgGhHiíìỉĩịIÍÌỈĨỊjJkKlLmMnNoóòỏõọôốồổỗộơờớởỡợOÓÒỎÕỌÔỐỒỔỖỘƠỜỚỞỠỢpPqQrRsStTuúùủũụưứừửữựUÚÙỦŨỤƯỨỪỬỮỰvVwWxXyýỳỷỹỵYYỲỶỸỴzZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
     int len = (s1.length() < s2.length()) ? s1.length() : s2.length();
 
@@ -553,7 +553,7 @@ void DocTuFileDauSach() {
     string line;
     while (getline(file, line)) {
         string ISBN, tensach, tacgia, theloai, vitri, masach;
-        int sotrang = 0, namsx = 0,trangthai= -1;
+        int sotrang = 0, namxb = 0,trangthai= -1;
 
         size_t pos = 0;
 
@@ -570,7 +570,7 @@ void DocTuFileDauSach() {
         tacgia = line.substr(0, pos); line.erase(0, pos + 1);
 
         pos = line.find('|');
-        namsx = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
+        namxb = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
 
         pos = line.find('|');
         theloai = line.substr(0, pos); line.erase(0, pos + 1);
@@ -594,7 +594,7 @@ void DocTuFileDauSach() {
         ds.tensach = tensach;
         ds.sotrang = sotrang;
         ds.tacgia = tacgia;
-        ds.namsx = namsx;
+        ds.namxb = namxb;
         ds.theloai = theloai;
         ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
     }
@@ -615,7 +615,7 @@ void GhiDauSachVaoFile() {
                  << dau_sach->tensach << '|'
                  << dau_sach->sotrang << '|'
                  << dau_sach->tacgia << '|'
-                 << dau_sach->namsx << '|'
+                 << dau_sach->namxb << '|'
                  << dau_sach->theloai << '|'
                  << cur->vitri << '|'
                  << cur->trangthai << '|'

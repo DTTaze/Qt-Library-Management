@@ -550,7 +550,7 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-bool LibraryManagementSystem::laISBN( string text ) {
+bool LibraryManagementSystem::laISBN( string text ) {//*****************************xóa hàm này, dùng hàm MaISBNQTHopLe
     return text.length() == 13 || text.length() == 17;
 }
 
@@ -675,10 +675,10 @@ string LibraryManagementSystem::getMaSach(){
 string LibraryManagementSystem::getmaSachCoTheMuon() {
     string ma_ISBN = getMaSach();
     int vitri = TimKiemViTriDauSach(ma_ISBN);
-    if (vitri != -1) {
+    if (!TonTaiDauSach(vitri)) {
         DanhMucSach* danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
         while (danh_muc_sach != nullptr) {
-            if(danh_muc_sach->trangthai == 0) {
+            if(danh_muc_sach->trangthai == co_the_muon) {
                 return danh_muc_sach->masach;
             }
             danh_muc_sach = danh_muc_sach->next;
@@ -691,7 +691,7 @@ bool LibraryManagementSystem::MaTheHoacMaSachKhongTonTai() {
     Danh_Sach_The_Doc_Gia *doc_gia = timKiemTheDocGia(getmaThe());
     if(doc_gia == nullptr) return true;
     int vitridausach = TimKiemViTriDauSach(getMaSach());
-    if(vitridausach == -1) return true;
+    if(!TonTaiDauSach(vitridausach)) return true;
 
     return false;
 }

@@ -25,7 +25,7 @@ void nhap_dausach::KhoaNhapDauSach(){
     ui->lineEdit_tacgia_2->setReadOnly(true);
     ui->lineEdit_tensach_2->setReadOnly(true);
     ui->lineEdit_theloai_2->setReadOnly(true);
-    ui->spinBox_namsb_2->setReadOnly(true);
+    ui->spinBox_namxb_2->setReadOnly(true);
     ui->spinBox_sotrang_2->setReadOnly(true);
     ui->comboBox_vitri_2->setEnabled(false);
     ui->spinBox_soluong_2->setReadOnly(true);
@@ -40,7 +40,7 @@ void nhap_dausach::XoaThongTinTrongNhapDauSach(){
     ui->lineEdit_tacgia_2->setText("");
     ui->lineEdit_tensach_2->setText("");
     ui->lineEdit_theloai_2->setText("");
-    ui->spinBox_namsb_2->setValue(0);
+    ui->spinBox_namxb_2->setValue(0);
     ui->spinBox_sotrang_2->setValue(0);
     ui->comboBox_vitri_2->setCurrentText("");
 }
@@ -50,7 +50,7 @@ void nhap_dausach::HienThiThongTinSachTrongNhapDauSach(int index_dausach){
     ui->lineEdit_tensach_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->tensach));
     ui->lineEdit_theloai_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->theloai));
     ui->comboBox_vitri_2->setCurrentText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->dms->vitri));
-    ui->spinBox_namsb_2->setValue(danh_sach_dau_sach.node[index_dausach]->namsx);
+    ui->spinBox_namxb_2->setValue(danh_sach_dau_sach.node[index_dausach]->namxb);
     ui->spinBox_sotrang_2->setValue(danh_sach_dau_sach.node[index_dausach]->sotrang);
 }
 
@@ -112,7 +112,7 @@ void nhap_dausach::on_pushButton_nhap_clicked()
     QString theloai = ui->lineEdit_theloai_2->text().simplified();
     QString vitri = ui->comboBox_vitri_2->currentText().simplified();
     int sotrang = ui->spinBox_sotrang_2->value();
-    int namsx = ui->spinBox_namsb_2->value();
+    int namxb = ui->spinBox_namxb_2->value();
     int soluong = ui->spinBox_soluong_2->value();
 
     // Chuyển đổi sang string
@@ -147,7 +147,7 @@ void nhap_dausach::on_pushButton_nhap_clicked()
         ds.tensach = tensachStd;
         ds.sotrang = sotrang;
         ds.tacgia = tacgiaStd;
-        ds.namsx = namsx;
+        ds.namxb = namxb;
         ds.theloai = theloaiStd;
         ThemHoacNhapDauSach(ds, co_the_muon, vitriStd, "");
     }
@@ -159,7 +159,7 @@ void nhap_dausach::on_pushButton_nhap_clicked()
                               .arg(QString::fromStdString(tacgiaStd))
                               .arg(QString::fromStdString(theloaiStd))
                               .arg(sotrang)
-                              .arg(namsx)
+                              .arg(namxb)
                               .arg(QString::fromStdString(vitriStd))
                               .arg(soluong);
 

@@ -129,7 +129,7 @@
     <string>Tên sách</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_namsb_1">
+  <widget class="QSpinBox" name="spinBox_namxb_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -155,7 +155,7 @@
     <string notr="true">font-size: 15px;color:black;font-weight:700;</string>
    </property>
    <property name="text">
-    <string>năm suất bản</string>
+    <string>năm xuất bản</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox_sotrang_1">
