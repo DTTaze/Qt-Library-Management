@@ -19,7 +19,7 @@ void themdausach::KhoaThemDauSach(){
     ui->lineEdit_tensach->setReadOnly(true);
     ui->lineEdit_theloai->setReadOnly(true);
     ui->comboBox_vitri->setEnabled(false);
-    ui->spinBox_namsb->setReadOnly(true);
+    ui->spinBox_namxb->setReadOnly(true);
     ui->spinBox_sotrang->setReadOnly(true);
 }
 
@@ -28,7 +28,7 @@ void themdausach::MoKhoaThemDauSach(){
     ui->lineEdit_tensach->setReadOnly(false);
     ui->lineEdit_theloai->setReadOnly(false);
     ui->comboBox_vitri->setEnabled(true);
-    ui->spinBox_namsb->setReadOnly(false);
+    ui->spinBox_namxb->setReadOnly(false);
     ui->spinBox_sotrang->setReadOnly(false);
 }
 
@@ -40,7 +40,7 @@ void themdausach::on_pushButton_clicked() {
     QString theloai = ui->lineEdit_theloai->text().simplified();
     QString vitri = ui->comboBox_vitri->currentText().simplified();
     int sotrang = ui->spinBox_sotrang->value();
-    int namsx = ui->spinBox_namsb->value();
+    int namxb = ui->spinBox_namxb->value();
     int soluong = ui->spinBox_soluong->value();
 
     // Chuyển đổi sang string
@@ -82,7 +82,7 @@ void themdausach::on_pushButton_clicked() {
         errorMessage += "Số trang phải lớn hơn 0.\n";
     }
 
-    if (namsx <= 0) {
+    if (namxb <= 0) {
         errorMessage += "Năm xuất bản không hợp lệ.\n";
     }
 
@@ -98,7 +98,7 @@ void themdausach::on_pushButton_clicked() {
         ds.tensach = tensachStd;
         ds.sotrang = sotrang;
         ds.tacgia = tacgiaStd;
-        ds.namsx = namsx;
+        ds.namxb = namxb;
         ds.theloai = theloaiStd;
         ThemHoacNhapDauSach(ds, co_the_muon, vitriStd, "");
     }
@@ -110,7 +110,7 @@ void themdausach::on_pushButton_clicked() {
                               .arg(QString::fromStdString(tacgiaStd))
                               .arg(QString::fromStdString(theloaiStd))
                               .arg(sotrang)
-                              .arg(namsx)
+                              .arg(namxb)
                               .arg(QString::fromStdString(vitriStd));
 
     QMessageBox::information(this, "Đầu sách đã thêm", infoMessage);
@@ -165,7 +165,7 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
     }
 }
 
-void themdausach::on_spinBox_namsb_valueChanged(int arg1)
+void themdausach::on_spinBox_namxb_valueChanged(int arg1)
 {
     if(arg1 != 0){
         // Lay nam hien tai
@@ -178,7 +178,7 @@ void themdausach::on_spinBox_namsb_valueChanged(int arg1)
             QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
 
             // Đặt lại giá trị cho QSpinBox về năm hiện tại
-            ui->spinBox_namsb->setValue(currentYear);
+            ui->spinBox_namxb->setValue(currentYear);
         }
     }
 }

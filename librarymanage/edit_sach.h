@@ -27,7 +27,7 @@ private slots:
 
     void on_lineEdit_ISBN_1_textChanged(const QString &arg1);
 
-    void on_spinBox_namsb_1_valueChanged(int arg1);
+    void on_spinBox_namxb_1_valueChanged(int arg1);
 
     void on_lineEdit_tensach_1_textChanged(const QString &arg1);
 

@@ -23,7 +23,7 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_spinBox_namsb_valueChanged(int arg1);
+    void on_spinBox_namxb_valueChanged(int arg1);
 
     void on_lineEdit_ISBN_textChanged(const QString &arg1);
 

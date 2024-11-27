@@ -21,7 +21,7 @@ void Edit_sach::KhoaEditDauSach(){
     ui->lineEdit_tacgia_1->setReadOnly(true);
     ui->lineEdit_tensach_1->setReadOnly(true);
     ui->lineEdit_theloai_1->setReadOnly(true);
-    ui->spinBox_namsb_1->setReadOnly(true);
+    ui->spinBox_namxb_1->setReadOnly(true);
     ui->spinBox_sotrang_1->setReadOnly(true);
 }
 
@@ -29,7 +29,7 @@ void Edit_sach::MoKhoaEditDauSach(){
     ui->lineEdit_tacgia_1->setReadOnly(false);
     ui->lineEdit_tensach_1->setReadOnly(false);
     ui->lineEdit_theloai_1->setReadOnly(false);
-    ui->spinBox_namsb_1->setReadOnly(false);
+    ui->spinBox_namxb_1->setReadOnly(false);
     ui->spinBox_sotrang_1->setReadOnly(false);
 }
 
@@ -37,7 +37,7 @@ void Edit_sach::HienThiThongTinSachTrongEditSach(int index_dausach){
     ui->lineEdit_tacgia_1->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->tacgia));
     ui->lineEdit_tensach_1->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->tensach));
     ui->lineEdit_theloai_1->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->theloai));
-    ui->spinBox_namsb_1->setValue(danh_sach_dau_sach.node[index_dausach]->namsx);
+    ui->spinBox_namxb_1->setValue(danh_sach_dau_sach.node[index_dausach]->namxb);
     ui->spinBox_sotrang_1->setValue(danh_sach_dau_sach.node[index_dausach]->sotrang);
     HienThiDanhMucSachTrongEditSach(index_dausach);
 }
@@ -74,7 +74,7 @@ void Edit_sach::XoaThongTinTrongEditSach(){
     ui->lineEdit_tacgia_1->setText("");
     ui->lineEdit_tensach_1->setText("");
     ui->lineEdit_theloai_1->setText("");
-    ui->spinBox_namsb_1->setValue(0);
+    ui->spinBox_namxb_1->setValue(0);
     ui->spinBox_sotrang_1->setValue(0);
     ui->tableWidget_danhmucsach_1->clearContents();
     ui->tableWidget_danhmucsach_1->setRowCount(0);
@@ -87,7 +87,7 @@ void Edit_sach::on_pushButton_ok_clicked()
     QString tacgia = ui->lineEdit_tacgia_1->text().simplified();
     QString theloai = ui->lineEdit_theloai_1->text().simplified();
     int sotrang = ui->spinBox_sotrang_1->value();
-    int namsx = ui->spinBox_namsb_1->value();
+    int namxb = ui->spinBox_namxb_1->value();
 
     string isbnStd = ISBN.toStdString();
     string tensachStd = tensach.toStdString();
@@ -125,7 +125,7 @@ void Edit_sach::on_pushButton_ok_clicked()
         errorMessage += "Số trang phải lớn hơn 0.\n";
     }
 
-    if (namsx <= 0) {
+    if (namxb <= 0) {
         errorMessage += "Năm xuất bản phải lớn hơn 0.\n";
     }
 
@@ -141,7 +141,7 @@ void Edit_sach::on_pushButton_ok_clicked()
     danh_sach_dau_sach.node[index_dausach]->tacgia = tacgiaStd;
     danh_sach_dau_sach.node[index_dausach]->theloai = theloaiStd;
     danh_sach_dau_sach.node[index_dausach]->sotrang = sotrang;
-    danh_sach_dau_sach.node[index_dausach]->namsx = namsx;
+    danh_sach_dau_sach.node[index_dausach]->namxb = namxb;
 
     accept();
 }
@@ -189,7 +189,7 @@ void Edit_sach::on_lineEdit_ISBN_1_textChanged(const QString &text)
 
 
 
-void Edit_sach::on_spinBox_namsb_1_valueChanged(int arg1)
+void Edit_sach::on_spinBox_namxb_1_valueChanged(int arg1)
 {
     if(arg1 != 0){
         std::time_t now = std::time(0);
@@ -197,7 +197,7 @@ void Edit_sach::on_spinBox_namsb_1_valueChanged(int arg1)
         int currentYear = localTime->tm_year + 1900;
         if (arg1 > currentYear) {
             QMessageBox::warning(this, "Lỗi", "Năm không hợp lệ! Vui lòng nhập lại.");
-            ui->spinBox_namsb_1->setValue(currentYear);
+            ui->spinBox_namxb_1->setValue(currentYear);
         }
     }
 }

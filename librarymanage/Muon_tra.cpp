@@ -201,7 +201,7 @@ void Top10QuyenSachNhieuLuotMuonNhat(int &SoLuongSach, SachMuon DanhSachSachMuon
         tableWidget->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(DanhSachSachMuon[row].masach)));
         tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(ChuyenMaSachThanhTenSach( DanhSachSachMuon[row].masach))));
         tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(danh_sach_dau_sach.node[vitri]->tacgia)));
-        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namsx)));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(danh_sach_dau_sach.node[vitri]->namxb)));
         tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(DanhSachSachMuon[row].demsoluotmuon)));
     }
     tableWidget->resizeColumnsToContents();

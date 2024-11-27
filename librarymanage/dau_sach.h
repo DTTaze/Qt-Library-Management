@@ -48,17 +48,17 @@ struct DauSach {
     string tensach;
     int sotrang;
     string tacgia;
-    int namsx;
+    int namxb;
     int SoLuongDanhMucSachTrongDausach = 0;
     string theloai;
     DanhMucSach* dms = nullptr;
     DauSach(){}
     DauSach(const DauSach& ds)
         : ISBN(ds.ISBN), tensach(ds.tensach), sotrang(ds.sotrang), tacgia(ds.tacgia),
-        namsx(ds.namsx), SoLuongDanhMucSachTrongDausach(ds.SoLuongDanhMucSachTrongDausach),
+        namxb(ds.namxb), SoLuongDanhMucSachTrongDausach(ds.SoLuongDanhMucSachTrongDausach),
         theloai(ds.theloai) {
         if (ds.dms != nullptr) {
-            dms = new DanhMucSach(*ds.dms);
+            dms = ds.dms;
         }
     }
 };
@@ -120,6 +120,7 @@ void XoaDauSach(int index);
 // Cập nhật trạng thái sách trong danh mục sách
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string ma_sach);
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai);
+
 // Đọc/Ghi file
 void DocTuFileDauSach();
 void GhiDauSachVaoFile();

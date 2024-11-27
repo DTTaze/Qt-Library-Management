@@ -44,7 +44,7 @@ void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
     ui->lineEdit_tensach->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tensach));
     ui->lineEdit_sotrang->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->sotrang));
     ui->lineEdit_tacgia->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->tacgia));
-    ui->lineEdit_namsb->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->namsx));
+    ui->lineEdit_namsb->setText(QString::number(danh_sach_dau_sach.node[vi_tri]->namxb));
     ui->lineEdit_theloai->setText(QString::fromStdString(danh_sach_dau_sach.node[vi_tri]->theloai));
 
     int row_count = 0;

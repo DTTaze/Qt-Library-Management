@@ -11,7 +11,7 @@ Xoa_dau_sach::Xoa_dau_sach(int index,QWidget *parent)
     ui->lineEdit_tacgia_2->setReadOnly(true);
     ui->lineEdit_tensach_2->setReadOnly(true);
     ui->lineEdit_theloai_2->setReadOnly(true);
-    ui->spinBox_namsb_2->setReadOnly(true);
+    ui->spinBox_namxb_2->setReadOnly(true);
     ui->spinBox_sotrang_2->setReadOnly(true);
 
     if(index_dausach != -1){
@@ -57,7 +57,7 @@ void Xoa_dau_sach::HienThiThongTinSachTrongXoatSach(int index_dausach){
     ui->lineEdit_tacgia_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->tacgia));
     ui->lineEdit_tensach_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->tensach));
     ui->lineEdit_theloai_2->setText(QString::fromStdString(danh_sach_dau_sach.node[index_dausach]->theloai));
-    ui->spinBox_namsb_2->setValue(danh_sach_dau_sach.node[index_dausach]->namsx);
+    ui->spinBox_namxb_2->setValue(danh_sach_dau_sach.node[index_dausach]->namxb);
     ui->spinBox_sotrang_2->setValue(danh_sach_dau_sach.node[index_dausach]->sotrang);
     HienThiDanhMucSachTrongXoaSach(index_dausach);
 }
@@ -66,7 +66,7 @@ void Xoa_dau_sach::XoaThongTinTrongXoaSach(){
     ui->lineEdit_tacgia_2->setText("");
     ui->lineEdit_tensach_2->setText("");
     ui->lineEdit_theloai_2->setText("");
-    ui->spinBox_namsb_2->setValue(0);
+    ui->spinBox_namxb_2->setValue(0);
     ui->spinBox_sotrang_2->setValue(0);
     ui->tableWidget_danhmucsach_2->clearContents();
     ui->tableWidget_danhmucsach_2->setRowCount(0);
