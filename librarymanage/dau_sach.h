@@ -58,11 +58,10 @@ struct DauSach {
         namsx(ds.namsx), SoLuongDanhMucSachTrongDausach(ds.SoLuongDanhMucSachTrongDausach),
         theloai(ds.theloai) {
         if (ds.dms != nullptr) {
-            dms = new DanhMucSach(*ds.dms); // Sao chép DanhMucSach nếu cần
+            dms = new DanhMucSach(*ds.dms);
         }
     }
 };
-
 
 struct DanhSachDauSach{
     int soluongdausach= 0;
@@ -70,8 +69,8 @@ struct DanhSachDauSach{
     DanhSachDauSach(){}
 };
 
-
 extern DanhSachDauSach danh_sach_dau_sach;
+
 // Xử lý chuỗi
 QString RemoveSpace(const QString &key);
 QString CapitalizeWords(const QString& text);

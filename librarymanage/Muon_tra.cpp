@@ -25,8 +25,8 @@ int DemSoSachDangMuon(DanhSachMUONTRA* head) {
     DanhSachMUONTRA *current = head;
     int soSachDangMuon = 0;
 
-    while( current != nullptr) {
-        if( chuaTraSach(current) ) {
+    while(current != nullptr) {
+        if(chuaTraSach(current)) {
             soSachDangMuon++;
         }
         current = current->next;
@@ -154,6 +154,10 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
     }
 }
 //-----------------------------------------------------Mất Sách Và Đền Sách--------------------------------------------------------------
+bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
+}
+
 void ChuaDenSach(int mathe, string masach) {
     Danh_Sach_The_Doc_Gia *p = timKiemTheDocGia(mathe);
     p->thong_tin.TrangThai = Khoa;
@@ -166,7 +170,10 @@ void ChuaDenSach(int mathe, string masach) {
         }
         sach_mat = sach_mat->next;
     }
+}
 
+bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
+    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
 }
 
 void DaDenSach(int mathe, string masach) {
@@ -181,14 +188,6 @@ void DaDenSach(int mathe, string masach) {
         }
         sach_mat = sach_mat->next;
     }
-}
-
-bool SachChuaTra(DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai == Chua_Tra ? true : false;
-}
-
-bool SachChuaTraHoacMatSach (DanhSachMUONTRA *sach_mat, string masach) {
-    return sach_mat->data.masach == masach && sach_mat->data.trangthai != Da_Tra ? true : false;
 }
 //---------------------------------------------------------------------Top 10 Sách được mượn nhiều nhất--------------------------------
 
@@ -253,10 +252,8 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) {
 void MergeSortSachMuon(SachMuon* arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
-
         MergeSortSachMuon(arr, left, mid);
         MergeSortSachMuon(arr, mid + 1, right);
-
         MergeSachMuon(arr, left, mid, right);
     }
 }
@@ -316,7 +313,6 @@ void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia
         row++;
     }
     tableWidget->resizeColumnsToContents();
-
     GiaiPhongDanhSachDocGiaMuonQuaHan(current);
 }
 

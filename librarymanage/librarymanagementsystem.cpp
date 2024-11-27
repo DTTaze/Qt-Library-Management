@@ -387,6 +387,7 @@ bool LibraryManagementSystem::hetMaThe() {
 void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 {
     themDocGia_Dialog themDocGia;
+    themDocGia.setWindowTitle("Thêm độc giả");
 
     if ( hetMaThe() ) {
         QMessageBox::warning(nullptr, "Thông báo", "Đã hết mã thẻ");
@@ -419,6 +420,7 @@ void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
     int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
 
     hieuChinhDocGia_dialog hieuChinhDocGia;
+    hieuChinhDocGia.setWindowTitle("Hiệu chỉnh thông tin độc giả");
     hieuChinhDocGia.setModal(true);
 
     if (currentRow != -1) {
@@ -454,6 +456,7 @@ void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
 {
     xoaDocGia_dialog xoaDocGia;
+    xoaDocGia.setWindowTitle("Xóa độc giả");
     xoaDocGia.setModal(true);
     if ( xoaDocGia.exec() == QDialog::Accepted ) {
         Saved = false;

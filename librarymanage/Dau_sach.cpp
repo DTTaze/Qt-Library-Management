@@ -76,29 +76,17 @@ void LocKiTuTensachHopLe(const QString& text,string& valid_key){
     valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 }
 
-bool DayDauSach(){
-    if (danh_sach_dau_sach.soluongdausach >= MAXSACH){
-        return true;
-    }else{
-        return false;
-    };
+bool DayDauSach() {
+    return danh_sach_dau_sach.soluongdausach >= MAXSACH ? true : false;
 }
 
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index){
-    for (DanhMucSach* cur = danh_sach_dau_sach.node[index]->dms;cur!=nullptr;cur=cur->next){
-        if(cur->trangthai == da_duoc_muon){
+    for (DanhMucSach* current = danh_sach_dau_sach.node[index]->dms; current != nullptr; current = current->next){
+        if(current->trangthai == da_duoc_muon){
             return true;
         }
     }
     return false;
-}
-
-bool TonTaiMaSach(string ma_sach){
-    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
-}
-
-bool TonTaiDauSach(int index){
-    return ( index == -1 ) ? false:true;
 }
 
 void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
@@ -425,6 +413,10 @@ int SoSanhTiengViet(const QString &s1, const QString &s2) {
     }
 }
 
+bool TonTaiDauSach(int index){
+    return ( index == -1 ) ? false:true;
+}
+
 string ChuyenMaSachThanhTenSach(const string&  ma_sach){
     int i = TimKiemViTriDauSach(ma_sach);
     if (TonTaiDauSach(i)){
@@ -527,7 +519,7 @@ void XoaDauSach(int index){
 DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
     int vitri = TimKiemViTriDauSach(maSach);
     if (!TonTaiDauSach) {
-        QString mes; mes+="Không tồn tại đầu sách có mã"+QString::fromStdString(maSach);
+        QString mes; mes+="Không tồn tại đầu sách có mã" + QString::fromStdString(maSach);
         QMessageBox::critical(nullptr,"Lỗi",mes);
         return nullptr;
     }
@@ -536,6 +528,10 @@ DanhMucSach* TimDiaChiSachTrongDanhMucSach(string maSach) {
         if (current->masach == maSach) return current;
     }
     return nullptr;
+}
+
+bool TonTaiMaSach(string ma_sach){
+    return TimDiaChiSachTrongDanhMucSach(ma_sach) != nullptr ? true : false;
 }
 
 void CapNhatTrangThaiSach(string ma_sach,int trang_thai){
