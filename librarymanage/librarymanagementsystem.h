@@ -94,8 +94,6 @@ private slots:
 
     void on_xoaDocGia_pushButton_clicked();
 //---------------------------------------------------------------Hàm Mượn Trả -----------------------------------------------------------------------------------------------------------
-    bool laISBN(string text );
-
     bool laMaSach(string text);
 
     void clearBookInformation();

@@ -553,10 +553,6 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
     ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-bool LibraryManagementSystem::laISBN( string text ) {//*****************************xóa hàm này, dùng hàm MaISBNQTHopLe
-    return text.length() == 13 || text.length() == 17;
-}
-
 bool LibraryManagementSystem::laMaSach( string text ) {
     return text.length() > 18;
 }
@@ -567,7 +563,7 @@ void LibraryManagementSystem::clearBookInformation() {
 }
 
 void LibraryManagementSystem::inThongTinmaSach(string text) {
-    if( laISBN(text) ) {
+    if( MaISBNQTHopLe(QString::fromStdString(text)) ) {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
     }
     else if( laMaSach(text)) {
@@ -604,7 +600,7 @@ void LibraryManagementSystem::inThongTinmaSach(string text) {
                 }
                 danh_muc_sach = danh_muc_sach->next;
             }
-        } else if ( laISBN(text) ) {
+        } else if ( MaISBNQTHopLe(QString::fromStdString(text))) {
             while( danh_muc_sach != nullptr ) {
                 if(danh_muc_sach->trangthai == 0) {
                     trang_thai_std = "Có thể mượn";
@@ -713,7 +709,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 
     string maSach = getMaSach();
 
-    if(laISBN(maSach)) {
+    if(MaISBNQTHopLe(QString::fromStdString(maSach))) {
         if(getmaSachCoTheMuon() == "") {
             QMessageBox::information(nullptr, "Thông báo", "Không thể mượn sách.");
             return;

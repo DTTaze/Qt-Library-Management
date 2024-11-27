@@ -49,11 +49,8 @@ struct danhSachDocGiaMuonQuaHan {
 
 
 //----------------------------------------------------------------Hàm liên quan mượn sách-----------------------------------------------------------------------------------------------
-void MuonSach(const int &maThe, const string& maSach);
 
 void ThemSachVaoLichSuMuonSach(DanhSachMUONTRA * &head, string ma,int trangthai, const Date &ngayMuon, const Date &ngayTra);
-
-bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) ;
 
 bool chuaTraSach(DanhSachMUONTRA *temp);
 
@@ -61,10 +58,13 @@ int DemSoSachDangMuon(DanhSachMUONTRA *demsach);
 
 bool CoSachMuonQuaHan(DanhSachMUONTRA *head);
 
+bool DocGiaDangMuonSachNay(Danh_Sach_The_Doc_Gia *doc_gia, string maSach) ;
+
 bool SachDaDuocMuonHoacThanhLy(string ma_sach) ;
 
 bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach);
 
+void MuonSach(const int &maThe, const string& maSach);
 //----------------------------------------------------------------Hàm liên quan trả sách-----------------------------------------------------------------------------------------------
 void TraSach(const unsigned int& ma_the, const string& ma_sach);
 //-----------------------------------------------------------------Mất Sách--------------------------------------------------------------
@@ -82,11 +82,11 @@ void MergeSachMuon(SachMuon* arr, int left, int mid, int right) ;
 
 void MergeSortSachMuon(SachMuon* arr, int left, int right);
 
+void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) ;
+
 void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra(int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra);
 
 int TimViTriMaSachTrongDanhSachSachMuon(int &SoLuongSach, SachMuon DanhSachSachMuon[], string maSach);
-
-void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachMuon[]) ;
 
 void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], Danh_Sach_The_Doc_Gia *root);
 //----------------------------------------------------------------Bảng danh sách độc giả mượn quá hạn--------------------------------------------------------------------------------------------------

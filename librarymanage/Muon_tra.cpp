@@ -297,6 +297,7 @@ void NhapThongTinVaoTop10(int &SoLuongSach, SachMuon DanhSachSachMuon[], Danh_Sa
 //-----------------------------------------------------------------Danh Sách Độc Giả Mượn Sách Quá Hạn------------------------------
 
 void inDanhSachDocGiaMuonQuaHan(QTableWidget *tableWidget, Danh_Sach_The_Doc_Gia *root) {
+    tableWidget->setRowCount(0);
     danhSachDocGiaMuonQuaHan* current = layDanhSachDocGiaMuonQuaHan(root);
     int row = 0;
     while( current != nullptr) {
