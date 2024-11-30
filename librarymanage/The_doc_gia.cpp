@@ -186,7 +186,7 @@ void Xoa_Doc_Gia(Danh_Sach_The_Doc_Gia*& root, const int& ma_the_doc_gia) {
             root = rp->ptr_right;
         }
         else if (root->ptr_right == nullptr) {
-            root = root->ptr_left;
+            root = rp->ptr_left;
         }
         else {
             Xoa_Truong_Hop_Co_Hai_Cay_Con(rp->ptr_right);

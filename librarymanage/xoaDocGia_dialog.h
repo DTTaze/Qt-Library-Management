@@ -15,6 +15,10 @@ class xoaDocGia_dialog : public QDialog
 public:
     explicit xoaDocGia_dialog(QWidget *parent = nullptr);
     ~xoaDocGia_dialog();
+    void setMaThe(int maThe);
+    void setHoVaTen(string ho, string ten);
+    void setTrangThaiThe(TrangThaiCuaThe trangthai);
+    void setGioiTinh(Phai gioiTinh);
     void xuLyChuoi(const QString &arg1, QLineEdit* lineEdit);
 
 private slots:

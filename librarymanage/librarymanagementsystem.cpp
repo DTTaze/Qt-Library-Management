@@ -417,12 +417,11 @@ void LibraryManagementSystem::on_themDocGia_pushButton_clicked()
 
 void LibraryManagementSystem::on_hieuChinhDocGia_pushButton_clicked()
 {
-    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
-
     hieuChinhDocGia_dialog hieuChinhDocGia;
     hieuChinhDocGia.setWindowTitle("Hiệu chỉnh thông tin độc giả");
     hieuChinhDocGia.setModal(true);
 
+    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
     if (currentRow != -1) {
         QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
         Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia( itemMaThe->text().toInt() );
@@ -458,12 +457,23 @@ void LibraryManagementSystem::on_xoaDocGia_pushButton_clicked()
     xoaDocGia_dialog xoaDocGia;
     xoaDocGia.setWindowTitle("Xóa độc giả");
     xoaDocGia.setModal(true);
-    if ( xoaDocGia.exec() == QDialog::Accepted ) {
-        Saved = false;
-        CapNhatBang();
-        QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
+
+    int currentRow = ui->danhSachTheDocGia_tableWidget->currentRow();
+    if ( currentRow != -1 ) {
+        QTableWidgetItem* itemMaThe = ui->danhSachTheDocGia_tableWidget->item(currentRow, 0);
+        Danh_Sach_The_Doc_Gia* docGia = timKiemTheDocGia( itemMaThe->text().toInt());
+
+        xoaDocGia.setMaThe(docGia->thong_tin.MATHE);
+        xoaDocGia.setHoVaTen(docGia->thong_tin.Ho, docGia->thong_tin.Ten);
+        xoaDocGia.setGioiTinh(docGia->thong_tin.phai);
+        xoaDocGia.setTrangThaiThe(docGia->thong_tin.TrangThai);
     }
 
+    if ( xoaDocGia.exec() == QDialog::Accepted ) {
+        Saved = false;
+        QMessageBox::information(this, "Thông báo", "Độc giả đã được xóa thành công.");
+    }
+    CapNhatBang();
 }
 //------------------------------------Hàm sử dụng ở thẻ Mượn Trả---------------------------------------------------------------------------------------------
 
@@ -674,7 +684,7 @@ string LibraryManagementSystem::getMaSach(){
 string LibraryManagementSystem::getmaSachCoTheMuon() {
     string ma_ISBN = getMaSach();
     int vitri = TimKiemViTriDauSach(ma_ISBN);
-    if (!TonTaiDauSach(vitri)) {
+    if (TonTaiDauSach(vitri)) {
         DanhMucSach* danh_muc_sach= danh_sach_dau_sach.node[vitri]->dms;
         while (danh_muc_sach != nullptr) {
             if(danh_muc_sach->trangthai == co_the_muon) {
@@ -726,7 +736,6 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
     ui->lineEdit_maSach->clear();
 
     Saved = false;
-
 }
 
 void LibraryManagementSystem::on_traSach_pushButton_clicked()

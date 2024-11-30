@@ -39,7 +39,7 @@ int hieuChinhDocGia_dialog::getMaThe() {
 }
 
 QString hieuChinhDocGia_dialog::getHoVaTen() {
-    return ui->hoVaTen_lineEdit->text();
+    return ui->hoVaTen_lineEdit->text().simplified();
 }
 Phai hieuChinhDocGia_dialog::getGioiTinh() {
     return ( ui->gioiTinh_comboBox->currentIndex() == 0 ) ? Nam : Nu;

@@ -13,6 +13,30 @@ xoaDocGia_dialog::~xoaDocGia_dialog()
     delete ui;
 }
 
+void xoaDocGia_dialog::setMaThe(int maThe) {
+    ui->maThe_lineEdit->setText(QString::number(maThe));
+}
+
+void xoaDocGia_dialog::setHoVaTen(string ho, string ten) {
+    ui->hoVaTen_lineEdit->setText(QString::fromStdString(ho) + " " + QString::fromStdString(ten));
+}
+
+void xoaDocGia_dialog::setGioiTinh(Phai gioitinh) {
+    if ( gioitinh == Nam) {
+        ui->gioiTinh_lineEdit->setText("Nam");
+    } else {
+        ui->gioiTinh_lineEdit->setText("Nữ");
+    }
+}
+
+void xoaDocGia_dialog::setTrangThaiThe(TrangThaiCuaThe trangthai) {
+    if ( trangthai == Dang_Hoat_Dong) {
+        ui->trangThaiThe_lineEdit->setText("Đang hoạt động");
+    } else {
+        ui->trangThaiThe_lineEdit->setText("Khóa");
+    }
+}
+
 void xoaDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     QString newText = arg1;
 
@@ -44,7 +68,7 @@ void xoaDocGia_dialog::on_maThe_lineEdit_textChanged(const QString &arg1)
         if ( docGia->thong_tin.TrangThai == Dang_Hoat_Dong ) {
             ui->trangThaiThe_lineEdit->setText("Đang hoạt động");
         } else {
-            ui->trangThaiThe_lineEdit->setText("Khóa");
+            ui->trangThaiThe_lineEdit->setText("Nữ");
         }
         ui->maThe_lineEdit->setStyleSheet("background-color: lightgreen");
     } else {
