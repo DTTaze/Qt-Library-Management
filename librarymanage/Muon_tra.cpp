@@ -98,12 +98,6 @@ bool KiemTraVaInRaLoiKhiMuonSach(int maThe, string maSach) {
         return false;
     }
 
-    int vitridausach = TimKiemViTriDauSach(maSach);
-    if(vitridausach == -1) {
-        QMessageBox::warning(nullptr, "Lỗi", "Không tìm thấy đầu sách.");
-        return false;
-    }
-
     if( SachDaDuocMuonHoacThanhLy(maSach)) {
         QMessageBox::warning(nullptr, "Lỗi", "Sách đã được mượn hoặc thanh lý.");
         return false;
@@ -348,7 +342,7 @@ void DuyetCayDeLayDocGiaQuaHan(danhSachDocGiaMuonQuaHan*& head, Danh_Sach_The_Do
     if (p->thong_tin.head_lsms != nullptr) {
         DanhSachMUONTRA* current = p->thong_tin.head_lsms;
         while (current != nullptr) {
-            if (current->data.trangthai == 0 && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > 0) {
+            if (current->data.trangthai == Chua_Tra && SoNgayQuaHan(current->data.NgayMuon, current->data.NgayTra) > 0) {
                 danhSachDocGiaMuonQuaHan* n = new danhSachDocGiaMuonQuaHan;
                 n->value.first = p;
                 n->value.second = current;

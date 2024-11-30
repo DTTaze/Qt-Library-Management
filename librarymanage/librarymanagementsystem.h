@@ -11,6 +11,7 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QMenu>
+#include <QTimer>
 #include "Dau_sach.h"
 #include "queue.h"
 #include "The_doc_gia.h"

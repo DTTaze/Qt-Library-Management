@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
@@ -408,10 +408,10 @@ QTableView::item:selected {
 </string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::Shape::NoFrame</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>false</bool>
@@ -784,16 +784,16 @@ QTableWidget::item:selected {
 }</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::Shape::NoFrame</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -856,7 +856,7 @@ QTableWidget::item:selected {
                 </font>
                </property>
                <property name="layoutDirection">
-                <enum>Qt::LayoutDirection::RightToLeft</enum>
+                <enum>Qt::RightToLeft</enum>
                </property>
                <property name="styleSheet">
                 <string notr="true">text-align: right;</string>
@@ -1080,14 +1080,14 @@ QPushButton:focus {
            <widget class="QTableWidget" name="tableWidget_muonTra">
             <property name="geometry">
              <rect>
-              <x>89</x>
+              <x>170</x>
               <y>310</y>
-              <width>931</width>
+              <width>771</width>
               <height>231</height>
              </rect>
             </property>
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -1124,10 +1124,10 @@ QTableWidget::item:selected {
 }</string>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <attribute name="horizontalHeaderCascadingSectionResizes">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>150</number>
@@ -1172,9 +1172,9 @@ QTableWidget::item:selected {
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>200</x>
+              <x>190</x>
               <y>580</y>
-              <width>731</width>
+              <width>741</width>
               <height>71</height>
              </rect>
             </property>
@@ -1469,17 +1469,20 @@ QPushButton:focus {
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>50</x>
-                <y>120</y>
-                <width>971</width>
+                <x>180</x>
+                <y>70</y>
+                <width>701</width>
                 <height>451</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
-                <widget class="QLabel" name="label_2">
+                <widget class="QLabel" name="label_Top10Sach">
                  <property name="styleSheet">
-                  <string notr="true">font: 900 14pt &quot;Segoe UI&quot;;</string>
+                  <string notr="true">font: 900 14pt &quot;Segoe UI&quot;;
+
+qproperty-alignment: 'AlignCenter';
+</string>
                  </property>
                  <property name="text">
                   <string>TOP 10 SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT </string>
@@ -1489,17 +1492,32 @@ QPushButton:focus {
                <item>
                 <widget class="QTableWidget" name="Top10Sach_tableWidget">
                  <property name="styleSheet">
-                  <string notr="true">QHeaderView::section {
+                  <string notr="true">QTableWidget {
+    background-color: #F0F0F0;      
+    gridline-color: #A0A0A0; 
+    border:  1px solid black;                    
+}
+
+QHeaderView::section {
     background-color: #D3D3D3;  
     color: black;                  
     padding: 8px;                  
     font-weight: bold;           
     border-bottom: 1px solid #A0A0A0; 
 }
-</string>
+
+QTableWidget::item {
+    padding: 8px;                
+    color: black;                     
+}
+
+QTableWidget::item:selected {
+    background-color: #C0C0C0;     
+    color: black;                  
+}</string>
                  </property>
                  <property name="editTriggers">
-                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                  <set>QAbstractItemView::NoEditTriggers</set>
                  </property>
                  <row/>
                  <row/>
@@ -1545,17 +1563,18 @@ QPushButton:focus {
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>37</x>
+                <x>147</x>
                 <y>50</y>
-                <width>991</width>
-                <height>621</height>
+                <width>881</width>
+                <height>521</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
-                <widget class="QLabel" name="label_3">
+                <widget class="QLabel" name="label_DanhSachMuonQuaHan">
                  <property name="styleSheet">
-                  <string notr="true">font: 900 14pt &quot;Segoe UI&quot;;</string>
+                  <string notr="true">font: 900 14pt &quot;Segoe UI&quot;;
+qproperty-alignment: 'AlignCenter';</string>
                  </property>
                  <property name="text">
                   <string>DANH SÁCH ĐỘC GIẢ MƯỢN SÁCH QUÁ HẠN</string>
@@ -1565,10 +1584,10 @@ QPushButton:focus {
                <item>
                 <widget class="QTableWidget" name="danhSachQuaHan_tableWidget">
                  <property name="styleSheet">
-                  <string notr="true">QTableView {
+                  <string notr="true">QTableWidget {
     background-color: #F0F0F0;      
     gridline-color: #A0A0A0; 
- 	border:  1px solid black;                  
+    border:  1px solid black;                    
 }
 
 QHeaderView::section {
@@ -1579,20 +1598,18 @@ QHeaderView::section {
     border-bottom: 1px solid #A0A0A0; 
 }
 
-QTableView::item {
-	 padding: 8px;                
-    color: black;               
-    border: none; 
+QTableWidget::item {
+    padding: 8px;                
+    color: black;                     
 }
 
-QTableView::item:selected {
+QTableWidget::item:selected {
     background-color: #C0C0C0;     
-    color: black; 
-}
-</string>
+    color: black;                  
+}</string>
                  </property>
                  <property name="editTriggers">
-                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                  <set>QAbstractItemView::NoEditTriggers</set>
                  </property>
                  <column>
                   <property name="text">

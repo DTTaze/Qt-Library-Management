@@ -1,11 +1,11 @@
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-7
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-6
 978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-5
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-4
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-3
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-2
-978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|0|978-1-59327-145-4-1
-978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|1|978-0-13-485047-0-1
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-4
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-3
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-2
+978-1-59327-145-4|Artificial Intelligence for Games|432|John David|2021|AI|H|1|978-1-59327-145-4-1
+978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-1
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-2
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-3
 978-0-13-485047-0|Artificial Intelligence for Humans|300|Jeff Heaton|2022|AI|J|0|978-0-13-485047-0-4

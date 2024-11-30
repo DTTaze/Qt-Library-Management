@@ -30,6 +30,9 @@ LibraryManagementSystem::LibraryManagementSystem(QWidget *parent)
     docFileMaThe();
     docFileThongTinTheDocGia();
 
+    inThongTin(getmaThe());
+    inThongTinmaSach(getMaSach());
+
     setupbaocao_pushButton();
 
     Saved = true;
@@ -65,6 +68,9 @@ void LibraryManagementSystem::on_thedocgia_pushButton_clicked()
 void LibraryManagementSystem::tabMuonTra()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_muontra);
+    inThongTin(getmaThe());
+    inThongTinmaSach(getMaSach());
+
 }
 
 void LibraryManagementSystem::on_muontra_pushButton_clicked()
@@ -485,8 +491,10 @@ int LibraryManagementSystem::getmaThe() {
 void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
     Danh_Sach_The_Doc_Gia* doc_gia = timKiemTheDocGia(ma_the);
+    if(doc_gia == nullptr) {
+        return;
+    }
     ui->tableWidget_muonTra->setRowCount(0);
-    // ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     string hovaten = doc_gia->thong_tin.Ho + " " + doc_gia->thong_tin.Ten;
     DanhSachMUONTRA *current = doc_gia->thong_tin.head_lsms;
 
@@ -509,9 +517,15 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
         }
         current = current->next;
     }
+    QTimer::singleShot(0, this, [this]() {
+        ui->tableWidget_muonTra->resizeColumnsToContents();
+        ui->tableWidget_muonTra->horizontalHeader()->setStretchLastSection(true);
 
-    ui->tableWidget_muonTra->resizeColumnsToContents();
-    ui->tableWidget_muonTra->setColumnWidth(2, 250);
+    });
+
+    // Ẩn header dọc và giãn cột cuối
+    ui->tableWidget_muonTra->verticalHeader()->hide();
+
 
 }
 
@@ -573,6 +587,8 @@ void LibraryManagementSystem::clearBookInformation() {
 }
 
 void LibraryManagementSystem::inThongTinmaSach(string text) {
+    if (text == "") return;
+
     if( MaISBNQTHopLe(QString::fromStdString(text)) ) {
         ui->lineEdit_maSach->setStyleSheet("background-color: lightgreen");
     }
@@ -721,7 +737,7 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
 
     if(MaISBNQTHopLe(QString::fromStdString(maSach))) {
         if(getmaSachCoTheMuon() == "") {
-            QMessageBox::information(nullptr, "Thông báo", "Không thể mượn sách.");
+            QMessageBox::information(nullptr, "Thông báo", "Không còn sách có thể mượn. ");
             return;
         }
         MuonSach(getmaThe(), getmaSachCoTheMuon());
@@ -762,6 +778,7 @@ void LibraryManagementSystem::on_traSach_pushButton_clicked()
     }
 
     inThongTin(getmaThe());
+    inThongTinmaSach(getMaSach());
     Saved = false;
 }
 
