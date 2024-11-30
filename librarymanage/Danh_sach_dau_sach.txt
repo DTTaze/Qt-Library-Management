@@ -44,7 +44,7 @@
 978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-6
 978-604-11-3158-6|Cánh Đồng Bất Tận|189|Nguyễn Ngọc Tư|2019|Văn Học|T|0|978-604-11-3158-6-7
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|1|978-1-59327-950-9-1
-978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|1|978-1-59327-950-9-2
+978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-2
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|1|978-1-59327-950-9-3
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-4
 978-1-59327-950-9|Child Psychology|280|Sigmund Freud|2021|Psychology|G|0|978-1-59327-950-9-5
@@ -53,7 +53,7 @@
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-3
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|2|978-0-321-88483-4-4
 978-0-321-88483-4|Clean Code|464|Robert C. Martin|2021|Programming|B|0|978-0-321-88483-4-5
-978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|1|978-0-321-64280-5-1
+978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-1
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-2
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-3
 978-0-321-64280-5|Code Complete|960|Steve McConnell|2022|Software Engineering|J|0|978-0-321-64280-5-4
@@ -75,7 +75,7 @@
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-6
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-7
 978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-8
-978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|0|978-0-13-419191-1-9
+978-0-13-419191-1|Compilers: Principles, Techniques, and Tools|932|Alfred V. Aho|2022|Compilers|I|1|978-0-13-419191-1-9
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|1|978-1-59327-737-2-1
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-2
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-3
@@ -84,7 +84,7 @@
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-6
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-7
 978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-8
-978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|0|978-1-59327-737-2-9
+978-1-59327-737-2|Computer Graphics: Principles and Practice|1260|John F. Hughes|2021|Computer Graphics|F|1|978-1-59327-737-2-9
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-1
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-2
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-3
@@ -93,7 +93,7 @@
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-6
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-7
 978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-8
-978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|0|978-0-12-374860-5-9
+978-0-12-374860-5|Computer Networking: A Top-Down Approach|896|James Kurose|2019|Networking|B|1|978-0-12-374860-5-9
 978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-1
 978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-2
 978-0-201-96471-7|Computer Vision: Algorithms and Applications|816|Richard Szeliski|2023|Computer Vision|J|0|978-0-201-96471-7-3

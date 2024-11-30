@@ -275,6 +275,10 @@ void docFileThongTinTheDocGia() {
                 ngay_tra = ChuyenStringSangDate(fields[index + 3].toStdString());
             }
 
+            if ( SoNgayQuaHan(ngay_muon, ngay_tra) > 0  && trangthaimuontra == Chua_Tra) {
+                docGia.TrangThai = Khoa;
+            }
+
             ThemSachVaoLichSuMuonSach(docGia.head_lsms, ma_sach, trangthaimuontra, ngay_muon, ngay_tra);
             index += 4;
         }
