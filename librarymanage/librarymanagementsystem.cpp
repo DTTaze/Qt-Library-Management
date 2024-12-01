@@ -517,11 +517,9 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
         }
         current = current->next;
     }
-    QTimer::singleShot(0, this, [this]() {
-        ui->tableWidget_muonTra->resizeColumnsToContents();
-        ui->tableWidget_muonTra->horizontalHeader()->setStretchLastSection(true);
 
-    });
+    ui->tableWidget_muonTra->resizeColumnsToContents();
+    ui->tableWidget_muonTra->horizontalHeader()->setStretchLastSection(true);
 
     // Ẩn header dọc và giãn cột cuối
     ui->tableWidget_muonTra->verticalHeader()->hide();
@@ -574,7 +572,6 @@ void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
             ui->tableWidget_muonTra->removeRow(0);
         }
     }
-    ui->tableWidget_muonTra->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 bool LibraryManagementSystem::laMaSach( string text ) {
