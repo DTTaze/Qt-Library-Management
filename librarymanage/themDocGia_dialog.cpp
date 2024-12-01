@@ -13,35 +13,25 @@ themDocGia_Dialog::~themDocGia_Dialog()
     delete ui;
 }
 
-void themDocGia_Dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
-{
-    int currentPointerPosition = ui->hoVaTen_lineEdit->cursorPosition();
-    xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
-    ui->hoVaTen_lineEdit->setCursorPosition(currentPointerPosition);
-}
-
 void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     QString newText = arg1;
 
-    if (newText == " ") {
-        newText.replace(" ", "");
+    if (!newText.isEmpty() && newText[0] == ' ') {
+        newText = newText.mid(1);
     }
 
-    if (newText.contains("  ")) {
+    while (newText.contains("  ")) {
         newText.replace("  ", " ");
     }
 
-    if (!newText.isEmpty() && !newText[newText.length() - 1].isLetter() && !newText[newText.length() - 1].isSpace()) {
-        newText = newText.mid(0, newText.length() - 1);
-    }
-
-    for ( int i = 0; i < newText.length(); i++ ) {
-        if ( i == 0 ) {
-            newText[0] = newText[0].toUpper();
-        }
-        if ( i > 0 && newText[i-1] == ' ') {
+    for (int i = 0; i < newText.length(); ++i) {
+        if (i == 0 || newText[i - 1] == ' ') {
             newText[i] = newText[i].toUpper();
         }
+    }
+
+    if (!newText.isEmpty() && !newText.back().isLetter() && !newText.back().isSpace()) {
+        newText = newText.mid(0, newText.length() - 1);
     }
 
     if (newText != arg1) {
@@ -49,9 +39,11 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     }
 }
 
-void themDocGia_Dialog::on_cancel_pushButton_clicked()
+void themDocGia_Dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
 {
-    close();
+    int currentPointerPosition = ui->hoVaTen_lineEdit->cursorPosition();
+    xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
+    ui->hoVaTen_lineEdit->setCursorPosition(qMin(currentPointerPosition, ui->hoVaTen_lineEdit->text().length()));
 }
 
 QString themDocGia_Dialog::getHoVaTen() {
@@ -76,6 +68,11 @@ void themDocGia_Dialog::on_ok_pushButton_clicked()
     } else {
         QMessageBox::warning(nullptr, "Lỗi", "Bạn chưa điền đầy đủ thông tin.");
     }
+}
+
+void themDocGia_Dialog::on_cancel_pushButton_clicked()
+{
+    close();
 }
 
 
