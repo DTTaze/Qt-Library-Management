@@ -74,12 +74,13 @@ extern DanhSachDauSach danh_sach_dau_sach;
 // Xử lý chuỗi
 QString CapitalizeWords(const QString& text);
 void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu,int &position, int& removeChar);
-bool MaISBNQTHopLe(QString i_s_b_n);
 void LocKiTuTensachHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
 void LocKiTuTheLoaiHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
 void LocKiTuTacGiaHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
+void LocKiTuTimKiemDauSach(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
 
 // Kiểm tra
+bool MaISBNQTHopLe(QString i_s_b_n);
 bool DayDauSach();
 bool TonTaiMaSachDaDuocMuonTrongDauSach(int index);
 bool TonTaiMaSach(string ma_sach);
@@ -91,6 +92,7 @@ string ChuyenVeChuThuong(string str);
 void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach);
 void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key);
 
+// In theo thể loại
 void SaoChepDanhSach( int* copy);
 void Merge(int* arr, int left, int mid, int right);
 void MergeSort(int* arr, int left, int right);
