@@ -39,8 +39,6 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
         }
     }
 
-    newText = newText.trimmed();
-
     lineEdit->blockSignals(true);
     if (newText != arg1) {
         lineEdit->setText(newText);
