@@ -59,8 +59,9 @@ void Thanh_ly::HienThongtinSachTonTai(int vi_tri){
             // Đặt checkbox vào ô đầu tiên của hàng
             ui->tableWidget_thanhly->setCellWidget(row_count, 0, checkBox);
         } else {
-            // Nếu trạng thái không phải 0, để ô đầu tiên trống
-            ui->tableWidget_thanhly->setCellWidget(row_count, 0, nullptr); // Để ô đầu tiên trống
+            QTableWidgetItem* emptyItem = new QTableWidgetItem("");
+            emptyItem->setFlags(emptyItem->flags() & ~Qt::ItemIsEditable); // Loại bỏ khả năng chỉnh sửa
+            ui->tableWidget_thanhly->setItem(row_count, 0, emptyItem);
         }
 
         ui->tableWidget_thanhly->setItem(row_count, 1 , new QTableWidgetItem(QString::fromStdString(cur->masach)));

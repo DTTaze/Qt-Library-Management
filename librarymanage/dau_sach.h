@@ -40,7 +40,7 @@ struct DanhMucSach{
     DanhMucSach* next= nullptr;
     DanhMucSach(const string &ma_sach, int trang_thai, const string &vi_tri)
         : masach(ma_sach), trangthai(trang_thai), vitri(vi_tri) {}
-    DanhMucSach() : masach(""), trangthai(0), vitri("") {}
+    DanhMucSach() : masach(""), trangthai(co_the_muon), vitri("") {}
 };
 
 struct DauSach {
