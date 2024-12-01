@@ -15,7 +15,9 @@ themDocGia_Dialog::~themDocGia_Dialog()
 
 void themDocGia_Dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
 {
+    int currentPointerPosition = ui->hoVaTen_lineEdit->cursorPosition();
     xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
+    ui->hoVaTen_lineEdit->setCursorPosition(currentPointerPosition);
 }
 
 void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {

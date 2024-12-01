@@ -114,7 +114,9 @@ void hieuChinhDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit)
 
 void hieuChinhDocGia_dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
 {
+    int currentPointerPosition = ui->hoVaTen_lineEdit->cursorPosition();
     xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
+    ui->hoVaTen_lineEdit->setCursorPosition(currentPointerPosition);
 }
 
 void hieuChinhDocGia_dialog::on_Ok_pushButton_clicked()
