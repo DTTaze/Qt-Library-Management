@@ -46,7 +46,12 @@ LibraryManagementSystem::~LibraryManagementSystem()
 void LibraryManagementSystem::tabDauSach()
 {
     ui->stackedWidget_infor->setCurrentWidget(ui->page_dausach);
-    InToanBoDauSach(ui->tableWidget_dausach);
+    if (ui->lineEdit_timkiemds->text().isEmpty()){
+        InToanBoDauSach(ui->tableWidget_dausach);
+    }else{
+        string key = ui->lineEdit_timkiemds->text().toStdString();
+        InTheoTenTimKiem(key,ui->tableWidget_dausach);
+    }
 }
 
 void LibraryManagementSystem::on_dauSach_pushButton_clicked()
@@ -172,37 +177,37 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 
 //------------------------------------Hàm sử dụng ở Đầu Sách-----------------------------------------------------------------------
 void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
-    QString key ;
-    bool lastWasSpace = false;
+    if(text.isEmpty()){
+        InToanBoDauSach(ui->tableWidget_dausach);
+        return;
+    }
+    string valid_key;
     int cursorPosition = ui->lineEdit_timkiemds->cursorPosition(); // Ghi nhớ vị trí con trỏ
-    for (QChar c : text) {
-        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
-            key += c;
-            lastWasSpace = false;
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                key += ' ';
-                lastWasSpace = true;
-            }
-        }
-    }
+    int removedChars = 0; // Số ký tự bị loại bỏ trước vị trí con trỏ
 
-    string valid_key = key.toStdString();
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+    LocKiTuTimKiemDauSach(text, valid_key, cursorPosition, removedChars);
 
+    // Cập nhật nội dung trong QLineEdit
+    ui->lineEdit_timkiemds->blockSignals(true); // Ngăn vòng lặp tín hiệu
     ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
+    ui->lineEdit_timkiemds->blockSignals(false);
 
-    if (cursorPosition < valid_key.size()) {
-        ui->lineEdit_timkiemds->setCursorPosition(cursorPosition-1);
-    } else {
-        ui->lineEdit_timkiemds->setCursorPosition(key.length());
+    cursorPosition -= removedChars;
+    if (cursorPosition < 0) {
+        cursorPosition = 0;
+    } else if (cursorPosition > valid_key.length()) {
+        cursorPosition = valid_key.length();
     }
+    ui->lineEdit_timkiemds->setCursorPosition(cursorPosition);
 
+    // Nếu chuỗi trống, xử lý logic tìm kiếm
     if (valid_key.empty()) {
-        valid_key="";
+        valid_key = "";
     }
 
+    // Gọi hàm tìm kiếm
     TimKiemTenSach(ui->tableWidget_dausach, valid_key);
+
 }
 
 void LibraryManagementSystem::on_inTheLoai_pushButton_clicked()
@@ -235,7 +240,12 @@ void LibraryManagementSystem::MoCuaSoThemSach(){
     themds.setModal(true);
     themds.setWindowTitle("Thêm sách");
     if (themds.exec() == QDialog::Accepted){
-        InToanBoDauSach(ui->tableWidget_dausach);
+        if (ui->lineEdit_timkiemds->text().isEmpty()){
+            InToanBoDauSach(ui->tableWidget_dausach);
+        }else{
+            string key = ui->lineEdit_timkiemds->text().toStdString();
+            InTheoTenTimKiem(key,ui->tableWidget_dausach);
+        }
         Saved = false;
     }
 }
@@ -282,7 +292,12 @@ void LibraryManagementSystem::MoCuaSoXoaSach(int i_ds){
     del_dausach.setModal(true);
     del_dausach.setWindowTitle("Xóa đầu sách");
     if (del_dausach.exec() == QDialog::Accepted){
-        InToanBoDauSach(ui->tableWidget_dausach);
+        if (ui->lineEdit_timkiemds->text().isEmpty()){
+            InToanBoDauSach(ui->tableWidget_dausach);
+        }else{
+            string key = ui->lineEdit_timkiemds->text().toStdString();
+            InTheoTenTimKiem(key,ui->tableWidget_dausach);
+        }
         Saved = false;
     }
 }
@@ -344,7 +359,12 @@ void LibraryManagementSystem::MoCuaSoNhapDauSach(int i_ds){
     nhap_dausach.setModal(true);
     nhap_dausach.setWindowTitle("Nhập đầu sách");
     if (nhap_dausach.exec() == QDialog::Accepted){
-        InToanBoDauSach(ui->tableWidget_dausach);
+        if (ui->lineEdit_timkiemds->text().isEmpty()){
+            InToanBoDauSach(ui->tableWidget_dausach);
+        }else{
+            string key = ui->lineEdit_timkiemds->text().toStdString();
+            InTheoTenTimKiem(key,ui->tableWidget_dausach);
+        }
         Saved = false;
     }
 }

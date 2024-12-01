@@ -35,11 +35,6 @@ void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu,int &position, int& r
     }
 }
 
-bool MaISBNQTHopLe(QString i_s_b_n){
-    int Dash_Count = i_s_b_n.count('-');
-    return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
-}
-
 void LocKiTuTensachHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars) {
     QString key;
     bool lastWasSpace = false;
@@ -100,6 +95,11 @@ void LocKiTuTheLoaiHopLe(const QString& text, string& valid_key, int cursorPosit
     }
 
     valid_key = key.toStdString();
+    size_t leadingSpaces = valid_key.find_first_not_of(" \t\n\r");
+    if (leadingSpaces != string::npos && leadingSpaces < cursorPosition) {
+        removedChars += leadingSpaces;
+    }
+    valid_key.erase(0, leadingSpaces);
 }
 
 void LocKiTuTacGiaHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars) {
@@ -140,6 +140,57 @@ void LocKiTuTacGiaHopLe(const QString& text, string& valid_key, int cursorPositi
     }
     valid_key.erase(0, leadingSpaces);
 }
+
+
+void LocKiTuTimKiemDauSach(const QString& text, string& valid_key, int cursorPosition, int& removedChars){
+    QString key;
+    bool lastWasSpace = false;
+    removedChars = 0; // Số ký tự bị loại bỏ
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
+        if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
+            key += c;
+            lastWasSpace = false;
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                key += ' ';
+                lastWasSpace = true;
+            } else if (i < cursorPosition) {
+                // Nếu khoảng trắng thừa nằm trước vị trí con trỏ, đếm
+                ++removedChars;
+            }
+        } else if (i < cursorPosition) {
+            // Nếu ký tự không hợp lệ nằm trước vị trí con trỏ, đếm
+            ++removedChars;
+        }
+    }
+
+    valid_key = key.toStdString();
+    size_t leadingSpaces = valid_key.find_first_not_of(" \t\n\r");
+    if (leadingSpaces != string::npos && leadingSpaces < cursorPosition) {
+        removedChars += leadingSpaces;
+    }
+    valid_key.erase(0, leadingSpaces);
+}
+
+bool MaISBNQTHopLe(QString i_s_b_n) {
+    int Dash_Count = i_s_b_n.count('-');
+
+    // Điều kiện: Không được có '-' ở đầu hoặc cuối
+    if (i_s_b_n.startsWith('-') || i_s_b_n.endsWith('-')) {
+        return false;
+    }
+
+    // Điều kiện: Không được có ít nhất 2 ký tự '-' liên tiếp
+    if (i_s_b_n.contains("--")) {
+        return false;
+    }
+
+    // Kiểm tra độ dài và số lượng '-'
+    return ((i_s_b_n.length() == 13 && Dash_Count == 3) ||
+            (i_s_b_n.length() == 17 && Dash_Count == 4));
+}
+
 
 bool DayDauSach() {
     return danh_sach_dau_sach.soluongdausach >= MAXSACH ? true : false;
@@ -271,9 +322,9 @@ void InTheoTenTimKiem(string key, QTableWidget* tableWidget_dausach) {
 }
 
 void TimKiemTenSach(QTableWidget* tableWidget_dausach, string key) {
-    if (!key.empty()) {
+    if (!key.empty()){
         InTheoTenTimKiem(key,tableWidget_dausach);
-    } else {
+    }else{
         InToanBoDauSach(tableWidget_dausach);
     }
 }
