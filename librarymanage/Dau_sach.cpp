@@ -2,25 +2,6 @@
 
 DanhSachDauSach danh_sach_dau_sach;
 
-QString RemoveSpace(const QString &key) {
-    QString valid_key;
-    bool lastWasSpace = false;
-
-    for (QChar c : key) {
-        if (c.isLetter() ) {
-            valid_key += c;
-            lastWasSpace = false;
-        } else if (c.isSpace()) {
-            if (!lastWasSpace) {
-                valid_key += ' ';
-                lastWasSpace = true;
-            }
-        }
-    }
-
-    return valid_key;
-}
-
 QString CapitalizeWords(const QString& text) {
     QString result;
     bool isNewWord = true;
@@ -43,10 +24,13 @@ QString CapitalizeWords(const QString& text) {
     return result;
 }
 
-void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu){
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu,int &position, int& removeChar){
     for (int i = 0; i < text.length(); ++i) {
         if (text[i].isDigit() || text[i] == '-') {
             LocKiTu.append(text[i]);
+        } else if (i < position) {
+            // Nếu ký tự không hợp lệ nằm trước vị trí con trỏ, tăng bộ đếm
+            ++removeChar;
         }
     }
 }
@@ -56,11 +40,12 @@ bool MaISBNQTHopLe(QString i_s_b_n){
     return ((i_s_b_n.length() == 13 && Dash_Count == 3) || (i_s_b_n.length() == 17 && Dash_Count == 4)) ? true : false;
 }
 
-void LocKiTuTensachHopLe(const QString& text,string& valid_key){
+void LocKiTuTensachHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars) {
     QString key;
     bool lastWasSpace = false;
 
-    for (QChar c : text) {
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
         if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
             key += c;
             lastWasSpace = false;
@@ -68,12 +53,92 @@ void LocKiTuTensachHopLe(const QString& text,string& valid_key){
             if (!lastWasSpace) {
                 key += ' ';
                 lastWasSpace = true;
+            } else if (i < cursorPosition) {
+                // Nếu khoảng trắng bị loại bỏ nằm trước vị trí con trỏ
+                ++removedChars;
             }
+        } else if (i < cursorPosition) {
+            // Nếu ký tự không hợp lệ bị loại bỏ nằm trước vị trí con trỏ
+            ++removedChars;
+        }
+    }
+
+    // Xóa khoảng trắng đầu chuỗi
+    valid_key = key.toStdString();
+    size_t leadingSpaces = valid_key.find_first_not_of(" \t\n\r");
+    if (leadingSpaces != string::npos && leadingSpaces < cursorPosition) {
+        removedChars += leadingSpaces;
+    }
+    valid_key.erase(0, leadingSpaces);
+}
+
+void LocKiTuTheLoaiHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars) {
+    QString key;
+    bool lastWasSpace = false;
+    removedChars = 0; // Số ký tự bị loại bỏ
+
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
+
+        // Chấp nhận các ký tự chữ và khoảng trắng hợp lệ
+        if (c.isLetter()) {
+            key += c;
+            lastWasSpace = false;
+        } else if (c.isSpace()) {
+            // Chỉ chấp nhận một khoảng trắng nếu trước đó chưa có khoảng trắng
+            if (!lastWasSpace) {
+                key += ' ';
+                lastWasSpace = true;
+            } else {
+                // Đếm ký tự không hợp lệ
+                ++removedChars;
+            }
+        } else {
+            // Đếm ký tự không hợp lệ (không phải chữ cái hoặc khoảng trắng)
+            ++removedChars;
         }
     }
 
     valid_key = key.toStdString();
-    valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+}
+
+void LocKiTuTacGiaHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars) {
+    QString key;
+    bool lastWasSpace = false;
+    removedChars = 0; // Số ký tự bị loại bỏ
+
+    for (int i = 0; i < text.length(); ++i) {
+        QChar c = text[i];
+
+        // Chấp nhận các ký tự chữ, chữ cái có dấu và khoảng trắng hợp lệ
+        if (c.isLetter() || c == ' ') {
+            if (c == ' ') {
+                // Chỉ chấp nhận một khoảng trắng liên tiếp
+                if (!lastWasSpace) {
+                    key += c;
+                    lastWasSpace = true;
+                } else if (i < cursorPosition) {
+                    // Nếu khoảng trắng bị loại bỏ nằm trước vị trí con trỏ
+                    ++removedChars;
+                }
+            } else {
+                // Ký tự chữ hợp lệ
+                key += c;
+                lastWasSpace = false;
+            }
+        } else if (i < cursorPosition) {
+            // Nếu ký tự không hợp lệ nằm trước vị trí con trỏ
+            ++removedChars;
+        }
+    }
+
+    // Xóa khoảng trắng thừa đầu chuỗi và cập nhật số ký tự bị xóa
+    valid_key = key.toStdString();
+    size_t leadingSpaces = valid_key.find_first_not_of(" \t\n\r");
+    if (leadingSpaces != string::npos && leadingSpaces < cursorPosition) {
+        removedChars += leadingSpaces;
+    }
+    valid_key.erase(0, leadingSpaces);
 }
 
 bool DayDauSach() {

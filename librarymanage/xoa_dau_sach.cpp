@@ -85,15 +85,22 @@ void Xoa_dau_sach::on_lineEdit_ISBN_2_textChanged(const QString &text)
 
     QString LocKiTu;
     int cursorPosition = ui->lineEdit_ISBN_2->cursorPosition();
-
+    int removedChars = 0;
     // Lọc ký tự hợp lệ là chữ số
-    LocKiTuISBNHopLe(text, LocKiTu);
+    LocKiTuISBNHopLe(text,LocKiTu,cursorPosition,removedChars);
 
-    // Cập nhật nội dung của lineEdit với các ký tự hợp lệ
+    ui->lineEdit_ISBN_2->blockSignals(true);
     ui->lineEdit_ISBN_2->setText(LocKiTu);
+    ui->lineEdit_ISBN_2->blockSignals(false);
 
+    cursorPosition -= removedChars;
+    if (cursorPosition < 0) {
+        cursorPosition = 0;
+    } else if (cursorPosition > LocKiTu.length()) {
+        cursorPosition = LocKiTu.length();
+    }
     // Thiết lập lại vị trí con trỏ
-    ui->lineEdit_ISBN_2->setCursorPosition(qMin(cursorPosition, LocKiTu.length()));
+    ui->lineEdit_ISBN_2->setCursorPosition(cursorPosition);
 
     string ma_isbn_hople = LocKiTu.toStdString();
     int index = TimKiemViTriDauSach(ma_isbn_hople);

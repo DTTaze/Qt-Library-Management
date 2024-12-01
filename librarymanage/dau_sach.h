@@ -72,11 +72,12 @@ struct DanhSachDauSach{
 extern DanhSachDauSach danh_sach_dau_sach;
 
 // Xử lý chuỗi
-QString RemoveSpace(const QString &key);
 QString CapitalizeWords(const QString& text);
-void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu);
+void LocKiTuISBNHopLe(const QString& text,QString& LocKiTu,int &position, int& removeChar);
 bool MaISBNQTHopLe(QString i_s_b_n);
-void LocKiTuTensachHopLe(const QString& text,string& valid_key);
+void LocKiTuTensachHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
+void LocKiTuTheLoaiHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
+void LocKiTuTacGiaHopLe(const QString& text, string& valid_key, int cursorPosition, int& removedChars);
 
 // Kiểm tra
 bool DayDauSach();

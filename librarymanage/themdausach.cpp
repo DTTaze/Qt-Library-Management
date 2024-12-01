@@ -43,6 +43,8 @@ void themdausach::on_pushButton_clicked() {
     int namxb = ui->spinBox_namxb->value();
     int soluong = ui->spinBox_soluong->value();
 
+    tensach = CapitalizeWords(tensach);
+    theloai = CapitalizeWords(theloai);
     // Chuyển đổi sang string
     string isbnStd = ISBN.toStdString();
     string tensachStd = tensach.toStdString();
@@ -127,32 +129,38 @@ void themdausach::on_pushButton_2_clicked()
 
 void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
+    if (!text.isEmpty()) {
         QString LocKiTu; // Chuỗi để lưu trữ các ký tự hợp lệ
-
         int cursorPosition = ui->lineEdit_ISBN->cursorPosition(); // Ghi nhớ vị trí con trỏ
+        int removedChars = 0; // Đếm số ký tự không hợp lệ bị loại bỏ trước vị trí con trỏ
+
         // Lọc ra các ký tự là chữ số
-        LocKiTuISBNHopLe(text,LocKiTu);
+        LocKiTuISBNHopLe(text,LocKiTu,cursorPosition,removedChars);
 
-        // Cập nhật lại nội dung của lineEdit với các ký tự hợp lệ
+        // Cập nhật chuỗi hợp lệ vào QLineEdit
+        ui->lineEdit_ISBN->blockSignals(true); // Ngăn chặn việc gọi lại `textChanged`
         ui->lineEdit_ISBN->setText(LocKiTu);
+        ui->lineEdit_ISBN->blockSignals(false);
 
-        // Thiết lập lại vị trí con trỏ
-        if (cursorPosition < LocKiTu.length()) {
-            ui->lineEdit_ISBN->setCursorPosition(cursorPosition);
-        } else {
-            ui->lineEdit_ISBN->setCursorPosition(LocKiTu.length());
+        // Đặt lại vị trí con trỏ
+        cursorPosition -= removedChars;
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > LocKiTu.length()) {
+            cursorPosition = LocKiTu.length();
         }
+        ui->lineEdit_ISBN->setCursorPosition(cursorPosition);
 
-        if (LocKiTu.length() == 0){
+        // Kiểm tra tính hợp lệ của ISBN
+        if (LocKiTu.length() == 0) {
             ui->lineEdit_ISBN->setStyleSheet("");
-        }else if (MaISBNQTHopLe(LocKiTu)) {
+        } else if (MaISBNQTHopLe(LocKiTu)) {
             string ma_isbn_hople = LocKiTu.toStdString();
             int index = TimKiemViTriDauSach(ma_isbn_hople);
-            if (index == -1){
+            if (index == -1) {
                 ui->lineEdit_ISBN->setStyleSheet("background-color: lightgreen;");
                 MoKhoaThemDauSach();
-            }else{
+            } else {
                 ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
                 KhoaThemDauSach();
             }
@@ -160,10 +168,11 @@ void themdausach::on_lineEdit_ISBN_textChanged(const QString &text)
             ui->lineEdit_ISBN->setStyleSheet("background-color: lightcoral;");
             KhoaThemDauSach();
         }
-    }else{
+    } else {
         ui->lineEdit_ISBN->setStyleSheet("");
     }
 }
+
 
 void themdausach::on_spinBox_namxb_valueChanged(int arg1)
 {
@@ -184,36 +193,50 @@ void themdausach::on_spinBox_namxb_valueChanged(int arg1)
 }
 
 void themdausach::on_lineEdit_tensach_textChanged(const QString &text) {
-    if(!text.isEmpty()){
-        int cursorPosition = ui->lineEdit_tensach->cursorPosition(); // Lưu vị trí con trỏ
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_tensach->cursorPosition();
         string valid_key;
+        int removedChars = 0;
 
-        LocKiTuTensachHopLe(text,valid_key);
-        // Cập nhật lại tên sách vào QLineEdit
+        LocKiTuTensachHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_tensach->blockSignals(true); // Ngăn chặn việc gọi lại hàm
         ui->lineEdit_tensach->setText(QString::fromStdString(valid_key));
+        ui->lineEdit_tensach->blockSignals(false);
 
-        // Đặt lại vị trí con trỏ
-        if (cursorPosition < valid_key.length()) {
-            ui->lineEdit_tensach->setCursorPosition(cursorPosition);
-        } else {
-            ui->lineEdit_tensach->setCursorPosition(valid_key.length());
+        cursorPosition -= removedChars;
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
         }
+        ui->lineEdit_tensach->setCursorPosition(cursorPosition);
     }
 }
 
 void themdausach::on_lineEdit_theloai_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
-        QString key = RemoveSpace(text);
-        key = CapitalizeWords(key);
-        string valid_key = key.toStdString();
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_theloai->cursorPosition();
+        string valid_key;
+        int removedChars = 0;
 
-        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
-        // Cập nhật lại tên thể loại vào QLineEdit
+        // Cập nhật hàm LocKiTuTheLoaiHopLe
+        LocKiTuTheLoaiHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_theloai->blockSignals(true);
         ui->lineEdit_theloai->setText(QString::fromStdString(valid_key));
+        ui->lineEdit_theloai->blockSignals(false);
+
+        cursorPosition -= removedChars;  // Điều chỉnh vị trí con trỏ
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
+        }
+        ui->lineEdit_theloai->setCursorPosition(cursorPosition);
     }
 }
-
 
 void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
 {
@@ -242,15 +265,28 @@ void themdausach::on_comboBox_vitri_currentTextChanged(const QString &text)
 
 void themdausach::on_lineEdit_tacgia_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
-        QString key = RemoveSpace(text);
-        key = CapitalizeWords(key);
-        string valid_key = key.toStdString();
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_tacgia->cursorPosition(); // Lưu vị trí con trỏ
+        string valid_key;
+        int removedChars = 0;
 
-        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r")); // xóa khoảng trắng đầu
-        // Cập nhật lại tên thể loại vào QLineEdit
+        // Xử lý chuỗi hợp lệ
+        LocKiTuTacGiaHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_tacgia->blockSignals(true);  // Ngăn vòng lặp tín hiệu
         ui->lineEdit_tacgia->setText(QString::fromStdString(valid_key));
+        ui->lineEdit_tacgia->blockSignals(false);
+
+        cursorPosition -= removedChars;  // Điều chỉnh lại vị trí con trỏ
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
+        }
+
+        ui->lineEdit_tacgia->setCursorPosition(cursorPosition);
     }
 }
+
 
 

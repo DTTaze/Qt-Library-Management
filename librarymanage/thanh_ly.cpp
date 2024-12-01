@@ -90,12 +90,21 @@ void Thanh_ly::on_lineEdit_ISBN_textChanged(const QString &text)
 
     QString LocKiTu;
     int cursorPosition = ui->lineEdit_ISBN->cursorPosition();
+    int removedChars = 0;
 
-    LocKiTuISBNHopLe(text, LocKiTu);
+    LocKiTuISBNHopLe(text, LocKiTu,cursorPosition,removedChars);
 
+    ui->lineEdit_ISBN->blockSignals(true);
     ui->lineEdit_ISBN->setText(LocKiTu);
+    ui->lineEdit_ISBN->blockSignals(false);
 
-    ui->lineEdit_ISBN->setCursorPosition(qMin(cursorPosition, LocKiTu.length()));
+    cursorPosition -= removedChars;
+    if (cursorPosition < 0) {
+        cursorPosition = 0;
+    } else if (cursorPosition > LocKiTu.length()) {
+        cursorPosition = LocKiTu.length();
+    }
+    ui->lineEdit_ISBN->setCursorPosition(cursorPosition);
 
     string ma_isbn_hople = LocKiTu.toStdString();
     int index = TimKiemViTriDauSach(ma_isbn_hople);

@@ -174,7 +174,7 @@ void LibraryManagementSystem::closeEvent(QCloseEvent *event) {
 void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString text) {
     QString key ;
     bool lastWasSpace = false;
-
+    int cursorPosition = ui->lineEdit_timkiemds->cursorPosition(); // Ghi nhớ vị trí con trỏ
     for (QChar c : text) {
         if (c.isLetter() || c.isDigit() || c.isPunct() || c.isSymbol()) {
             key += c;
@@ -191,6 +191,12 @@ void LibraryManagementSystem::on_lineEdit_timkiemds_textChanged(const QString te
     valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
 
     ui->lineEdit_timkiemds->setText(QString::fromStdString(valid_key));
+
+    if (cursorPosition < valid_key.size()) {
+        ui->lineEdit_timkiemds->setCursorPosition(cursorPosition-1);
+    } else {
+        ui->lineEdit_timkiemds->setCursorPosition(key.length());
+    }
 
     if (valid_key.empty()) {
         valid_key="";

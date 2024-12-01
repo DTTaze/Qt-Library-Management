@@ -89,6 +89,8 @@ void Edit_sach::on_pushButton_ok_clicked()
     int sotrang = ui->spinBox_sotrang_1->value();
     int namxb = ui->spinBox_namxb_1->value();
 
+    tacgia = CapitalizeWords(tacgia);
+    theloai = CapitalizeWords(theloai);
     string isbnStd = ISBN.toStdString();
     string tensachStd = tensach.toStdString();
     string tacgiaStd = tacgia.toStdString();
@@ -162,12 +164,21 @@ void Edit_sach::on_lineEdit_ISBN_1_textChanged(const QString &text)
 
     QString LocKiTu;
     int cursorPosition = ui->lineEdit_ISBN_1->cursorPosition();
+    int removedChars = 0;
 
-    LocKiTuISBNHopLe(text, LocKiTu);
+    LocKiTuISBNHopLe(text,LocKiTu,cursorPosition,removedChars);
 
+    ui->lineEdit_ISBN_1->blockSignals(true); // Ngăn chặn việc gọi lại `textChanged`
     ui->lineEdit_ISBN_1->setText(LocKiTu);
+    ui->lineEdit_ISBN_1->blockSignals(false);
 
-    ui->lineEdit_ISBN_1->setCursorPosition(qMin(cursorPosition, LocKiTu.length()));
+    cursorPosition -= removedChars;
+    if (cursorPosition < 0) {
+        cursorPosition = 0;
+    } else if (cursorPosition > LocKiTu.length()) {
+        cursorPosition = LocKiTu.length();
+    }
+    ui->lineEdit_ISBN_1->setCursorPosition(cursorPosition);
 
     string ma_isbn_hople = LocKiTu.toStdString();
     int index = TimKiemViTriDauSach(ma_isbn_hople);
@@ -204,42 +215,74 @@ void Edit_sach::on_spinBox_namxb_1_valueChanged(int arg1)
 
 void Edit_sach::on_lineEdit_tensach_1_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
-        string valid_key ;
-        int cursorPosition = ui->lineEdit_tensach_1->cursorPosition(); // Lưu vị trí con trỏ
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_tensach_1->cursorPosition();
+        string valid_key;
+        int removedChars = 0;
 
-        LocKiTuTensachHopLe(text,valid_key);
+        LocKiTuTensachHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_tensach_1->blockSignals(true);
         ui->lineEdit_tensach_1->setText(QString::fromStdString(valid_key));
-        if (cursorPosition < valid_key.length()) {
-            ui->lineEdit_tensach_1->setCursorPosition(cursorPosition);
-        } else {
-            ui->lineEdit_tensach_1->setCursorPosition(valid_key.length());
+        ui->lineEdit_tensach_1->blockSignals(false);
+
+        cursorPosition -= removedChars;
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
         }
+        ui->lineEdit_tensach_1->setCursorPosition(cursorPosition);
     }
 }
 
 
 void Edit_sach::on_lineEdit_theloai_1_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
-        QString key = RemoveSpace(text);
-        key = CapitalizeWords(key);
-        string valid_key = key.toStdString();
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_theloai_1->cursorPosition();
+        string valid_key;
+        int removedChars = 0;
 
-        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+        // Cập nhật hàm LocKiTuTheLoaiHopLe
+        LocKiTuTheLoaiHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_theloai_1->blockSignals(true);
         ui->lineEdit_theloai_1->setText(QString::fromStdString(valid_key));
+        ui->lineEdit_theloai_1->blockSignals(false);
+
+        cursorPosition -= removedChars;  // Điều chỉnh vị trí con trỏ
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
+        }
+        ui->lineEdit_theloai_1->setCursorPosition(cursorPosition);
     }
 }
 
 void Edit_sach::on_lineEdit_tacgia_1_textChanged(const QString &text)
 {
-    if(!text.isEmpty()){
-        QString key = RemoveSpace(text);
-        key = CapitalizeWords(key);
-        string valid_key = key.toStdString();
+    if (!text.isEmpty()) {
+        int cursorPosition = ui->lineEdit_tacgia_1->cursorPosition(); // Lưu vị trí con trỏ
+        string valid_key;
+        int removedChars = 0;
 
-        valid_key.erase(0, valid_key.find_first_not_of(" \t\n\r"));
+        // Xử lý chuỗi hợp lệ
+        LocKiTuTacGiaHopLe(text, valid_key, cursorPosition, removedChars);
+
+        ui->lineEdit_tacgia_1->blockSignals(true);  // Ngăn vòng lặp tín hiệu
         ui->lineEdit_tacgia_1->setText(QString::fromStdString(valid_key));
+        ui->lineEdit_tacgia_1->blockSignals(false);
+
+        cursorPosition -= removedChars;  // Điều chỉnh lại vị trí con trỏ
+        if (cursorPosition < 0) {
+            cursorPosition = 0;
+        } else if (cursorPosition > valid_key.length()) {
+            cursorPosition = valid_key.length();
+        }
+
+        ui->lineEdit_tacgia_1->setCursorPosition(cursorPosition);
     }
 }
 
