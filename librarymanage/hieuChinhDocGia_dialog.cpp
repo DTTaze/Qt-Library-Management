@@ -127,8 +127,8 @@ void hieuChinhDocGia_dialog::on_Ok_pushButton_clicked()
     }
 
     QString hoVaTen = getHoVaTen();
-    if ( hoVaTen.isEmpty() ) {
-        QMessageBox::warning(this, "Lỗi", "Bạn chưa điền tên.");
+    if ( hoVaTen.isEmpty() || !hoVaTen.contains(" ")) {
+        QMessageBox::warning(this, "Lỗi", "Độc giả phải có đầy đủ họ và tên.");
         return;
     }
     accept();

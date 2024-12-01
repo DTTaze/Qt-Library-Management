@@ -52,15 +52,6 @@ void themDocGia_Dialog::on_cancel_pushButton_clicked()
     close();
 }
 
-void themDocGia_Dialog::on_ok_pushButton_clicked()
-{
-    if ( !getHoVaTen().isEmpty() && (ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked())) {
-        accept();
-    } else {
-        QMessageBox::warning(nullptr, "Lỗi", "Bạn chưa điền đầy đủ thông tin.");
-    }
-}
-
 QString themDocGia_Dialog::getHoVaTen() {
     return ui->hoVaTen_lineEdit->text().trimmed();
 }
@@ -68,6 +59,21 @@ QString themDocGia_Dialog::getHoVaTen() {
 QString themDocGia_Dialog::getPhai()
 {
     return ui->nam_radioButton->isChecked() ? "Nam" : "Nữ";
+}
+
+
+void themDocGia_Dialog::on_ok_pushButton_clicked()
+{
+    if ( !getHoVaTen().contains(" ")) {
+        QMessageBox::warning(nullptr, "Lỗi", "Độc giả phải có đầy đủ họ và tên.");
+        return;
+    }
+
+    if ( !getHoVaTen().isEmpty() && (ui->nam_radioButton->isChecked() || ui->nu_radioButton->isChecked())) {
+        accept();
+    } else {
+        QMessageBox::warning(nullptr, "Lỗi", "Bạn chưa điền đầy đủ thông tin.");
+    }
 }
 
 
