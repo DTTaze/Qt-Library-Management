@@ -741,8 +741,10 @@ void LibraryManagementSystem::on_muonSach_pushButton_clicked()
             return;
         }
         MuonSach(getmaThe(), getmaSachCoTheMuon());
+        inThongTin(getmaThe());
     } else if (laMaSach(maSach)){
         MuonSach(getmaThe(), maSach);
+        inThongTin(getmaThe());
     } else {
         return;
     }

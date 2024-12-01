@@ -142,6 +142,7 @@ void TraSach(const unsigned int& ma_the, const string& ma_sach) {
                 current->data.NgayTra = NgayHomNay();
                 current->data.capNhatTrangThaiMuonTra(NgayHomNay());
                 CapNhatTrangThaiSach(ma_sach, co_the_muon);
+                capNhatTrangThaiThe(doc_gia);
                 break;
         }
         current = current->next;
@@ -277,6 +278,7 @@ void CapNhatSoLuotMuon (int &SoLuongSach, string ma_sach, SachMuon DanhSachSachM
 void CapNhatSoLuotMuonTuDanhSachLichSuMuonTra (int &SoLuongSach, SachMuon DanhSachSachMuon [], DanhSachMUONTRA *danh_sach_muon_tra) {
     DanhSachMUONTRA *current = danh_sach_muon_tra;
     while( current != nullptr ) {
+        if(ChuyenMaSachThanhTenSach(current->data.masach) != "")
         CapNhatSoLuotMuon(SoLuongSach, current->data.masach, DanhSachSachMuon);
         current = current->next;
     }

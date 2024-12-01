@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1411</width>
+    <width>1395</width>
     <height>754</height>
    </rect>
   </property>
@@ -362,7 +362,7 @@ font: 700 9pt &quot;Segoe UI&quot;;</string>
            </font>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="page_dausach">
            <widget class="QTableWidget" name="tableWidget_dausach">
@@ -408,10 +408,10 @@ QTableView::item:selected {
 </string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="alternatingRowColors">
              <bool>false</bool>
@@ -784,16 +784,16 @@ QTableWidget::item:selected {
 }</string>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
+             <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
             </property>
             <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
+             <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -856,7 +856,7 @@ QTableWidget::item:selected {
                 </font>
                </property>
                <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
+                <enum>Qt::LayoutDirection::RightToLeft</enum>
                </property>
                <property name="styleSheet">
                 <string notr="true">text-align: right;</string>
@@ -1124,7 +1124,7 @@ QTableWidget::item:selected {
 }</string>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
             </property>
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>false</bool>
@@ -1469,10 +1469,10 @@ QPushButton:focus {
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>180</x>
-                <y>70</y>
-                <width>701</width>
-                <height>451</height>
+                <x>140</x>
+                <y>130</y>
+                <width>791</width>
+                <height>381</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1517,7 +1517,7 @@ QTableWidget::item:selected {
 }</string>
                  </property>
                  <property name="editTriggers">
-                  <set>QAbstractItemView::NoEditTriggers</set>
+                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                  </property>
                  <row/>
                  <row/>
@@ -1609,7 +1609,7 @@ QTableWidget::item:selected {
 }</string>
                  </property>
                  <property name="editTriggers">
-                  <set>QAbstractItemView::NoEditTriggers</set>
+                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                  </property>
                  <column>
                   <property name="text">
