@@ -14,36 +14,49 @@ themDocGia_Dialog::~themDocGia_Dialog()
 }
 
 void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
-    QString newText = arg1;
+    QString newText;
+    bool lastWasSpace = false;
 
-    if (!newText.isEmpty() && newText[0] == ' ') {
-        newText = newText.mid(1);
-    }
+    int cursorPosition = lineEdit->cursorPosition();
+    int removedChars = 0;
 
-    while (newText.contains("  ")) {
-        newText.replace("  ", " ");
-    }
-
-    for (int i = 0; i < newText.length(); ++i) {
-        if (i == 0 || newText[i - 1] == ' ') {
-            newText[i] = newText[i].toUpper();
+    for (int i = 0; i < arg1.length(); ++i) {
+        QChar c = arg1[i];
+        if (c.isLetter()) {
+            if (newText.isEmpty() || lastWasSpace) {
+                newText += c.toUpper();
+            } else {
+                newText += c.toLower();
+            }
+            lastWasSpace = false;
+        } else if (c.isSpace()) {
+            if (!lastWasSpace) {
+                newText += ' ';
+                lastWasSpace = true;
+            }
+        } else {
+            ++removedChars;
         }
     }
 
-    if (!newText.isEmpty() && !newText.back().isLetter() && !newText.back().isSpace()) {
-        newText = newText.mid(0, newText.length() - 1);
-    }
+    newText = newText.trimmed();
 
+    lineEdit->blockSignals(true);
     if (newText != arg1) {
         lineEdit->setText(newText);
     }
+    lineEdit->blockSignals(false);
+
+    int newCursorPosition = cursorPosition - removedChars;
+
+    newCursorPosition = qBound(0, newCursorPosition, newText.length());
+
+    lineEdit->setCursorPosition(newCursorPosition);
 }
 
 void themDocGia_Dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
 {
-    int currentPointerPosition = ui->hoVaTen_lineEdit->cursorPosition();
     xuLyChuoi(arg1, ui->hoVaTen_lineEdit);
-    ui->hoVaTen_lineEdit->setCursorPosition(qMin(currentPointerPosition, ui->hoVaTen_lineEdit->text().length()));
 }
 
 QString themDocGia_Dialog::getHoVaTen() {
