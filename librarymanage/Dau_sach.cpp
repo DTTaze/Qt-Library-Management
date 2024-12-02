@@ -176,17 +176,14 @@ void LocKiTuTimKiemDauSach(const QString& text, string& valid_key, int cursorPos
 bool MaISBNQTHopLe(QString i_s_b_n) {
     int Dash_Count = i_s_b_n.count('-');
 
-    // Điều kiện: Không được có '-' ở đầu hoặc cuối
     if (i_s_b_n.startsWith('-') || i_s_b_n.endsWith('-')) {
         return false;
     }
 
-    // Điều kiện: Không được có ít nhất 2 ký tự '-' liên tiếp
     if (i_s_b_n.contains("--")) {
         return false;
     }
 
-    // Kiểm tra độ dài và số lượng '-'
     return ((i_s_b_n.length() == 13 && Dash_Count == 3) ||
             (i_s_b_n.length() == 17 && Dash_Count == 4));
 }
@@ -252,9 +249,7 @@ void InToanBoDauSach(QTableWidget* tableWidget_dausach) {
 }
 
 string ChuyenVeChuThuong(std::string str) {
-    // Chuỗi ký tự in hoa
     string upper = "ÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬĐÉÈẺẼẸÊẾỀỂỄỆÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÍÌỈĨỊÝỲỶỸỴ";
-    // Chuỗi ký tự thường tương ứng
     string lower = "áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựíìỉĩịýỳỷỹỵ";
 
     for (size_t i = 0; i < str.size(); ++i) {
@@ -664,8 +659,8 @@ void DocTuFileDauSach() {
 
     string line;
     while (getline(file, line)) {
-        string ISBN, tensach, tacgia, theloai, vitri, masach;
-        int sotrang = 0, namxb = 0,trangthai= -1;
+        string ISBN, tensach, tacgia, theloai;
+        int sotrang = 0, namxb = 0;
 
         size_t pos = 0;
 
@@ -687,17 +682,7 @@ void DocTuFileDauSach() {
         pos = line.find('|');
         theloai = line.substr(0, pos); line.erase(0, pos + 1);
 
-        pos = line.find('|');
-        vitri = line.substr(0, pos); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        trangthai = stoi(line.substr(0, pos)); line.erase(0, pos + 1);
-
-        pos = line.find('|');
-        masach = line.substr(0, pos); line.erase(0, pos + 1);
-        if (masach.empty()) masach = "";
-
-        if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() || vitri.empty()) {
+        if (ISBN.empty() || tensach.empty() || tacgia.empty() || theloai.empty() ) {
             continue;
         }
 
@@ -708,7 +693,31 @@ void DocTuFileDauSach() {
         ds.tacgia = tacgia;
         ds.namxb = namxb;
         ds.theloai = theloai;
-        ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
+
+        while (!line.empty()) {
+            string vitri,masach;
+            int trangthai;
+
+            pos = line.find('|');
+            vitri = line.substr(0, pos);
+            line.erase(0, pos + 1);
+
+            pos = line.find('|');
+            trangthai = stoi(line.substr(0, pos));
+            line.erase(0, pos + 1);
+
+            pos = line.find('|');
+            if (pos == string::npos) {
+                masach = line;
+                line.clear();
+            } else {
+                masach = line.substr(0, pos);
+                line.erase(0, pos + 1);
+            }
+
+            ThemHoacNhapDauSach(ds,trangthai, vitri,masach);
+        }
+
     }
     file.close();
 }
@@ -721,18 +730,23 @@ void GhiDauSachVaoFile() {
     }
 
     for (int i = 0; i < danh_sach_dau_sach.soluongdausach; ++i) {
-        for (DanhMucSach* cur = danh_sach_dau_sach.node[i]->dms; cur != nullptr; cur = cur->next) {
-            DauSach* dau_sach = danh_sach_dau_sach.node[i];
-            file << dau_sach->ISBN << '|'
-                 << dau_sach->tensach << '|'
-                 << dau_sach->sotrang << '|'
-                 << dau_sach->tacgia << '|'
-                 << dau_sach->namxb << '|'
-                 << dau_sach->theloai << '|'
-                 << cur->vitri << '|'
-                 << cur->trangthai << '|'
-                 << cur->masach << endl;
+        DauSach* dau_sach = danh_sach_dau_sach.node[i];
+        file << dau_sach->ISBN << '|'
+             << dau_sach->tensach << '|'
+             << dau_sach->sotrang << '|'
+             << dau_sach->tacgia << '|'
+             << dau_sach->namxb << '|'
+             << dau_sach->theloai << '|';
+        for(DanhMucSach* dms = dau_sach->dms;dms!=nullptr; dms = dms->next){
+        file << dms->vitri << '|'
+             << dms->trangthai << '|'
+             << dms->masach ;
+            if (dms->next != nullptr) {
+                file << '|'; // Thêm ký tự phân tách giữa các sách
+            }
         }
+        file<< endl;
+
     }
 
     file.close();
