@@ -518,6 +518,14 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
 
     Danh_Sach_The_Doc_Gia* doc_gia = timKiemTheDocGia(ma_the);
     if(doc_gia == nullptr) {
+        if ( !ui->lineEdit_maThe->text().isEmpty() ) {
+            ui->lineEdit_maThe->setStyleSheet("background-color: lightcoral;");
+        } else {
+            ui->lineEdit_maThe->setStyleSheet("");
+        }
+        ui->lineEdit_hoTen->setText("");
+        ui->lineEdit_Phai->setText("");
+        ui->lineEdit_trangThai->setText("");
         return;
     }
     ui->tableWidget_muonTra->setRowCount(0);
@@ -547,10 +555,7 @@ void LibraryManagementSystem::inThongTin(const int& ma_the) {
     ui->tableWidget_muonTra->resizeColumnsToContents();
     ui->tableWidget_muonTra->horizontalHeader()->setStretchLastSection(true);
 
-    // Ẩn header dọc và giãn cột cuối
     ui->tableWidget_muonTra->verticalHeader()->hide();
-
-
 }
 
 void LibraryManagementSystem::on_lineEdit_maThe_textChanged(const QString &arg1)
