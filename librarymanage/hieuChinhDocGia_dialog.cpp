@@ -88,7 +88,7 @@ void hieuChinhDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit)
     bool lastWasSpace = false;
 
     int cursorPosition = lineEdit->cursorPosition();
-    int removedChars = 0;
+    int newCursorPosition = cursorPosition;
 
     for (int i = 0; i < arg1.length(); ++i) {
         QChar c = arg1[i];
@@ -103,13 +103,17 @@ void hieuChinhDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit)
             if (!lastWasSpace) {
                 newText += ' ';
                 lastWasSpace = true;
+            } else {
+                if (i < cursorPosition) {
+                    --newCursorPosition;
+                }
             }
         } else {
-            ++removedChars;
+            if (i < cursorPosition) {
+                --newCursorPosition;
+            }
         }
     }
-
-    newText = newText.trimmed();
 
     lineEdit->blockSignals(true);
     if (newText != arg1) {
@@ -117,13 +121,10 @@ void hieuChinhDocGia_dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit)
     }
     lineEdit->blockSignals(false);
 
-    int newCursorPosition = cursorPosition - removedChars;
-
     newCursorPosition = qBound(0, newCursorPosition, newText.length());
 
     lineEdit->setCursorPosition(newCursorPosition);
 }
-
 
 void hieuChinhDocGia_dialog::on_hoVaTen_lineEdit_textChanged(const QString &arg1)
 {

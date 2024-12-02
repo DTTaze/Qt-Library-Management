@@ -18,7 +18,7 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
     bool lastWasSpace = false;
 
     int cursorPosition = lineEdit->cursorPosition();
-    int removedChars = 0;
+    int newCursorPosition = cursorPosition;
 
     for (int i = 0; i < arg1.length(); ++i) {
         QChar c = arg1[i];
@@ -33,9 +33,15 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
             if (!lastWasSpace) {
                 newText += ' ';
                 lastWasSpace = true;
+            } else {
+                if (i < cursorPosition) {
+                    --newCursorPosition;
+                }
             }
         } else {
-            ++removedChars;
+            if (i < cursorPosition) {
+                --newCursorPosition;
+            }
         }
     }
 
@@ -44,8 +50,6 @@ void themDocGia_Dialog::xuLyChuoi(const QString &arg1, QLineEdit* lineEdit) {
         lineEdit->setText(newText);
     }
     lineEdit->blockSignals(false);
-
-    int newCursorPosition = cursorPosition - removedChars;
 
     newCursorPosition = qBound(0, newCursorPosition, newText.length());
 
