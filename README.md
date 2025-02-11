@@ -31,7 +31,9 @@ j. In 10 sách có số lượt mượn nhiều nhất
 - Mình đảm nhận phần thẻ độc giả:
   + Thẻ độc giả sẽ được lưu trữ dưới cấu trúc cây nhị phân tìm kiếm, khóa ở đây là mã thẻ, mã thẻ sẽ được sinh ngẫu nhiên tự động, với điều kiện là mã thẻ được sinh ra
 khi thêm thẻ độc giả vào cây nhị phân sẽ tạo ra cây nhị phân tìm kiếm gần như là cân bằng hoàn toàn
-  + Tiếp theo đó chính là in thông tin theo mã thẻ và theo tên
+  + Mã thẻ được tạo ra sẵn bằng phương pháp sinh số theo thứ từ trung vị khoảng 10000 mã thẻ 
+  + Tiếp theo đó chính là in thông tin theo mã thẻ và theo tên(Mã thẻ được duyệt bằng Inorder để có thể sắp xếp theo thứ tự tăng dần, sau đó thẻ độc giả sẽ được chèn có thứ tự vào một liên kết đơn, từ liên kết dơn thì thông tin sẽ được in ra theo thứ tự tên
+  + Dữ liệu được lưu/đọc từ file txt
 
 
 
